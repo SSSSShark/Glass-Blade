@@ -1,0 +1,27 @@
+Customisable Weapons Shader.
+
+This requires your mesh to have Vertex Color data, by default, this is white and very rarely used. Most game engines will have a texture 
+that obtains the colour information, this shader taps into both. You supply a light-greyscale version of your texture as well as the
+original diffuse colour texture and let the shader do the rest.
+
+It can support up to 6 unique color changes, for this, you will need to fill in your polys with one of the pure colours.
+Red (255,0,0) (R) Col1
+Green (0,255,0) (G) Col2
+Blue (0,0,255) (B) Col3
+Cyan (0,255,255) (C) Col4
+Magenta (255,0,255) (M) Col5
+Yellow (255,255,0) (Y) Col6
+
+You also have control over the Metalness and Glossiness of each part.
+
+There are sliders for the amount of the original color versus the replacing colours you want to see, as well as how they mix.
+There is also a Debug vertex color slider at the bottom, move it to the right to visualise these, then slide back to 0 when you are done.
+
+The Weapons supplied have this done already using 3DsMax's Vertex Paint Modifier, you can also do this in Maya or Blender. Simply search
+for vertex coloring and there should be an abundance of tutorials that will suit your needs.
+
+We plan on making more assets for this pack including guns and other mellee weapons that also make use of the vertex color feature. 
+There is also plans to make a color ID texture version of the shader that instead of using the vertex color, it can be driven from a
+colour ID texture, the means more accuracy. Anything else you'd like to see, simply get in touch.
+
+robert@pixelburner.com
