@@ -27,9 +27,15 @@ public class TeamController : MonoBehaviourPunCallbacks
         unknown
     };
 
+    public enum Status
+    {
+        Wait,
+        Ready,
+        unknown
+    };
+
     int NumTeamA;
     int NumTeamB;
-
     #endregion
 
     // Start is called before the first frame update
@@ -37,9 +43,12 @@ public class TeamController : MonoBehaviourPunCallbacks
     void Start()
     {
         Debug.Log("Team controller start()");
-
+        //this is only for MasterClient
         if (PhotonNetwork.IsMasterClient)
         {
+            Button btnObj = GameObject.FindGameObjectWithTag("Start").GetComponent<Button>();
+            btnObj.transform.Find("Text").GetComponent<Text>().text = "Start";
+
             Debug.Log("Master client: initialize obj table");
 
             TeamAList = GameObject.FindGameObjectsWithTag("TeamA").OrderBy(a => -a.GetComponent<RectTransform>().position.y).ToArray();
@@ -71,14 +80,14 @@ public class TeamController : MonoBehaviourPunCallbacks
                 if (NumTeamB >= NumTeamA)
                 {
                     NumTeamA++;
-                    props.Add("team", Team.TeamA);
+                    props.Add("team", Team.TeamA);   
                 }
                 else
                 {
                     NumTeamB++;
                     props.Add("team", Team.TeamB);
                 }
-
+                props.Add("status", Status.Wait);
                 p.SetCustomProperties(props);
             }
 
@@ -92,6 +101,17 @@ public class TeamController : MonoBehaviourPunCallbacks
     void Update()
     {
         // do nothing
+    }
+
+    public override void OnPlayerPropertiesUpdate(Player targetPlayer, ExitGames.Client.Photon.Hashtable changedProps)
+    {
+        base.OnPlayerPropertiesUpdate(targetPlayer, changedProps);
+        if (PhotonNetwork.IsMasterClient)
+        {
+            Debug.Log("PlayerPropertiesUpdate is called");
+            Synchronize();
+        }
+        
     }
 
     #endregion
@@ -126,6 +146,7 @@ public class TeamController : MonoBehaviourPunCallbacks
                 NumTeamB++;
                 props.Add("team", Team.TeamB);
             }
+            props.Add("status", Status.Wait);
             newPlayer.SetCustomProperties(props);
 
             // update
@@ -177,27 +198,112 @@ public class TeamController : MonoBehaviourPunCallbacks
             {
                 if ((Team)p.CustomProperties["team"] == Team.TeamA)
                 {
-                    TeamAList[TeamAIndex++].GetComponent<Text>().text = p.NickName;
+                    TeamAList[TeamAIndex].GetComponent<Text>().text = p.NickName;
+                    if ((Status)p.CustomProperties["status"] == Status.Ready)
+                    {
+                        TeamAList[TeamAIndex++].transform.Find("Toggle").GetComponent<Toggle>().isOn = true;
+                    }
+                    else
+                    {
+                        TeamAList[TeamAIndex++].transform.Find("Toggle").GetComponent<Toggle>().isOn = false;
+                    }
                 }
                 else
                 {
-                    TeamBList[TeamBIndex++].GetComponent<Text>().text = p.NickName;
+                    TeamBList[TeamBIndex].GetComponent<Text>().text = p.NickName;
+                    if ((Status)p.CustomProperties["status"] == Status.Ready)
+                    {
+                        TeamBList[TeamBIndex++].transform.Find("Toggle").GetComponent<Toggle>().isOn = true;
+                    }
+                    else
+                    {
+                        TeamBList[TeamBIndex++].transform.Find("Toggle").GetComponent<Toggle>().isOn = false;
+                    }
                 }
             }
 
             while (TeamAIndex < 5)
             {
-                TeamAList[TeamAIndex++].GetComponent<Text>().text = "空";
+                TeamAList[TeamAIndex].GetComponent<Text>().text = "空";
+                TeamAList[TeamAIndex++].transform.Find("Toggle").GetComponent<Toggle>().isOn = false;
             }
 
             while (TeamBIndex < 5)
             {
-                TeamBList[TeamBIndex++].GetComponent<Text>().text = "空";
+                TeamBList[TeamBIndex].GetComponent<Text>().text = "空";
+                TeamAList[TeamBIndex++].transform.Find("Toggle").GetComponent<Toggle>().isOn = false;
             }
         }
         else
         {
             Debug.LogError("synchronize called by client other than mastr client!");
+        }
+    }
+
+
+    public void CancelReady()
+    {
+        if (!PhotonNetwork.IsMasterClient)
+        {
+            ExitGames.Client.Photon.Hashtable props = PhotonNetwork.LocalPlayer.CustomProperties;
+            props["status"] = Status.Wait;
+            PhotonNetwork.LocalPlayer.SetCustomProperties(props);
+            Button btnObj = GameObject.FindGameObjectWithTag("Start").GetComponent<Button>();
+            btnObj.transform.Find("Text").GetComponent<Text>().text = "Ready";
+            try
+            {
+                btnObj.onClick.RemoveListener(CancelReady);
+            }
+            catch
+            {
+                Debug.LogWarning("RemoveListener Failed");
+            }
+            finally
+            {
+                btnObj.onClick.AddListener(ReadytoGame);
+            }
+        }
+    }
+
+    public void ReadytoGame()
+    {
+        if (PhotonNetwork.IsMasterClient)
+        {
+
+            foreach (Player p in PhotonNetwork.PlayerList)
+            {
+                if (p != PhotonNetwork.MasterClient && (Status)p.CustomProperties["status"] == Status.Wait)
+                {
+                    Debug.Log("Someone is not ready yet");
+                    return;
+                }
+            }
+            LoadArena();
+        }
+        else
+        {
+            ExitGames.Client.Photon.Hashtable props = PhotonNetwork.LocalPlayer.CustomProperties;
+            props["status"] = Status.Ready;
+
+            PhotonNetwork.LocalPlayer.SetCustomProperties(props);       
+
+            Button btnObj = GameObject.FindGameObjectWithTag("Start").GetComponent<Button>();
+            btnObj.transform.Find("Text").GetComponent<Text>().text = "Cancel"; 
+
+            try
+            {
+                btnObj.onClick.RemoveListener(ReadytoGame);
+            }
+            catch
+            {
+                Debug.LogWarning("RemoveListener Failed");
+            }
+            finally
+            {
+                btnObj.onClick.AddListener(CancelReady);
+            }
+            
+            Debug.Log("modify status to ready");
         }
     }
 
@@ -210,6 +316,22 @@ public class TeamController : MonoBehaviourPunCallbacks
     {
         PhotonNetwork.LeaveRoom();
     }
+    #endregion
+
+    #region Private Methods
+
+
+    void LoadArena()
+    {
+        if (!PhotonNetwork.IsMasterClient)
+        {
+            Debug.LogError("PhotonNetwork : Trying to Load a level but we are not the master Client");
+        }
+        Debug.LogFormat("PhotonNetwork : Loading Level : {0}", PhotonNetwork.CurrentRoom.PlayerCount);
+        PhotonNetwork.LoadLevel("Room 1");
+    }
+
+
     #endregion
 
 }

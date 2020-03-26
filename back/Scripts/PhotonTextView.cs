@@ -9,6 +9,7 @@ public class PhotonTextView : MonoBehaviour, IPunObservable
 
     #region private field
     Text mytext;
+    Toggle mytoggle;
     #endregion
     #region IPunObservable implementation
 
@@ -18,10 +19,12 @@ public class PhotonTextView : MonoBehaviour, IPunObservable
         if (stream.IsWriting)
         {
             stream.SendNext(mytext.text);
+            stream.SendNext(mytoggle.isOn);
         }
         else
         {
             mytext.text=(string)stream.ReceiveNext();
+            mytoggle.isOn=(bool)stream.ReceiveNext();
         }
     }
 
@@ -30,6 +33,7 @@ public class PhotonTextView : MonoBehaviour, IPunObservable
     private void Start()
     {
         mytext = gameObject.GetComponent<Text>();
+        mytoggle = gameObject.transform.Find("Toggle").GetComponent<Toggle>();
     }
     #endregion 
 }
