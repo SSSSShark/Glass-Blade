@@ -27,10 +27,6 @@ public class TeamController : MonoBehaviourPunCallbacks
         unknown
     };
 
-    // Team players
-    // use a dictionary(map) to track use of the players
-    Dictionary<Player, Team> PlayerMap;
-
     int NumTeamA;
     int NumTeamB;
 
@@ -67,22 +63,23 @@ public class TeamController : MonoBehaviourPunCallbacks
 
             Debug.Log("Master client: initialize team");
 
-            // initialize team
-            PlayerMap = new Dictionary<Player, Team>();
-
             // add initial play for the first time
             foreach (Player p in PhotonNetwork.PlayerList)
             {
+                ExitGames.Client.Photon.Hashtable props = new ExitGames.Client.Photon.Hashtable();
+                // we set the property of the player
                 if (NumTeamB >= NumTeamA)
                 {
-                    PlayerMap.Add(p, Team.TeamA);
-                    NumTeamA ++;
+                    NumTeamA++;
+                    props.Add("team", Team.TeamA);
                 }
                 else
                 {
-                    PlayerMap.Add(p, Team.TeamB);
-                    NumTeamB ++;
+                    NumTeamB++;
+                    props.Add("team", Team.TeamB);
                 }
+
+                p.SetCustomProperties(props);
             }
 
             Debug.Log("Master client: display the player's nick name");
@@ -106,83 +103,114 @@ public class TeamController : MonoBehaviourPunCallbacks
         PhotonNetwork.LoadLevel(0);
     }
 
-    public override void OnPlayerEnteredRoom (Player newPlayer)
+    /// <summary>
+    /// Called when a player entered the room, if we are the
+    /// master client, we update the PlayerMap, automatically
+    /// determine a team for the player and update the display,
+    /// otherwise we do nothing
+    /// </summary>
+    public override void OnPlayerEnteredRoom(Player newPlayer)
     {
-        Debug.Log("Player " + newPlayer.NickName + " joined");
-        if(NumTeamA <= NumTeamB)
+        if (PhotonNetwork.IsMasterClient)
         {
-            PlayerMap.Add(newPlayer, Team.TeamA);
-            NumTeamA ++;
-        }
-        else
-        {
-            PlayerMap.Add(newPlayer, Team.TeamB);
-            NumTeamB ++;
-        }
+            Debug.Log("Player " + newPlayer.NickName + " joined");
 
-        // update
-        Synchronize();
+            ExitGames.Client.Photon.Hashtable props = new ExitGames.Client.Photon.Hashtable();
+            if (NumTeamA <= NumTeamB)
+            {
+                NumTeamA++;
+                props.Add("team", Team.TeamA);
+            }
+            else
+            {
+                NumTeamB++;
+                props.Add("team", Team.TeamB);
+            }
+            newPlayer.SetCustomProperties(props);
+
+            // update
+            Synchronize();
+        }
     }
 
+    /// <summary>
+    /// Called when a player left the room, if we are the master
+    /// client, we delete the player from the PlayerMap and update
+    /// the display.
+    /// </summary>
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
-        Debug.Log("Player " + otherPlayer.NickName + " leaved");
-
-        // find the player in the place
-        Team t = PlayerMap[otherPlayer];
-
-        // TODO: use a new interface to implement this
-        if(t == Team.TeamA)
+        if (PhotonNetwork.IsMasterClient)
         {
-            NumTeamA --;
-        }
-        else
-        {
-            NumTeamB --;
-        }
+            Debug.Log("Player " + otherPlayer.NickName + " leaved");
 
-        PlayerMap.Remove(otherPlayer);
+            if ((Team)otherPlayer.CustomProperties["team"] == Team.TeamA)
+            {
+                NumTeamA--;
+            }
+            else
+            {
+                NumTeamB--;
+            }
 
-        // Update list
-        Synchronize();
+            // Update list
+            Synchronize();
+        }
     }
 
     #endregion
 
     #region Public Methods
+
+    /// <summary>
+    /// Called by the master client ONLY, update the team display info
+    /// </summary>
     public void Synchronize()
     {
-        Debug.Log("Synchronize() called, with team A: " + NumTeamA + " teamB: " + NumTeamB);
-        int TeamAIndex = 0;
-        int TeamBIndex = 0;
-        // we use the master to allocate team
-        foreach (KeyValuePair<Player, Team> p in PlayerMap)
+        if (PhotonNetwork.IsMasterClient)
         {
-            if(p.Value == Team.TeamA)
+            Debug.Log("Synchronize() called, with team A: " + NumTeamA + " teamB: " + NumTeamB);
+            int TeamAIndex = 0;
+            int TeamBIndex = 0;
+            // we use the master to allocate team
+            foreach (Player p in PhotonNetwork.PlayerList)
             {
-                TeamAList[TeamAIndex ++].GetComponent<Text>().text = p.Key.NickName;
+                if ((Team)p.CustomProperties["team"] == Team.TeamA)
+                {
+                    TeamAList[TeamAIndex++].GetComponent<Text>().text = p.NickName;
+                }
+                else
+                {
+                    TeamBList[TeamBIndex++].GetComponent<Text>().text = p.NickName;
+                }
             }
-            else
+
+            while (TeamAIndex < 5)
             {
-                TeamBList[TeamBIndex ++].GetComponent<Text>().text = p.Key.NickName;
+                TeamAList[TeamAIndex++].GetComponent<Text>().text = "空";
+            }
+
+            while (TeamBIndex < 5)
+            {
+                TeamBList[TeamBIndex++].GetComponent<Text>().text = "空";
             }
         }
-
-        while(TeamAIndex < 5)
+        else
         {
-            TeamAList[TeamAIndex ++].GetComponent<Text>().text = "空";
-        }
-
-        while(TeamBIndex < 5)
-        {
-            TeamBList[TeamBIndex ++].GetComponent<Text>().text = "空";
+            Debug.LogError("synchronize called by client other than mastr client!");
         }
     }
 
+    /// <summary>
+    /// Called when a player clicked the leave button
+    /// </summary>
+    /// TODO: if the master client wants to leave, we need to transfer the ownership,
+    ///       which is not yet implemented!
     public void LeaveRoom()
     {
         PhotonNetwork.LeaveRoom();
     }
     #endregion
+
 }
 
