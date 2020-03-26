@@ -2,7 +2,6 @@
 using Photon.Pun;
 using Photon.Realtime;
 
-
 namespace Com.MyCompany.MyGame
 {
     public class Launcher : MonoBehaviourPunCallbacks
@@ -72,6 +71,7 @@ namespace Com.MyCompany.MyGame
         public void Connect()
         {
             // we check if we are connected or not, we join if we are , else we initiate the connection to the server.
+            controlPanel.GetComponentInChildren<PlayerNameInputField>().SetPlayerName();
             if (PhotonNetwork.IsConnected)
             {
                 // #Critical we need at this point to attempt joining a Random Room. If it fails, we'll get notified in OnJoinRandomFailed() and we'll create one.
@@ -126,6 +126,7 @@ namespace Com.MyCompany.MyGame
 
         public override void OnJoinedRoom()
         {
+            Debug.Log(PhotonNetwork.CurrentRoom.ToStringFull());
             // #Critical: We only load if we are the first player, else we rely on `PhotonNetwork.AutomaticallySyncScene` to sync our instance scene.
             if (PhotonNetwork.CurrentRoom.PlayerCount == 1)
             {
