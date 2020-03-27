@@ -31,6 +31,7 @@ public class TeamController : MonoBehaviourPunCallbacks
     {
         Wait,
         Ready,
+        Host,
         unknown
     };
 
@@ -87,7 +88,14 @@ public class TeamController : MonoBehaviourPunCallbacks
                     NumTeamB++;
                     props.Add("team", Team.TeamB);
                 }
-                props.Add("status", Status.Wait);
+                if (p == PhotonNetwork.MasterClient)
+                {
+                    props.Add("status", Status.Host);
+                }
+                else
+                {
+                    props.Add("status", Status.Wait);
+                }
                 p.SetCustomProperties(props);
             }
 
@@ -161,21 +169,30 @@ public class TeamController : MonoBehaviourPunCallbacks
     /// </summary>
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
+        //if the host leaves, then the player with the minimum ID will be the next host automatically
         if (PhotonNetwork.IsMasterClient)
         {
-            Debug.Log("Player " + otherPlayer.NickName + " leaved");
 
-            if ((Team)otherPlayer.CustomProperties["team"] == Team.TeamA)
+            Debug.Log("Player " + otherPlayer.NickName + " leaved");
+            if ((Status)otherPlayer.CustomProperties["status"] == Status.Host)
             {
-                NumTeamA--;
+                Start();
             }
+
             else
             {
-                NumTeamB--;
+                if ((Team)otherPlayer.CustomProperties["team"] == Team.TeamA)
+                {
+                    NumTeamA--;
+                }
+                else
+                {
+                    NumTeamB--;
+                }
+                // Update list
+                Synchronize();
             }
-
-            // Update list
-            Synchronize();
+            
         }
     }
 
@@ -198,7 +215,7 @@ public class TeamController : MonoBehaviourPunCallbacks
             {
                 if ((Team)p.CustomProperties["team"] == Team.TeamA)
                 {
-                    TeamAList[TeamAIndex].GetComponent<Text>().text = p.NickName;
+                    TeamAList[TeamAIndex].GetComponent<Text>().text = p.NickName + (p == PhotonNetwork.MasterClient ? "-host" : "");
                     if ((Status)p.CustomProperties["status"] == Status.Ready)
                     {
                         TeamAList[TeamAIndex++].transform.Find("Toggle").GetComponent<Toggle>().isOn = true;
@@ -210,7 +227,7 @@ public class TeamController : MonoBehaviourPunCallbacks
                 }
                 else
                 {
-                    TeamBList[TeamBIndex].GetComponent<Text>().text = p.NickName;
+                    TeamBList[TeamBIndex].GetComponent<Text>().text = p.NickName + (p == PhotonNetwork.MasterClient ? "-host" : "");
                     if ((Status)p.CustomProperties["status"] == Status.Ready)
                     {
                         TeamBList[TeamBIndex++].transform.Find("Toggle").GetComponent<Toggle>().isOn = true;
@@ -220,6 +237,9 @@ public class TeamController : MonoBehaviourPunCallbacks
                         TeamBList[TeamBIndex++].transform.Find("Toggle").GetComponent<Toggle>().isOn = false;
                     }
                 }
+                NumTeamA = TeamAIndex;
+                NumTeamB = TeamBIndex;
+                Debug.Log("Infomation updated, with team A: " + NumTeamA + " teamB: " + NumTeamB);
             }
 
             while (TeamAIndex < 5)
@@ -240,6 +260,21 @@ public class TeamController : MonoBehaviourPunCallbacks
         }
     }
 
+    public void changeTeam()
+    {
+        ExitGames.Client.Photon.Hashtable props = PhotonNetwork.LocalPlayer.CustomProperties;
+        if ((Team)props["team"] == Team.TeamA)
+        {
+            props["team"] = Team.TeamB;
+        }
+        else
+        {
+            props["team"] = Team.TeamA;
+        }
+        PhotonNetwork.LocalPlayer.SetCustomProperties(props);
+
+        Debug.Log("Change team already");
+    }
 
     public void CancelReady()
     {
