@@ -128,6 +128,10 @@ public class TeamController : MonoBehaviourPunCallbacks
     public override void OnLeftRoom()
     {
         Debug.Log("Left the room");
+        if (PhotonNetwork.IsConnected)
+        {
+            PhotonNetwork.JoinLobby();
+        }
         PhotonNetwork.LoadLevel(0);
     }
 
@@ -196,6 +200,13 @@ public class TeamController : MonoBehaviourPunCallbacks
         }
     }
 
+    public override void OnDisconnected(DisconnectCause cause)
+    {
+        base.OnDisconnected(cause);
+        Debug.LogWarning("lose connection");
+        PhotonNetwork.LoadLevel(0);
+    }
+
     #endregion
 
     #region Public Methods
@@ -218,11 +229,12 @@ public class TeamController : MonoBehaviourPunCallbacks
                     TeamAList[TeamAIndex].GetComponent<Text>().text = p.NickName + (p == PhotonNetwork.MasterClient ? "-host" : "");
                     if ((Status)p.CustomProperties["status"] == Status.Ready)
                     {
-                        TeamAList[TeamAIndex++].transform.Find("Toggle").GetComponent<Toggle>().isOn = true;
+                        TeamAList[TeamAIndex++].transform.Find("Ready").GetComponent<RawImage>().enabled = true;
+                        Debug.LogFormat("Toggle for TeamA[{0}] is on", TeamAIndex);
                     }
                     else
                     {
-                        TeamAList[TeamAIndex++].transform.Find("Toggle").GetComponent<Toggle>().isOn = false;
+                        TeamAList[TeamAIndex++].transform.Find("Ready").GetComponent<RawImage>().enabled = false;
                     }
                 }
                 else
@@ -230,11 +242,12 @@ public class TeamController : MonoBehaviourPunCallbacks
                     TeamBList[TeamBIndex].GetComponent<Text>().text = p.NickName + (p == PhotonNetwork.MasterClient ? "-host" : "");
                     if ((Status)p.CustomProperties["status"] == Status.Ready)
                     {
-                        TeamBList[TeamBIndex++].transform.Find("Toggle").GetComponent<Toggle>().isOn = true;
+                        TeamBList[TeamBIndex++].transform.Find("Ready").GetComponent<RawImage>().enabled = true;
+                        Debug.LogFormat("Toggle for TeamB[{0}] is on", TeamBIndex);
                     }
                     else
                     {
-                        TeamBList[TeamBIndex++].transform.Find("Toggle").GetComponent<Toggle>().isOn = false;
+                        TeamBList[TeamBIndex++].transform.Find("Ready").GetComponent<RawImage>().enabled = false;
                     }
                 }
                 NumTeamA = TeamAIndex;
@@ -245,13 +258,13 @@ public class TeamController : MonoBehaviourPunCallbacks
             while (TeamAIndex < 5)
             {
                 TeamAList[TeamAIndex].GetComponent<Text>().text = "空";
-                TeamAList[TeamAIndex++].transform.Find("Toggle").GetComponent<Toggle>().isOn = false;
+                TeamAList[TeamAIndex++].transform.Find("Ready").GetComponent<RawImage>().enabled = false;
             }
 
             while (TeamBIndex < 5)
             {
                 TeamBList[TeamBIndex].GetComponent<Text>().text = "空";
-                TeamAList[TeamBIndex++].transform.Find("Toggle").GetComponent<Toggle>().isOn = false;
+                TeamBList[TeamBIndex++].transform.Find("Ready").GetComponent<RawImage>().enabled = false;
             }
         }
         else
@@ -272,6 +285,7 @@ public class TeamController : MonoBehaviourPunCallbacks
             props["team"] = Team.TeamA;
         }
         PhotonNetwork.LocalPlayer.SetCustomProperties(props);
+        //the Numteam will be updated during sync
 
         Debug.Log("Change team already");
     }

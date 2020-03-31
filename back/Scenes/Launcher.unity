@@ -472,7 +472,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 527737732}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b61632273fb76cb4eba230a9a71e8510, type: 3}
+  m_Script: {fileID: 11500000, guid: 69447b4a17f2847478836eb4aae204eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &579441915
@@ -1042,7 +1042,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1627694691}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1faaf600f99e0f043a0d00987a87b391, type: 3}
+  m_Script: {fileID: 11500000, guid: d97ac587de4256e44a31c479cb5b8385, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxPlayersPerRoom: 10

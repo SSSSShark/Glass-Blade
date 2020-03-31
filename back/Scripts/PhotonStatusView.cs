@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PhotonTextView : MonoBehaviour, IPunObservable
+public class PhotonStatusView : MonoBehaviour, IPunObservable
 {
 
     #region private field
-    Text mytext;
+    GameObject readyObj;
     #endregion
     #region IPunObservable implementation
 
@@ -17,11 +17,11 @@ public class PhotonTextView : MonoBehaviour, IPunObservable
     {
         if (stream.IsWriting)
         {
-            stream.SendNext(mytext.text);
+            stream.SendNext(readyObj.GetComponent<RawImage>().enabled);
         }
         else
         {
-            mytext.text = (string)stream.ReceiveNext();
+            readyObj.GetComponent<RawImage>().enabled = (bool)stream.ReceiveNext();
         }
     }
 
@@ -29,7 +29,7 @@ public class PhotonTextView : MonoBehaviour, IPunObservable
     #region MonoBehaviour CallBack
     private void Start()
     {
-        mytext = gameObject.GetComponent<Text>();
+        readyObj = gameObject;
     }
     #endregion 
 }
