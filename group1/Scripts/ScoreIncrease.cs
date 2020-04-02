@@ -17,8 +17,8 @@ public class ScoreIncrease : MonoBehaviour
         scoreText = GetComponentInChildren<Text>();
     }
 
-    // Update is called once per frame
-    void UpdateScore()
+
+    public void UpdateScore()
     {
         score ++;
         if(score >= 10)
