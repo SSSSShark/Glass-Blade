@@ -9,12 +9,14 @@ public class CameraFollow : MonoBehaviour
 
     public float Camera_Height;
     public float Camera_Distance;
-
+    public int team;
 
     // Start is called before the first frame update
     void Start()
     {
-        this.PlayerTrans = GameObject.FindGameObjectWithTag("Player").transform;        // 获取Player位置
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        this.PlayerTrans = player.transform;        // 获取Player位置
+        team = player.GetComponent<PlayerCharacter>().team;
     }
 
     // Update is called once per frame
