@@ -31,27 +31,29 @@ public class movegetgromjoystick : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     void Start()
     {
-        ani = GetComponentInChildren<Animator>();
+            ani = GetComponentInChildren<Animator>();
         //touch = GameManager.joyStick;
-
-        if(touch == null)
+        if (photonView.IsMine)
         {
-            Debug.LogError("cannot find joystick");
-        }
-
-        CameraFollow _cameraFollow = this.gameObject.GetComponent<CameraFollow>();
-
-        if(_cameraFollow != null) 
-        {
-            if (photonView.IsMine)
+            if (touch == null)
             {
-                _cameraFollow.OnStartFollowing();
+                Debug.LogError("cannot find joystick");
             }
         }
-        else
-        {
-            Debug.LogError("<Color=Red><a>Missing</a></Color> CameraWork Component on playerPrefab.", this);
-        }
+            CameraFollow _cameraFollow = this.gameObject.GetComponent<CameraFollow>();
+
+            if (_cameraFollow != null)
+            {
+                if (photonView.IsMine)
+                {
+                    _cameraFollow.OnStartFollowing();
+                }
+            }
+            else
+            {
+                Debug.LogError("<Color=Red><a>Missing</a></Color> CameraWork Component on playerPrefab.", this);
+            }
+       
     }
 
     // Update is called once per frame

@@ -7,9 +7,12 @@ using Photon.Realtime;
 public class GameManager : MonoBehaviour
 {
     #region Public Fields
-
+    [SerializeField]
     [Tooltip("The prefeb to use for representing the player")]
     public GameObject playerPrefeb;
+    [SerializeField]
+    [Tooltip("The prefeb used to show time ,owned by maste client")]
+    public GameObject informationPrefeb;
     public Joystick joystick;
 
     #endregion
@@ -27,12 +30,14 @@ public class GameManager : MonoBehaviour
             {
                 GameObject thePlayer = PhotonNetwork.Instantiate(this.playerPrefeb.name, new Vector3(0f, 5f, 0f), Quaternion.identity, 0);
                 thePlayer.GetComponent<movegetgromjoystick>().touch = joystick;
+                //thePlayer.GetComponent<CharacterBehavior>().touch = joystick;
             }
             else
             {
                 // ignore
             }
         }
+
     }
 
     // Update is called once per frame

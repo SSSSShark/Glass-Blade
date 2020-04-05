@@ -8,6 +8,8 @@ TagManager:
   - TeamB
   - Start
   - OneRoom
+  - Show
+  - Counter
   layers:
   - Default
   - TransparentFX
@@ -17,7 +19,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - player
   - 
   - 
   - 
