@@ -40,6 +40,7 @@ public class PlayerCharacter : MonoBehaviour
   int holdWeaponIndex = 1;
   //武器对象    
   public GameObject weaponObject; //weaponObject 挂 Player\Mr Black\weapons
+  public int weaponKinds = 4;
   Transform[] weapons;
   /******************** 汪至磊 end **********************/
 
@@ -191,7 +192,12 @@ public class PlayerCharacter : MonoBehaviour
     cc = GetComponent<CharacterController>();
     baw = GameObject.FindObjectOfType<BlackAndWhite>();
     weapons = weaponObject.GetComponentsInChildren<Transform>();
-    
+    //foreach (Transform child in weapons) child.gameObject.SetActive(false);
+    for (int i = 1; i <= weaponKinds; i++)
+    {
+      //Debug.Log(weapons[i].name);
+      weapons[i].gameObject.SetActive(false);
+    }
   }
     
   // Update is called once per frame
