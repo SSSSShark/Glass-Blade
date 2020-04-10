@@ -11,7 +11,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{080C9CD9-F4A5-4024-3261-148D42B51BC5}</ProjectGuid>
+    <ProjectGuid>{07FE5420-9B6A-D97A-2DEF-FFE5839FA532}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -91,31 +91,31 @@
      <None Include="Assets\group1\Prefabs\test.txt" />
      <None Include="Assets\RRFreelance\CustomizableWeapons\Shaders\PB_VertexColor.shader" />
  <Reference Include="Unity.Timeline.Editor">
- <HintPath>C:/Users/Administrator/Desktop/group1/demo_week6/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+ <HintPath>C:/Users/Administrator/Desktop/github/Glass-Blade/group1/demo_week7/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.VSCode.Editor">
- <HintPath>C:/Users/Administrator/Desktop/group1/demo_week6/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+ <HintPath>C:/Users/Administrator/Desktop/github/Glass-Blade/group1/demo_week7/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro.Editor">
- <HintPath>C:/Users/Administrator/Desktop/group1/demo_week6/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+ <HintPath>C:/Users/Administrator/Desktop/github/Glass-Blade/group1/demo_week7/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
- <HintPath>C:/Users/Administrator/Desktop/group1/demo_week6/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+ <HintPath>C:/Users/Administrator/Desktop/github/Glass-Blade/group1/demo_week7/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Timeline">
- <HintPath>C:/Users/Administrator/Desktop/group1/demo_week6/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+ <HintPath>C:/Users/Administrator/Desktop/github/Glass-Blade/group1/demo_week7/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
  </Reference>
  <Reference Include="Unity.CollabProxy.Editor">
- <HintPath>C:/Users/Administrator/Desktop/group1/demo_week6/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+ <HintPath>C:/Users/Administrator/Desktop/github/Glass-Blade/group1/demo_week7/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Rider.Editor">
- <HintPath>C:/Users/Administrator/Desktop/group1/demo_week6/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+ <HintPath>C:/Users/Administrator/Desktop/github/Glass-Blade/group1/demo_week7/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro">
- <HintPath>C:/Users/Administrator/Desktop/group1/demo_week6/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+ <HintPath>C:/Users/Administrator/Desktop/github/Glass-Blade/group1/demo_week7/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.UI">
- <HintPath>C:/Users/Administrator/Desktop/group1/demo_week6/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+ <HintPath>C:/Users/Administrator/Desktop/github/Glass-Blade/group1/demo_week7/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>D:/2019.3.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -295,10 +295,10 @@
  <HintPath>D:/2019.3.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.XRModule.dll</HintPath>
  </Reference>
  <Reference Include="Photon3Unity3D">
- <HintPath>C:/Users/Administrator/Desktop/group1/demo_week6/Assets/Photon/PhotonLibs/Photon3Unity3D.dll</HintPath>
+ <HintPath>C:/Users/Administrator/Desktop/github/Glass-Blade/group1/demo_week7/Assets/Photon/PhotonLibs/Photon3Unity3D.dll</HintPath>
  </Reference>
  <Reference Include="websocket-sharp">
- <HintPath>C:/Users/Administrator/Desktop/group1/demo_week6/Assets/Photon/PhotonLibs/WebSocket/websocket-sharp.dll</HintPath>
+ <HintPath>C:/Users/Administrator/Desktop/github/Glass-Blade/group1/demo_week7/Assets/Photon/PhotonLibs/WebSocket/websocket-sharp.dll</HintPath>
  </Reference>
  <Reference Include="netstandard">
  <HintPath>D:/2019.3.2f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
@@ -648,47 +648,47 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="PhotonUnityNetworking.Utilities.PhotonPlayer.Editor.csproj">
-      <Project>{40E56CAB-0728-D9E4-76AD-11865B3FC319}</Project>
+      <Project>{FBFF6C96-9B2C-17FA-A482-40A8828F4B28}</Project>
       <Name>PhotonUnityNetworking.Utilities.PhotonPlayer.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="PunDemos.DemoHubEditor.csproj">
-      <Project>{27FCE1A3-C77E-30BD-F285-BD33DA06BA24}</Project>
+      <Project>{22B4C8F1-675C-8C51-E6FD-F187D80D7B30}</Project>
       <Name>PunDemos.DemoHubEditor</Name>
     </ProjectReference>
     <ProjectReference Include="PunDemos.DemoSlotcarEditor.csproj">
-      <Project>{86FFB047-88CA-2D2B-354A-FB0ADE236718}</Project>
+      <Project>{901704DE-8F06-0A66-F567-566A96AE8244}</Project>
       <Name>PunDemos.DemoSlotcarEditor</Name>
     </ProjectReference>
     <ProjectReference Include="PhotonUnityNetworking.Demos.csproj">
-      <Project>{A31249FB-E030-17E8-3C73-087F5A31EDCE}</Project>
+      <Project>{E5F032D2-7C7F-BAD3-FA30-9658784382E0}</Project>
       <Name>PhotonUnityNetworking.Demos</Name>
     </ProjectReference>
     <ProjectReference Include="PhotonUnityNetworking.Utilities.csproj">
-      <Project>{36F9B0B5-A5D0-A3F4-E5E4-154D39BEF4C2}</Project>
+      <Project>{34F72F16-DAC4-4CFF-C9F2-21E092563F27}</Project>
       <Name>PhotonUnityNetworking.Utilities</Name>
     </ProjectReference>
     <ProjectReference Include="PhotonWebSocket.csproj">
-      <Project>{C9656D74-C015-C522-18F7-D1900B97E2B6}</Project>
+      <Project>{893735C6-A9AF-6D7B-0A02-2F97B78050F5}</Project>
       <Name>PhotonWebSocket</Name>
     </ProjectReference>
     <ProjectReference Include="PhotonRealtime.csproj">
-      <Project>{1B17DD3D-5BEC-67E1-12EA-19473162618C}</Project>
+      <Project>{433A204B-4474-CD01-6080-151181DC5E70}</Project>
       <Name>PhotonRealtime</Name>
     </ProjectReference>
     <ProjectReference Include="PhotonUnityNetworking.csproj">
-      <Project>{E6842A5A-EC49-F4AC-0635-519EE0D503D0}</Project>
+      <Project>{3E9F123F-E954-4F19-6423-A79C8550F816}</Project>
       <Name>PhotonUnityNetworking</Name>
     </ProjectReference>
     <ProjectReference Include="PhotonChat.csproj">
-      <Project>{F2E128BE-AA2E-6A68-A8F8-4F9B35144190}</Project>
+      <Project>{D611EA5B-518D-364E-043B-1BFC6284474C}</Project>
       <Name>PhotonChat</Name>
     </ProjectReference>
     <ProjectReference Include="PhotonUnityNetworking.Utilities.Culling.Editor.csproj">
-      <Project>{4B028CDD-3021-79DD-5358-72D362A68D50}</Project>
+      <Project>{EFDA203E-DEDE-BC72-3654-B885A240CFE2}</Project>
       <Name>PhotonUnityNetworking.Utilities.Culling.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="PhotonUnityNetworking.Editor.csproj">
-      <Project>{5EE8B55D-6582-C1D0-799E-A50F7A5438C7}</Project>
+      <Project>{C9E01E58-D006-3080-F375-EE3F2450C1F5}</Project>
       <Name>PhotonUnityNetworking.Editor</Name>
     </ProjectReference>
   </ItemGroup>
