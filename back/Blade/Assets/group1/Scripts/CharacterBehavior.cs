@@ -20,10 +20,13 @@ public class CharacterBehavior : MonoBehaviour
         character = this.transform.GetChild(0).GetComponentsInChildren<Renderer>();     //获取角色
         namebar = this.transform.GetChild(6).GetComponentsInChildren<Renderer>();       //获取名字
         healthbar = this.transform.GetChild(5).GetComponentsInChildren<CanvasRenderer>();       //获取血条
-        foreach (var render in character)
+        /*foreach (var render in character)
         {
             render.material.shader = shader;        //阴影
-        }
+        }*/
+        /////////debug By GaoYan
+        ////动态修改shader导致贴图失效，改为静态修改
+
         SetTransparent(1f);                         //设为可见
     }
 
