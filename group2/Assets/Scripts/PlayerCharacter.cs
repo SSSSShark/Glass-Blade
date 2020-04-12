@@ -12,8 +12,8 @@ public class PlayerCharacter : MonoBehaviour
   CharacterController cc;
   public float attackTime;  //攻击持续时间
 
-  bool isAlive = true;
-  bool attacking = false;
+  public bool isAlive = true;
+  public bool attacking = false;
   /**************** 李晨昊 end **************************/
 
   /********************* 林海力 begin *******************/
@@ -37,23 +37,32 @@ public class PlayerCharacter : MonoBehaviour
   int counttime;
   bool isHoldWeapon = false;
   //持有武器种类
-  int holdWeaponIndex = 1;
+  int holdWeaponIndex = 0;
   //武器对象    
   public GameObject weaponObject; //weaponObject 挂 Player\Mr Black\weapons
   public int weaponKinds = 4;
   Transform[] weapons;
   /******************** 汪至磊 end **********************/
 
+  /******************** 李晨昊 begin ********************/
+  public Rigidbody dagger;
+  public float daggerAttackDelayTime = 1.0f;
+  public float launchForce = 10;
+  /******************** 李晨昊 end **********************/
 
   /*************************** 李晨昊 begin *************************/
-  public void Attack()
-  {
+  public void Attack() {
     if (!isAlive) return;
     if (attacking) return;
     attacking = true;
     if (isHoldWeapon)
     {
-      // 待做攻击
+      switch(holdWeaponIndex) {
+        case 1: break;
+        case 2: Invoke("DaggerAttack", daggerAttackDelayTime); break;
+        case 3: break;
+        case 4: break;
+      }
 
 
       holdWeapon(holdWeaponIndex, false);
@@ -69,13 +78,18 @@ public class PlayerCharacter : MonoBehaviour
     Invoke("RefreshAttack", attackTime);
   }
 
-  void RefreshAttack()
-  {
+  void RefreshAttack() {
     attacking = false;
   }
 
-  public void TakeDamage()
-  {
+  void DaggerAttack() {
+    var daggerInstance = Instantiate(dagger, this.transform.localPosition + new Vector3(0, 1, 0) + this.transform.forward, weapons[2].rotation) as Rigidbody;
+    daggerInstance.velocity = launchForce * transform.forward;
+    // Invoke("daggerDelay", daggerAttackDelayTime);
+    //Destroy(dagger);
+  }
+
+  public void TakeDamage() {
     Debug.Log("damage");
     // 非刚复活无敌状态且活着，才能受到伤害死亡
     if (!isProtected && !isJustAlive && isAlive)
