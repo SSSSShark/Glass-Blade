@@ -5512,6 +5512,7 @@ MonoBehaviour:
   DeathTime: 10
   weaponObject: {fileID: 3754441599944741430}
   weaponKinds: 4
+  refresh_places: []
 --- !u!1 &2792381798693486078
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,9 +15,10 @@ public class GameManager : MonoBehaviour
     public GameObject informationPrefeb;
     public Joystick joystick;
 
+    public GameObject weaponSystem;
+
     #endregion
 
-    // Start is called before the first frame update
     void Start()
     {
         if(playerPrefeb == null)
@@ -30,11 +31,25 @@ public class GameManager : MonoBehaviour
             {
                 GameObject thePlayer = PhotonNetwork.Instantiate(this.playerPrefeb.name, new Vector3(0f, 5f, 0f), Quaternion.identity, 0);
                 thePlayer.GetComponent<movegetgromjoystick>().touch = joystick;
+                int nChild = weaponSystem.transform.childCount;
+                Debug.Log("GameManager: the player instantiated has " + nChild + " children");
                 //thePlayer.GetComponent<CharacterBehavior>().touch = joystick;
+                GameObject[] children = new GameObject[nChild];
+                WeaponRefresh wr;
+
+                for(int i = 0; i < nChild; ++ i) {
+                    children[i] = weaponSystem.transform.GetChild(i).gameObject;
+                    if(wr = children[i].GetComponent<WeaponRefresh>()) {
+                        Debug.Log("GameManager: player assigned");
+                        wr.player = thePlayer.gameObject;
+                    }
+                }
+
+                thePlayer.GetComponent<PlayerCharacter>().refresh_places = children;
             }
             else
             {
-                // ignore
+                
             }
         }
 

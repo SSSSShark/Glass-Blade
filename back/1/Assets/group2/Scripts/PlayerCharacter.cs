@@ -46,6 +46,31 @@ public class PlayerCharacter : MonoBehaviourPun
     Transform[] weapons;
     /******************** 汪至磊 end **********************/
 
+    // Locally cached weapon refresh position
+    // should be filled by game manager
+    public GameObject[] refresh_places;
+
+    private void OnTriggerEnter(Collider col) {
+        if(!photonView.IsMine) {
+            return;
+        }
+        Debug.Log("collide something...");
+
+        // check if we entered the weapon refresh site
+        WeaponRefresh target = col.GetComponent<WeaponRefresh>();
+
+        if(target) {
+            if(isHoldWeapon) {
+                return;
+            }
+            Debug.Log("client: it is weapon refresh site, weapon status : " + target.weaponstatus);
+            target.tryPickWeapon(target.weaponstatus);
+        }
+    }
+
+    private void OnTriggerStay(Collider col) {
+        //Debug.Log("client: stayed in weapon refresh site");
+    }
 
     /*************************** 李晨昊 begin *************************/
     public void Attack()
@@ -136,17 +161,20 @@ public class PlayerCharacter : MonoBehaviourPun
     //武器没有碰撞器,因为攻击不使用碰撞实现
     void holdWeapon(int index, bool ishold)
     {
-        // if (ishold && !isHoldWeapon)
-        // { //未持有武器时可以拿一种武器
-        //     holdWeaponIndex = index;
-        //     isHoldWeapon = true;
-        //     weapons[index].gameObject.SetActive(true);
-        // }
-        // else if (!ishold && isHoldWeapon)
-        // { //持有武器时才能用掉一种武器
-        //     isHoldWeapon = false;
-        //     weapons[holdWeaponIndex].gameObject.SetActive(false);
-        // }
+        if(!photonView.IsMine) {
+            return;
+        }
+        if (ishold && !isHoldWeapon)
+        { //未持有武器时可以拿一种武器
+            holdWeaponIndex = index;
+            isHoldWeapon = true;
+            weapons[index].gameObject.SetActive(true);
+        }
+        else if (!ishold && isHoldWeapon)
+        { //持有武器时才能用掉一种武器
+            isHoldWeapon = false;
+            weapons[holdWeaponIndex].gameObject.SetActive(false);
+        }
     }
     /***************************** 汪至磊 end ***********************/
 
@@ -188,9 +216,7 @@ public class PlayerCharacter : MonoBehaviourPun
     /// If the client does not have a weapon, we take it, but if we already
     /// have one, we ignore it. See also `holdWeapon()`
     /// </summary>
-
-    // FIXME: for now we all return false, so that we can test
-    public bool TakeWeapon(int weaponstatus)
+    public void TakeWeapon(int weaponstatus)
     {
         // bool temp = isHoldWeapon;
         // if (weaponstatus > 0)
@@ -198,24 +224,8 @@ public class PlayerCharacter : MonoBehaviourPun
         //   holdWeapon(weaponstatus, true);
         // }
         // return temp;
-        if (photonView.IsMine)
-        {
-            if (PhotonNetwork.IsMasterClient)
-            {
-                Debug.Log("Master client: take weapon.");
-                bool alreadyHasWeapon = isHoldWeapon;
-
-                if (weaponstatus > 0)
-                {
-                    holdWeapon(weaponstatus, true);
-                }
-            }
-            else
-            {
-                Debug.Log("Client: Take the weapon.");
-            }
-        }
-        return false;
+        Debug.Log("TakeWeapon: called");
+        holdWeapon(weaponstatus, true);
     }
 
     public bool canTakeWeapon()

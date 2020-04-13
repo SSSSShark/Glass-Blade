@@ -21,6 +21,7 @@ public class movegetgromjoystick : MonoBehaviourPunCallbacks
     {
         // #Important
         // we keep track of the localPlayer instance to prevent instantiation when levels are synchronized
+        Debug.Log("movegetgromjoystick: awake");
         if (photonView.IsMine)
         {
             movegetgromjoystick.LocalPlayerInstance = this.gameObject;

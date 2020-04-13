@@ -288,7 +288,7 @@ PrefabInstance:
     - target: {fileID: 7402700522573912418, guid: 6d1f6e897638dfa419592189097ff35b,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -622
+      value: -180
       objectReference: {fileID: 0}
     - target: {fileID: 7402700522573912418, guid: 6d1f6e897638dfa419592189097ff35b,
         type: 3}
@@ -466,6 +466,7 @@ MonoBehaviour:
   informationPrefeb: {fileID: 2298445453014978632, guid: 96b5934b109455647b6aba35507603f1,
     type: 3}
   joystick: {fileID: 59590034}
+  weaponSystem: {fileID: 967769089}
 --- !u!4 &215096784
 Transform:
   m_ObjectHideFlags: 0
@@ -1124,7 +1125,7 @@ MonoBehaviour:
   Group: 0
   prefixField: -1
   Synchronization: 0
-  OwnershipTransfer: 0
+  OwnershipTransfer: 1
   ObservedComponents:
   - {fileID: 0}
   viewIdField: 2
