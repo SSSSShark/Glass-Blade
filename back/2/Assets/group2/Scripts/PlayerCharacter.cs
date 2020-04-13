@@ -93,27 +93,22 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
     [PunRPC]
     public void TakeDamage()
     {
-        //if (!photonView.IsMine)
-        //{
-        //    return;
-        //}
-
         // 非刚复活无敌状态且活着，才能受到伤害死亡
-        if (!isProtected && !isJustAlive && isAlive)
+        if (!this.isProtected && !this.isJustAlive && this.isAlive)
         {
             Debug.Log("under attack");
-            isAlive = false;
-           // Death();
+            this.isAlive = false;
+            // Death();
         }
     }
 
-    public void _TakeDamage()
+    public void SendDamage(Player player)
     {
-        this.photonView.RPC("TakeDamage", RpcTarget.All);
+        this.photonView.RPC("TakeDamage", player);
     }
-        /************************************ 李晨昊 end ********************/
+    /************************************ 李晨昊 end ********************/
 
-        /***************************** 汪至磊 begin ************************/
+    /***************************** 汪至磊 begin ************************/
     public void Death() {
         
         isProtected = true; //tt
@@ -221,10 +216,10 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
         }
     }
 
-    [PunRPC]
-    public bool TakeWeapon(int weaponstatus, PhotonMessageInfo info)
+    /*[PunRPC]*/
+    public bool TakeWeapon(int weaponstatus/*, PhotonMessageInfo info*/)
     {
-       // info.Sender.
+        //this.photonView.RPC("", info.Sender, );
         bool temp = isHoldWeapon;
         if (weaponstatus > 0)
         {

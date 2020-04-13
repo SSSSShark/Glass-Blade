@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class Weapon : MonoBehaviour
 {
@@ -24,7 +25,7 @@ public class Weapon : MonoBehaviour
             var target = collider.GetComponent<PlayerCharacter>();
             if(target) {
                 Debug.Log("collider detected");
-                target._TakeDamage();
+                target.SendDamage(target.photonView.Controller);
             }
         }
     }
