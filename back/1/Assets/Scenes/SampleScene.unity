@@ -223,7 +223,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1549284096712282, guid: d48bca30564d2764e8e218f6424f4394,
+      objectReference: {fileID: 2792377273631266118, guid: e0c9798ff97d69740b9b00973ec6304a,
         type: 3}
     - target: {fileID: 7402700522573912417, guid: 6d1f6e897638dfa419592189097ff35b,
         type: 3}
@@ -1048,6 +1048,7 @@ MonoBehaviour:
   refreshTime: 10
   startTime: 5
   weaponObject: {fileID: 1920977176}
+  player: {fileID: 0}
 --- !u!136 &965338356
 CapsuleCollider:
   m_ObjectHideFlags: 0

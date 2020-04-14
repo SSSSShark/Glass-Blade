@@ -5551,6 +5551,8 @@ MonoBehaviour:
   weaponObject: {fileID: 1924145943}
   weaponKinds: 4
   speed: 25
+  AttackBtn: {fileID: 0}
+  refresh_places: []
 --- !u!114 &3038915201120346740
 MonoBehaviour:
   m_ObjectHideFlags: 0

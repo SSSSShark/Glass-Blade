@@ -36,5 +36,8 @@ MonoBehaviour:
   - RespawnSpaceship
   - TakeDamage
   - GetScoreInfo
+  - GetWeapon
+  - PickWeaponCallBack
+  - UpdateWeaponStatus
   DisableAutoOpenWizard: 1
   ShowSettings: 1

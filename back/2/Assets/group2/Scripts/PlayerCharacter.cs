@@ -54,10 +54,39 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
     [Tooltip("The local player instance. Use this to know if the local player is represented in the scene")]
     public static GameObject LocalPlayerInstance;
 
+    public GameObject AttackBtn;
+
     #endregion
 
     /*************************** 李晨昊 begin *************************/
     #region group2
+
+    // Locally cached weapon refresh position
+    // should be filled by game manager
+    public GameObject[] refresh_places;
+
+    private void OnTriggerEnter(Collider col) {
+        if(!photonView.IsMine) {
+            return;
+        }
+        Debug.Log("collide something...");
+
+        // check if we entered the weapon refresh site
+        WeaponRefresh target = col.GetComponent<WeaponRefresh>();
+
+        if(target) {
+            if(isHoldWeapon) {
+                return;
+            }
+            Debug.Log("client: it is weapon refresh site, weapon status : " + target.weaponstatus);
+            target.tryPickWeapon(target.weaponstatus);
+        }
+    }
+
+    private void OnTriggerStay(Collider col) {
+        //Debug.Log("client: stayed in weapon refresh site");
+    }
+
     public void Attack()
     {
         if (!photonView.IsMine)
@@ -217,15 +246,11 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
     }
 
     /*[PunRPC]*/
-    public bool TakeWeapon(int weaponstatus/*, PhotonMessageInfo info*/)
+    public void TakeWeapon(int weaponstatus/*, PhotonMessageInfo info*/)
     {
         //this.photonView.RPC("", info.Sender, );
-        bool temp = isHoldWeapon;
-        if (weaponstatus > 0)
-        {
-            holdWeapon(weaponstatus, true);
-        }
-        return temp;
+        Debug.Log("TakeWeapon: called");
+        holdWeapon(weaponstatus, true);
     }
     /**************************** 林海力 end **********************/
 
