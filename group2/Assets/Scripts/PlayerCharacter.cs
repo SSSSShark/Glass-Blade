@@ -37,18 +37,32 @@ public class PlayerCharacter : MonoBehaviour
   int counttime;
   bool isHoldWeapon = false;
   //持有武器种类
-  int holdWeaponIndex = 0;
-  //武器对象    
-  public GameObject weaponObject; //weaponObject 挂 Player\Mr Black\weapons
+  public int holdWeaponIndex = 0;
   public int weaponKinds = 4;
-  Transform[] weapons;
+  public Transform[] weapons;
   /******************** 汪至磊 end **********************/
 
+  //four weapons
+  /********************* 林海力 begin *******************/
+  public GameObject weaponattack1;
+  public Rigidbody Axe;
+  Rigidbody Axesetinstance;
+  public float Axe2handDelayTime = 1.0f;
+  /********************** 林海力 end *********************/
   /******************** 李晨昊 begin ********************/
   public Rigidbody dagger;
   public float daggerAttackDelayTime = 1.0f;
   public float launchForce = 10;
+  public Rigidbody swordTwoHanded;
+  public float swordTwoHandedDelayTime = 1.0f;
+  public float angle = 120f; //扇形角度
+  public float radius = 4f; //扇形半径
   /******************** 李晨昊 end **********************/
+  /****************** 汪至磊 begin **********************/
+  public Rigidbody sword;
+  public float swordAttackDelayTime = 1.0f;
+  Rigidbody tempInstance;
+  /******************** 汪至磊 end **********************/
 
   /*************************** 李晨昊 begin *************************/
   public void Attack() {
@@ -58,10 +72,10 @@ public class PlayerCharacter : MonoBehaviour
     if (isHoldWeapon)
     {
       switch(holdWeaponIndex) {
-        case 1: break;
+        case 1: Invoke("Axe2HandAttack", Axe2handDelayTime); break;
         case 2: Invoke("DaggerAttack", daggerAttackDelayTime); break;
-        case 3: break;
-        case 4: break;
+        case 3: Invoke("SwordTwoHandedAttack", swordTwoHandedDelayTime); break;
+        case 4: Invoke("SwordAttack", swordAttackDelayTime); break;
       }
 
 
@@ -81,13 +95,87 @@ public class PlayerCharacter : MonoBehaviour
   void RefreshAttack() {
     attacking = false;
   }
-
+  //four weapon attack
+  /**********************week9, first weapon, 林海力************/
+  public void Axe2HandAttack()
+  {
+    Quaternion qtarget = Quaternion.AngleAxis(90, this.transform.forward) * this.transform.rotation;//实例化武器
+    Axesetinstance = Instantiate(Axe, this.transform.localPosition + new Vector3(0, 1, 0) + this.transform.forward, qtarget) as Rigidbody;
+    Axesetinstance.transform.SetParent(this.transform, false);
+    Axesetinstance.transform.localPosition = new Vector3(0, 1, 0);
+    Axesetinstance.angularVelocity = this.transform.up * 1 * 7.0f;
+    GameObject a = Instantiate(weaponattack1, transform.position, Quaternion.identity);//实例化攻击范围
+    a.transform.parent = this.transform;
+    a.transform.localPosition = new Vector3(0, 1, 0);
+    var t = a.GetComponent<weapon1colider>();
+    t.setAttackTime(attackTime);
+  }
+  /**********************week9, first weapon************/
   void DaggerAttack() {
     var daggerInstance = Instantiate(dagger, this.transform.localPosition + new Vector3(0, 1, 0) + this.transform.forward, weapons[2].rotation) as Rigidbody;
     daggerInstance.velocity = launchForce * transform.forward;
     // Invoke("daggerDelay", daggerAttackDelayTime);
     //Destroy(dagger);
   }
+  /*********************************************** 李晨昊 week9 begin ************************************************************/
+  void SwordTwoHandedAttack()
+  {
+    var swordTwoHandedInstance = Instantiate(swordTwoHanded, this.transform.localPosition + new Vector3(0, 1, 0) + this.transform.forward, this.transform.rotation) as Rigidbody;
+    swordTwoHandedInstance.transform.SetParent(this.transform, false);
+    swordTwoHandedInstance.transform.localPosition = new Vector3(0, 1, 1);  // 设置实例初始出现位置
+    swordTwoHandedInstance.transform.localRotation = Quaternion.Euler(new Vector3(90, -60, 0)); // 设置初始角度
+    swordTwoHandedInstance.angularVelocity = this.transform.up * 1 * 2.5f;  // 旋转轴 * 方向 * 角速度
+
+    var gos = GameObject.FindGameObjectsWithTag("Player"); // 获取所有人物
+    foreach (var go in gos)
+    {         //逐一判断是否在攻击范围内
+      if (UmbrellaAttact(this.gameObject.transform, go.transform, angle, radius))
+      {
+        go.GetComponent<PlayerCharacter>().TakeDamage();
+      }
+    }
+  }
+
+
+  // 判断敌人是否在扇形攻击范围内
+  bool UmbrellaAttact(Transform attacker, Transform attacked, float angle, float radius)
+  {
+    Vector3 deltaA = attacked.position - attacker.position;
+    float tmpAngle = Mathf.Acos(Vector3.Dot(deltaA.normalized, attacker.forward)) * Mathf.Rad2Deg;
+
+    float tmpHeight = Mathf.Abs(attacked.position.y - attacker.position.y);
+    if (tmpAngle < angle * 0.5f && deltaA.magnitude < radius && tmpHeight < 1.5f)
+    {
+      return true;
+    }
+    return false;
+  }
+  /************************************** 李晨昊 week9 end *******************************************/
+
+  /****************week9, fouth weapon, 汪至磊**********************************/
+  void SwordAttack()
+  {
+    tempInstance = Instantiate(sword,
+                               this.transform.localPosition + new Vector3(0, 1, 0) + this.transform.forward,
+                               weapons[4].rotation) as Rigidbody;
+    tempInstance.velocity = 9 * transform.forward;
+    //SwordInstance.MovePosition(new Vector3(0, 1, 0) + this.transform.forward);
+    //SwordInstance.velocity = 10 * transform.forward;
+    Invoke("SwordAttackAnime", 0.1f);
+  }
+  void SwordAttackAnime()
+  {
+    tempInstance.velocity -= 2 * transform.forward;
+    if(tempInstance.velocity.magnitude > 10)
+    {
+      tempInstance.velocity = 0 * transform.forward;
+      CancelInvoke("SwordAttackAnime");
+    }
+    Invoke("SwordAttackAnime", 0.1f);
+  }
+  /**************************forth weapon******************************************/
+
+
 
   public void TakeDamage() {
     Debug.Log("damage");
@@ -97,6 +185,9 @@ public class PlayerCharacter : MonoBehaviour
       Death();
     }
   }
+
+
+
   /************************************ 李晨昊 end ********************/
 
   /***************************** 汪至磊 begin ************************/
@@ -154,6 +245,8 @@ public class PlayerCharacter : MonoBehaviour
       weapons[holdWeaponIndex].gameObject.SetActive(false);
     }
   }
+
+
   /***************************** 汪至磊 end ***********************/
 
   /************************** 林海力 begin *************************/
@@ -205,18 +298,16 @@ public class PlayerCharacter : MonoBehaviour
   void Start() {
     cc = GetComponent<CharacterController>();
     baw = GameObject.FindObjectOfType<BlackAndWhite>();
-    weapons = weaponObject.GetComponentsInChildren<Transform>();
+    //weapons = weaponObject.GetComponentsInChildren<Transform>();
     //foreach (Transform child in weapons) child.gameObject.SetActive(false);
     for (int i = 1; i <= weaponKinds; i++)
     {
       //Debug.Log(weapons[i].name);
       weapons[i].gameObject.SetActive(false);
     }
+    //week9 test here ,change holdWeaponIndex
+    isHoldWeapon = true;
+    holdWeaponIndex = 1;
   }
-    
-  // Update is called once per frame
-  void Update() {
 
-    
-  }
 }
