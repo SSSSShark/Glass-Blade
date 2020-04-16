@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 23285396277806716}
   - component: {fileID: 64272507171773362}
   - component: {fileID: 6437504913266426111}
-  - component: {fileID: 8201075146001773004}
+  - component: {fileID: -7184340664503902303}
   m_Layer: 0
   m_Name: Axe_TwoHanded_Set_A
   m_TagString: Untagged
@@ -112,7 +112,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &8201075146001773004
+--- !u!114 &-7184340664503902303
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,7 +121,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1546018245380660}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3fb6cbc3532ca7149ada5c8e804a21ea, type: 3}
+  m_Script: {fileID: 11500000, guid: cca1d59412a45c64eaabec599fe91f03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyTime: 1
+  o: {fileID: 0}

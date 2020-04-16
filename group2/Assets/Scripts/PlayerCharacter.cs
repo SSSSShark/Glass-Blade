@@ -99,11 +99,10 @@ public class PlayerCharacter : MonoBehaviour
   /**********************week9, first weapon, 林海力************/
   public void Axe2HandAttack()
   {
-    Quaternion qtarget = Quaternion.AngleAxis(90, this.transform.forward) * this.transform.rotation;//实例化武器
+    Quaternion qtarget = Quaternion.AngleAxis(90, this.transform.right) * this.transform.rotation;//实例化武器
     Axesetinstance = Instantiate(Axe, this.transform.localPosition + new Vector3(0, 1, 0) + this.transform.forward, qtarget) as Rigidbody;
     Axesetinstance.transform.SetParent(this.transform, false);
-    Axesetinstance.transform.localPosition = new Vector3(0, 1, 0);
-    Axesetinstance.angularVelocity = this.transform.up * 1 * 7.0f;
+    Axesetinstance.transform.localPosition = new Vector3(0.5f, 1, 0);
     GameObject a = Instantiate(weaponattack1, transform.position, Quaternion.identity);//实例化攻击范围
     a.transform.parent = this.transform;
     a.transform.localPosition = new Vector3(0, 1, 0);
