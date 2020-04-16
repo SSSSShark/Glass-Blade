@@ -5442,7 +5442,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   touch: {fileID: 0}
-  speed: 25
+  speed: 10
   ani: {fileID: 2852727012395168670}
 --- !u!114 &7762352981770910767
 MonoBehaviour:
@@ -5495,7 +5495,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distance: 10
-  height: 15
+  height: 20
   followOnStart: 0
 --- !u!114 &-3267451630827653594
 MonoBehaviour:
