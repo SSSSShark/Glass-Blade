@@ -17,6 +17,8 @@ namespace Com.Glassblade.Group1
         private float current;
         // 占领的队伍
         private int? team;
+        // 整个倒计时牌
+        public Transform CircleCountDown;
         // 提示文字，倒计时时间
         public Transform Indicator;
         // 外圈
@@ -28,6 +30,7 @@ namespace Com.Glassblade.Group1
             max = (float)OM.occupyCountDown;
             current = max;
             team = null;
+            CircleCountDown.GetComponent<CanvasGroup>().alpha = 0;
         }
 
         // 
@@ -38,6 +41,7 @@ namespace Com.Glassblade.Group1
             // 0队用红色标注
             if (team == 0)
             {
+                CircleCountDown.GetComponent<CanvasGroup>().alpha = 1;
                 Circle.GetComponent<Image>().fillAmount = current/max;
                 Circle.GetComponent<Image>().color = Color.red;
                 Indicator.GetComponent<Text>().text = ((int)current).ToString();
@@ -50,14 +54,19 @@ namespace Com.Glassblade.Group1
             // 1队用蓝色标注
             if (team == 1)
             {
+                CircleCountDown.GetComponent<CanvasGroup>().alpha = 1;
                 Circle.GetComponent<Image>().fillAmount = current/max;
                 Circle.GetComponent<Image>().color = Color.blue;
                 Indicator.GetComponent<Text>().text = ((int)current).ToString();
                 Indicator.GetComponent<Text>().color = Color.blue;
                 if (current == 0)
                 {
-                    Indicator.GetComponent<Text>().text = "Done";
+                    Indicator.GetComponent<Text>().text = "✔";
                 }
+            }
+            if (team == null)
+            {
+                CircleCountDown.GetComponent<CanvasGroup>().alpha = 0;
             }
         }
     }
