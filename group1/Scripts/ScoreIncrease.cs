@@ -7,27 +7,36 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ScoreIncrease : MonoBehaviour
+namespace Com.Glassblade.Group1
 {
-    public int score = 0;           //得分
-    public Text scoreText;          //分数文本
+    public class ScoreIncrease : MonoBehaviour
+    {
+        //得分
+        public int score = 0;
+        //分数文本
+        public Text scoreText;
     
-    void Start()
-    {
-        scoreText = GetComponentInChildren<Text>();     //获取文本组件
-    }
-
-    //死亡时调用
-    public void UpdateScore()
-    {
-        score ++;                   //分数+1
-        if(score >= 10)
+        void Start()
         {
-            scoreText.text = score.ToString();          //设置分数文本
+            //获取文本组件
+            scoreText = GetComponentInChildren<Text>();
         }
-        else
+
+        //死亡时调用
+        public void UpdateScore()
         {
-            scoreText.text = "0" + score.ToString();    //设置分数文本
+            //分数+1
+            score ++;
+            if(score >= 10)
+            {
+                //设置分数文本
+                scoreText.text = score.ToString();
+            }
+            else
+            {
+                //设置分数文本
+                scoreText.text = "0" + score.ToString();
+            }
         }
     }
 }

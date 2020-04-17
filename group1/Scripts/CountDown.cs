@@ -6,30 +6,45 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CountDown : MonoBehaviour
+namespace Com.Glassblade.Group1
 {
-    public int minute=8;              //最大时间
-    private int getTime;            //游戏剩余时间
-    private float timer = 0;        //计帧
-    public Text countTimeText;      //时间文本
-    
-    void Start()
+    public class CountDown : MonoBehaviour
     {
-        getTime = 60 * minute;      //获取游戏剩余时间
-        countTimeText = GetComponentInChildren<Text>();         //获取时间文本组件
-    }
-
+        // 最大时间
+        public int minute=8;
+        // 游戏剩余时间
+        private int getTime;
+        // 计帧
+        private float timer = 0;
+        //时间文本
+        public Text countTimeText;
     
-    void Update()
-    {
-        int M = getTime / 60;       //获取分钟
-        int S = getTime % 60;       //获取秒钟
-        timer += Time.deltaTime;    //帧数加
-        if(timer >= 1f)             //满一秒
+        void Start()
         {
-            timer = 0;              //清零
-            getTime --;             //剩余时间-1
-            countTimeText.text = M + ":" + string.Format("{0:00}",S);           //设置时间文本
+            //获取游戏剩余时间
+            getTime = 60 * minute;
+            //获取时间文本组件
+            countTimeText = GetComponentInChildren<Text>();
+        }
+
+        void Update()
+        {
+            //获取分钟
+            int M = getTime / 60;
+            //获取秒
+            int S = getTime % 60;
+            //帧数加
+            timer += Time.deltaTime;
+            //满一秒
+            if (timer >= 1f)
+            {
+                //清零
+                timer = 0;
+                //剩余时间-1
+                getTime --;
+                //设置时间文本
+                countTimeText.text = M + ":" + string.Format("{0:00}",S);
+            }
         }
     }
 }

@@ -5,20 +5,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShowName : MonoBehaviour
+namespace Com.Glassblade.Group1
 {
-    private TextMesh PlayerName;        //玩家名字组件
-    
-    void Start()
+    public class ShowName : MonoBehaviour
     {
-        this.PlayerName = this.GetComponentInParent<TextMesh>();        //获取组件
-    }
+        //玩家名字组件
+        private TextMesh PlayerName;
+    
+        void Start()
+        {
+            //获取组件
+            this.PlayerName = this.GetComponentInParent<TextMesh>();
+        }
 
     
-    void Update()
-    {
-        Vector3 cameraDirection = Camera.main.transform.forward;        //获取相机位置向量
-        cameraDirection.y = 0f;             //清零y轴
-        this.PlayerName.transform.rotation = Quaternion.LookRotation(cameraDirection);          //设置名字朝向
+        void Update()
+        {
+            //获取相机位置向量
+            Vector3 cameraDirection = Camera.main.transform.forward;
+            //清零y轴
+            cameraDirection.y = 0f;
+            //设置名字朝向
+            this.PlayerName.transform.rotation = Quaternion.LookRotation(cameraDirection);
+        }
     }
 }
