@@ -5444,6 +5444,7 @@ MonoBehaviour:
   touch: {fileID: 0}
   speed: 10
   ani: {fileID: 2852727012395168670}
+  gravity: 9
 --- !u!114 &7762352981770910767
 MonoBehaviour:
   m_ObjectHideFlags: 0

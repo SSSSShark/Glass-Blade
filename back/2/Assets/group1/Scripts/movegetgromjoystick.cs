@@ -14,9 +14,11 @@ public class movegetgromjoystick : MonoBehaviourPunCallbacks
 
     [Tooltip("The local player instance. Use this to know if the local player is represented in the scene")]
     public static GameObject LocalPlayerInstance;
-
+    public float gravity =9;
     #endregion
-
+    #region Private Field
+    private float yspeed = 0f;
+    #endregion
     private void Awake()
     {
         // #Important
@@ -76,6 +78,16 @@ public class movegetgromjoystick : MonoBehaviourPunCallbacks
         else
         {
             ani.SetFloat("Speed", 0);
+        }
+        if (!controller.isGrounded)
+        {
+            Debug.Log("g"+ gravity );
+            yspeed -= gravity * Time.deltaTime;
+            controller.Move(new Vector3(0, yspeed * Time.deltaTime, 0));
+        }
+        else
+        {
+            yspeed = 0;
         }
     }
 }
