@@ -14,9 +14,11 @@ namespace Com.Glassblade.Group1
         // 玩家列表
         ArrayList Players;
         // 计数玩家数量，先入为主
-        private int hostPlayer;
+        public int hostPlayer;
         // 计数玩家数量，后入为客
-        private int guidePlayer;
+        public int guidePlayer;
+        // 圈内玩家总人数
+        public int playerCnt;
 
         // 占领倒计时,留为可调时间
         public int occupyCountDown;
@@ -40,6 +42,8 @@ namespace Com.Glassblade.Group1
             hostPlayer = 0;
             // 初始化客（敌对）玩家数量
             guidePlayer = 0;
+            // 初始化圈内玩家总数
+            playerCnt = 0;
             // 刚开始默认暂停
             stoped = true;
             // 倒计时时间等于设定好的占领倒计时
@@ -51,6 +55,7 @@ namespace Com.Glassblade.Group1
         /// </summary>
         void Update ()
         {
+            playerCnt = hostPlayer + guidePlayer;
             if (!stoped)
             {
                 if (currentTime > 0)
@@ -114,10 +119,22 @@ namespace Com.Glassblade.Group1
                     // 玩家进入了己方已经占领的点，无影响
                     else
                     {
-                        hostPlayer ++;
+                        // 玩家进入了自己方占领状态但敌方正在夺取的点
+                        if((tempTeam != null) && (player.team != tempTeam))
+                        {
+                            // 此时对于该点来说算作敌方
+                            guidePlayer ++;
+                            stoped = true;
+                        }
+                        // 玩家进入了正常状态下己方占领的点
+                        else
+                        {
+                            hostPlayer ++;
+                            tempTeam = player.team;
+                        }
                     }
                     // 加入玩家列表
-                    Players.Add (player);
+                    Players.Add (other);
                 }
             }
         }
@@ -135,7 +152,7 @@ namespace Com.Glassblade.Group1
             {
                 if (status.isAlive)
                 {
-                    Players.Remove(player);
+                    Players.Remove(other);
                     // 离开的是本方玩家
                     if (player.team == tempTeam)
                     {
