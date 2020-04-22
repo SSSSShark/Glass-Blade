@@ -25,7 +25,7 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
     /********************** 林海力 end *********************/
 
     /****************** 汪至磊 begin **********************/
-    
+
     //死亡倒计时组件
     public Text counter;  //counter 挂 Main Camera\Canvas\Text
     //死亡倒地段数
@@ -65,8 +65,10 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
     // should be filled by game manager
     public GameObject[] refresh_places;
 
-    private void OnTriggerEnter(Collider col) {
-        if(!photonView.IsMine) {
+    private void OnTriggerEnter(Collider col)
+    {
+        if (!photonView.IsMine)
+        {
             return;
         }
         Debug.Log("collide something...");
@@ -74,8 +76,10 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
         // check if we entered the weapon refresh site
         WeaponRefresh target = col.GetComponent<WeaponRefresh>();
 
-        if(target) {
-            if(isHoldWeapon) {
+        if (target)
+        {
+            if (isHoldWeapon)
+            {
                 return;
             }
             Debug.Log("client: it is weapon refresh site, weapon status : " + target.weaponstatus);
@@ -83,7 +87,8 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
         }
     }
 
-    private void OnTriggerStay(Collider col) {
+    private void OnTriggerStay(Collider col)
+    {
         //Debug.Log("client: stayed in weapon refresh site");
     }
 
@@ -93,8 +98,18 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
         {
             return;
         }
-        if (!isAlive) return;
-        if (attacking) return;
+        if (!isAlive)
+        {
+            return;
+        }
+
+        if (attacking)
+        {
+            return;
+        }
+
+        this.gameObject.GetComponent<movegetgromjoystick>().enabled = false;
+
         attacking = true;
         if (isHoldWeapon)
         {
@@ -103,11 +118,12 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
             Debug.Log("attack");
             holdWeapon(holdWeaponIndex, false);
         }
-        else
+        else  //使用默认weapon
         {
             // 武器出现位置
             muzzle.localPosition = this.transform.localPosition + new Vector3(0, 1, 0) + this.transform.forward;
             weaponInstance = Instantiate(weapon, muzzle.localPosition, this.transform.rotation) as Rigidbody;
+            weaponInstance.GetComponent<Weapon>().weaponOwner = PhotonNetwork.LocalPlayer;
             // 武器旋转表示攻击动作
             weaponInstance.angularVelocity = this.transform.right * 1 * 2;
         }
@@ -117,6 +133,7 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
     void RefreshAttack()
     {
         attacking = false;
+        this.gameObject.GetComponent<movegetgromjoystick>().enabled = true;
     }
 
     [PunRPC]
@@ -131,23 +148,25 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
         }
     }
 
-    public void SendDamage(Player player)
+    public void InformDamage(Player player)
     {
         this.photonView.RPC("TakeDamage", player);
     }
     /************************************ 李晨昊 end ********************/
 
     /***************************** 汪至磊 begin ************************/
-    public void Death() {
-        
+    public void Death()
+    {
+
         isProtected = true; //tt
-        
-      //  isAlive = false;
+
+        //  isAlive = false;
         //**倒下,先停1s,用2s分段倒下
         rotatedtimes = 0;
         InvokeRepeating("DeathRotate", 1f, (float)(2.0 / DeathRotateTimes));
 
-        if (photonView.IsMine) {
+        if (photonView.IsMine)
+        {
             this.gameObject.GetComponent<movegetgromjoystick>().enabled = false;
             if ((TeamController.Team)PhotonNetwork.LocalPlayer.CustomProperties["team"] == TeamController.Team.TeamA)
             {
@@ -166,17 +185,20 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
     }
 
     //**大风车吱呀吱悠悠的转~
-    void DeathRotate() {
+    void DeathRotate()
+    {
         //Debug.Log("time = "+Time.time);
         transform.Rotate(90 / DeathRotateTimes, 0, 0);
         rotatedtimes++;
-        if (rotatedtimes >= DeathRotateTimes) {
+        if (rotatedtimes >= DeathRotateTimes)
+        {
             CancelInvoke("DeathRotate");
         }
     }
 
     //**倒计时
-    void CountDown() {
+    void CountDown()
+    {
         if (!counter)
         {
             counter = GameObject.FindGameObjectWithTag("ScreenText").GetComponent<Text>();
@@ -188,7 +210,8 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
             CancelInvoke("CountDown");
             Invoke("Relive", 1f);
         }
-        else {
+        else
+        {
             counter.text = "剩余时间:" + counttime;
             counttime = counttime - 1;
         }
@@ -214,7 +237,8 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
     /***************************** 汪至磊 end ***********************/
 
     /************************** 林海力 begin *************************/
-    public void Relive() {
+    public void Relive()
+    {
         //Debug.Log("relive time = " + Time.time);
         this.gameObject.GetComponent<movegetgromjoystick>().enabled = true;
         baw.setLive();
@@ -227,20 +251,25 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
         transform.position = new Vector3(relivex, 1, relivez);
         //relive-protect
         protecttime = protecttimeMAX;
-        if (protecttime <= 0) {
+        if (protecttime <= 0)
+        {
             isJustAlive = false;
         }
-        else {
+        else
+        {
             isJustAlive = true;
             InvokeRepeating("protectDecrease", 0f, 1.0f);
         }
     }
-    void protectDecrease() {
-        if (protecttime == 0) {
+    void protectDecrease()
+    {
+        if (protecttime == 0)
+        {
             isJustAlive = false;
             CancelInvoke("protectDecrease");
         }
-        else {
+        else
+        {
             protecttime--;
         }
     }
@@ -259,17 +288,17 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
     // Start is called before the first frame update
     void Start()
     {
- 
+
         cc = GetComponent<CharacterController>();
         baw = GameObject.FindObjectOfType<BlackAndWhite>();
         weapons = weaponObject.GetComponentsInChildren<Transform>();
-            //foreach (Transform child in weapons) child.gameObject.SetActive(false);
+        //foreach (Transform child in weapons) child.gameObject.SetActive(false);
         for (int i = 1; i <= weaponKinds; i++)
         {
             //Debug.Log(weapons[i].name);
             weapons[i].gameObject.SetActive(false);
         }
-        
+
     }
 
     // Update is called once per frame
@@ -294,7 +323,7 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
         {
             // We own this player: send the others our data
             stream.SendNext(isProtected);
-            stream.SendNext(isJustAlive); 
+            stream.SendNext(isJustAlive);
             stream.SendNext(isAlive);
         }
         else

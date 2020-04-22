@@ -15,6 +15,7 @@ public class TeamController : MonoBehaviourPunCallbacks
     public GameObject[] TeamAList;
     public GameObject[] TeamBList;
     public GameObject[] AddOrderList;
+    public GameObject startDialog;
 
     #endregion
 
@@ -323,6 +324,12 @@ public class TeamController : MonoBehaviourPunCallbacks
             {
                 if (p != PhotonNetwork.MasterClient && (Status)p.CustomProperties["status"] == Status.Wait)
                 {
+                    if (IsInvoking("DialogVanish"))
+                    {
+                        CancelInvoke("DialogVanish");
+                    }
+                    startDialog.SetActive(true);
+                    Invoke("DialogVanish", 1);
                     Debug.Log("Someone is not ready yet");
                     return;
                 }
@@ -381,6 +388,13 @@ public class TeamController : MonoBehaviourPunCallbacks
         PhotonNetwork.LoadLevel("SampleScene");
     }
 
+    void DialogVanish()
+    {
+        if (startDialog.activeInHierarchy)
+        {
+            startDialog.SetActive(false);
+        }
+    }
 
     #endregion
 
