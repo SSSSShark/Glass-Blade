@@ -698,10 +698,21 @@ MonoBehaviour:
   attackTime: 1
   isAlive: 1
   attacking: 0
+  killTime: 0
+  deathTime: 0
+  dagger: {fileID: 4861635168545973269, guid: e05af02c95e3bb846941595f3036ef42, type: 3}
+  daggerAttackDelayTime: 1
+  launchForce: 10
+  swordTwoHanded: {fileID: -3888169822764776029, guid: a0ca8e11e566016409eba2a351674ea1,
+    type: 3}
+  swordTwoHandedDelayTime: 1
+  angle: 120
+  radius: 4
   isProtected: 0
   isJustAlive: 0
-  protecttimeMAX: 1
+  protecttimeMAX: 0
   counter: {fileID: 689781004}
+  DeathContinueTime: 0.5
   DeathRotateTimes: 10
   DeathTime: 10
   holdWeaponIndex: 0
@@ -712,18 +723,10 @@ MonoBehaviour:
   - {fileID: 296072339}
   - {fileID: 1228714287}
   - {fileID: 2049267450}
-  weaponattack1: {fileID: 2815725433527233605, guid: 88c0d0f05bbad5a408459c1ada23cd68,
+  weaponAttack1: {fileID: 2815725433527233605, guid: 88c0d0f05bbad5a408459c1ada23cd68,
     type: 3}
   Axe: {fileID: 6437504913266426111, guid: b934757b27fc4434cb6f07d6a356d46a, type: 3}
   Axe2handDelayTime: 1
-  dagger: {fileID: 4861635168545973269, guid: e05af02c95e3bb846941595f3036ef42, type: 3}
-  daggerAttackDelayTime: 1
-  launchForce: 10
-  swordTwoHanded: {fileID: -3888169822764776029, guid: a0ca8e11e566016409eba2a351674ea1,
-    type: 3}
-  swordTwoHandedDelayTime: 1
-  angle: 120
-  radius: 4
   sword: {fileID: -7177736589786047422, guid: f25ecfb6748c6aa42ae5d0a93a112741, type: 3}
   swordAttackDelayTime: 1
 --- !u!114 &404180004
@@ -1039,7 +1042,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a71c1338eed1c0049ae330bff4019ee6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponstatus: 1
+  weaponStatus: 0
   refreshTime: 3
   startTime: 5
   weaponObject: {fileID: 354129538}
@@ -1178,10 +1181,21 @@ MonoBehaviour:
   attackTime: 1
   isAlive: 1
   attacking: 0
+  killTime: 0
+  deathTime: 0
+  dagger: {fileID: 4861635168545973269, guid: e05af02c95e3bb846941595f3036ef42, type: 3}
+  daggerAttackDelayTime: 1
+  launchForce: 10
+  swordTwoHanded: {fileID: -3888169822764776029, guid: a0ca8e11e566016409eba2a351674ea1,
+    type: 3}
+  swordTwoHandedDelayTime: 1
+  angle: 120
+  radius: 4
   isProtected: 0
   isJustAlive: 0
-  protecttimeMAX: 1
+  protecttimeMAX: 0
   counter: {fileID: 689781004}
+  DeathContinueTime: 0.5
   DeathRotateTimes: 10
   DeathTime: 10
   holdWeaponIndex: 0
@@ -1192,18 +1206,9 @@ MonoBehaviour:
   - {fileID: 600093208}
   - {fileID: 293888082}
   - {fileID: 600093206}
-  weaponattack1: {fileID: 2815725433527233605, guid: 88c0d0f05bbad5a408459c1ada23cd68,
-    type: 3}
+  weaponAttack1: {fileID: 0}
   Axe: {fileID: -3883527376811409014, guid: d62bbeda0ca87db44b898537e0369fdb, type: 3}
   Axe2handDelayTime: 1
-  dagger: {fileID: 4861635168545973269, guid: e05af02c95e3bb846941595f3036ef42, type: 3}
-  daggerAttackDelayTime: 1
-  launchForce: 10
-  swordTwoHanded: {fileID: -3888169822764776029, guid: a0ca8e11e566016409eba2a351674ea1,
-    type: 3}
-  swordTwoHandedDelayTime: 1
-  angle: 120
-  radius: 4
   sword: {fileID: -7177736589786047422, guid: f25ecfb6748c6aa42ae5d0a93a112741, type: 3}
   swordAttackDelayTime: 1
 --- !u!114 &600093211

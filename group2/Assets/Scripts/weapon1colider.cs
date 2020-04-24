@@ -2,25 +2,31 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class weapon1colider : MonoBehaviour
+namespace Com.GlassBlade.Group2
 {
-    private void OnTriggerEnter(Collider col)//角色与刷新点碰撞
+    public class Weapon1Colider : MonoBehaviour
     {
-        var target = col.GetComponent<PlayerCharacter>();
-        if (target)
+        private void OnTriggerEnter(Collider col)//角色与刷新点碰撞
         {
-            if (target != this.GetComponentInParent<PlayerCharacter>())
+            var target = col.GetComponent<PlayerCharacter>();
+            var par = this.GetComponentInParent<PlayerCharacter>();
+            if (target)
             {
-                target.TakeDamage();
+                if (target != this.GetComponentInParent<PlayerCharacter>())
+                {
+                    target.TakeDamage();
+                    target.deathTime++;
+                    par.killTime++;
+                }
             }
         }
-    }
-    public void setAttackTime(float x)
-    {
-        Invoke("destroyself", x);
-    }
-    void destroyself()
-    {
-        Destroy(gameObject);
+        public void SetAttackTime(float x)
+        {
+            Invoke("Destroyself", x);
+        }
+        private void Destroyself()
+        {
+            Destroy(gameObject);
+        }
     }
 }

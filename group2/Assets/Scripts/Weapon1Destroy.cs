@@ -5,6 +5,7 @@ using UnityEngine;
 public class Weapon1Destroy : MonoBehaviour
 {
     public GameObject o;
+
     // Start is called before the first frame update
     void Start()
     {
