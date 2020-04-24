@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Com.Glassblade.Group1
 {
@@ -27,6 +28,17 @@ namespace Com.Glassblade.Group1
         // 倒计时中间时间
         public float currentTime;
 
+        //add by wmj
+        //占领加分幅度
+        public int scoreInc;
+        private UnityAction<OCharacterBehavior> playerDeadAction;
+
+        public void PlayerDead(OCharacterBehavior player)
+        {
+            OnTriggerExit(player.GetComponent<Collider>());
+        }
+        //wmj ends
+
         /// <summary>
         /// 给变量做初始化
         /// </summary>
@@ -48,6 +60,10 @@ namespace Com.Glassblade.Group1
             stoped = true;
             // 倒计时时间等于设定好的占领倒计时
             currentTime = (float)occupyCountDown;
+            //add by wmj
+            //init dict
+            playerDeadAction = new UnityAction<OCharacterBehavior>(PlayerDead);
+            //wmj ends
         }
 
         /// <summary>
@@ -67,6 +83,13 @@ namespace Com.Glassblade.Group1
                     currentTime = 0;
                     // 倒计时结束，占领
                     team = tempTeam;
+                    //add by wmj
+                    //这时点里玩家应全加分
+                    foreach(OCharacterBehavior p in Players)
+                    {
+                        p.score += scoreInc;
+                    }
+                    //wmj ends
                 }
             }
         }
@@ -80,14 +103,19 @@ namespace Com.Glassblade.Group1
         private void OnTriggerEnter (Collider other)
         {
             // 获取玩家
-            CharacterBehavior player = other.GetComponent<CharacterBehavior>();
-            PlayerCharacter status = other.GetComponent<PlayerCharacter>();
+            OCharacterBehavior player = other.GetComponent<OCharacterBehavior>();
+            OPlayerCharacter status = other.GetComponent<OPlayerCharacter>();
             // Capsule 范围内有玩家
             if (player)
             {
                 // 玩家是活着的
                 if (status.isAlive)
                 {
+                    //add by wmj
+                    //注册action
+                    player.deathevent.AddListener(playerDeadAction);
+                    //wmj ends
+
                     // 玩家进入了未被占领或者被地方占领的点
                     if (team != player.team)
                     {
@@ -134,7 +162,7 @@ namespace Com.Glassblade.Group1
                         }
                     }
                     // 加入玩家列表
-                    Players.Add (other);
+                    Players.Add (player);
                 }
             }
         }
@@ -146,13 +174,20 @@ namespace Com.Glassblade.Group1
         /// </summary>
         private void OnTriggerExit(Collider other)
         {
-            CharacterBehavior player = other.GetComponent<CharacterBehavior>();
-            PlayerCharacter status = other.GetComponent<PlayerCharacter>();
+            OCharacterBehavior player = other.GetComponent<OCharacterBehavior>();
+            OPlayerCharacter status = other.GetComponent<OPlayerCharacter>();
             if (player)
             {
-                if (status.isAlive)
+                //remove by wmj
+                //死人要通过这个函数移出点
+                //if (status.isAlive)
+                //wmj ends
                 {
-                    Players.Remove(other);
+                    //add by wmj
+                    //移除action
+                    player.deathevent.RemoveListener(playerDeadAction);
+                    //wmj ends
+                    Players.Remove(player);
                     // 离开的是本方玩家
                     if (player.team == tempTeam)
                     {
