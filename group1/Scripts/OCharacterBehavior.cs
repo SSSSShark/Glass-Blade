@@ -19,7 +19,12 @@ namespace Com.Glassblade.Group1
         public float speed = 10;
         //动画
         private Animator ani;
-
+        //击杀数
+        [HideInInspector]
+        public int killTime = 0;
+        //死亡数
+        [HideInInspector]
+        public int deathTime = 0;
         //个人得分
         [HideInInspector]
         public int score = 0;

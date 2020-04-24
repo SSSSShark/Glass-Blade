@@ -1,1 +1,0 @@
-将该文件夹放在Assets文件夹下即可导入字体，font-example.prefab文件为预制字体样例

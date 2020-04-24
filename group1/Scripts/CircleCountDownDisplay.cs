@@ -10,7 +10,7 @@ namespace Com.Glassblade.Group1
     public class CircleCountDownDisplay : MonoBehaviour
     {
         // 调用占点模式
-        public OccupyMode OM;
+        public OMode OM;
         // 最大时间
         private float max;
         // 当前时间
