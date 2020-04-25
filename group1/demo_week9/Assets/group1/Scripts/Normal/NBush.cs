@@ -1,6 +1,5 @@
 ﻿//Author: wmj
 
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,7 +18,7 @@ namespace Com.Glassblade.Group1
             allies_cnt = 0;                     //队友数量清零
         }
 
-        private void OnTriggerEnter(Collider other)
+        private void OnTriggerEnter (Collider other)
         {
             NCharacterBehavior player = other.GetComponent<NCharacterBehavior>();
             if (player)
@@ -40,7 +39,7 @@ namespace Com.Glassblade.Group1
             }
         }
         //大致同上
-        private void OnTriggerExit(Collider other)
+        private void OnTriggerExit (Collider other)
         {
             NCharacterBehavior player = other.GetComponent<NCharacterBehavior>();
             if (player)

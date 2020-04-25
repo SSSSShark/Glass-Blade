@@ -17,18 +17,22 @@ namespace Com.Glassblade.Group1
 
         void Start()
         {
+            // 普通模式
             if (GameObject.Find("NData") != null)
             {
                 p = GameObject.FindWithTag("Finish").GetComponentInChildren<NDataStore>().p;
             }
+            // 占领模式
             else if (GameObject.Find("OData") != null)
             {
                 p = GameObject.FindWithTag("Finish").GetComponentInChildren<ODataStore>().p;
             }
+            // 两个队伍的初始化
             team0 = GameObject.FindGameObjectsWithTag("Team0").OrderBy(g => g.transform.GetSiblingIndex()).ToArray();
             team1 = GameObject.FindGameObjectsWithTag("Team1").OrderBy(g => g.transform.GetSiblingIndex()).ToArray();
             int i = 0;
             int j = 0;
+            // 两个队伍的玩家数组
             p0 = new playersData[p.Length / 2];
             p1 = new playersData[p.Length / 2];
             for (int k = 0; k < p.Length; k ++)
@@ -44,8 +48,10 @@ namespace Com.Glassblade.Group1
                     j++;
                 }
             }
+            // 根据得分排序
             p0.OrderBy(g => g.score);
             p1.OrderBy(g => g.score);
+            // 将两队玩家的游戏结果传递出来
             for(i = 0;  i < team0.Length; i ++)
             {
                 if (i < p0.Length)
@@ -74,6 +80,7 @@ namespace Com.Glassblade.Group1
                     team1[i].SetActive(false);
                 }
             }
+            // 普通模式的结果结算
             if (GameObject.Find("NData") != null)
             {
                 int allKill0 = 0;
@@ -92,6 +99,7 @@ namespace Com.Glassblade.Group1
                     case false: GameObject.Find("Title").GetComponentInChildren<Text>().text = (allKill0 == allKill1) ? "平局" : "失败";break;
                 }
             }
+            // 占点模式的结果结算
             else if (GameObject.Find("OData") != null)
             {
                 switch (GameObject.Find("OData").GetComponentInChildren<ODataStore>().score0 > GameObject.Find("OData").GetComponentInChildren<ODataStore>().score1)

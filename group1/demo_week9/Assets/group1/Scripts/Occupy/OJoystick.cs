@@ -13,7 +13,7 @@ namespace Com.Glassblade.Group1
         //轮盘
         public RectTransform panel;
         //最大位移
-        public int maxradius = 80;
+        public int maxRadius = 80;
         //获取位移
         public Vector2 Movement { get => movement; }
         //位移
@@ -29,9 +29,9 @@ namespace Com.Glassblade.Group1
             //获取按钮位置
             RectTransformUtility.ScreenPointToLocalPointInRectangle(panel, eventData.position, eventData.pressEventCamera, out Vector2 position);
             //限制位移大小
-            position = position.normalized * (position.magnitude > maxradius ? maxradius : position.magnitude);
+            position = position.normalized * (position.magnitude > maxRadius ? maxRadius : position.magnitude);
             //设成对于最大位移的比例
-            movement = position / maxradius;
+            movement = position / maxRadius;
             //设置轮盘相对位移
             handle.localPosition = position;
         }

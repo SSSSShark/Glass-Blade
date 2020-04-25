@@ -10,9 +10,9 @@ namespace Com.Glassblade.Group1
         //队伍
         public int team;
         //角色，名字渲染
-        Renderer[] character, namebar;
+        Renderer[] character, nameBar;
         //血条渲染
-        CanvasRenderer[] healthbar;
+        CanvasRenderer[] healthBar;
         //虚拟摇杆
         public OJoystick touch;
         //速度
@@ -38,9 +38,9 @@ namespace Com.Glassblade.Group1
             //获取角色
             character = this.transform.GetChild(0).GetComponentsInChildren<Renderer>();
             //获取名字
-            namebar = this.transform.GetChild(6).GetComponentsInChildren<Renderer>();
+            nameBar = this.transform.GetChild(6).GetComponentsInChildren<Renderer>();
             //获取血条
-            healthbar = this.transform.GetChild(5).GetComponentsInChildren<CanvasRenderer>();
+            healthBar = this.transform.GetChild(5).GetComponentsInChildren<CanvasRenderer>();
             foreach (var render in character)
             {
                 //阴影
@@ -65,12 +65,12 @@ namespace Com.Glassblade.Group1
                 render.material.color = new Color(1f, 1f, 1f, a);
             }
             //设置血条可见度
-            foreach (var render in healthbar)
+            foreach (var render in healthBar)
             {
                 render.SetAlpha(a);
             }
             //设置名字可见度
-            foreach (var render in namebar)
+            foreach (var render in nameBar)
             {
                 render.enabled = a != 0;
             }

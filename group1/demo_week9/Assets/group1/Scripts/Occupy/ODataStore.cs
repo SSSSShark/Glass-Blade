@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿// Author: Via Cytus
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,6 +7,7 @@ namespace Com.Glassblade.Group1
 {
     public class ODataStore : MonoBehaviour
     {
+        // 玩家数据
         public playersData[] p;
         public static ODataStore instance;
         public int score0;
@@ -24,7 +26,7 @@ namespace Com.Glassblade.Group1
             //实例化玩家组件列表
             Players = GameObject.FindGameObjectsWithTag("Player");
             p = new playersData[Players.Length];
-            for(int i=0;i<Players.Length;i++)
+            for (int i=0;i<Players.Length;i++)
             {
                 p[i].name = Players[i].transform.GetChild(6).GetComponentInChildren<TextMesh>().text;
                 p[i].killTime = Players[i].GetComponentInChildren<OCharacterBehavior>().killTime;

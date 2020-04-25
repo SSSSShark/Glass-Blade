@@ -33,7 +33,8 @@ namespace Com.Glassblade.Group1
         void Update()
         {
             // 跟随Player
-            this.transform.position = new Vector3(this.PlayerTrans.position.x, this.PlayerTrans.position.y + this.Camera_Height, this.PlayerTrans.position.z - this.Camera_Distance);
+            this.transform.position = new Vector3(this.PlayerTrans.position.x, this.PlayerTrans.position.y + 
+                this.Camera_Height, this.PlayerTrans.position.z - this.Camera_Distance);
             // 对准Player
             this.transform.LookAt(this.PlayerTrans);
         }
