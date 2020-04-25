@@ -32,11 +32,28 @@ public class GameManager : MonoBehaviour
     {
       if (movegetgromjoystick.LocalPlayerInstance == null)
       {
-        GameObject thePlayer = PhotonNetwork.Instantiate(this.playerPrefeb.name, new Vector3(-13, 5f, -25), Quaternion.identity, 0);
+        // Instantiate the player
+        GameObject thePlayer;
+        if ((TeamController.Team)PhotonNetwork.LocalPlayer.CustomProperties["team"] == TeamController.Team.TeamA) {
+          thePlayer = PhotonNetwork.Instantiate(this.playerPrefeb.name, new Vector3(-24, 5f, -46), Quaternion.identity, 0);
+        }
+        else
+        {
+          thePlayer = PhotonNetwork.Instantiate(this.playerPrefeb.name, new Vector3(24, 5f, 46), Quaternion.identity, 0);
+        }
+
+        // Assign components in the scene to the player we just instantiated, so that the player can
+        // use those component
+
+        // Assign joy stick
         thePlayer.GetComponent<movegetgromjoystick>().touch = joystick;
+
+        // Set up player attack button
         AttackBtn.onClick.AddListener(thePlayer.GetComponent<PlayerCharacter>().Attack);
+
+        // Assign the player to the weapon refresh places
         int nChild = weaponSystem.transform.childCount;
-        Debug.Log("GameManager: the player instantiated has " + nChild + " children");
+        Debug.Log("GameManager: there are " + nChild + " fresh places");
         //thePlayer.GetComponent<CharacterBehavior>().touch = joystick;
         GameObject[] children = new GameObject[nChild];
         WeaponRefresh wr;
@@ -51,7 +68,11 @@ public class GameManager : MonoBehaviour
           }
         }
 
+        // Assign the refresh places to the player
         thePlayer.GetComponent<PlayerCharacter>().refresh_places = children;
+
+        // Assign the GameManager itself to the player so that the player can call the game manager
+        thePlayer.GetComponent<PlayerCharacter>().GM = this;
       }
       else
       {

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1012728964460226585}
   - component: {fileID: 5247514831549275772}
   - component: {fileID: 3532822330511215464}
+  - component: {fileID: 1411410119986322318}
   m_Layer: 0
   m_Name: Axe_TwoHanded_Set_A
   m_TagString: Untagged
@@ -94,3 +95,15 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: c19297294f4fcdc429b8b8469dc1cc76, type: 3}
+--- !u!114 &1411410119986322318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8163220311215341567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efac5671319e6fb4fb2516f6d6fcd9be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

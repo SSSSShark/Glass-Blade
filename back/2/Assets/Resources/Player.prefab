@@ -5545,7 +5545,7 @@ MonoBehaviour:
   isAlive: 1
   isProtected: 0
   isJustAlive: 0
-  protecttimeMAX: 1
+  protectTimeMax: 1
   counter: {fileID: 0}
   DeathRotateTimes: 10
   DeathTime: 10
@@ -5553,6 +5553,7 @@ MonoBehaviour:
   weaponKinds: 4
   speed: 25
   AttackBtn: {fileID: 0}
+  GM: {fileID: 0}
   refresh_places: []
 --- !u!114 &3038915201120346740
 MonoBehaviour:
@@ -22353,7 +22354,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -1399276843723140675, guid: aaed9d8dc1b8adc4a9d4a25204d72a1b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: aaed9d8dc1b8adc4a9d4a25204d72a1b, type: 3}
 --- !u!4 &1191870376107195398 stripped
 Transform:
@@ -22428,7 +22430,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Axe_TwoHanded_Set_A
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1411410119986322318, guid: 5cd3959f892d93249b6eeeecd9121639, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5cd3959f892d93249b6eeeecd9121639, type: 3}
 --- !u!4 &437264845020577391 stripped
 Transform:
@@ -22503,7 +22506,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0.99998474
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -5366829592863100303, guid: 37e4c54d554522c499ee46ce913e1074, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 37e4c54d554522c499ee46ce913e1074, type: 3}
 --- !u!4 &7305506392975150453 stripped
 Transform:
@@ -22578,7 +22582,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7818457853157537900, guid: a62319670aae7b5458c7950201eececd, type: 3}
+    - {fileID: 1512259692916654899, guid: a62319670aae7b5458c7950201eececd, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a62319670aae7b5458c7950201eececd, type: 3}
 --- !u!4 &7930716389569889071 stripped
 Transform:

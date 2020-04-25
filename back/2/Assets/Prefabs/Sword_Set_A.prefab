@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 877993653936584722}
   - component: {fileID: 3360615750081507555}
   - component: {fileID: 6664506030421727257}
+  - component: {fileID: 7818457853157537900}
   m_Layer: 0
   m_Name: Sword_Set_A
   m_TagString: Untagged
@@ -94,3 +95,15 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 86b748f05f8ac924a9c74178cd3117eb, type: 3}
+--- !u!114 &7818457853157537900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 253134956239976162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efac5671319e6fb4fb2516f6d6fcd9be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

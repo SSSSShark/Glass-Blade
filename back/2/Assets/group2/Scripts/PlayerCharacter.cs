@@ -20,8 +20,8 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
     /********************* 林海力 begin *******************/
     public bool isProtected = false; //无敌状态标识
     public bool isJustAlive = false; //是否刚刚复活标识
-    int protecttime;
-    public int protecttimeMAX = 1;
+    int protectTime;
+    public int protectTimeMax = 1;
     /********************** 林海力 end *********************/
 
     /****************** 汪至磊 begin **********************/
@@ -55,6 +55,9 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
     public static GameObject LocalPlayerInstance;
 
     public GameObject AttackBtn;
+
+    // The game manager attached to the scene
+    public GameManager GM;
 
     #endregion
 
@@ -237,40 +240,62 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
     /***************************** 汪至磊 end ***********************/
 
     /************************** 林海力 begin *************************/
+    /// <summary>
+    /// Relive is called when local player is out of death, and we place
+    /// the player to the relive position, with protection.
+    /// </summary>
     public void Relive()
     {
-        //Debug.Log("relive time = " + Time.time);
-        this.gameObject.GetComponent<movegetgromjoystick>().enabled = true;
-        baw.setLive();
-        isProtected = false;  // tt
-        isAlive = true;
-        var reliver = Random.Range(-180.0f, 180.0f);
-        transform.rotation = Quaternion.Euler(0, reliver, 0);
-        var relivex = Random.Range(-40.0f, 40.0f);
-        var relivez = Random.Range(-40.0f, 40.0f);
-        transform.position = new Vector3(relivex, 1, relivez);
-        //relive-protect
-        protecttime = protecttimeMAX;
-        if (protecttime <= 0)
+        if (photonView.IsMine)
         {
-            isJustAlive = false;
-        }
-        else
-        {
-            isJustAlive = true;
-            InvokeRepeating("protectDecrease", 0f, 1.0f);
+            // Debug.Log("relive time = " + Time.time);
+            this.gameObject.GetComponent<movegetgromjoystick>().enabled = true;
+            baw.setLive();
+            isProtected = false;  // tt
+            isAlive = true;
+            var reliver = Random.Range(-180.0f, 180.0f);
+            transform.rotation = Quaternion.Euler(0, reliver, 0);
+
+            float reliveX;
+            float reliveZ;
+            float reliveY = 1;
+            if ((TeamController.Team)PhotonNetwork.LocalPlayer.CustomProperties["team"] == TeamController.Team.TeamA)
+            {
+                Debug.Log("Team A player relive, placed to team A position");
+                reliveX = -24;
+                reliveZ = -46;
+            }
+            else
+            {
+                Debug.Log("Team B player relive, placed to team B position");
+                reliveX = 24;
+                reliveZ = 46;
+            }
+            transform.position = new Vector3(reliveX, reliveY, reliveZ);
+
+            // relive-protect
+            protectTime = protectTimeMax;
+            if (protectTime <= 0)
+            {
+                isJustAlive = false;
+            }
+            else
+            {
+                isJustAlive = true;
+                InvokeRepeating("protectDecrease", 0f, 1.0f);
+            }
         }
     }
     void protectDecrease()
     {
-        if (protecttime == 0)
+        if (protectTime == 0)
         {
             isJustAlive = false;
             CancelInvoke("protectDecrease");
         }
         else
         {
-            protecttime--;
+            protectTime--;
         }
     }
 

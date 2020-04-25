@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6934143508396103505}
   - component: {fileID: 6390024082700406780}
   - component: {fileID: 1997839029277925754}
+  - component: {fileID: -1399276843723140675}
   m_Layer: 0
   m_Name: Dagger_Set_A (2)
   m_TagString: Untagged
@@ -94,3 +95,15 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 762b741ea969cb34d8be26f8341a55d3, type: 3}
+--- !u!114 &-1399276843723140675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1878192945062096432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efac5671319e6fb4fb2516f6d6fcd9be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
