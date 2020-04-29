@@ -6,9 +6,9 @@ using UnityEngine.Events;
 namespace Com.Glassblade.Group1
 {
     /// <summary>
-    /// 人物死亡的事件，在OCharacterBehavior中实例化
+    /// 人物死亡的事件，在CharacterBehavior中实例化
     /// </summary>
-    public class DeathEvent : UnityEvent<OCharacterBehavior>
+    public class DeathEvent : UnityEvent<CharacterBehavior>
     {
     }
 }
