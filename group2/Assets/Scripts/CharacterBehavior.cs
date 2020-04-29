@@ -8,11 +8,11 @@ namespace Com.GlassBlade.Group2
     public class CharacterBehavior : MonoBehaviour
     {
         //队伍
-        public int team;
+        //public int team;
         //角色，名字渲染
-        private Renderer[] character, namebar;
+        //private Renderer[] character, namebar;
         //血条渲染
-        private CanvasRenderer[] healthbar;
+        //private CanvasRenderer[] healthbar;
         //虚拟摇杆
         public Joystick touch;
         //速度
@@ -26,23 +26,23 @@ namespace Com.GlassBlade.Group2
             ani = GetComponentInChildren<Animator>();
             Shader shader = Shader.Find("Transparent/Diffuse");
             //获取角色
-            character = this.transform.GetChild(0).GetComponentsInChildren<Renderer>();
+            //character = this.transform.GetChild(0).GetComponentsInChildren<Renderer>();
             //获取名字
-            namebar = this.transform.GetChild(6).GetComponentsInChildren<Renderer>();
+            //namebar = this.transform.GetChild(6).GetComponentsInChildren<Renderer>();
             //获取血条
-            healthbar = this.transform.GetChild(5).GetComponentsInChildren<CanvasRenderer>();  
-            foreach (var render in character)
-            {
+            //healthbar = this.transform.GetChild(5).GetComponentsInChildren<CanvasRenderer>();  
+           // foreach (var render in character)
+            //{
                 //阴影
-                render.material.shader = shader;
-            }
+                //render.material.shader = shader;
+            //}
             //设为可见
-            SetTransparent(1f);
+           // SetTransparent(1f);
         }
 
         //Author: wmj
         //设置可见度
-        public void SetTransparent(float a)
+      /*  public void SetTransparent(float a)
         {
             //设置角色可见度
             foreach (var render in character)
@@ -60,7 +60,7 @@ namespace Com.GlassBlade.Group2
                 render.enabled = a != 0;
             }
         }
-
+        */
         //Author: Via Cytus
         void Update()
         {

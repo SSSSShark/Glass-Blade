@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 5829348795867021765}
   - component: {fileID: 3117799630999789272}
   - component: {fileID: 4476063542145113468}
-  - component: {fileID: -3141605120724817250}
+  - component: {fileID: 5974919461281070690}
   m_Layer: 0
-  m_Name: weapon1attack
+  m_Name: Weapon1Attack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -95,7 +95,7 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!114 &-3141605120724817250
+--- !u!114 &5974919461281070690
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

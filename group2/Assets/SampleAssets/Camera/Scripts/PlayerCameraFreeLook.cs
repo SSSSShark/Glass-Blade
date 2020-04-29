@@ -1,6 +1,6 @@
 using System;
 using UnityEngine;
-
+using Com.GlassBlade.Group2;
 public class PlayerCameraFreeLook : PlayerCamera
 {
     // This script is designed to be placed on the root object of a camera rig,

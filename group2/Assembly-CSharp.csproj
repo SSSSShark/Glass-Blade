@@ -84,11 +84,12 @@
     <Compile Include="Assets\Scripts\Joystick.cs" />
     <Compile Include="Assets\Scripts\PlayerCharacter.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\SwordTwoHandedDestroy.cs" />
     <Compile Include="Assets\Scripts\Weapon.cs" />
+    <Compile Include="Assets\Scripts\Weapon1Colider.cs" />
     <Compile Include="Assets\Scripts\Weapon1Destroy.cs" />
     <Compile Include="Assets\Scripts\WeaponMove.cs" />
     <Compile Include="Assets\Scripts\WeaponRefresh.cs" />
-    <Compile Include="Assets\Scripts\weapon1colider.cs" />
     <None Include="Assets\Photon\PhotonUnityNetworking\changelog.txt" />
     <None Include="Assets\SampleAssets\Fonts\Bowlby_One\OFL.txt" />
     <None Include="Assets\RRFreelance\CustomizableWeapons\HowToUse.txt" />

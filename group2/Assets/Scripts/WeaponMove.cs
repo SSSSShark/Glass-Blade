@@ -2,25 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponMove : MonoBehaviour
+namespace Com.GlassBlade.Group2
 {
-  float f = 0.025f;
-  float ty = 1.0f;
-
-  // Start is called before the first frame update
-  void Start()
-  {
-        
-  }
-
-  // Update is called once per frame
-  void Update()
-  {
-    transform.localPosition = new Vector3(0, ty, 0);
-    ty = ty + f;
-    if (ty >= 1.25 || ty <= 0.75)
+    public class WeaponMove : MonoBehaviour
     {
-      f = -f;
+        float f = 0.025f;
+        float ty = 1.0f;
+
+        // Start is called before the first frame update
+        void Start()
+        {
+
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+            transform.localPosition = new Vector3(0, ty, 0);
+            ty = ty + f;
+            if (ty >= 1.25 || ty <= 0.75)
+            {
+                f = -f;
+            }
+        }
     }
-  }
 }

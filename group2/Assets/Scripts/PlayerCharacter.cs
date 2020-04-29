@@ -40,8 +40,11 @@ namespace Com.GlassBlade.Group2
         //匕首攻击前摇时间
         public float daggerAttackDelayTime = 1.0f;
 
-        //匕首飞出速度调节
-        public float launchForce = 10;
+        //匕首攻击距离调节
+        public float daggerAttackDistance = 6.0f;
+
+        //单手剑攻击距离调节
+        public float swordAttackDistance = 2.0f;
 
         //双手剑
         public Rigidbody swordTwoHanded;
@@ -165,7 +168,7 @@ namespace Com.GlassBlade.Group2
                 weaponInstance.transform.SetParent(this.transform, false);
 
                 // 武器旋转表示攻击动作
-                weaponInstance.angularVelocity = this.transform.right * 1 * 5.0f;
+                weaponInstance.angularVelocity = this.transform.right * 1 * 7.0f;
             }
             Invoke("RefreshAttack", attackTime);
         }
@@ -184,9 +187,11 @@ namespace Com.GlassBlade.Group2
         /// </summary>
         private void DaggerAttack()
         {
-            var daggerInstance = Instantiate(dagger, new Vector3(0, 1, 1), weapons[2].localRotation) as Rigidbody;
+            var daggerInstance = Instantiate(dagger, this.transform.localPosition, weapons[2].rotation) as Rigidbody;
             daggerInstance.transform.SetParent(this.transform, false);
-            daggerInstance.velocity = launchForce * transform.forward;
+            daggerInstance.transform.localPosition = new Vector3(0, 1, 1);
+            daggerInstance.transform.localRotation = Quaternion.Euler(new Vector3(90, 0, 0));
+            daggerInstance.velocity = daggerAttackDistance / daggerInstance.GetComponent<DestroyWeapon>().destroyTime * transform.forward;
         }
 
         /// <summary>
@@ -195,18 +200,23 @@ namespace Com.GlassBlade.Group2
         /// </summary>
         private void SwordTwoHandedAttack()
         {
-            var swordTwoHandedInstance = Instantiate(swordTwoHanded, this.transform.localPosition + new Vector3(0, 1, 0) + this.transform.forward, this.transform.rotation) as Rigidbody;
+            /* var swordTwoHandedInstance = Instantiate(swordTwoHanded, this.transform.localPosition + new Vector3(0, 1, 0) + this.transform.forward, this.transform.rotation) as Rigidbody;
+             swordTwoHandedInstance.transform.SetParent(this.transform, false);
+
+             // 设置实例初始出现位置
+             swordTwoHandedInstance.transform.localPosition = new Vector3(0, 1, 1);
+
+             // 设置初始角度
+             swordTwoHandedInstance.transform.localRotation = Quaternion.Euler(new Vector3(0, 30, 90));
+
+             // 旋转轴 * 方向 * 角速度
+             swordTwoHandedInstance.angularVelocity = this.transform.up * 1 * 5f;
+             */
+            Quaternion qtarget =  this.transform.localRotation;
+            var swordTwoHandedInstance = Instantiate(swordTwoHanded, this.transform.localPosition + new Vector3(0, 1, 0) + this.transform.forward, qtarget) as Rigidbody;
             swordTwoHandedInstance.transform.SetParent(this.transform, false);
-
-            // 设置实例初始出现位置
-            swordTwoHandedInstance.transform.localPosition = new Vector3(0, 1, 1);
-
-            // 设置初始角度
-            swordTwoHandedInstance.transform.localRotation = Quaternion.Euler(new Vector3(0, 30, 90));
-
-            // 旋转轴 * 方向 * 角速度
-            swordTwoHandedInstance.angularVelocity = this.transform.up * 1 * 5.0f;
-
+            swordTwoHandedInstance.transform.localPosition = new Vector3(0, 1, 1.0f);
+            swordTwoHandedInstance.transform.localRotation = Quaternion.Euler(new Vector3(0, 90, 90));
             // 获取所有人物
             var gos = GameObject.FindGameObjectsWithTag("Player");
 
@@ -265,9 +275,9 @@ namespace Com.GlassBlade.Group2
         public void Axe2HandAttack()
         {
             //实例化武器
-            Quaternion qtarget = Quaternion.AngleAxis(90, this.transform.forward) * this.transform.rotation;
-            Axesetinstance = Instantiate(Axe, this.transform.localPosition + new Vector3(0, 1, 0) + this.transform.forward, qtarget) as Rigidbody;
+            Axesetinstance = Instantiate(Axe, this.transform.localPosition + new Vector3(0, 1, 0) + this.transform.forward, this.transform.rotation) as Rigidbody;
             Axesetinstance.transform.SetParent(this.transform, false);
+            Axesetinstance.transform.localRotation = Quaternion.Euler(new Vector3(0, 90, 90));
             Axesetinstance.transform.localPosition = new Vector3(0, 1, 1.0f);
 
             //实例化攻击范围
@@ -280,23 +290,33 @@ namespace Com.GlassBlade.Group2
         /**********************week9, first weapon 林海力************/
 
         /****************week9, fouth weapon, 汪至磊**********************************/
-        private void SwordAttack()
+        //动画段数,9段
+        int tempspan;
+        void SwordAttack()
         {
             tempInstance = Instantiate(sword,
                                        this.transform.localPosition + new Vector3(0, 1, 0) + this.transform.forward,
                                        weapons[4].rotation) as Rigidbody;
-            tempInstance.velocity = 9 * transform.forward;
-            Invoke("SwordAttackAnime", 0.1f);
+            tempInstance.transform.SetParent(this.transform, false);
+            tempInstance.transform.localPosition = new Vector3(0, 1, 1);
+            tempInstance.transform.localRotation = Quaternion.Euler(new Vector3(90, 0, 0));
+            tempspan = 0;
+            tempInstance.velocity = swordAttackDistance / tempInstance.GetComponent<DestroyWeapon>().destroyTime * transform.forward;
+            Invoke("SwordAttackAnime", (0.3f * tempInstance.GetComponent<DestroyWeapon>().destroyTime));
         }
-        private void SwordAttackAnime()
+        void SwordAttackAnime()
         {
-            tempInstance.velocity -= 4 * transform.forward;
-            if (tempInstance.velocity.magnitude > 7)
+            if (tempInstance)
             {
-                tempInstance.velocity = 0 * transform.forward;
-                CancelInvoke("SwordAttackAnime");
+                tempInstance.velocity = -0.5f * swordAttackDistance / tempInstance.GetComponent<DestroyWeapon>().destroyTime * transform.forward;
+                /*tempspan++;
+                if (tempspan >= 7)
+                {
+                    tempInstance.velocity = 0 * transform.forward;
+                    CancelInvoke("SwordAttackAnime");
+                }
+                Invoke("SwordAttackAnime", 0.05f);*/
             }
-            Invoke("SwordAttackAnime", 0.1f);
         }
         /**************************forth weapon******************************************/
 

@@ -7,7 +7,7 @@ namespace Com.GlassBlade.Group2
     public class DestroyWeapon : MonoBehaviour
     {
         //销毁实例延迟时间
-        public float destroyTime = 0.5f;
+        public float destroyTime;
 
         // Start is called before the first frame update
         void Start()

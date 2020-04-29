@@ -695,14 +695,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapon: {fileID: -1794943971418987226, guid: 59c5058661298004f85bd9d95066de24, type: 3}
   muzzle: {fileID: 4140772465482480, guid: 59c5058661298004f85bd9d95066de24, type: 3}
-  attackTime: 1
+  attackTime: 2
   isAlive: 1
   attacking: 0
   killTime: 0
   deathTime: 0
   dagger: {fileID: 4861635168545973269, guid: e05af02c95e3bb846941595f3036ef42, type: 3}
   daggerAttackDelayTime: 1
-  launchForce: 10
+  daggerAttackDistance: 6
+  swordAttackDistance: 2
   swordTwoHanded: {fileID: -3888169822764776029, guid: a0ca8e11e566016409eba2a351674ea1,
     type: 3}
   swordTwoHandedDelayTime: 1
@@ -741,7 +742,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b49751415732c5f47b7d8ce9730f5a88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  team: 0
   touch: {fileID: 654358264}
   speed: 10
 --- !u!1 &416299152
@@ -1044,7 +1044,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponStatus: 0
   refreshTime: 3
-  startTime: 5
+  startTime: 3
   weaponObject: {fileID: 354129538}
 --- !u!1001 &600093204
 PrefabInstance:
@@ -1056,6 +1056,10 @@ PrefabInstance:
     - target: {fileID: 1549284096712282, guid: d48bca30564d2764e8e218f6424f4394, type: 3}
       propertyPath: m_Name
       value: Player (for test)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1549284096712282, guid: d48bca30564d2764e8e218f6424f4394, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4222371473777042, guid: d48bca30564d2764e8e218f6424f4394, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1108,12 +1112,12 @@ PrefabInstance:
     - target: {fileID: 224109129924963006, guid: d48bca30564d2764e8e218f6424f4394,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224109129924963006, guid: d48bca30564d2764e8e218f6424f4394,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1356260606248257144, guid: d48bca30564d2764e8e218f6424f4394,
         type: 3}
@@ -1161,7 +1165,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b49751415732c5f47b7d8ce9730f5a88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  team: 0
   touch: {fileID: 654358264}
   speed: 10
 --- !u!114 &600093210
@@ -1185,7 +1188,8 @@ MonoBehaviour:
   deathTime: 0
   dagger: {fileID: 4861635168545973269, guid: e05af02c95e3bb846941595f3036ef42, type: 3}
   daggerAttackDelayTime: 1
-  launchForce: 10
+  daggerAttackDistance: 6
+  swordAttackDistance: 2
   swordTwoHanded: {fileID: -3888169822764776029, guid: a0ca8e11e566016409eba2a351674ea1,
     type: 3}
   swordTwoHandedDelayTime: 1
@@ -1752,6 +1756,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4033670370840150, guid: d48bca30564d2764e8e218f6424f4394, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4033670370840150, guid: d48bca30564d2764e8e218f6424f4394, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4222371473777042, guid: d48bca30564d2764e8e218f6424f4394, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.79
@@ -1810,7 +1822,52 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1064654515691742603, guid: d48bca30564d2764e8e218f6424f4394,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1064654515691742603, guid: d48bca30564d2764e8e218f6424f4394,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1064654515691742603, guid: d48bca30564d2764e8e218f6424f4394,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1064654515691742603, guid: d48bca30564d2764e8e218f6424f4394,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1356260606248257144, guid: d48bca30564d2764e8e218f6424f4394,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3463558495521365819, guid: d48bca30564d2764e8e218f6424f4394,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3463558495521365819, guid: d48bca30564d2764e8e218f6424f4394,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3463558495521365819, guid: d48bca30564d2764e8e218f6424f4394,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3463558495521365819, guid: d48bca30564d2764e8e218f6424f4394,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3529385113854756283, guid: d48bca30564d2764e8e218f6424f4394,
         type: 3}
       propertyPath: m_Enabled
       value: 0

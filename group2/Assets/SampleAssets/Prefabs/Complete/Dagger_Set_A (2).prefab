@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4861635168545973269}
   - component: {fileID: 3181559473196232922}
   - component: {fileID: 6602405962278649002}
+  - component: {fileID: 7734797357514439113}
   m_Layer: 8
   m_Name: Dagger_Set_A (2)
   m_TagString: Untagged
@@ -92,7 +93,7 @@ MeshCollider:
   m_GameObject: {fileID: 1566858610987122}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Convex: 1
   m_CookingOptions: 30
@@ -125,10 +126,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e46b6e2013af33241b9682468c6434c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageRadius: 0.5
-  damageMask:
-    serializedVersion: 2
-    m_Bits: 256
 --- !u!114 &6602405962278649002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,4 +138,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fb6cbc3532ca7149ada5c8e804a21ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyTime: 0.5
+  destroyTime: 0.2
+--- !u!65 &7734797357514439113
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1566858610987122}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.087779894, y: 0.8970649, z: 0.32367826}
+  m_Center: {x: -0.0000000055879354, y: 0.30798346, z: 0.000000037252903}
