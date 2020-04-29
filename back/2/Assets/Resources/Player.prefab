@@ -5373,8 +5373,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2795052550319647374}
+  - component: {fileID: -8993878259426506500}
   - component: {fileID: 2826171901715947406}
-  - component: {fileID: 2793644938323551909}
   - component: {fileID: 7762352981770910767}
   - component: {fileID: 4509862410502862467}
   - component: {fileID: 5664716488948828362}
@@ -5411,6 +5411,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-8993878259426506500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2792377273631266118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdec89527bbe4df41a51ca9cdf0b8e3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  touch: {fileID: 0}
+  speed: 10
+  ani: {fileID: 2852727012395168670}
+  gravity: 9
 --- !u!143 &2826171901715947406
 CharacterController:
   m_ObjectHideFlags: 0
@@ -5429,22 +5445,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1.34, z: 0}
---- !u!114 &2793644938323551909
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2792377273631266118}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cdec89527bbe4df41a51ca9cdf0b8e3d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  touch: {fileID: 0}
-  speed: 10
-  ani: {fileID: 2852727012395168670}
-  gravity: 9
 --- !u!114 &7762352981770910767
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5554,6 +5554,10 @@ MonoBehaviour:
   speed: 25
   AttackBtn: {fileID: 0}
   GM: {fileID: 0}
+  OM: {fileID: 0}
+  killTime: 0
+  deathTime: 0
+  score: 0
   refresh_places: []
 --- !u!114 &3038915201120346740
 MonoBehaviour:
@@ -7552,7 +7556,7 @@ GameObject:
   - component: {fileID: 2793644938686905733}
   - component: {fileID: 2793644938686905735}
   - component: {fileID: 2793644938686905732}
-  - component: {fileID: 2793644938686905734}
+  - component: {fileID: 934148437}
   m_Layer: 8
   m_Name: NameBar
   m_TagString: Untagged
@@ -7634,8 +7638,8 @@ TextMesh:
   m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
   m_Color:
     serializedVersion: 2
-    rgba: 4293400821
---- !u!114 &2793644938686905734
+    rgba: 4294901760
+--- !u!114 &934148437
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -9,12 +9,12 @@ public class movegetgromjoystick : MonoBehaviourPunCallbacks
     #region Public Fields
 
     public Joystick touch;
-    public float speed=25;
+    public float speed = 25;
     public Animator ani;
 
     [Tooltip("The local player instance. Use this to know if the local player is represented in the scene")]
     public static GameObject LocalPlayerInstance;
-    public float gravity =9;
+    public float gravity = 9;
     #endregion
     #region Private Field
     private float yspeed = 0f;
@@ -33,7 +33,7 @@ public class movegetgromjoystick : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     void Start()
     {
-            ani = GetComponentInChildren<Animator>();
+        ani = GetComponentInChildren<Animator>();
         //touch = GameManager.joyStick;
         if (photonView.IsMine)
         {
@@ -42,20 +42,20 @@ public class movegetgromjoystick : MonoBehaviourPunCallbacks
                 Debug.LogError("cannot find joystick");
             }
         }
-            CameraFollow _cameraFollow = this.gameObject.GetComponent<CameraFollow>();
+        CameraFollow _cameraFollow = this.gameObject.GetComponent<CameraFollow>();
 
-            if (_cameraFollow != null)
+        if (_cameraFollow != null)
+        {
+            if (photonView.IsMine)
             {
-                if (photonView.IsMine)
-                {
-                    _cameraFollow.OnStartFollowing();
-                }
+                _cameraFollow.OnStartFollowing();
             }
-            else
-            {
-                Debug.LogError("<Color=Red><a>Missing</a></Color> CameraWork Component on playerPrefab.", this);
-            }
-       
+        }
+        else
+        {
+            Debug.LogError("<Color=Red><a>Missing</a></Color> CameraWork Component on playerPrefab.", this);
+        }
+
     }
 
     // Update is called once per frame
@@ -68,7 +68,7 @@ public class movegetgromjoystick : MonoBehaviourPunCallbacks
 
         Vector3 direction = new Vector3(touch.Movement.x, 0, touch.Movement.y);
         CharacterController controller = GetComponent<CharacterController>();
-        if (direction!=Vector3.zero)
+        if (direction != Vector3.zero)
         {
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(direction), Time.deltaTime * 10);
             transform.Translate(Vector3.forward * Time.deltaTime * speed);
@@ -81,7 +81,7 @@ public class movegetgromjoystick : MonoBehaviourPunCallbacks
         }
         if (!controller.isGrounded)
         {
-            Debug.Log("g"+ gravity );
+            //Debug.Log("g" + gravity);
             yspeed -= gravity * Time.deltaTime;
             controller.Move(new Vector3(0, yspeed * Time.deltaTime, 0));
         }

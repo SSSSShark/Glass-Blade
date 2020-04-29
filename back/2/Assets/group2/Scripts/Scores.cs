@@ -9,33 +9,52 @@ public class Scores : MonoBehaviour, IPunObservable
 
     [SerializeField]
     public int score;            
-    private Text ScoreObj;
+    private Text scoreObj;
     
 
     void Start()
     {
         score = 0;
-        ScoreObj = GetComponentInChildren<Text>();         //获取时间文本组件
+        scoreObj = GetComponentInChildren<Text>();         //获取时间文本组件
     }
 
     [PunRPC]
-    public void GetScoreInfo()
+    public void GetScoreInfo(int increment)
     {
         Debug.Log("score called");
-        this.score += 1;
+        this.score += increment;
     }
 
-    public void SendScoreInfo()
+    public void SendScoreInfo(int increment = 1)
     {
         PhotonView photonView = PhotonView.Get(this);
-        photonView.RPC("GetScoreInfo", RpcTarget.MasterClient);
+        photonView.RPC("GetScoreInfo", RpcTarget.MasterClient, increment);
     }
 
     void Update()
     {
         if (PhotonNetwork.IsMasterClient)
         {
-            ScoreObj.text = ("0" + score.ToString()).Substring(0, 2);
+            if (score >= 1000)
+            {
+                //设置分数文本
+                scoreObj.text = score.ToString();
+            }
+            else if (score >= 100)
+            {
+                //设置分数文本
+                scoreObj.text = "0" + score.ToString();
+            }
+            else if (score >= 10)
+            {
+                //设置分数文本
+                scoreObj.text = "00" + score.ToString();
+            }
+            else
+            {
+                //设置分数文本
+                scoreObj.text = "000" + score.ToString();
+            }
         }
     }
 

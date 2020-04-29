@@ -39,5 +39,13 @@ MonoBehaviour:
   - RespawnSpaceship
   - TakeDamage
   - UpdateWeaponStatus
+  - DeathEvent
+  - CallDeathEvent
+  - LoadEnding
+  - UpdateDeathTime
+  - UpdateKillTime
+  - UpdateScore
+  - TakeDamageCallBack
+  - TakeDamageCallback
   DisableAutoOpenWizard: 1
   ShowSettings: 1

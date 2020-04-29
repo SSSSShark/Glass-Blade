@@ -21,6 +21,7 @@ public class Weapon : MonoBehaviour
     public float damageRadius; //伤害判定半径
     public LayerMask damageMask; //设置能够判定伤害的层面
     public Player weaponOwner;  //武器持有者
+    public PhotonView photonviewOwner;
     public bool friendlyFire = false;  //允许友军伤害
 
     // 造成伤害的触发器
@@ -46,7 +47,7 @@ public class Weapon : MonoBehaviour
                 }
             }
             Debug.Log("collider detected");
-            target.InformDamage(target.photonView.Controller);
+            target.InformDamage(target.photonView.Controller, target.photonView ,photonviewOwner);
         }
     }
 }

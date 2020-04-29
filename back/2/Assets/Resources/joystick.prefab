@@ -89,7 +89,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   handle: {fileID: 3390985938681556005}
   panel: {fileID: 3390985938125365056}
-  maxradius: 80
+  maxradius: 120
 --- !u!1 &3390985938681556006
 GameObject:
   m_ObjectHideFlags: 0
