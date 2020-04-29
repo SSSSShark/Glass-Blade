@@ -27,7 +27,8 @@ namespace Com.GlassBlade.Group2
             //获取触发触发器的玩家对象
             var target = other.GetComponent<PlayerCharacter>();
 
-            if (target && target.isAlive && target != this.GetComponentInParent<PlayerCharacter>()) 
+            //玩家非空、活着、未处于刚复活的保护状态、为处于无敌状态、不是攻击者本人，则攻击有效
+            if (target && target.isAlive && !target.isProtected && !target.invincible && target != this.GetComponentInParent<PlayerCharacter>()) 
             {
                 target.TakeDamage();
                 target.deathTime++;

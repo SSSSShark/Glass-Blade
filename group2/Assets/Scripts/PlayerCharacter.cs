@@ -7,72 +7,98 @@ namespace Com.GlassBlade.Group2
 {
     public class PlayerCharacter : MonoBehaviour
     {
-        /*************** 李晨昊 begin **************************/
-        //武器
-        public Rigidbody weapon;
-
-        //辅助武器旋转变量
-        public Transform muzzle;
-
-        //武器的实例变量
-        private Rigidbody weaponInstance;
-
-        private CharacterController cc;
-
-        //攻击持续时间
-        public float attackTime;
+    /* 状态变量集 */
+        //无敌变量
+        public bool invincible = false;
 
         //死生状态
         public bool isAlive = true;
 
+        //保护状态标识
+        public bool isProtected = false;
+
         //攻击中
         public bool attacking = false;
 
-        //击杀数
-        public int killTime = 0;
+        //是否持有武器
+        private bool isHoldWeapon = false;
 
-        //被击杀数
-        public int deathTime = 0;
+    /* 时间变量集 */
+        //攻击持续时间
+        public float attackTime;
 
-        //匕首
-        public Rigidbody dagger;
+        //双手斧前摇
+        public float Axe2handDelayTime = 1.0f;
 
         //匕首攻击前摇时间
         public float daggerAttackDelayTime = 1.0f;
 
-        //匕首攻击距离调节
-        public float daggerAttackDistance = 6.0f;
+        //双手剑攻击前摇时间
+        public float swordTwoHandedDelayTime = 1.0f;
 
-        //单手剑攻击距离调节
-        public float swordAttackDistance = 2.0f;
+        //单手剑攻击前摇时间
+        public float swordAttackDelayTime = 1.0f;
+
+        //目前复活保护时长
+        private int protecttime;
+
+        //最大复活保护时长
+        public int protecttimeMAX = 3;
+
+        //死亡倒地时间
+        public double deathContinueTime = 0.5;
+
+        //复活时间
+        public int deathTimeCount = 10;
+
+    /* 武器集 */
+        //默认武器
+        public Rigidbody weapon;
+
+        //双手斧
+        public Rigidbody Axe;
+
+        //匕首
+        public Rigidbody dagger;
 
         //双手剑
         public Rigidbody swordTwoHanded;
 
-        //双手剑攻击前摇时间
-        public float swordTwoHandedDelayTime = 1.0f;
+        //单手剑
+        public Rigidbody sword;
+
+        //默认武器的实例变量
+        private Rigidbody weaponInstance;
+
+        //双手斧实例
+        private Rigidbody axesetInstance;
+
+        //匕首实例
+        private Rigidbody daggerInstance;
+
+        //双手剑实例
+        private Rigidbody swordTwoHandedInstance;
+
+        //单手剑实例
+        private Rigidbody swordInstance;
+
+    /* 攻击范围集 */
+        //武器双手斧攻击范围
+        public GameObject weaponAttack1;
+
+        //匕首攻击距离调节
+        public float daggerAttackDistance = 6.0f;
 
         //双手剑攻击判定扇形角度
         public float angle = 120f;
 
         //双手剑攻击判定扇形半径
         public float radius = 4f;
-        /**************** 李晨昊 end **************************/
 
-        /********************* 林海力 begin *******************/
-        //无敌状态标识
-        public bool isProtected = false;
+        //单手剑攻击距离调节
+        public float swordAttackDistance = 2.0f;
 
-        //是否刚刚复活标识
-        public bool isJustAlive = false;
-
-        //复活保护的时长
-        private int protecttime;
-
-        public int protecttimeMAX = 0;
-        /********************** 林海力 end *********************/
-
-        /****************** 汪至磊 begin **********************/
+    /* 死亡相关变量集 */
         //黑白渲染组件
         BlackAndWhite baw;
 
@@ -80,21 +106,23 @@ namespace Com.GlassBlade.Group2
         //counter 挂 Main Camera\Canvas\Text
         public Text counter;
 
-        //死亡倒地时间
-        public double DeathContinueTime = 0.5;
-
         //死亡倒地段数
-        public int DeathRotateTimes = 10;
+        public int deathRotateTimes = 10;
 
-        //复活时间
-        public int DeathTime = 10;
-
-        //全局变量
+        //目前倒下计数段数
         private int rotatedtimes;
 
+        //复活倒计时
         private int counttime;
 
-        private bool isHoldWeapon = false;
+    /* 其它 */
+        private CharacterController cc;
+
+        //击杀数
+        public int killTime = 0;
+
+        //被击杀数
+        public int deathTime = 0;
 
         //持有武器种类
         public int holdWeaponIndex = 0;
@@ -104,41 +132,49 @@ namespace Com.GlassBlade.Group2
 
         //人物下的武器模型,0号位闲置
         public Transform[] weapons;
-        /******************** 汪至磊 end **********************/
 
-        //four weapons
-        /********************* 林海力 begin *******************/
-        //武器双手斧攻击范围
-        public GameObject weaponAttack1;
+        /// <summary>
+        /// 判断人物现在是否持有武器，若无则拾取武器
+        /// </summary>
+        public bool TakeWeapon(int weaponstatus)
+        {
+            bool temp = isHoldWeapon;
+            if (weaponstatus > 0)
+            {
+                HoldWeapon(weaponstatus, true);
+            }
+            return temp;
+        }
 
-        //武器双手斧实例
-        public Rigidbody Axe;
+        /// <summary>
+        /// 在人物模型上显示或消失某一个武器
+        /// index为武器索引,ishold表示显示或不显示武器
+        /// 武器没有碰撞器,因为攻击不使用碰撞实现
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="ishold"></param>
+        public void HoldWeapon(int index, bool ishold)
+        {   //未持有武器时可以拿一种武器
+            if (ishold && !isHoldWeapon)
+            {
+                holdWeaponIndex = index;
+                isHoldWeapon = true;
+                weapons[index].gameObject.SetActive(true);
+            }
+            //持有武器时才能用掉一种武器
+            else if (!ishold && isHoldWeapon)
+            {
+                isHoldWeapon = false;
+                weapons[holdWeaponIndex].gameObject.SetActive(false);
+            }
+        }
 
-        private Rigidbody Axesetinstance;
-
-        //双手斧前摇
-        public float Axe2handDelayTime = 1.0f;
-        /********************** 林海力 end *********************/
-
-        /****************** 汪至磊 begin **********************/
-        public Rigidbody sword;
-
-        public float swordAttackDelayTime = 1.0f;
-
-        Rigidbody tempInstance;
-        /******************** 汪至磊 end **********************/
-
-        /*************************** 李晨昊 begin *************************/
         /// <summary>
         /// Attack 攻击函数，在按下攻击键时被调用，有四种外加一种默认攻击方式
         /// </summary>
         public void Attack()
         {
-            if (!isAlive)
-            {
-                return;
-            }
-            if (attacking)
+            if (!isAlive || attacking)
             {
                 return;
             }
@@ -182,12 +218,31 @@ namespace Com.GlassBlade.Group2
         }
 
         /// <summary>
+        /// 双手斧实例化武器，武器仅有动画；攻击由范围碰撞来实现
+        /// </summary>
+        public void Axe2HandAttack()
+        {
+            //实例化武器
+            axesetInstance = Instantiate(Axe, this.transform.localPosition + new Vector3(0, 1, 0) + this.transform.forward, this.transform.rotation) as Rigidbody;
+            axesetInstance.transform.SetParent(this.transform, false);
+            axesetInstance.transform.localRotation = Quaternion.Euler(new Vector3(0, 90, 90));
+            axesetInstance.transform.localPosition = new Vector3(0, 1, 1.0f);
+
+            //实例化攻击范围
+            GameObject a = Instantiate(weaponAttack1, transform.position, Quaternion.identity);
+            a.transform.parent = this.transform;
+            a.transform.localPosition = new Vector3(0, 1, 0);
+            var t = a.GetComponent<Weapon1Colider>();
+            t.SetAttackTime(attackTime);
+        }
+
+        /// <summary>
         /// DaggerAttack 实现匕首攻击动画和攻击判定
         /// 攻击方式为匕首飞出，采用碰撞判定有效攻击
         /// </summary>
         private void DaggerAttack()
         {
-            var daggerInstance = Instantiate(dagger, this.transform.localPosition, weapons[2].rotation) as Rigidbody;
+            daggerInstance = Instantiate(dagger, this.transform.localPosition, weapons[2].rotation) as Rigidbody;
             daggerInstance.transform.SetParent(this.transform, false);
             daggerInstance.transform.localPosition = new Vector3(0, 1, 1);
             daggerInstance.transform.localRotation = Quaternion.Euler(new Vector3(90, 0, 0));
@@ -200,20 +255,8 @@ namespace Com.GlassBlade.Group2
         /// </summary>
         private void SwordTwoHandedAttack()
         {
-            /* var swordTwoHandedInstance = Instantiate(swordTwoHanded, this.transform.localPosition + new Vector3(0, 1, 0) + this.transform.forward, this.transform.rotation) as Rigidbody;
-             swordTwoHandedInstance.transform.SetParent(this.transform, false);
-
-             // 设置实例初始出现位置
-             swordTwoHandedInstance.transform.localPosition = new Vector3(0, 1, 1);
-
-             // 设置初始角度
-             swordTwoHandedInstance.transform.localRotation = Quaternion.Euler(new Vector3(0, 30, 90));
-
-             // 旋转轴 * 方向 * 角速度
-             swordTwoHandedInstance.angularVelocity = this.transform.up * 1 * 5f;
-             */
             Quaternion qtarget =  this.transform.localRotation;
-            var swordTwoHandedInstance = Instantiate(swordTwoHanded, this.transform.localPosition + new Vector3(0, 1, 0) + this.transform.forward, qtarget) as Rigidbody;
+            swordTwoHandedInstance = Instantiate(swordTwoHanded, this.transform.localPosition + new Vector3(0, 1, 0) + this.transform.forward, qtarget) as Rigidbody;
             swordTwoHandedInstance.transform.SetParent(this.transform, false);
             swordTwoHandedInstance.transform.localPosition = new Vector3(0, 1, 1.0f);
             swordTwoHandedInstance.transform.localRotation = Quaternion.Euler(new Vector3(0, 90, 90));
@@ -223,10 +266,11 @@ namespace Com.GlassBlade.Group2
             //逐一判断是否在攻击范围内
             foreach (var go in gos)
             {
-                if (UmbrellaAttact(this.gameObject.transform, go.transform, angle, radius) && go.GetComponent<PlayerCharacter>().isAlive)
+                var target = go.GetComponent<PlayerCharacter>();
+                if (UmbrellaAttact(this.gameObject.transform, go.transform, angle, radius) && target.isAlive && !target.isProtected && !target.invincible)
                 {
-                    go.GetComponent<PlayerCharacter>().TakeDamage();
-                    go.GetComponent<PlayerCharacter>().deathTime++;
+                    target.TakeDamage();
+                    target.deathTime++;
                     this.killTime++;
                 }
             }
@@ -252,75 +296,56 @@ namespace Com.GlassBlade.Group2
             return false;
         }
 
+        //动画段数,9段
+        //int tempspan;
+        /// <summary>
+        /// SwordAttack 单手剑攻击实现
+        /// </summary>
+        void SwordAttack()
+        {
+            swordInstance = Instantiate(sword,
+                                       this.transform.localPosition + new Vector3(0, 1, 0) + this.transform.forward,
+                                       weapons[4].rotation) as Rigidbody;
+            swordInstance.transform.SetParent(this.transform, false);
+            swordInstance.transform.localPosition = new Vector3(0, 1, 1);
+            swordInstance.transform.localRotation = Quaternion.Euler(new Vector3(90, 0, 0));
+            //tempspan = 0;
+            swordInstance.velocity = swordAttackDistance / swordInstance.GetComponent<DestroyWeapon>().destroyTime * transform.forward;
+            Invoke("SwordAttackAnime", (0.3f * swordInstance.GetComponent<DestroyWeapon>().destroyTime));
+        }
+
+        /// <summary>
+        /// SwordAttackAnime 单手剑收回实现
+        /// </summary>
+        void SwordAttackAnime()
+        {
+            if (swordInstance)
+            {
+                swordInstance.velocity = -0.5f * swordAttackDistance / swordInstance.GetComponent<DestroyWeapon>().destroyTime * transform.forward;
+                /*
+                tempspan++;
+                if (tempspan >= 7)
+                {
+                    tempInstance.velocity = 0 * transform.forward;
+                    CancelInvoke("SwordAttackAnime");
+                }
+                Invoke("SwordAttackAnime", 0.05f);
+                */
+            }
+        }
+
         /// <summary>
         /// Takedamage 承受攻击函数，受到攻击时调用
         /// </summary>
         public void TakeDamage()
         {
             Debug.Log("damage");
-
-            // 非刚复活无敌状态且活着，才能受到伤害死亡
-            if (!isProtected && !isJustAlive && isAlive)
-            {
-                Death();
-            }
+            Death();        
         }
-        /*************************** 李晨昊 end **********************/
 
-        //four weapon attack
-        /**********************week9, first weapon, 林海力************/
         /// <summary>
-        /// 双手斧实例化武器，武器仅有动画；攻击由范围碰撞来实现
+        /// Death 死亡函数
         /// </summary>
-        public void Axe2HandAttack()
-        {
-            //实例化武器
-            Axesetinstance = Instantiate(Axe, this.transform.localPosition + new Vector3(0, 1, 0) + this.transform.forward, this.transform.rotation) as Rigidbody;
-            Axesetinstance.transform.SetParent(this.transform, false);
-            Axesetinstance.transform.localRotation = Quaternion.Euler(new Vector3(0, 90, 90));
-            Axesetinstance.transform.localPosition = new Vector3(0, 1, 1.0f);
-
-            //实例化攻击范围
-            GameObject a = Instantiate(weaponAttack1, transform.position, Quaternion.identity);
-            a.transform.parent = this.transform;
-            a.transform.localPosition = new Vector3(0, 1, 0);
-            var t = a.GetComponent<Weapon1Colider>();
-            t.SetAttackTime(attackTime);
-        }
-        /**********************week9, first weapon 林海力************/
-
-        /****************week9, fouth weapon, 汪至磊**********************************/
-        //动画段数,9段
-        int tempspan;
-        void SwordAttack()
-        {
-            tempInstance = Instantiate(sword,
-                                       this.transform.localPosition + new Vector3(0, 1, 0) + this.transform.forward,
-                                       weapons[4].rotation) as Rigidbody;
-            tempInstance.transform.SetParent(this.transform, false);
-            tempInstance.transform.localPosition = new Vector3(0, 1, 1);
-            tempInstance.transform.localRotation = Quaternion.Euler(new Vector3(90, 0, 0));
-            tempspan = 0;
-            tempInstance.velocity = swordAttackDistance / tempInstance.GetComponent<DestroyWeapon>().destroyTime * transform.forward;
-            Invoke("SwordAttackAnime", (0.3f * tempInstance.GetComponent<DestroyWeapon>().destroyTime));
-        }
-        void SwordAttackAnime()
-        {
-            if (tempInstance)
-            {
-                tempInstance.velocity = -0.5f * swordAttackDistance / tempInstance.GetComponent<DestroyWeapon>().destroyTime * transform.forward;
-                /*tempspan++;
-                if (tempspan >= 7)
-                {
-                    tempInstance.velocity = 0 * transform.forward;
-                    CancelInvoke("SwordAttackAnime");
-                }
-                Invoke("SwordAttackAnime", 0.05f);*/
-            }
-        }
-        /**************************forth weapon******************************************/
-
-        /***************************** 汪至磊 begin ************************/
         public void Death()
         {
             //**灰屏
@@ -329,26 +354,30 @@ namespace Com.GlassBlade.Group2
 
             //**倒下,先停1s,用2s分段倒下
             rotatedtimes = 0;
-            InvokeRepeating("DeathRotate", 1f, (float)(DeathContinueTime / DeathRotateTimes));
+            InvokeRepeating("DeathRotate", 1f, (float)(deathContinueTime / deathRotateTimes));
 
             //**倒计时
-            counttime = DeathTime;
+            counttime = deathTimeCount;
             InvokeRepeating("CountDown", 0f, 1.0f);
         }
 
-        //**大风车吱呀吱悠悠的转~
+        /// <summary>
+        /// DeathRotate 死亡时倒地
+        /// </summary>
         private void DeathRotate()
         {
             //Debug.Log("time = "+Time.time);
-            transform.Rotate(90 / DeathRotateTimes, 0, 0);
+            transform.Rotate(90 / deathRotateTimes, 0, 0);
             rotatedtimes++;
-            if (rotatedtimes >= DeathRotateTimes)
+            if (rotatedtimes >= deathRotateTimes)
             {
                 CancelInvoke("DeathRotate");
             }
         }
 
-        //**倒计时
+        /// <summary>
+        /// CountDown 死亡倒地时的旋转
+        /// </summary>
         private void CountDown()
         {
             if (counttime == 0)  //复活
@@ -364,31 +393,6 @@ namespace Com.GlassBlade.Group2
             }
         }
 
-        /// <summary>
-        /// 在人物模型上显示或消失某一个武器
-        /// index为武器索引,ishold表示显示或不显示武器
-        /// 武器没有碰撞器,因为攻击不使用碰撞实现
-        /// </summary>
-        /// <param name="index"></param>
-        /// <param name="ishold"></param>
-        public void HoldWeapon(int index, bool ishold)
-        {   //未持有武器时可以拿一种武器
-            if (ishold && !isHoldWeapon)
-            {
-                holdWeaponIndex = index;
-                isHoldWeapon = true;
-                weapons[index].gameObject.SetActive(true);
-            }
-            //持有武器时才能用掉一种武器
-            else if (!ishold && isHoldWeapon)
-            {
-                isHoldWeapon = false;
-                weapons[holdWeaponIndex].gameObject.SetActive(false);
-            }
-        }
-        /***************************** 汪至磊 end ***********************/
-
-        /************************** 林海力 begin *************************/
         /// <summary>
         /// 复活函数，位置更改-修改vector3
         /// </summary>
@@ -411,48 +415,36 @@ namespace Com.GlassBlade.Group2
             protecttime = protecttimeMAX;
             if (protecttime <= 0)
             {
-                isJustAlive = false;
+                isProtected = false;
             }
             else
             {
-                isJustAlive = true;
+                isProtected = true;
                 InvokeRepeating("ProtectDecrease", 0f, 1.0f);
             }
         }
+
+        /// <summary>
+        /// ProtectDecrease 复活保护阶段倒计时
+        /// </summary>
         private void ProtectDecrease()
         {
             if (protecttime == 0)
             {
-                isJustAlive = false;
+                isProtected = false;
                 CancelInvoke("ProtectDecrease");
             }
             else
             {
                 protecttime--;
             }
-        }
-
-        /// <summary>
-        /// 判断人物现在是否持有武器，若无则拾取武器
-        /// </summary>
-        public bool TakeWeapon(int weaponstatus)
-        {
-            bool temp = isHoldWeapon;
-            if (weaponstatus > 0)
-            {
-                HoldWeapon(weaponstatus, true);
-            }
-            return temp;
-        }
-        /**************************** 林海力 end **********************/
+        }       
 
         // Start is called before the first frame update
         void Start()
         {
             cc = GetComponent<CharacterController>();
             baw = GameObject.FindObjectOfType<BlackAndWhite>();
-            //weapons = weaponObject.GetComponentsInChildren<Transform>();
-            //foreach (Transform child in weapons) child.gameObject.SetActive(false);
             for (int i = 1; i <= weaponKinds; i++)
             {
                 //Debug.Log(weapons[i].name);
