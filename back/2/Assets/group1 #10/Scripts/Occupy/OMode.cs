@@ -181,7 +181,10 @@ namespace Com.Glassblade.Group1
                             }
                         }
                         // 加入玩家列表
-                        Players.Add(player);
+                        if (!Players.Contains(player))
+                        {
+                            Players.Add(player);
+                        }
                     }
                 }
 

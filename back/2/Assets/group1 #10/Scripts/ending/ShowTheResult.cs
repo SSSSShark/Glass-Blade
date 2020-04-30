@@ -8,7 +8,7 @@ using Photon.Pun;
 
 namespace Com.Glassblade.Group1
 {
-    public class ShowTheResult : MonoBehaviour
+    public class ShowTheResult : MonoBehaviourPun
     {
         private playersData[] p;
         private playersData[] pA;
@@ -21,7 +21,7 @@ namespace Com.Glassblade.Group1
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             if (player)
             {
-                Destroy(player);
+                PhotonNetwork.Destroy(player);
             }
             // 普通模式
             if (GameObject.Find("NData") != null)

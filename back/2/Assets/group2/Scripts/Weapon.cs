@@ -47,7 +47,7 @@ public class Weapon : MonoBehaviour
                 }
             }
             Debug.Log("collider detected");
-            target.InformDamage(target.photonView.Controller, target.photonView ,photonviewOwner);
+            target.CallTakeDamage(target.photonView.Owner, photonviewOwner);
         }
     }
 }

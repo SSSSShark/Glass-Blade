@@ -5554,6 +5554,7 @@ MonoBehaviour:
   speed: 25
   AttackBtn: {fileID: 0}
   GM: {fileID: 0}
+  KDtext: {fileID: 0}
   OM: {fileID: 0}
   killTime: 0
   deathTime: 0

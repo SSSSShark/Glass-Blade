@@ -63,6 +63,8 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
     #endregion
 
     #region occupy mode
+    public Text KDtext;
+
     public OMode OM = null;
 
     [HideInInspector]
@@ -77,10 +79,23 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
     [PunRPC]
     public void UpdateScore(int increase)
     {
-        this.score += increase;
+        score += increase;
     }
 
     public void CallUpdateScore(Player player, int increase)
+    {
+        this.photonView.RPC("UpdateScore", player, increase);
+    }
+
+    [PunRPC]
+    public void UpdateKillTime(int increase)
+    {
+        this.killTime += increase;
+        Debug.Log("-----UpdateKillTime-----");
+        Debug.Log(this.photonView.Owner.NickName + ": " + this.killTime);
+    }
+
+    public void CallUpdateKillTime(Player player, int increase)
     {
         this.photonView.RPC("UpdateScore", player, increase);
     }
@@ -166,23 +181,26 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
     }
 
     [PunRPC]
-    public void TakeDamage()
+    public void TakeDamage(int srcviewID)
     {
         Debug.Log("under attack");
-        this.isAlive = false;
-        this.deathTime += 1;
+        if (!isProtected && !isJustAlive && isAlive)
+        {
+            isAlive = false;
+            deathTime += 1;
+            PhotonView photonView = PhotonView.Find(srcviewID);           
+            photonView.RPC("UpdateKillTime", RpcTarget.All, 1);
+            if (OM)
+            {
+                this.photonView.RPC("CallDeathEvent", RpcTarget.MasterClient);
+            }
+            Death();
+        }    
     }
 
-    public void InformDamage(Player targetplayer, PhotonView targetview, PhotonView srcview)
-    {
-        PlayerCharacter target = targetview.GetComponent<PlayerCharacter>();
-        // 非刚复活无敌状态且活着，才能受到伤害死亡
-        if (!target.isProtected && !target.isJustAlive && target.isAlive)
-        {
-            target.isAlive = false;
-            this.photonView.RPC("TakeDamage", targetplayer);
-            srcview.GetComponent<PlayerCharacter>().killTime += 1;
-        }
+    public void CallTakeDamage(Player targetplayer, PhotonView srcview)
+    {      
+        this.photonView.RPC("TakeDamage", targetplayer, srcview.ViewID);   
     }
     /************************************ 李晨昊 end ********************/
 
@@ -206,10 +224,6 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
         rotatedtimes = 0;
         InvokeRepeating("DeathRotate", 1f, (float)(2.0 / DeathRotateTimes));
         //deathevent.Invoke(this); // 占点模式引发
-        if (OM)
-        {
-            this.photonView.RPC("CallDeathEvent", RpcTarget.MasterClient);
-        }
 
         if (photonView.IsMine)
         {
@@ -354,7 +368,7 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
     // Start is called before the first frame update
     void Start()
     {
-
+        KDtext = GameObject.Find("KDText").GetComponent<Text>();
         cc = GetComponent<CharacterController>();
         baw = GameObject.FindObjectOfType<BlackAndWhite>();
         weapons = weaponObject.GetComponentsInChildren<Transform>();
@@ -375,10 +389,8 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
             return;
         }
 
-        if (!isAlive && !isProtected)
-        {
-            Death();
-        }
+        KDtext.text = "Kill: " + killTime + "\n" + "Death: " + deathTime + "\n" + "Score: " + score + "\n";
+
     }
 
     #region PUN Callbacks
