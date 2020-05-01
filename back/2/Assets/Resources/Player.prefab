@@ -5559,6 +5559,7 @@ MonoBehaviour:
   killTime: 0
   deathTime: 0
   score: 0
+  team: 0
   refresh_places: []
 --- !u!114 &3038915201120346740
 MonoBehaviour:

@@ -386,7 +386,7 @@ public class TeamController : MonoBehaviourPunCallbacks
         Debug.LogFormat("PhotonNetwork : Loading Level : {0}", PhotonNetwork.CurrentRoom.PlayerCount);
         PhotonNetwork.CurrentRoom.IsOpen = false;  //can't be joined
         //PhotonNetwork.LoadLevel("SampleScene");
-        PhotonNetwork.LoadLevel("OccupationPattern");
+        PhotonNetwork.LoadLevel("NormalMode");
     }
 
     void DialogVanish()

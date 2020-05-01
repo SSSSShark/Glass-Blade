@@ -76,6 +76,9 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
     [HideInInspector]
     public int score = 0;  //个人得分
 
+    [HideInInspector]
+    public TeamController.Team team;
+
     [PunRPC]
     public void UpdateScore(int increase)
     {
@@ -181,27 +184,41 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
     }
 
     [PunRPC]
+    /// <summary>
+    /// Some other clients notified us that they killed this client, so we are
+    /// dead.
+    /// </summary>
     public void TakeDamage(int srcviewID)
     {
-        Debug.Log("under attack");
         if (!isProtected && !isJustAlive && isAlive)
         {
             isAlive = false;
             deathTime += 1;
-            PhotonView photonView = PhotonView.Find(srcviewID);           
+            PhotonView photonView = PhotonView.Find(srcviewID);
             photonView.RPC("UpdateKillTime", RpcTarget.All, 1);
             if (OM)
             {
                 this.photonView.RPC("CallDeathEvent", RpcTarget.MasterClient);
             }
             Death();
-        }    
+        }
     }
 
-    public void CallTakeDamage(Player targetplayer, PhotonView srcview)
-    {      
-        this.photonView.RPC("TakeDamage", targetplayer, srcview.ViewID);   
+    /// <summary>
+    /// The player does not know that it takes damage, so we need to RPC to the client
+    /// to notify him.
+    /// TODO: Another possible solution would be using photonview in weapon, so that the client
+    /// can determine whether it is attacked.
+    /// </summary>
+    public void CallTakeDamage(Player targetPlayer, PhotonView srcview)
+    {
+        this.photonView.RPC("TakeDamage", targetPlayer, srcview.ViewID);
     }
+
+    // public void CallTakeDamage(Player targetplayer, PhotonView srcview)
+    // {      
+    //     this.photonView.RPC("TakeDamage", targetplayer, srcview.ViewID);   
+    // }
     /************************************ 李晨昊 end ********************/
 
     /***************************** 汪至磊 begin ************************/
@@ -368,16 +385,26 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
     // Start is called before the first frame update
     void Start()
     {
-        KDtext = GameObject.Find("KDText").GetComponent<Text>();
+        Debug.Log("[PlayerCharacter] start.");
+
+        if (GameObject.Find("KDText"))
+        {
+            KDtext = GameObject.Find("KDText").GetComponent<Text>();
+        }
+
         cc = GetComponent<CharacterController>();
         baw = GameObject.FindObjectOfType<BlackAndWhite>();
         weapons = weaponObject.GetComponentsInChildren<Transform>();
+
+        Debug.Log("[PlayerCharacter] Resetting All weapons");
         //foreach (Transform child in weapons) child.gameObject.SetActive(false);
         for (int i = 1; i <= weaponKinds; i++)
         {
-            //Debug.Log(weapons[i].name);
             weapons[i].gameObject.SetActive(false);
         }
+
+        // set team
+        team = (TeamController.Team)PhotonNetwork.LocalPlayer.CustomProperties["team"];
 
     }
 
@@ -389,7 +416,10 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
             return;
         }
 
-        KDtext.text = "Kill: " + killTime + "\n" + "Death: " + deathTime + "\n" + "Score: " + score + "\n";
+        if (KDtext)
+        {
+            KDtext.text = "Kill: " + killTime + "\n" + "Death: " + deathTime + "\n" + "Score: " + score + "\n";
+        }
 
     }
 

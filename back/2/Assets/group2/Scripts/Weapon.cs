@@ -24,7 +24,11 @@ public class Weapon : MonoBehaviour
     public PhotonView photonviewOwner;
     public bool friendlyFire = false;  //允许友军伤害
 
-    // 造成伤害的触发器
+    /// <summary>
+    /// If the weapon hit a player, the player should take damage.
+    /// We are going to call the player itself's take damage function.
+    /// </summary>
+    /// <param name="other">The collider, useless in this case</param>
     private void OnTriggerEnter(Collider other)
     {
         var colliders = Physics.OverlapSphere(transform.position + this.transform.forward, damageRadius, damageMask);
@@ -46,7 +50,7 @@ public class Weapon : MonoBehaviour
                     continue;
                 }
             }
-            Debug.Log("collider detected");
+            Debug.Log("(Weapon) [OnTriggerEnter] Player " + target.photonView.Controller.NickName + " Take damage.");
             target.CallTakeDamage(target.photonView.Owner, photonviewOwner);
         }
     }

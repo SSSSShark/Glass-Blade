@@ -1,6 +1,8 @@
 ﻿// Author: Via Cytus
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
+using Photon.Realtime;
 using UnityEngine;
 
 namespace Com.Glassblade.Group1
@@ -38,13 +40,13 @@ namespace Com.Glassblade.Group1
             Players = GameObject.FindGameObjectsWithTag("Player");
             p = new playersData[Players.Length];
             // 将玩家的姓名、击杀次数、死亡次数、得分、队伍编号储存
-            for(int i=0;i<Players.Length;i++)
+            for (int i = 0; i < Players.Length; i++)
             {
                 p[i].name = Players[i].transform.GetChild(6).GetComponentInChildren<TextMesh>().text;
-                p[i].killTime = Players[i].GetComponentInChildren<NCharacterBehavior>().killTime;
-                p[i].deathTime = Players[i].GetComponentInChildren<NCharacterBehavior>().deathTime;
-                p[i].score = Players[i].GetComponentInChildren<NCharacterBehavior>().score;
-                p[i].team = (TeamController.Team)Players[i].GetComponentInChildren<NCharacterBehavior>().team;
+                p[i].killTime = Players[i].GetComponentInChildren<PlayerCharacter>().killTime;
+                p[i].deathTime = Players[i].GetComponentInChildren<PlayerCharacter>().deathTime;
+                p[i].score = Players[i].GetComponentInChildren<PlayerCharacter>().score;
+                p[i].team = (TeamController.Team)Players[i].GetComponentInChildren<PlayerCharacter>().team;
             }
         }
     }

@@ -8,20 +8,29 @@ using Photon.Realtime;
 
 public class CharacterBehavior : MonoBehaviour
 {
-    Renderer[] character, namebar;      //角色，名字渲染
-    CanvasRenderer[] healthbar;         //血条渲染
-    public Joystick touch;              //虚拟摇杆
-    public float speed = 10;            //速度
-    private Animator ani;                //动画
+    // 角色，名字渲染
+    Renderer[] character, namebar;
+    // 血条渲染
+    CanvasRenderer[] healthbar;
+    // 虚拟摇杆
+    public Joystick touch;
+    // 速度
+    public float speed = 10;
+    // 动画
+    private Animator ani;
 
     void Start()
     {
-        ani = GetComponentInChildren<Animator>();       //获取动画
+        // 获取动画
+        ani = GetComponentInChildren<Animator>();
 
         Shader shader = Shader.Find("Transparent/Diffuse");
-        character = this.transform.GetChild(0).GetComponentsInChildren<Renderer>();     //获取角色
-        namebar = this.transform.GetChild(6).GetComponentsInChildren<Renderer>();       //获取名字
-        healthbar = this.transform.GetChild(5).GetComponentsInChildren<CanvasRenderer>();       //获取血条
+        // 获取角色
+        character = this.transform.GetChild(0).GetComponentsInChildren<Renderer>();
+        // 获取名字
+        namebar = this.transform.GetChild(6).GetComponentsInChildren<Renderer>();
+        // 获取血条
+        healthbar = this.transform.GetChild(5).GetComponentsInChildren<CanvasRenderer>();
         /*foreach (var render in character)
         {
             render.material.shader = shader;        //阴影
