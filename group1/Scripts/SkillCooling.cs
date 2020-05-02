@@ -13,9 +13,11 @@ namespace Com.Glassblade.Group1
         // 文本显示冷却剩余时间
         private Text timeLast;
         // 设定的技能冷却时间
-        public int time;
+        public int time = 45;
         // 剩余时间
         private int coolingTime;
+        //玩家对象
+        private GameObject player;
 
         // Start is called before the first frame update
         void Start ()
@@ -27,6 +29,8 @@ namespace Com.Glassblade.Group1
             skillBtn.onClick.AddListener(OnClickBtn);
             // 剩余时间等于设定时间
             coolingTime = time;
+            //获取对应玩家
+            player = GameObject.FindGameObjectWithTag("Player");
         }
 
         // 点击事件的函数，点击后开启协程调用DownTimer()
@@ -55,6 +59,11 @@ namespace Com.Glassblade.Group1
             timeLast.text = "R";
             // 恢复倒计时时间为设定时间
             coolingTime = time;
+        }
+
+        public void click()
+        {
+            player.GetComponent<OCharacterBehavior>().SkillTrigger();
         }
     }
 }

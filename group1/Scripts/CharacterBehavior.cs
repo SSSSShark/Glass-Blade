@@ -28,6 +28,27 @@ namespace Com.Glassblade.Group1
         //个人得分
         [HideInInspector]
         public int score = 0;
+        //技能序号
+        private int skillNumber;
+        //Author: wmj
+        //死亡事件
+        public DeathEvent deathevent = new DeathEvent();
+        //隐身技能生效时间
+        public float invisibleDuration = 8;
+        //隐身技能剩余时间
+        private float invisibleTime = 0;
+        //突进技能时间
+        private float marchForwardTime = 0;
+        //加速技能时间
+        private float accelerateTime = 0;
+        //无敌技能时间
+        private float unbeatableTime = 0;
+        //主相机
+        CameraFollow cam;
+        //是否可以控制转向
+        private bool rotationEnable = true;
+        //是否无敌
+        public bool invincible = false;
 
         void Start()
         {
@@ -52,24 +73,6 @@ namespace Com.Glassblade.Group1
             cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraFollow>();
         }
 
-        //Author: wmj
-        //死亡事件
-        public DeathEvent deathevent = new DeathEvent();
-        //隐身技能生效时间
-        public float invisibleDuration=8;
-        //隐身技能剩余时间
-        private float invisibleTime=0;
-        //主相机
-        CameraFollow cam;
-
-        /// <summary>
-        /// 使用隐身技能时调用此方法
-        /// </summary>
-        private void Invisible()
-        {
-            invisibleTime = invisibleDuration;
-            RefreshTransparent();
-        }
         /// <summary>
         /// 草丛状态，0不在草丛中，1在草丛中且可见（半透明），2不可见
         /// </summary>
@@ -183,14 +186,18 @@ namespace Com.Glassblade.Group1
                 invisibleTime = 0;
                 RefreshTransparent();
                 //wmj ends
-                //旋转
-                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(direction), Time.deltaTime * 10);
-                //移动
-                transform.Translate(Vector3.forward * Time.deltaTime * speed);
-                //设置动画
-                ani.SetFloat("Speed", speed);
-                //角色控制插件控制移动
-                controller.SimpleMove(direction * speed);
+                if (rotationEnable == true)
+                {
+                    //旋转
+                    transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(direction), Time.deltaTime * 10);
+                    //移动
+                    transform.Translate(Vector3.forward * Time.deltaTime * speed);
+
+                    //设置动画
+                    ani.SetFloat("Speed", speed);
+                    //角色控制插件控制移动
+                    controller.SimpleMove(direction * speed);
+                }
             }
             else
             {
@@ -199,17 +206,97 @@ namespace Com.Glassblade.Group1
             }
             //Author: wmj
             //隐身
-            if(invisibleTime>0)
+            if(invisibleTime > 0)
             {
                 //更新隐身时长
                 invisibleTime -= Time.deltaTime;
                 //隐身技能结束
-                if(invisibleTime<=0)
+                if(invisibleTime <= 0)
                 {
                     invisibleTime = 0;
                     RefreshTransparent();
                 }
             }
+            //Author Via Cytus
+            //突进
+            if (marchForwardTime > 0)
+            {
+                //突进
+                transform.Translate(Vector3.forward * Time.deltaTime * 25);
+                //角色控制插件控制移动
+                controller.SimpleMove(Vector3.forward * 25);
+                //技能持续时间减少
+                marchForwardTime -= Time.deltaTime;
+            }
+            //加速
+            if (accelerateTime > 0)
+            {
+                //加速结束
+                if (accelerateTime<=0)
+                {
+                    speed /= 1.8;
+                }
+            }
+            //无敌
+            if (unbeatableTime > 0)
+            {
+                //无敌
+                invincible = true;
+                //无敌结束
+                if (unbeatableTime <= 0)
+                {
+                    invincible = false;
+                }
+            }
+        }
+
+        //Author Via Cytus
+        public void SkillTrigger()
+        {
+            switch (skillNumber)
+            {
+                case 1: MarchForward(); break;
+                case 2: Accelerate(); break;
+                case 3: Invisible();break;
+                case 4: Unbeatable(); break;
+            }
+        }
+
+        /// <summary>
+        /// 突进技能
+        /// </summary>
+        private void MarchForward()
+        {
+            //禁止转向
+            rotationEnable = false;
+            marchForwardTime = 0.2;
+        }
+
+        /// <summary>
+        /// 加速技能
+        /// </summary>
+        private void Accelerate()
+        {
+            //加速
+            speed *= 1.8;
+            accelerateTime = 5;
+        }
+
+        /// <summary>
+        /// 使用隐身技能时调用此方法
+        /// </summary>
+        private void Invisible()
+        {
+            invisibleTime = invisibleDuration;
+            RefreshTransparent();
+        }
+
+        /// <summary>
+        /// 无敌技能
+        /// </summary>
+        private void Unbeatable()
+        {
+            unbeatableTime = 2;
         }
     }
 }
