@@ -16,6 +16,7 @@ namespace Com.Glassblade.Group1
         public int time;
         // 剩余时间
         private int coolingTime;
+        // ToDo: 调用CharacterBehavior中技能的声明
 
         // Start is called before the first frame update
         void Start ()
@@ -25,6 +26,9 @@ namespace Com.Glassblade.Group1
             timeLast.text = "R";
             // 对于按钮onClick事件指定函数
             skillBtn.onClick.AddListener(OnClickBtn);
+            // Todo: 点击按钮skillBtn.onClick(function)
+
+
             // 剩余时间等于设定时间
             coolingTime = time;
         }
