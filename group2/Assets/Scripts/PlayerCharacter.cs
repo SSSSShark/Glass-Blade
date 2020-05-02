@@ -400,7 +400,11 @@ namespace Com.GlassBlade.Group2
         {
             //Debug.Log("relive time = " + Time.time);
             baw.setLive();
-
+            isHoldWeapon = false;
+            if(holdWeaponIndex > 0)
+            {
+                weapons[holdWeaponIndex].gameObject.SetActive(false);
+            }          
             isAlive = true;
             var reliver = Random.Range(-180.0f, 180.0f);
             transform.rotation = Quaternion.Euler(0, reliver, 0);
