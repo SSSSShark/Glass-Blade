@@ -13,6 +13,10 @@ TagManager:
   - ScreenText
   - ScoreA
   - ScoreB
+  - Team1
+  - Team0
+  - TargetPoint
+  - Skill
   layers:
   - Default
   - TransparentFX
@@ -23,7 +27,7 @@ TagManager:
   - 
   - 
   - player
-  - 
+  - Background
   - 
   - 
   - 

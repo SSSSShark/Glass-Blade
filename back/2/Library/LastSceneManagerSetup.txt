@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/Maps/OccupationPattern.unity
+- path: Assets/Scenes/Guide/Grouping Room.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0

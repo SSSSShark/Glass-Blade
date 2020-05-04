@@ -16,6 +16,8 @@ public class TeamController : MonoBehaviourPunCallbacks
     public GameObject[] TeamBList;
     public GameObject[] AddOrderList;
     public GameObject startDialog;
+    public Button settingbtn;
+    public GameObject messagebox;
 
     #endregion
 
@@ -44,10 +46,12 @@ public class TeamController : MonoBehaviourPunCallbacks
     #region MonoBehaviour CallBack
     void Start()
     {
+        settingbtn.gameObject.SetActive(false);
         Debug.Log("Team controller start()");
         //this is only for MasterClient
         if (PhotonNetwork.IsMasterClient)
         {
+            settingbtn.gameObject.SetActive(true); 
             Button btnObj = GameObject.FindGameObjectWithTag("Start").GetComponent<Button>();
             btnObj.transform.Find("Text").GetComponent<Text>().text = "Start";
 
@@ -102,7 +106,7 @@ public class TeamController : MonoBehaviourPunCallbacks
 
             Debug.Log("Master client: display the player's nick name");
 
-            Synchronize();
+            //Synchronize();
         }
     }
 
@@ -385,8 +389,13 @@ public class TeamController : MonoBehaviourPunCallbacks
         }
         Debug.LogFormat("PhotonNetwork : Loading Level : {0}", PhotonNetwork.CurrentRoom.PlayerCount);
         PhotonNetwork.CurrentRoom.IsOpen = false;  //can't be joined
+        switch (messagebox.GetComponent<SettingBox>().mode) {
+            case SettingBox.GameMode.Normal: PhotonNetwork.LoadLevel("NormalMode"); break;
+            case SettingBox.GameMode.Occupation: PhotonNetwork.LoadLevel("OccupationPattern"); break;
+        }
+
         //PhotonNetwork.LoadLevel("SampleScene");
-        PhotonNetwork.LoadLevel("NormalMode");
+        //PhotonNetwork.LoadLevel("NormalMode");
     }
 
     void DialogVanish()
