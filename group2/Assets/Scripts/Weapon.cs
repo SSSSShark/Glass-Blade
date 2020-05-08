@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Com.GlassBlade.Group2
-{
+{   
     public class Weapon : MonoBehaviour
-    {
+    {   
         // Start is called before the first frame update
         void Start()
         {

@@ -115,6 +115,13 @@ namespace Com.GlassBlade.Group2
         //复活倒计时
         private int counttime;
 
+    /* 音效 */
+        public AudioSource invincibleVoice;
+        public AudioSource WeaponDefaultAttack;
+        public AudioSource daggerHit;
+        public AudioSource daggerAttack;
+        public AudioSource swordTwoHandedAttack;
+
     /* 其它 */
         private CharacterController cc;
 
@@ -199,6 +206,7 @@ namespace Com.GlassBlade.Group2
             }
             else
             {
+                WeaponDefaultAttack.Play();
                 weaponInstance = Instantiate(weapon, new Vector3(0, 1, 0.5f), this.transform.rotation) as Rigidbody;
                 weaponInstance.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
                 weaponInstance.transform.SetParent(this.transform, false);
@@ -242,6 +250,7 @@ namespace Com.GlassBlade.Group2
         /// </summary>
         private void DaggerAttack()
         {
+            daggerAttack.Play();
             daggerInstance = Instantiate(dagger, this.transform.localPosition, weapons[2].rotation) as Rigidbody;
             daggerInstance.transform.SetParent(this.transform, false);
             daggerInstance.transform.localPosition = new Vector3(0, 1, 1);
@@ -255,6 +264,7 @@ namespace Com.GlassBlade.Group2
         /// </summary>
         private void SwordTwoHandedAttack()
         {
+            swordTwoHandedAttack.Play();
             Quaternion qtarget =  this.transform.localRotation;
             swordTwoHandedInstance = Instantiate(swordTwoHanded, this.transform.localPosition + new Vector3(0, 1, 0) + this.transform.forward, qtarget) as Rigidbody;
             swordTwoHandedInstance.transform.SetParent(this.transform, false);
@@ -442,7 +452,7 @@ namespace Com.GlassBlade.Group2
             {
                 protecttime--;
             }
-        }       
+        }
 
         // Start is called before the first frame update
         void Start()
