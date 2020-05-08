@@ -93,19 +93,29 @@ namespace Com.Glassblade.Group1
                 {
                     allKill1 += g.killTime;
                 }
-                switch(allKill0>allKill1)
+                switch(allKill0<allKill1)
                 {
-                    case true: GameObject.Find("Title").GetComponentInChildren<Text>().text = "胜利";break;
-                    case false: GameObject.Find("Title").GetComponentInChildren<Text>().text = (allKill0 == allKill1) ? "平局" : "失败";break;
+                    case true: GameObject.Find("Title").GetComponentInChildren<Text>().text = "失败";
+                        AudioSource music;
+                        music = transform.GetComponentsInChildren<AudioSource>()[1];
+                        music.Play(); break;
+                    case false: GameObject.Find("Title").GetComponentInChildren<Text>().text = (allKill0 == allKill1) ? "平局" : "胜利";
+                        music = transform.GetComponentsInChildren<AudioSource>()[0];
+                        music.Play(); break;
                 }
             }
             // 占点模式的结果结算
             else if (GameObject.Find("OData") != null)
             {
-                switch (GameObject.Find("OData").GetComponentInChildren<ODataStore>().score0 > GameObject.Find("OData").GetComponentInChildren<ODataStore>().score1)
+                switch (GameObject.Find("OData").GetComponentInChildren<ODataStore>().score0 < GameObject.Find("OData").GetComponentInChildren<ODataStore>().score1)
                 {
-                    case true: GameObject.Find("Title").GetComponentInChildren<Text>().text = "胜利";break;
-                    case false: GameObject.Find("Title").GetComponentInChildren<Text>().text = (GameObject.Find("OData").GetComponentInChildren<ODataStore>().score0 == GameObject.Find("OData").GetComponentInChildren<ODataStore>().score1) ? "平局" : "失败";break;
+                    case true: GameObject.Find("Title").GetComponentInChildren<Text>().text = "失败";
+                        AudioSource music;
+                        music = transform.GetComponentsInChildren<AudioSource>()[1];
+                        music.Play(); break;
+                    case false: GameObject.Find("Title").GetComponentInChildren<Text>().text = (GameObject.Find("OData").GetComponentInChildren<ODataStore>().score0 == GameObject.Find("OData").GetComponentInChildren<ODataStore>().score1) ? "平局" : "胜利";
+                        music = transform.GetComponentsInChildren<AudioSource>()[0];
+                        music.Play(); break;
                 }
             }
         }

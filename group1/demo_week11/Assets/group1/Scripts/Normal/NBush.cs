@@ -10,14 +10,14 @@ namespace Com.Glassblade.Group1
 {
     public class NBush : MonoBehaviour
     {
-        OCameraFollow cam;       //相机跟随组件
+        NCameraFollow cam;       //相机跟随组件
         List<NCharacterBehavior> players;      //角色列表
         int allies_cnt;         //队友数量
                                 //玩家在草丛里死亡的行为
         private UnityAction<NCharacterBehavior> playerDeadAction;
         void Start()
         {
-            cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<OCameraFollow>();       //获取相机跟随组价
+            cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<NCameraFollow>();       //获取相机跟随组价
             players = new List<NCharacterBehavior>();          //实例化角色列表
             allies_cnt = 0;                     //队友数量清零
                                                 //初始化

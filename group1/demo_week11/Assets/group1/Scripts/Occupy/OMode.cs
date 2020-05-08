@@ -85,7 +85,7 @@ namespace Com.Glassblade.Group1
                         //这时点里玩家应全加分
                         foreach (OCharacterBehavior p in Players)
                         {
-                            p.score += scoreInc; Debug.Log(p.score);
+                            p.score += scoreInc;
                         }
                         //wmj ends
                     }

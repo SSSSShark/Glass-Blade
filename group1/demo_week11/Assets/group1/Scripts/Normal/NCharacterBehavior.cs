@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -288,6 +289,10 @@ namespace Com.Glassblade.Group1
         /// </summary>
         private void MarchForward()
         {
+            //添加音效
+            AudioSource music;
+            music = transform.GetComponentsInChildren<AudioSource>()[0];
+            music.Play();
             marchForwardTime = 0.2;
             //禁止转向
             rotationEnable = false;
@@ -298,6 +303,10 @@ namespace Com.Glassblade.Group1
         /// </summary>
         private void Accelerate()
         {
+            //添加音效
+            AudioSource music;
+            music = transform.GetComponentsInChildren<AudioSource>()[1];
+            music.Play();
             //加速
             speed = speed * (1 + speedUp);
             accelerateTime = accelerateDuration;
@@ -308,6 +317,10 @@ namespace Com.Glassblade.Group1
         /// </summary>
         private void Invisible()
         {
+            //添加音效
+            AudioSource music;
+            music = transform.GetComponentsInChildren<AudioSource>()[2];
+            music.Play();
             invisibleTime = invisibleDuration;
             RefreshTransparent();
         }
