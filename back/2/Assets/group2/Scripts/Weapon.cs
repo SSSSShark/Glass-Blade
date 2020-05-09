@@ -4,12 +4,12 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 
-public class Weapon : MonoBehaviour
+public abstract class Weapon : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
     {
-
+        photonviewOwner = this.GetComponent<PhotonView>();
     }
 
     // Update is called once per frame
@@ -23,6 +23,9 @@ public class Weapon : MonoBehaviour
     public Player weaponOwner;  //武器持有者
     public PhotonView photonviewOwner;
     public bool friendlyFire = false;  //允许友军伤害
+    public PlayerCharacter Pc;
+    public float destroyTime = 2.0f;
+    public Vector3 initPos,initForward;
 
     /// <summary>
     /// If the weapon hit a player, the player should take damage.
@@ -31,28 +34,39 @@ public class Weapon : MonoBehaviour
     /// <param name="other">The collider, useless in this case</param>
     private void OnTriggerEnter(Collider other)
     {
-        var colliders = Physics.OverlapSphere(transform.position + this.transform.forward, damageRadius, damageMask);
-        foreach (var collider in colliders)
+        if (GetComponent<PhotonView>().IsMine)
         {
-            var target = collider.GetComponent<PlayerCharacter>();
+            var target = other.GetComponent<PlayerCharacter>();
             if (target)
             {
                 if (target.photonView.Controller == weaponOwner)
                 {
                     Debug.Log(target.photonView.Controller.NickName + "isyourself");
-                    continue;
+                    return;
                 }
                 if (!friendlyFire &&
                     (TeamController.Team)target.photonView.Controller.CustomProperties["team"] ==
                     (TeamController.Team)weaponOwner.CustomProperties["team"])
                 {
                     Debug.Log("friendly fire is not allowed");
-                    continue;
+                    return;
                 }
+                Debug.Log("(Weapon) [OnTriggerEnter] Player " + target.photonView.Controller.NickName + " Take damage.");
+                Pc.killTime++;
+                target.CallTakeDamage(target.photonView.Owner, photonviewOwner);
             }
-            Debug.Log("(Weapon) [OnTriggerEnter] Player " + target.photonView.Controller.NickName + " Take damage.");
-            target.CallTakeDamage(target.photonView.Owner, photonviewOwner);
         }
     }
+    public  abstract void Fire();
+    protected void DestroyWithDelay()
+    {
+        Invoke("PhotonDestroy",destroyTime);
+    }
+    private void PhotonDestroy()
+    {
+        PhotonNetwork.Destroy(gameObject);
+    }
+
+  
 }
 

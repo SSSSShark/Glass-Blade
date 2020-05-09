@@ -8,10 +8,11 @@ using Com.Glassblade.Group1;
 
 public class PlayerCharacter : MonoBehaviourPun, IPunObservable
 {
+    public List<float>attackdelaytime;
+    private int viewID;
     /*************** 李晨昊 begin **************************/
-    public Rigidbody weapon;  //武器
     public Transform muzzle;  //辅助武器旋转变量
-    Rigidbody weaponInstance; //武器的实例变量
+    GameObject weaponInstance; //武器的实例变量
     public float attackTime;  //攻击持续时间
 
     public bool isAlive = true;
@@ -41,8 +42,11 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
     int holdWeaponIndex = 1;
     //武器对象    
     public GameObject weaponObject; //weaponObject 挂 Player\Mr Black\weapons
+    public List<string> fireWeapenprefab; //挂所有武器prefab，顺序应该与weaponObject中的顺序对应(投掷出的武器)
+    public string DefalutWeapenprefab; //挂默认武器
     public int weaponKinds = 4;
     /******************** 汪至磊 end **********************/
+    bool isinvincible = false;
 
     #region Public Fields
 
@@ -157,23 +161,34 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
         this.gameObject.GetComponent<movegetgromjoystick>().enabled = false;
 
         attacking = true;
-        if (isHoldWeapon)
+        if (GetComponent<PhotonView>().IsMine)
         {
-            // 待做攻击
-
-            Debug.Log("attack");
-            holdWeapon(holdWeaponIndex, false);
-        }
-        else  //使用默认weapon
-        {
-            // 武器出现位置
-            muzzle.localPosition = this.transform.localPosition + new Vector3(0, 1, 0) + this.transform.forward;
-            weaponInstance = Instantiate(weapon, muzzle.localPosition, this.transform.rotation) as Rigidbody;
+            if (isHoldWeapon)
+            {
+                weaponInstance = PhotonNetwork.Instantiate(fireWeapenprefab[holdWeaponIndex-1], this.transform.position+ new Vector3(0, 1, 0) + this.transform.forward, transform.rotation*Quaternion.Euler(0.0f, 0.0f, 90.0f) * Quaternion.Euler(90.0f, 0.0f, 0.0f));
+                Debug.Log("attack");
+                holdWeapon(holdWeaponIndex, false);
+            }
+            else  //使用默认weapon
+            {
+                // 武器出现位置
+                weaponInstance = PhotonNetwork.Instantiate(DefalutWeapenprefab, this.transform.position + new Vector3(0, 1, 0) + this.transform.forward, transform.rotation*Quaternion.Euler(0.0f, 0.0f, 90.0f)*Quaternion.Euler(90.0f, 0.0f,0.0f));
+                // 武器旋转表示攻击动作
+            }
+            //Debug.Log(this.photonView.ViewID);
             weaponInstance.GetComponent<Weapon>().weaponOwner = PhotonNetwork.LocalPlayer;
-            weaponInstance.GetComponent<Weapon>().photonviewOwner = this.photonView; //
-            // 武器旋转表示攻击动作
-            weaponInstance.angularVelocity = this.transform.right * 1 * 2;
+            weaponInstance.GetComponent<Weapon>().photonviewOwner = this.photonView;
+            weaponInstance.GetComponent<Weapon>().initPos = transform.position;
+            weaponInstance.GetComponent<Weapon>().Pc = GetComponent<PlayerCharacter>();
+            //Debug.Log(weaponInstance.GetComponent<Weapon>().initPos);
+            weaponInstance.GetComponent<Weapon>().initForward = transform.forward;
+            Invoke("AttackAfterDelay", attackdelaytime[holdWeaponIndex]);
         }
+    }
+
+    void AttackAfterDelay()
+    {
+        weaponInstance.GetComponent<Weapon>().Fire();
         Invoke("RefreshAttack", attackTime);
     }
 
@@ -195,7 +210,7 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
             isAlive = false;
             deathTime += 1;
             PhotonView photonView = PhotonView.Find(srcviewID);
-            photonView.RPC("UpdateKillTime", RpcTarget.All, 1);
+            //photonView.RPC("UpdateKillTime", RpcTarget.All, 1);
             if (OM)
             {
                 this.photonView.RPC("CallDeathEvent", RpcTarget.MasterClient);
@@ -411,6 +426,8 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
     // Update is called once per frame
     void Update()
     {
+
+        //Debug.Log(transform.position);
         if (photonView.IsMine == false && PhotonNetwork.IsConnected == true)
         {
             return;
