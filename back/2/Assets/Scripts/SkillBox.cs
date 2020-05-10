@@ -16,6 +16,7 @@ public class SkillBox : MonoBehaviour
     }
     #region public Fields
 
+    public GameObject settingstore;
     public GameObject panel;
     public GameObject messageBox;
     public Button ok;
@@ -30,7 +31,7 @@ public class SkillBox : MonoBehaviour
     private Skill tmpskill;
     private Color tmpcolor;
     private Dictionary<string, Skill> skillNameMap = new Dictionary<string, Skill>{
-        { "技能1", Skill.SkillA},{ "技能2", Skill.SkillB},{ "技能3", Skill.SkillC},{ "技能4", Skill.SkillD}
+        { "突进", Skill.SkillA},{ "加速", Skill.SkillB},{ "隐身", Skill.SkillC},{ "无敌", Skill.SkillD}
     };
     //private static List<Button> items = new List<Button>();
 
@@ -51,6 +52,7 @@ public class SkillBox : MonoBehaviour
         // dpn.onValueChanged.AddListener(DropDownSelect);
 
         tmpskill = skill;
+        settingstore.GetComponent<SettingStore>().myskill = skill;
         panel.SetActive(false);
 
     }
@@ -79,7 +81,14 @@ public class SkillBox : MonoBehaviour
     public void OnClickOk()
     {
         skill = tmpskill;
+        settingstore.GetComponent<SettingStore>().myskill = skill;
         skillImg.color = tmpcolor;
+
+        /* 更改图片方法 */
+        //string path = "Images/Item/img";    //image路径
+        //Sprite sprite = Resources.Load(path, typeof(Sprite)) as Sprite;    //参数为资源路径和资源类型
+        //skillImg.sprite = sprite; 
+
         panel.SetActive(false);
     }
 

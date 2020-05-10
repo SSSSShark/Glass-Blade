@@ -10,6 +10,7 @@ public abstract class Weapon : MonoBehaviour
     void Start()
     {
         photonviewOwner = this.GetComponent<PhotonView>();
+        friendlyFire = GameObject.Find("SettingStore").GetComponent<SettingStore>().frienlyFire;
     }
 
     // Update is called once per frame

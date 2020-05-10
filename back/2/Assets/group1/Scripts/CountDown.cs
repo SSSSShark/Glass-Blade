@@ -6,23 +6,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
-    //modified by GaoYan
+using System;
+//modified by GaoYan
 
 public class CountDown : MonoBehaviour
 {
     [SerializeField]
-    public int minute=8;              //最大时间
+    public int minute = 8;              //最大时间
     private int getTime;            //游戏剩余时间
     private float timer = 0;        //计帧
     public Text countTimeText;      //时间文本
-    
+
     void Start()
     {
+        minute = int.Parse(GameObject.Find("SettingStore").GetComponent<SettingStore>().setTime[0].ToString());
+        Debug.Log("---------------minute-------------" + minute);
         getTime = 60 * minute;      //获取游戏剩余时间
         countTimeText = GetComponentInChildren<Text>();         //获取时间文本组件
     }
 
-    
+
     void Update()
     {
         if (PhotonNetwork.IsMasterClient)

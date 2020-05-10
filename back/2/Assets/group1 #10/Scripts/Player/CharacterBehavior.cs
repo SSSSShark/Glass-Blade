@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using Com.Glassblade.Group1;
 using Photon.Pun;
 using Photon.Realtime;
+using System.Configuration;
 
 public class CharacterBehavior : MonoBehaviourPun, IPunObservable
 {
@@ -51,6 +52,7 @@ public class CharacterBehavior : MonoBehaviourPun, IPunObservable
 
     void Start()
     {
+        skillNumber = (int)GameObject.Find("SettingStore").GetComponent<SettingStore>().myskill;
         // 获取动画
         ani = GetComponentInChildren<Animator>();
 
@@ -99,14 +101,14 @@ public class CharacterBehavior : MonoBehaviourPun, IPunObservable
             switch (bushStatus)
             {
                 case 0:
-                SetTransparent(1f);
-                break;
+                    SetTransparent(1f);
+                    break;
                 case 1:
-                SetTransparent(0.5f);
-                break;
+                    SetTransparent(0.5f);
+                    break;
                 case 2:
-                SetTransparent(0f);
-                break;
+                    SetTransparent(0f);
+                    break;
             }
         }
         // 隐身技能生效
@@ -133,16 +135,22 @@ public class CharacterBehavior : MonoBehaviourPun, IPunObservable
 
         //Author: wmj
         //隐身
-        if (invisibleTime > 0)
+
+        if (this.invisibleTime > 0)
         {
+            Debug.Log("This player is in invisible state");
             //更新隐身时长
-            invisibleTime -= Time.deltaTime;
+
+            this.invisibleTime -= Time.deltaTime;
             //隐身技能结束
-            if (invisibleTime <= 0)
+
+            if (this.invisibleTime <= 0)
             {
-                invisibleTime = 0;
-                RefreshTransparent();
+
+                this.invisibleTime = 0;
             }
+
+            RefreshTransparent();
         }
         //Author Via Cytus
         //突进
@@ -267,10 +275,10 @@ public class CharacterBehavior : MonoBehaviourPun, IPunObservable
         else
         {
             // Network player, receive data
-            this.invisibleDuration = (int)stream.ReceiveNext();
-            this.invisibleTime = (int)stream.ReceiveNext();
-            this.unbeatableDuration = (int)stream.ReceiveNext();
-            this.unbeatableTime = (int)stream.ReceiveNext();
+            this.invisibleDuration = (float)stream.ReceiveNext();
+            this.invisibleTime = (float)stream.ReceiveNext();
+            this.unbeatableDuration = (float)stream.ReceiveNext();
+            this.unbeatableTime = (float)stream.ReceiveNext();
             this.invincible = (bool)stream.ReceiveNext();
         }
     }
