@@ -64,6 +64,8 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
     // The game manager attached to the scene
     public GameManager GM;
 
+    public GameObject gamePlayer;
+
     #endregion
 
     #region occupy mode

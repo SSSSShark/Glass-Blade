@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     public Joystick joystick;
     public GameObject weaponSystem;
     public GameObject localPlayerObj;
+    public GameObject gameSkillButton;
 
     public Button AttackBtn;
 
@@ -90,6 +91,15 @@ public class GameManager : MonoBehaviour
 
                 // Assign the GameManager itself to the player so that the player can call the game manager
                 thePlayer.GetComponent<PlayerCharacter>().GM = this;
+
+                // assign attack button
+                gameSkillButton.GetComponent<SkillColling>().player = thePlayer;
+
+                // assign the player to character behavior
+                thePlayer.GetComponent<CharacterBehavior>().gamePlayer = thePlayer;
+
+                // assign the payer to the player charactor
+                thePlayer.GetComponent<PlayerCharacter>().gamePlayer = thePlayer;
             }
             else
             {

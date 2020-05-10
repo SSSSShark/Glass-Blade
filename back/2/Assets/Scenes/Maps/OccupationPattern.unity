@@ -188,6 +188,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8229448015405577591, guid: a62319670aae7b5458c7950201eececd,
+        type: 3}
+      propertyPath: viewIdField
+      value: 132
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a62319670aae7b5458c7950201eececd, type: 3}
 --- !u!4 &22832020 stripped
@@ -263,6 +268,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8229448015405577591, guid: a62319670aae7b5458c7950201eececd,
+        type: 3}
+      propertyPath: viewIdField
+      value: 131
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a62319670aae7b5458c7950201eececd, type: 3}
 --- !u!4 &34765613 stripped
@@ -278,6 +288,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1949068291}
     m_Modifications:
+    - target: {fileID: -1342982790650418021, guid: aaed9d8dc1b8adc4a9d4a25204d72a1b,
+        type: 3}
+      propertyPath: viewIdField
+      value: 130
+      objectReference: {fileID: 0}
     - target: {fileID: 1878192945062096432, guid: aaed9d8dc1b8adc4a9d4a25204d72a1b,
         type: 3}
       propertyPath: m_Name
@@ -353,6 +368,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1503664085}
     m_Modifications:
+    - target: {fileID: -1342982790650418021, guid: aaed9d8dc1b8adc4a9d4a25204d72a1b,
+        type: 3}
+      propertyPath: viewIdField
+      value: 129
+      objectReference: {fileID: 0}
     - target: {fileID: 1878192945062096432, guid: aaed9d8dc1b8adc4a9d4a25204d72a1b,
         type: 3}
       propertyPath: m_Name
@@ -434,6 +454,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1700005266}
     m_Modifications:
+    - target: {fileID: -1453486635935124198, guid: 5cd3959f892d93249b6eeeecd9121639,
+        type: 3}
+      propertyPath: viewIdField
+      value: 128
+      objectReference: {fileID: 0}
     - target: {fileID: 1562519224236470584, guid: 5cd3959f892d93249b6eeeecd9121639,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -513,6 +538,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Sword_TwoHanded_Set_A
+      objectReference: {fileID: 0}
+    - target: {fileID: 2182861307675383228, guid: 37e4c54d554522c499ee46ce913e1074,
+        type: 3}
+      propertyPath: viewIdField
+      value: 127
       objectReference: {fileID: 0}
     - target: {fileID: 4851714620045015871, guid: 37e4c54d554522c499ee46ce913e1074,
         type: 3}
@@ -687,6 +717,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1700005266}
     m_Modifications:
+    - target: {fileID: -1342982790650418021, guid: aaed9d8dc1b8adc4a9d4a25204d72a1b,
+        type: 3}
+      propertyPath: viewIdField
+      value: 126
+      objectReference: {fileID: 0}
     - target: {fileID: 1878192945062096432, guid: aaed9d8dc1b8adc4a9d4a25204d72a1b,
         type: 3}
       propertyPath: m_Name
@@ -865,6 +900,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 479707346}
     m_Modifications:
+    - target: {fileID: -1453486635935124198, guid: 5cd3959f892d93249b6eeeecd9121639,
+        type: 3}
+      propertyPath: viewIdField
+      value: 125
+      objectReference: {fileID: 0}
     - target: {fileID: 1562519224236470584, guid: 5cd3959f892d93249b6eeeecd9121639,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -940,6 +980,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1596611265}
     m_Modifications:
+    - target: {fileID: -1453486635935124198, guid: 5cd3959f892d93249b6eeeecd9121639,
+        type: 3}
+      propertyPath: viewIdField
+      value: 124
+      objectReference: {fileID: 0}
     - target: {fileID: 1562519224236470584, guid: 5cd3959f892d93249b6eeeecd9121639,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1109,6 +1154,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8229448015405577591, guid: a62319670aae7b5458c7950201eececd,
+        type: 3}
+      propertyPath: viewIdField
+      value: 123
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a62319670aae7b5458c7950201eececd, type: 3}
 --- !u!4 &123304272 stripped
@@ -1194,6 +1244,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Sword_TwoHanded_Set_A
+      objectReference: {fileID: 0}
+    - target: {fileID: 2182861307675383228, guid: 37e4c54d554522c499ee46ce913e1074,
+        type: 3}
+      propertyPath: viewIdField
+      value: 122
       objectReference: {fileID: 0}
     - target: {fileID: 4851714620045015871, guid: 37e4c54d554522c499ee46ce913e1074,
         type: 3}
@@ -1402,6 +1457,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8229448015405577591, guid: a62319670aae7b5458c7950201eececd,
+        type: 3}
+      propertyPath: viewIdField
+      value: 121
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a62319670aae7b5458c7950201eececd, type: 3}
 --- !u!4 &188470293 stripped
@@ -1509,6 +1569,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1371141362}
     m_Modifications:
+    - target: {fileID: -1453486635935124198, guid: 5cd3959f892d93249b6eeeecd9121639,
+        type: 3}
+      propertyPath: viewIdField
+      value: 120
+      objectReference: {fileID: 0}
     - target: {fileID: 1562519224236470584, guid: 5cd3959f892d93249b6eeeecd9121639,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1584,6 +1649,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1268485778}
     m_Modifications:
+    - target: {fileID: -1342982790650418021, guid: aaed9d8dc1b8adc4a9d4a25204d72a1b,
+        type: 3}
+      propertyPath: viewIdField
+      value: 119
+      objectReference: {fileID: 0}
     - target: {fileID: 1878192945062096432, guid: aaed9d8dc1b8adc4a9d4a25204d72a1b,
         type: 3}
       propertyPath: m_Name
@@ -1687,7 +1757,10 @@ MonoBehaviour:
     type: 3}
   joystick: {fileID: 1087838554}
   weaponSystem: {fileID: 1055234996}
+  localPlayerObj: {fileID: 0}
+  gameSkillButton: {fileID: 976713560}
   AttackBtn: {fileID: 386474578}
+  gameType: 0
 --- !u!4 &215096784
 Transform:
   m_ObjectHideFlags: 0
@@ -1743,6 +1816,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1268485778}
     m_Modifications:
+    - target: {fileID: -1453486635935124198, guid: 5cd3959f892d93249b6eeeecd9121639,
+        type: 3}
+      propertyPath: viewIdField
+      value: 118
+      objectReference: {fileID: 0}
     - target: {fileID: 1562519224236470584, guid: 5cd3959f892d93249b6eeeecd9121639,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1818,6 +1896,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 114194061}
     m_Modifications:
+    - target: {fileID: -1453486635935124198, guid: 5cd3959f892d93249b6eeeecd9121639,
+        type: 3}
+      propertyPath: viewIdField
+      value: 117
+      objectReference: {fileID: 0}
     - target: {fileID: 1562519224236470584, guid: 5cd3959f892d93249b6eeeecd9121639,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1893,6 +1976,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 863246516}
     m_Modifications:
+    - target: {fileID: -1453486635935124198, guid: 5cd3959f892d93249b6eeeecd9121639,
+        type: 3}
+      propertyPath: viewIdField
+      value: 116
+      objectReference: {fileID: 0}
     - target: {fileID: 1562519224236470584, guid: 5cd3959f892d93249b6eeeecd9121639,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2037,6 +2125,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 813624090}
     m_Modifications:
+    - target: {fileID: -1342982790650418021, guid: aaed9d8dc1b8adc4a9d4a25204d72a1b,
+        type: 3}
+      propertyPath: viewIdField
+      value: 115
+      objectReference: {fileID: 0}
     - target: {fileID: 1878192945062096432, guid: aaed9d8dc1b8adc4a9d4a25204d72a1b,
         type: 3}
       propertyPath: m_Name
@@ -2312,6 +2405,7 @@ RectTransform:
   - {fileID: 357466924}
   - {fileID: 625343112}
   - {fileID: 773102634}
+  - {fileID: 976713559}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2564,6 +2658,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1401288854}
     m_Modifications:
+    - target: {fileID: -1342982790650418021, guid: aaed9d8dc1b8adc4a9d4a25204d72a1b,
+        type: 3}
+      propertyPath: viewIdField
+      value: 114
+      objectReference: {fileID: 0}
     - target: {fileID: 1878192945062096432, guid: aaed9d8dc1b8adc4a9d4a25204d72a1b,
         type: 3}
       propertyPath: m_Name
@@ -2639,6 +2738,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 114194061}
     m_Modifications:
+    - target: {fileID: -1342982790650418021, guid: aaed9d8dc1b8adc4a9d4a25204d72a1b,
+        type: 3}
+      propertyPath: viewIdField
+      value: 113
+      objectReference: {fileID: 0}
     - target: {fileID: 1878192945062096432, guid: aaed9d8dc1b8adc4a9d4a25204d72a1b,
         type: 3}
       propertyPath: m_Name
@@ -2810,6 +2914,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sword_TwoHanded_Set_A
       objectReference: {fileID: 0}
+    - target: {fileID: 2182861307675383228, guid: 37e4c54d554522c499ee46ce913e1074,
+        type: 3}
+      propertyPath: viewIdField
+      value: 112
+      objectReference: {fileID: 0}
     - target: {fileID: 4851714620045015871, guid: 37e4c54d554522c499ee46ce913e1074,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2939,6 +3048,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8229448015405577591, guid: a62319670aae7b5458c7950201eececd,
+        type: 3}
+      propertyPath: viewIdField
+      value: 111
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a62319670aae7b5458c7950201eececd, type: 3}
@@ -3085,6 +3199,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1340868070}
     m_Modifications:
+    - target: {fileID: -1453486635935124198, guid: 5cd3959f892d93249b6eeeecd9121639,
+        type: 3}
+      propertyPath: viewIdField
+      value: 110
+      objectReference: {fileID: 0}
     - target: {fileID: 1562519224236470584, guid: 5cd3959f892d93249b6eeeecd9121639,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3219,6 +3338,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8229448015405577591, guid: a62319670aae7b5458c7950201eececd,
+        type: 3}
+      propertyPath: viewIdField
+      value: 109
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a62319670aae7b5458c7950201eececd, type: 3}
@@ -3363,6 +3487,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8229448015405577591, guid: a62319670aae7b5458c7950201eececd,
+        type: 3}
+      propertyPath: viewIdField
+      value: 108
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a62319670aae7b5458c7950201eececd, type: 3}
@@ -3688,6 +3817,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2092185843}
     m_Modifications:
+    - target: {fileID: -1342982790650418021, guid: aaed9d8dc1b8adc4a9d4a25204d72a1b,
+        type: 3}
+      propertyPath: viewIdField
+      value: 107
+      objectReference: {fileID: 0}
     - target: {fileID: 1878192945062096432, guid: aaed9d8dc1b8adc4a9d4a25204d72a1b,
         type: 3}
       propertyPath: m_Name
@@ -3823,6 +3957,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8229448015405577591, guid: a62319670aae7b5458c7950201eececd,
+        type: 3}
+      propertyPath: viewIdField
+      value: 106
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a62319670aae7b5458c7950201eececd, type: 3}
 --- !u!4 &473391096 stripped
@@ -3932,6 +4071,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8229448015405577591, guid: a62319670aae7b5458c7950201eececd,
+        type: 3}
+      propertyPath: viewIdField
+      value: 105
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a62319670aae7b5458c7950201eececd, type: 3}
 --- !u!4 &480465367 stripped
@@ -3947,6 +4091,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 216998511}
     m_Modifications:
+    - target: {fileID: -1342982790650418021, guid: aaed9d8dc1b8adc4a9d4a25204d72a1b,
+        type: 3}
+      propertyPath: viewIdField
+      value: 104
+      objectReference: {fileID: 0}
     - target: {fileID: 1878192945062096432, guid: aaed9d8dc1b8adc4a9d4a25204d72a1b,
         type: 3}
       propertyPath: m_Name
@@ -4129,6 +4278,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Sword_TwoHanded_Set_A
+      objectReference: {fileID: 0}
+    - target: {fileID: 2182861307675383228, guid: 37e4c54d554522c499ee46ce913e1074,
+        type: 3}
+      propertyPath: viewIdField
+      value: 103
       objectReference: {fileID: 0}
     - target: {fileID: 4851714620045015871, guid: 37e4c54d554522c499ee46ce913e1074,
         type: 3}
@@ -4735,6 +4889,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 216998511}
     m_Modifications:
+    - target: {fileID: -1453486635935124198, guid: 5cd3959f892d93249b6eeeecd9121639,
+        type: 3}
+      propertyPath: viewIdField
+      value: 102
+      objectReference: {fileID: 0}
     - target: {fileID: 1562519224236470584, guid: 5cd3959f892d93249b6eeeecd9121639,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4945,6 +5104,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1158528131}
     m_Modifications:
+    - target: {fileID: -1453486635935124198, guid: 5cd3959f892d93249b6eeeecd9121639,
+        type: 3}
+      propertyPath: viewIdField
+      value: 101
+      objectReference: {fileID: 0}
     - target: {fileID: 1562519224236470584, guid: 5cd3959f892d93249b6eeeecd9121639,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5080,6 +5244,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8229448015405577591, guid: a62319670aae7b5458c7950201eececd,
+        type: 3}
+      propertyPath: viewIdField
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a62319670aae7b5458c7950201eececd, type: 3}
 --- !u!4 &631810783 stripped
@@ -5095,6 +5264,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 924731633}
     m_Modifications:
+    - target: {fileID: -1453486635935124198, guid: 5cd3959f892d93249b6eeeecd9121639,
+        type: 3}
+      propertyPath: viewIdField
+      value: 99
+      objectReference: {fileID: 0}
     - target: {fileID: 1562519224236470584, guid: 5cd3959f892d93249b6eeeecd9121639,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5356,6 +5530,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8229448015405577591, guid: a62319670aae7b5458c7950201eececd,
+        type: 3}
+      propertyPath: viewIdField
+      value: 98
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a62319670aae7b5458c7950201eececd, type: 3}
 --- !u!4 &717400899 stripped
@@ -5371,6 +5550,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1158528131}
     m_Modifications:
+    - target: {fileID: -1342982790650418021, guid: aaed9d8dc1b8adc4a9d4a25204d72a1b,
+        type: 3}
+      propertyPath: viewIdField
+      value: 97
+      objectReference: {fileID: 0}
     - target: {fileID: 1878192945062096432, guid: aaed9d8dc1b8adc4a9d4a25204d72a1b,
         type: 3}
       propertyPath: m_Name
@@ -5480,6 +5664,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1344677899}
     m_Modifications:
+    - target: {fileID: -1342982790650418021, guid: aaed9d8dc1b8adc4a9d4a25204d72a1b,
+        type: 3}
+      propertyPath: viewIdField
+      value: 96
+      objectReference: {fileID: 0}
     - target: {fileID: 1878192945062096432, guid: aaed9d8dc1b8adc4a9d4a25204d72a1b,
         type: 3}
       propertyPath: m_Name
@@ -5555,6 +5744,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1340868070}
     m_Modifications:
+    - target: {fileID: -1342982790650418021, guid: aaed9d8dc1b8adc4a9d4a25204d72a1b,
+        type: 3}
+      propertyPath: viewIdField
+      value: 95
+      objectReference: {fileID: 0}
     - target: {fileID: 1878192945062096432, guid: aaed9d8dc1b8adc4a9d4a25204d72a1b,
         type: 3}
       propertyPath: m_Name
@@ -5634,6 +5828,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Sword_TwoHanded_Set_A
+      objectReference: {fileID: 0}
+    - target: {fileID: 2182861307675383228, guid: 37e4c54d554522c499ee46ce913e1074,
+        type: 3}
+      propertyPath: viewIdField
+      value: 94
       objectReference: {fileID: 0}
     - target: {fileID: 4851714620045015871, guid: 37e4c54d554522c499ee46ce913e1074,
         type: 3}
@@ -5981,6 +6180,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sword_TwoHanded_Set_A
       objectReference: {fileID: 0}
+    - target: {fileID: 2182861307675383228, guid: 37e4c54d554522c499ee46ce913e1074,
+        type: 3}
+      propertyPath: viewIdField
+      value: 93
+      objectReference: {fileID: 0}
     - target: {fileID: 4851714620045015871, guid: 37e4c54d554522c499ee46ce913e1074,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6192,6 +6396,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Sword_TwoHanded_Set_A
+      objectReference: {fileID: 0}
+    - target: {fileID: 2182861307675383228, guid: 37e4c54d554522c499ee46ce913e1074,
+        type: 3}
+      propertyPath: viewIdField
+      value: 92
       objectReference: {fileID: 0}
     - target: {fileID: 4851714620045015871, guid: 37e4c54d554522c499ee46ce913e1074,
         type: 3}
@@ -6563,6 +6772,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8229448015405577591, guid: a62319670aae7b5458c7950201eececd,
+        type: 3}
+      propertyPath: viewIdField
+      value: 91
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a62319670aae7b5458c7950201eececd, type: 3}
 --- !u!4 &897942934 stripped
@@ -6728,6 +6942,154 @@ Transform:
   m_Father: {fileID: 1770581327}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &976713558
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 333130520}
+    m_Modifications:
+    - target: {fileID: 4864205290911855796, guid: dc8cbf50989850145a4b1d7e3af776f6,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4864205290911855796, guid: dc8cbf50989850145a4b1d7e3af776f6,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4864205290911855796, guid: dc8cbf50989850145a4b1d7e3af776f6,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4864205290911855796, guid: dc8cbf50989850145a4b1d7e3af776f6,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4864205290911855796, guid: dc8cbf50989850145a4b1d7e3af776f6,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4864205290911855796, guid: dc8cbf50989850145a4b1d7e3af776f6,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4864205290911855796, guid: dc8cbf50989850145a4b1d7e3af776f6,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4864205290911855796, guid: dc8cbf50989850145a4b1d7e3af776f6,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4864205290911855796, guid: dc8cbf50989850145a4b1d7e3af776f6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4864205290911855796, guid: dc8cbf50989850145a4b1d7e3af776f6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4864205290911855796, guid: dc8cbf50989850145a4b1d7e3af776f6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4864205290911855796, guid: dc8cbf50989850145a4b1d7e3af776f6,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 990
+      objectReference: {fileID: 0}
+    - target: {fileID: 4864205290911855796, guid: dc8cbf50989850145a4b1d7e3af776f6,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 510
+      objectReference: {fileID: 0}
+    - target: {fileID: 4864205290911855796, guid: dc8cbf50989850145a4b1d7e3af776f6,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 4864205290911855796, guid: dc8cbf50989850145a4b1d7e3af776f6,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 4864205290911855796, guid: dc8cbf50989850145a4b1d7e3af776f6,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4864205290911855796, guid: dc8cbf50989850145a4b1d7e3af776f6,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4864205290911855796, guid: dc8cbf50989850145a4b1d7e3af776f6,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4864205290911855796, guid: dc8cbf50989850145a4b1d7e3af776f6,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4864205290911855796, guid: dc8cbf50989850145a4b1d7e3af776f6,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4864205290911855796, guid: dc8cbf50989850145a4b1d7e3af776f6,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4864205290911855797, guid: dc8cbf50989850145a4b1d7e3af776f6,
+        type: 3}
+      propertyPath: m_Name
+      value: SkillButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 4864205290911855799, guid: dc8cbf50989850145a4b1d7e3af776f6,
+        type: 3}
+      propertyPath: skillBtn
+      value: 
+      objectReference: {fileID: 976713561}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: dc8cbf50989850145a4b1d7e3af776f6, type: 3}
+--- !u!224 &976713559 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 4864205290911855796, guid: dc8cbf50989850145a4b1d7e3af776f6,
+    type: 3}
+  m_PrefabInstance: {fileID: 976713558}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &976713560 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4864205290911855797, guid: dc8cbf50989850145a4b1d7e3af776f6,
+    type: 3}
+  m_PrefabInstance: {fileID: 976713558}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &976713561 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4864205290911855798, guid: dc8cbf50989850145a4b1d7e3af776f6,
+    type: 3}
+  m_PrefabInstance: {fileID: 976713558}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 976713560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &987231847
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6735,6 +7097,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1949777380}
     m_Modifications:
+    - target: {fileID: -1342982790650418021, guid: aaed9d8dc1b8adc4a9d4a25204d72a1b,
+        type: 3}
+      propertyPath: viewIdField
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 1878192945062096432, guid: aaed9d8dc1b8adc4a9d4a25204d72a1b,
         type: 3}
       propertyPath: m_Name
@@ -6815,6 +7182,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sword_TwoHanded_Set_A
       objectReference: {fileID: 0}
+    - target: {fileID: 2182861307675383228, guid: 37e4c54d554522c499ee46ce913e1074,
+        type: 3}
+      propertyPath: viewIdField
+      value: 89
+      objectReference: {fileID: 0}
     - target: {fileID: 4851714620045015871, guid: 37e4c54d554522c499ee46ce913e1074,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6889,6 +7261,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Sword_TwoHanded_Set_A
+      objectReference: {fileID: 0}
+    - target: {fileID: 2182861307675383228, guid: 37e4c54d554522c499ee46ce913e1074,
+        type: 3}
+      propertyPath: viewIdField
+      value: 88
       objectReference: {fileID: 0}
     - target: {fileID: 4851714620045015871, guid: 37e4c54d554522c499ee46ce913e1074,
         type: 3}
@@ -7158,6 +7535,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8229448015405577591, guid: a62319670aae7b5458c7950201eececd,
+        type: 3}
+      propertyPath: viewIdField
+      value: 87
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a62319670aae7b5458c7950201eececd, type: 3}
 --- !u!4 &1027350214 stripped
@@ -7301,6 +7683,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8229448015405577591, guid: a62319670aae7b5458c7950201eececd,
+        type: 3}
+      propertyPath: viewIdField
+      value: 86
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a62319670aae7b5458c7950201eececd, type: 3}
 --- !u!4 &1052185847 stripped
@@ -7316,6 +7703,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 975706369}
     m_Modifications:
+    - target: {fileID: -1453486635935124198, guid: 5cd3959f892d93249b6eeeecd9121639,
+        type: 3}
+      propertyPath: viewIdField
+      value: 85
+      objectReference: {fileID: 0}
     - target: {fileID: 1562519224236470584, guid: 5cd3959f892d93249b6eeeecd9121639,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7507,6 +7899,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8229448015405577591, guid: a62319670aae7b5458c7950201eececd,
+        type: 3}
+      propertyPath: viewIdField
+      value: 84
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a62319670aae7b5458c7950201eececd, type: 3}
 --- !u!4 &1067541554 stripped
@@ -7599,6 +7996,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1404200134}
     m_Modifications:
+    - target: {fileID: -1453486635935124198, guid: 5cd3959f892d93249b6eeeecd9121639,
+        type: 3}
+      propertyPath: viewIdField
+      value: 83
+      objectReference: {fileID: 0}
     - target: {fileID: 1562519224236470584, guid: 5cd3959f892d93249b6eeeecd9121639,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7834,6 +8236,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sword_TwoHanded_Set_A
       objectReference: {fileID: 0}
+    - target: {fileID: 2182861307675383228, guid: 37e4c54d554522c499ee46ce913e1074,
+        type: 3}
+      propertyPath: viewIdField
+      value: 82
+      objectReference: {fileID: 0}
     - target: {fileID: 4851714620045015871, guid: 37e4c54d554522c499ee46ce913e1074,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7963,6 +8370,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8229448015405577591, guid: a62319670aae7b5458c7950201eececd,
+        type: 3}
+      propertyPath: viewIdField
+      value: 81
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a62319670aae7b5458c7950201eececd, type: 3}
@@ -8176,6 +8588,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8229448015405577591, guid: a62319670aae7b5458c7950201eececd,
+        type: 3}
+      propertyPath: viewIdField
+      value: 80
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a62319670aae7b5458c7950201eececd, type: 3}
 --- !u!4 &1161059396 stripped
@@ -8191,6 +8608,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1105518648}
     m_Modifications:
+    - target: {fileID: -1342982790650418021, guid: aaed9d8dc1b8adc4a9d4a25204d72a1b,
+        type: 3}
+      propertyPath: viewIdField
+      value: 79
+      objectReference: {fileID: 0}
     - target: {fileID: 1878192945062096432, guid: aaed9d8dc1b8adc4a9d4a25204d72a1b,
         type: 3}
       propertyPath: m_Name
@@ -8271,6 +8693,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sword_TwoHanded_Set_A
       objectReference: {fileID: 0}
+    - target: {fileID: 2182861307675383228, guid: 37e4c54d554522c499ee46ce913e1074,
+        type: 3}
+      propertyPath: viewIdField
+      value: 78
+      objectReference: {fileID: 0}
     - target: {fileID: 4851714620045015871, guid: 37e4c54d554522c499ee46ce913e1074,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8346,6 +8773,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sword_TwoHanded_Set_A
       objectReference: {fileID: 0}
+    - target: {fileID: 2182861307675383228, guid: 37e4c54d554522c499ee46ce913e1074,
+        type: 3}
+      propertyPath: viewIdField
+      value: 77
+      objectReference: {fileID: 0}
     - target: {fileID: 4851714620045015871, guid: 37e4c54d554522c499ee46ce913e1074,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8416,6 +8848,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1404200134}
     m_Modifications:
+    - target: {fileID: -1342982790650418021, guid: aaed9d8dc1b8adc4a9d4a25204d72a1b,
+        type: 3}
+      propertyPath: viewIdField
+      value: 76
+      objectReference: {fileID: 0}
     - target: {fileID: 1878192945062096432, guid: aaed9d8dc1b8adc4a9d4a25204d72a1b,
         type: 3}
       propertyPath: m_Name
@@ -8491,6 +8928,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 479707346}
     m_Modifications:
+    - target: {fileID: -1342982790650418021, guid: aaed9d8dc1b8adc4a9d4a25204d72a1b,
+        type: 3}
+      propertyPath: viewIdField
+      value: 75
+      objectReference: {fileID: 0}
     - target: {fileID: 1878192945062096432, guid: aaed9d8dc1b8adc4a9d4a25204d72a1b,
         type: 3}
       propertyPath: m_Name
@@ -8566,6 +9008,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1105518648}
     m_Modifications:
+    - target: {fileID: -1453486635935124198, guid: 5cd3959f892d93249b6eeeecd9121639,
+        type: 3}
+      propertyPath: viewIdField
+      value: 74
+      objectReference: {fileID: 0}
     - target: {fileID: 1562519224236470584, guid: 5cd3959f892d93249b6eeeecd9121639,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8641,6 +9088,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 708135585}
     m_Modifications:
+    - target: {fileID: -1342982790650418021, guid: aaed9d8dc1b8adc4a9d4a25204d72a1b,
+        type: 3}
+      propertyPath: viewIdField
+      value: 73
+      objectReference: {fileID: 0}
     - target: {fileID: 1878192945062096432, guid: aaed9d8dc1b8adc4a9d4a25204d72a1b,
         type: 3}
       propertyPath: m_Name
@@ -8750,6 +9202,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 731767665}
     m_Modifications:
+    - target: {fileID: -1342982790650418021, guid: aaed9d8dc1b8adc4a9d4a25204d72a1b,
+        type: 3}
+      propertyPath: viewIdField
+      value: 72
+      objectReference: {fileID: 0}
     - target: {fileID: 1878192945062096432, guid: aaed9d8dc1b8adc4a9d4a25204d72a1b,
         type: 3}
       propertyPath: m_Name
@@ -8825,6 +9282,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 924731633}
     m_Modifications:
+    - target: {fileID: -1342982790650418021, guid: aaed9d8dc1b8adc4a9d4a25204d72a1b,
+        type: 3}
+      propertyPath: viewIdField
+      value: 71
+      objectReference: {fileID: 0}
     - target: {fileID: 1878192945062096432, guid: aaed9d8dc1b8adc4a9d4a25204d72a1b,
         type: 3}
       propertyPath: m_Name
@@ -9003,6 +9465,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1371141362}
     m_Modifications:
+    - target: {fileID: -1342982790650418021, guid: aaed9d8dc1b8adc4a9d4a25204d72a1b,
+        type: 3}
+      propertyPath: viewIdField
+      value: 70
+      objectReference: {fileID: 0}
     - target: {fileID: 1878192945062096432, guid: aaed9d8dc1b8adc4a9d4a25204d72a1b,
         type: 3}
       propertyPath: m_Name
@@ -9082,6 +9549,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Sword_TwoHanded_Set_A
+      objectReference: {fileID: 0}
+    - target: {fileID: 2182861307675383228, guid: 37e4c54d554522c499ee46ce913e1074,
+        type: 3}
+      propertyPath: viewIdField
+      value: 69
       objectReference: {fileID: 0}
     - target: {fileID: 4851714620045015871, guid: 37e4c54d554522c499ee46ce913e1074,
         type: 3}
@@ -9221,6 +9693,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1596611265}
     m_Modifications:
+    - target: {fileID: -1342982790650418021, guid: aaed9d8dc1b8adc4a9d4a25204d72a1b,
+        type: 3}
+      propertyPath: viewIdField
+      value: 68
+      objectReference: {fileID: 0}
     - target: {fileID: 1878192945062096432, guid: aaed9d8dc1b8adc4a9d4a25204d72a1b,
         type: 3}
       propertyPath: m_Name
@@ -9438,6 +9915,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sword_TwoHanded_Set_A
       objectReference: {fileID: 0}
+    - target: {fileID: 2182861307675383228, guid: 37e4c54d554522c499ee46ce913e1074,
+        type: 3}
+      propertyPath: viewIdField
+      value: 67
+      objectReference: {fileID: 0}
     - target: {fileID: 4851714620045015871, guid: 37e4c54d554522c499ee46ce913e1074,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -9576,6 +10058,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 813624090}
     m_Modifications:
+    - target: {fileID: -1453486635935124198, guid: 5cd3959f892d93249b6eeeecd9121639,
+        type: 3}
+      propertyPath: viewIdField
+      value: 66
+      objectReference: {fileID: 0}
     - target: {fileID: 1562519224236470584, guid: 5cd3959f892d93249b6eeeecd9121639,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -9700,6 +10187,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Sword_TwoHanded_Set_A
+      objectReference: {fileID: 0}
+    - target: {fileID: 2182861307675383228, guid: 37e4c54d554522c499ee46ce913e1074,
+        type: 3}
+      propertyPath: viewIdField
+      value: 65
       objectReference: {fileID: 0}
     - target: {fileID: 4851714620045015871, guid: 37e4c54d554522c499ee46ce913e1074,
         type: 3}
@@ -9831,6 +10323,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8229448015405577591, guid: a62319670aae7b5458c7950201eececd,
+        type: 3}
+      propertyPath: viewIdField
+      value: 64
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a62319670aae7b5458c7950201eececd, type: 3}
 --- !u!4 &1467974471 stripped
@@ -9850,6 +10347,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Sword_TwoHanded_Set_A
+      objectReference: {fileID: 0}
+    - target: {fileID: 2182861307675383228, guid: 37e4c54d554522c499ee46ce913e1074,
+        type: 3}
+      propertyPath: viewIdField
+      value: 63
       objectReference: {fileID: 0}
     - target: {fileID: 4851714620045015871, guid: 37e4c54d554522c499ee46ce913e1074,
         type: 3}
@@ -10177,6 +10679,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1050730152}
     m_Modifications:
+    - target: {fileID: -1342982790650418021, guid: aaed9d8dc1b8adc4a9d4a25204d72a1b,
+        type: 3}
+      propertyPath: viewIdField
+      value: 62
+      objectReference: {fileID: 0}
     - target: {fileID: 1878192945062096432, guid: aaed9d8dc1b8adc4a9d4a25204d72a1b,
         type: 3}
       propertyPath: m_Name
@@ -10312,6 +10819,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8229448015405577591, guid: a62319670aae7b5458c7950201eececd,
+        type: 3}
+      propertyPath: viewIdField
+      value: 61
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a62319670aae7b5458c7950201eececd, type: 3}
 --- !u!4 &1536904963 stripped
@@ -10387,6 +10899,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8229448015405577591, guid: a62319670aae7b5458c7950201eececd,
+        type: 3}
+      propertyPath: viewIdField
+      value: 60
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a62319670aae7b5458c7950201eececd, type: 3}
 --- !u!4 &1538291710 stripped
@@ -10406,6 +10923,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Sword_TwoHanded_Set_A
+      objectReference: {fileID: 0}
+    - target: {fileID: 2182861307675383228, guid: 37e4c54d554522c499ee46ce913e1074,
+        type: 3}
+      propertyPath: viewIdField
+      value: 59
       objectReference: {fileID: 0}
     - target: {fileID: 4851714620045015871, guid: 37e4c54d554522c499ee46ce913e1074,
         type: 3}
@@ -10477,6 +10999,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 708135585}
     m_Modifications:
+    - target: {fileID: -1453486635935124198, guid: 5cd3959f892d93249b6eeeecd9121639,
+        type: 3}
+      propertyPath: viewIdField
+      value: 58
+      objectReference: {fileID: 0}
     - target: {fileID: 1562519224236470584, guid: 5cd3959f892d93249b6eeeecd9121639,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10660,6 +11187,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sword_TwoHanded_Set_A
       objectReference: {fileID: 0}
+    - target: {fileID: 2182861307675383228, guid: 37e4c54d554522c499ee46ce913e1074,
+        type: 3}
+      propertyPath: viewIdField
+      value: 57
+      objectReference: {fileID: 0}
     - target: {fileID: 4851714620045015871, guid: 37e4c54d554522c499ee46ce913e1074,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10764,6 +11296,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1503664085}
     m_Modifications:
+    - target: {fileID: -1453486635935124198, guid: 5cd3959f892d93249b6eeeecd9121639,
+        type: 3}
+      propertyPath: viewIdField
+      value: 56
+      objectReference: {fileID: 0}
     - target: {fileID: 1562519224236470584, guid: 5cd3959f892d93249b6eeeecd9121639,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10839,6 +11376,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1050730152}
     m_Modifications:
+    - target: {fileID: -1453486635935124198, guid: 5cd3959f892d93249b6eeeecd9121639,
+        type: 3}
+      propertyPath: viewIdField
+      value: 55
+      objectReference: {fileID: 0}
     - target: {fileID: 1562519224236470584, guid: 5cd3959f892d93249b6eeeecd9121639,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10914,6 +11456,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1949068291}
     m_Modifications:
+    - target: {fileID: -1453486635935124198, guid: 5cd3959f892d93249b6eeeecd9121639,
+        type: 3}
+      propertyPath: viewIdField
+      value: 54
+      objectReference: {fileID: 0}
     - target: {fileID: 1562519224236470584, guid: 5cd3959f892d93249b6eeeecd9121639,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10993,6 +11540,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Sword_TwoHanded_Set_A
+      objectReference: {fileID: 0}
+    - target: {fileID: 2182861307675383228, guid: 37e4c54d554522c499ee46ce913e1074,
+        type: 3}
+      propertyPath: viewIdField
+      value: 53
       objectReference: {fileID: 0}
     - target: {fileID: 4851714620045015871, guid: 37e4c54d554522c499ee46ce913e1074,
         type: 3}
@@ -11158,6 +11710,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8229448015405577591, guid: a62319670aae7b5458c7950201eececd,
+        type: 3}
+      propertyPath: viewIdField
+      value: 52
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a62319670aae7b5458c7950201eececd, type: 3}
 --- !u!4 &1706737120 stripped
@@ -11173,6 +11730,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 975706369}
     m_Modifications:
+    - target: {fileID: -1342982790650418021, guid: aaed9d8dc1b8adc4a9d4a25204d72a1b,
+        type: 3}
+      propertyPath: viewIdField
+      value: 51
+      objectReference: {fileID: 0}
     - target: {fileID: 1878192945062096432, guid: aaed9d8dc1b8adc4a9d4a25204d72a1b,
         type: 3}
       propertyPath: m_Name
@@ -11248,6 +11810,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1344677899}
     m_Modifications:
+    - target: {fileID: -1453486635935124198, guid: 5cd3959f892d93249b6eeeecd9121639,
+        type: 3}
+      propertyPath: viewIdField
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 1562519224236470584, guid: 5cd3959f892d93249b6eeeecd9121639,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -11486,6 +12053,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8229448015405577591, guid: a62319670aae7b5458c7950201eececd,
+        type: 3}
+      propertyPath: viewIdField
+      value: 49
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a62319670aae7b5458c7950201eececd, type: 3}
 --- !u!4 &1783482902 stripped
@@ -11604,6 +12176,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1401288854}
     m_Modifications:
+    - target: {fileID: -1453486635935124198, guid: 5cd3959f892d93249b6eeeecd9121639,
+        type: 3}
+      propertyPath: viewIdField
+      value: 48
+      objectReference: {fileID: 0}
     - target: {fileID: 1562519224236470584, guid: 5cd3959f892d93249b6eeeecd9121639,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -11683,6 +12260,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Sword_TwoHanded_Set_A
+      objectReference: {fileID: 0}
+    - target: {fileID: 2182861307675383228, guid: 37e4c54d554522c499ee46ce913e1074,
+        type: 3}
+      propertyPath: viewIdField
+      value: 47
       objectReference: {fileID: 0}
     - target: {fileID: 4851714620045015871, guid: 37e4c54d554522c499ee46ce913e1074,
         type: 3}
@@ -11814,6 +12396,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8229448015405577591, guid: a62319670aae7b5458c7950201eececd,
+        type: 3}
+      propertyPath: viewIdField
+      value: 46
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a62319670aae7b5458c7950201eececd, type: 3}
 --- !u!4 &1826882151 stripped
@@ -11889,6 +12476,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8229448015405577591, guid: a62319670aae7b5458c7950201eececd,
+        type: 3}
+      propertyPath: viewIdField
+      value: 45
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a62319670aae7b5458c7950201eececd, type: 3}
 --- !u!4 &1831721097 stripped
@@ -11908,6 +12500,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Sword_TwoHanded_Set_A
+      objectReference: {fileID: 0}
+    - target: {fileID: 2182861307675383228, guid: 37e4c54d554522c499ee46ce913e1074,
+        type: 3}
+      propertyPath: viewIdField
+      value: 44
       objectReference: {fileID: 0}
     - target: {fileID: 4851714620045015871, guid: 37e4c54d554522c499ee46ce913e1074,
         type: 3}
@@ -11979,6 +12576,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1029369691}
     m_Modifications:
+    - target: {fileID: -1453486635935124198, guid: 5cd3959f892d93249b6eeeecd9121639,
+        type: 3}
+      propertyPath: viewIdField
+      value: 43
+      objectReference: {fileID: 0}
     - target: {fileID: 1562519224236470584, guid: 5cd3959f892d93249b6eeeecd9121639,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -12128,6 +12730,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 863246516}
     m_Modifications:
+    - target: {fileID: -1342982790650418021, guid: aaed9d8dc1b8adc4a9d4a25204d72a1b,
+        type: 3}
+      propertyPath: viewIdField
+      value: 42
+      objectReference: {fileID: 0}
     - target: {fileID: 1878192945062096432, guid: aaed9d8dc1b8adc4a9d4a25204d72a1b,
         type: 3}
       propertyPath: m_Name
@@ -12208,6 +12815,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sword_TwoHanded_Set_A
       objectReference: {fileID: 0}
+    - target: {fileID: 2182861307675383228, guid: 37e4c54d554522c499ee46ce913e1074,
+        type: 3}
+      propertyPath: viewIdField
+      value: 41
+      objectReference: {fileID: 0}
     - target: {fileID: 4851714620045015871, guid: 37e4c54d554522c499ee46ce913e1074,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -12278,6 +12890,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 731767665}
     m_Modifications:
+    - target: {fileID: -1453486635935124198, guid: 5cd3959f892d93249b6eeeecd9121639,
+        type: 3}
+      propertyPath: viewIdField
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 1562519224236470584, guid: 5cd3959f892d93249b6eeeecd9121639,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -12358,6 +12975,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sword_TwoHanded_Set_A
       objectReference: {fileID: 0}
+    - target: {fileID: 2182861307675383228, guid: 37e4c54d554522c499ee46ce913e1074,
+        type: 3}
+      propertyPath: viewIdField
+      value: 39
+      objectReference: {fileID: 0}
     - target: {fileID: 4851714620045015871, guid: 37e4c54d554522c499ee46ce913e1074,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -12428,6 +13050,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1949777380}
     m_Modifications:
+    - target: {fileID: -1453486635935124198, guid: 5cd3959f892d93249b6eeeecd9121639,
+        type: 3}
+      propertyPath: viewIdField
+      value: 38
+      objectReference: {fileID: 0}
     - target: {fileID: 1562519224236470584, guid: 5cd3959f892d93249b6eeeecd9121639,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -12611,6 +13238,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sword_TwoHanded_Set_A
       objectReference: {fileID: 0}
+    - target: {fileID: 2182861307675383228, guid: 37e4c54d554522c499ee46ce913e1074,
+        type: 3}
+      propertyPath: viewIdField
+      value: 37
+      objectReference: {fileID: 0}
     - target: {fileID: 4851714620045015871, guid: 37e4c54d554522c499ee46ce913e1074,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -12775,6 +13407,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8229448015405577591, guid: a62319670aae7b5458c7950201eececd,
+        type: 3}
+      propertyPath: viewIdField
+      value: 36
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a62319670aae7b5458c7950201eececd, type: 3}
 --- !u!4 &2092689813 stripped
@@ -12893,6 +13530,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2092185843}
     m_Modifications:
+    - target: {fileID: -1453486635935124198, guid: 5cd3959f892d93249b6eeeecd9121639,
+        type: 3}
+      propertyPath: viewIdField
+      value: 35
+      objectReference: {fileID: 0}
     - target: {fileID: 1562519224236470584, guid: 5cd3959f892d93249b6eeeecd9121639,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -12973,6 +13615,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sword_TwoHanded_Set_A
       objectReference: {fileID: 0}
+    - target: {fileID: 2182861307675383228, guid: 37e4c54d554522c499ee46ce913e1074,
+        type: 3}
+      propertyPath: viewIdField
+      value: 34
+      objectReference: {fileID: 0}
     - target: {fileID: 4851714620045015871, guid: 37e4c54d554522c499ee46ce913e1074,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -13043,6 +13690,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1029369691}
     m_Modifications:
+    - target: {fileID: -1342982790650418021, guid: aaed9d8dc1b8adc4a9d4a25204d72a1b,
+        type: 3}
+      propertyPath: viewIdField
+      value: 33
+      objectReference: {fileID: 0}
     - target: {fileID: 1878192945062096432, guid: aaed9d8dc1b8adc4a9d4a25204d72a1b,
         type: 3}
       propertyPath: m_Name

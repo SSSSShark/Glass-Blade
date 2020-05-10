@@ -5715,6 +5715,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   touch: {fileID: 3272583857764425497, guid: e1915c2083b75d64ba53de09012ca47e, type: 3}
   speed: 10
+  skillNumber: 2
+  invisibleDuration: 8
+  distance: 5
+  accelerateDuration: 5
+  speedUp: 0.8
+  unbeatableDuration: 2
+  invincible: 0
+  gamePlayer: {fileID: 0}
 --- !u!114 &1385015671906754314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5753,6 +5761,7 @@ MonoBehaviour:
   speed: 25
   AttackBtn: {fileID: 0}
   GM: {fileID: 0}
+  gamePlayer: {fileID: 0}
   KDtext: {fileID: 0}
   OM: {fileID: 0}
   killTime: 0

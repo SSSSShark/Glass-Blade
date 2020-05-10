@@ -6,7 +6,7 @@ using Com.Glassblade.Group1;
 using Photon.Pun;
 using Photon.Realtime;
 
-public class CharacterBehavior : MonoBehaviour
+public class CharacterBehavior : MonoBehaviourPun, IPunObservable
 {
     // 角色，名字渲染
     Renderer[] character, namebar;
@@ -16,8 +16,38 @@ public class CharacterBehavior : MonoBehaviour
     public Joystick touch;
     // 速度
     public float speed = 10;
+    [SerializeField]
+    private int skillNumber = 2;
     // 动画
     private Animator ani;
+    //隐身技能生效时间
+    public float invisibleDuration = 8;
+    //隐身技能剩余时间
+    private float invisibleTime = 0;
+    //突进技能时间
+    private double marchForwardTime = 0;
+    //突进距离
+    [SerializeField]
+    private float distance = 5;
+    //加速技能持续时间
+    [SerializeField]
+    private float accelerateDuration = 5;
+    //加速技能剩余时间
+    private float accelerateTime = 0;
+    //加速幅度
+    [SerializeField]
+    private float speedUp = 0.8F;
+    //无敌技能持续时间
+    [SerializeField]
+    private float unbeatableDuration = 2;
+    //无敌技能剩余时间
+    private float unbeatableTime = 0;
+    //是否可以控制转向
+    private bool rotationEnable = true;
+    //是否无敌
+    public bool invincible = false;
+
+    public GameObject gamePlayer;
 
     void Start()
     {
@@ -58,6 +88,193 @@ public class CharacterBehavior : MonoBehaviour
             render.enabled = a != 0;
         }
     }
+    private int bushStatus;
+    /// <summary>
+    /// 根据当前状态（目前为草丛、隐身技能）刷新透明度
+    /// </summary>
+    private void RefreshTransparent()
+    {
+        if (invisibleTime <= 0)
+        {//隐身技能未生效
+            switch (bushStatus)
+            {
+                case 0:
+                SetTransparent(1f);
+                break;
+                case 1:
+                SetTransparent(0.5f);
+                break;
+                case 2:
+                SetTransparent(0f);
+                break;
+            }
+        }
+        // 隐身技能生效
+        else if (photonView.Owner.CustomProperties["team"] == PhotonNetwork.LocalPlayer.CustomProperties["team"])
+        {//是队友
+            SetTransparent(0.5f);
+        }
+        else
+        {//不是队友
+            SetTransparent(0f);
+        }
+    }
+    //Author: Via Cytus
+
+    /// <summary>
+    /// 角色移动动画
+    /// </summary>
+    void Update()
+    {
+        //移动
+
+        //获取角色控制插件
+        CharacterController controller = GetComponent<CharacterController>();
+
+        //Author: wmj
+        //隐身
+        if (invisibleTime > 0)
+        {
+            //更新隐身时长
+            invisibleTime -= Time.deltaTime;
+            //隐身技能结束
+            if (invisibleTime <= 0)
+            {
+                invisibleTime = 0;
+                RefreshTransparent();
+            }
+        }
+        //Author Via Cytus
+        //突进
+        if (marchForwardTime > 0)
+        {
+            //突进
+            transform.Translate(Vector3.forward * Time.deltaTime * distance / (float)0.2);
+            //角色控制插件控制移动
+            controller.SimpleMove(transform.forward * distance / (float)0.2);
+            //技能持续时间减少
+            marchForwardTime -= Time.deltaTime;
+            if (marchForwardTime <= 0)
+            {
+                //允许转向
+                rotationEnable = true;
+            }
+        }
+        //加速
+        if (accelerateTime > 0)
+        {
+            accelerateTime -= Time.deltaTime;
+            //加速结束
+            if (accelerateTime < 0)
+            {
+                gamePlayer.GetComponent<movegetgromjoystick>().speed =
+                    gamePlayer.GetComponent<movegetgromjoystick>().speed / (1 + speedUp);
+                accelerateTime = 0;
+            }
+        }
+        //无敌
+        if (unbeatableTime > 0)
+        {
+            unbeatableTime -= Time.deltaTime;
+            //无敌
+            invincible = true;
+            //无敌结束
+            if (unbeatableTime <= 0)
+            {
+                invincible = false;
+            }
+        }
+    }
+
+    //Author Via Cytus
+    public void SkillTrigger()
+    {
+        if (photonView.IsMine)
+        {
+            switch (skillNumber)
+            {
+                case 1: MarchForward(); break;
+                case 2: Accelerate(); break;
+                case 3: Invisible(); break;
+                case 4: Unbeatable(); break;
+            }
+        }
+    }
+
+    /// <summary>
+    /// 突进技能
+    /// </summary>
+    private void MarchForward()
+    {
+        if (photonView.IsMine)
+        {
+            marchForwardTime = 0.2;
+            //禁止转向
+            rotationEnable = false;
+        }
+    }
+
+    /// <summary>
+    /// 加速技能
+    /// </summary>
+    private void Accelerate()
+    {
+        //加速
+        if (photonView.IsMine)
+        {
+            float modiSpeed = gamePlayer.GetComponent<movegetgromjoystick>().speed;
+            gamePlayer.GetComponent<movegetgromjoystick>().speed =
+                gamePlayer.GetComponent<movegetgromjoystick>().speed * (1 + speedUp);
+            accelerateTime = accelerateDuration;
+        }
+    }
+
+    /// <summary>
+    /// 使用隐身技能时调用此方法
+    /// </summary>
+    private void Invisible()
+    {
+        if (photonView.IsMine)
+        {
+            invisibleTime = invisibleDuration;
+            RefreshTransparent();
+        }
+    }
+
+    /// <summary>
+    /// 无敌技能
+    /// </summary>
+    private void Unbeatable()
+    {
+        if (photonView.IsMine)
+        {
+            unbeatableTime = unbeatableDuration;
+        }
+    }
+
+    #region PUN Callbacks
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            // We own this player: send the others our data
+            stream.SendNext(invisibleDuration);
+            stream.SendNext(invisibleTime);
+            stream.SendNext(unbeatableDuration);
+            stream.SendNext(unbeatableTime);
+            stream.SendNext(invincible);
+        }
+        else
+        {
+            // Network player, receive data
+            this.invisibleDuration = (int)stream.ReceiveNext();
+            this.invisibleTime = (int)stream.ReceiveNext();
+            this.unbeatableDuration = (int)stream.ReceiveNext();
+            this.unbeatableTime = (int)stream.ReceiveNext();
+            this.invincible = (bool)stream.ReceiveNext();
+        }
+    }
+    #endregion
 }
 //Author: Via Cytus
 
