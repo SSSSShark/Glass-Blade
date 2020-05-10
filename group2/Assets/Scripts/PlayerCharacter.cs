@@ -121,6 +121,11 @@ namespace Com.GlassBlade.Group2
         public AudioSource daggerHit;
         public AudioSource daggerAttack;
         public AudioSource swordTwoHandedAttack;
+        public AudioSource swordAttack;
+        public AudioSource deathVoice;
+        public AudioSource axeAttack;
+        public AudioSource reliveAS;
+        public AudioSource takeWeaponAS;
 
     /* 其它 */
         private CharacterController cc;
@@ -164,6 +169,7 @@ namespace Com.GlassBlade.Group2
         {   //未持有武器时可以拿一种武器
             if (ishold && !isHoldWeapon)
             {
+                takeWeaponAS.Play();
                 holdWeaponIndex = index;
                 isHoldWeapon = true;
                 weapons[index].gameObject.SetActive(true);
@@ -210,9 +216,9 @@ namespace Com.GlassBlade.Group2
                 weaponInstance = Instantiate(weapon, new Vector3(0, 1, 0.5f), this.transform.rotation) as Rigidbody;
                 weaponInstance.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
                 weaponInstance.transform.SetParent(this.transform, false);
-
+                float tempTime = weaponInstance.gameObject.GetComponent<DestroyWeapon>().destroyTime;
                 // 武器旋转表示攻击动作
-                weaponInstance.angularVelocity = this.transform.right * 1 * 7.0f;
+                weaponInstance.angularVelocity = this.transform.right * 1 * (2.1f / tempTime);
             }
             Invoke("RefreshAttack", attackTime);
         }
@@ -230,6 +236,7 @@ namespace Com.GlassBlade.Group2
         /// </summary>
         public void Axe2HandAttack()
         {
+            axeAttack.Play();
             //实例化武器
             axesetInstance = Instantiate(Axe, this.transform.localPosition + new Vector3(0, 1, 0) + this.transform.forward, this.transform.rotation) as Rigidbody;
             axesetInstance.transform.SetParent(this.transform, false);
@@ -313,6 +320,7 @@ namespace Com.GlassBlade.Group2
         /// </summary>
         void SwordAttack()
         {
+            swordAttack.Play();
             swordInstance = Instantiate(sword,
                                        this.transform.localPosition + new Vector3(0, 1, 0) + this.transform.forward,
                                        weapons[4].rotation) as Rigidbody;
@@ -356,8 +364,11 @@ namespace Com.GlassBlade.Group2
         /// <summary>
         /// Death 死亡函数
         /// </summary>
-        public void Death()
+        private void Death()
         {
+            // 播放音效
+            deathVoice.Play();
+
             //**灰屏
             baw.setDeath();
             isAlive = false;
@@ -410,6 +421,7 @@ namespace Com.GlassBlade.Group2
         {
             //Debug.Log("relive time = " + Time.time);
             baw.setLive();
+            reliveAS.Play();
             isHoldWeapon = false;
             if(holdWeaponIndex > 0)
             {

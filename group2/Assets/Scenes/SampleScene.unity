@@ -978,6 +978,11 @@ MonoBehaviour:
   daggerHit: {fileID: 192796720}
   daggerAttack: {fileID: 871927656}
   swordTwoHandedAttack: {fileID: 1441107671}
+  swordAttack: {fileID: 1373460943}
+  deathVoice: {fileID: 246672122}
+  axeAttack: {fileID: 1406335493}
+  reliveAS: {fileID: 2099323111}
+  takeWeaponAS: {fileID: 1776413051}
   killTime: 0
   deathTime: 0
   holdWeaponIndex: 0
@@ -1160,7 +1165,7 @@ Transform:
   m_Children:
   - {fileID: 648107133}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &511103622
 GameObject:
@@ -1462,11 +1467,16 @@ MonoBehaviour:
   swordAttackDistance: 2
   counter: {fileID: 689781004}
   deathRotateTimes: 10
-  invincibleVoice: {fileID: 0}
-  WeaponDefaultAttack: {fileID: 0}
-  daggerHit: {fileID: 0}
-  daggerAttack: {fileID: 0}
-  swordTwoHandedAttack: {fileID: 0}
+  invincibleVoice: {fileID: 1648029843}
+  WeaponDefaultAttack: {fileID: 1252398317}
+  daggerHit: {fileID: 192796720}
+  daggerAttack: {fileID: 871927656}
+  swordTwoHandedAttack: {fileID: 1441107671}
+  swordAttack: {fileID: 1373460943}
+  deathVoice: {fileID: 246672122}
+  axeAttack: {fileID: 1406335493}
+  reliveAS: {fileID: 2099323111}
+  takeWeaponAS: {fileID: 1776413051}
   killTime: 0
   deathTime: 0
   holdWeaponIndex: 0
@@ -1903,7 +1913,7 @@ Transform:
   - {fileID: 246672121}
   - {fileID: 1776413050}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &748584451
 PrefabInstance:
@@ -2351,7 +2361,7 @@ PrefabInstance:
     - target: {fileID: 3313642532175654531, guid: 749ad0aabcddb30499f3588bc5e86bc4,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3313642532175654531, guid: 749ad0aabcddb30499f3588bc5e86bc4,
         type: 3}
@@ -2671,7 +2681,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 966014e858c457a4b85fc299e25374c3, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

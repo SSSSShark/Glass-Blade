@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -1541231176247540535}
   - component: {fileID: -7868285831394816733}
   m_Layer: 0
-  m_Name: Dagger_Set_A (1)
+  m_Name: DaggerDefault
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fb6cbc3532ca7149ada5c8e804a21ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyTime: 0.3
+  destroyTime: 0.25
 --- !u!114 &-7868285831394816733
 MonoBehaviour:
   m_ObjectHideFlags: 0
