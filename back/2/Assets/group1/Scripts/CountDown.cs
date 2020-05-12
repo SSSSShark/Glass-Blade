@@ -19,8 +19,7 @@ public class CountDown : MonoBehaviour
 
     void Start()
     {
-        minute = int.Parse(GameObject.Find("SettingStore").GetComponent<SettingStore>().setTime[0].ToString());
-        Debug.Log("---------------minute-------------" + minute);
+        minute = GameObject.Find("SettingStore").GetComponent<SettingStore>().setTime;
         getTime = 60 * minute;      //获取游戏剩余时间
         countTimeText = GetComponentInChildren<Text>();         //获取时间文本组件
     }

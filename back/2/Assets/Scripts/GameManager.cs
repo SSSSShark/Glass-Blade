@@ -93,7 +93,13 @@ public class GameManager : MonoBehaviour
                 thePlayer.GetComponent<PlayerCharacter>().GM = this;
 
                 // assign attack button
-                gameSkillButton.GetComponent<SkillColling>().player = thePlayer;
+                gameSkillButton.GetComponent<SkillCooling>().player = thePlayer;
+
+                // assign sprite
+                if (GameObject.Find("SettingStore").GetComponent<SettingStore>().skillsprite)
+                {
+                    gameSkillButton.GetComponent<Image>().sprite = GameObject.Find("SettingStore").GetComponent<SettingStore>().skillsprite;
+                }
 
                 // assign the player to character behavior
                 thePlayer.GetComponent<CharacterBehavior>().gamePlayer = thePlayer;

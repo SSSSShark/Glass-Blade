@@ -437,7 +437,7 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
 
         if (KDtext)
         {
-            KDtext.text = "Kill: " + killTime + "\n" + "Death: " + deathTime + "\n" + "Score: " + score + "\n";
+            KDtext.text = "K: " + killTime + "  " + "D: " + deathTime + "  " + "S: " + score + "  ";
         }
 
     }

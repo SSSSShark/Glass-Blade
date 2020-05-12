@@ -216,6 +216,10 @@ public class CharacterBehavior : MonoBehaviourPun, IPunObservable
     {
         if (photonView.IsMine)
         {
+            //添加音效
+            AudioSource music;
+            music = transform.GetComponentsInChildren<AudioSource>()[0];
+            music.Play();
             marchForwardTime = 0.2;
             //禁止转向
             rotationEnable = false;
@@ -230,6 +234,10 @@ public class CharacterBehavior : MonoBehaviourPun, IPunObservable
         //加速
         if (photonView.IsMine)
         {
+            //添加音效
+            AudioSource music;
+            music = transform.GetComponentsInChildren<AudioSource>()[1];
+            music.Play();
             float modiSpeed = gamePlayer.GetComponent<movegetgromjoystick>().speed;
             gamePlayer.GetComponent<movegetgromjoystick>().speed =
                 gamePlayer.GetComponent<movegetgromjoystick>().speed * (1 + speedUp);
@@ -244,6 +252,10 @@ public class CharacterBehavior : MonoBehaviourPun, IPunObservable
     {
         if (photonView.IsMine)
         {
+            //添加音效
+            AudioSource music;
+            music = transform.GetComponentsInChildren<AudioSource>()[2];
+            music.Play();
             invisibleTime = invisibleDuration;
             RefreshTransparent();
         }

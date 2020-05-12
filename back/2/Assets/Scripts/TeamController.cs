@@ -17,7 +17,10 @@ public class TeamController : MonoBehaviourPunCallbacks
     public GameObject[] AddOrderList;
     public GameObject startDialog;
     public Button settingbtn;
+    public Button changeTeambtn;
+    public Button skillSettingbtn;
     public GameObject messagebox;
+    
 
     #endregion
 
@@ -53,7 +56,7 @@ public class TeamController : MonoBehaviourPunCallbacks
         {
             settingbtn.gameObject.SetActive(true); 
             Button btnObj = GameObject.FindGameObjectWithTag("Start").GetComponent<Button>();
-            btnObj.transform.Find("Text").GetComponent<Text>().text = "Start";
+            btnObj.transform.Find("Text").GetComponent<Text>().text = "开始游戏";
 
             Debug.Log("Master client: initialize obj table");
 
@@ -299,11 +302,15 @@ public class TeamController : MonoBehaviourPunCallbacks
     {
         if (!PhotonNetwork.IsMasterClient)
         {
+            changeTeambtn.enabled = true;
+            skillSettingbtn.enabled = true;
+            changeTeambtn.transform.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f);
+            skillSettingbtn.transform.GetComponent<Image>().color = new Color(172.0f/255.0f, 217.0f/255f, 219.0f/255.0f);
             ExitGames.Client.Photon.Hashtable props = PhotonNetwork.LocalPlayer.CustomProperties;
             props["status"] = Status.Wait;
             PhotonNetwork.LocalPlayer.SetCustomProperties(props);
             Button btnObj = GameObject.FindGameObjectWithTag("Start").GetComponent<Button>();
-            btnObj.transform.Find("Text").GetComponent<Text>().text = "Ready";
+            btnObj.transform.Find("Text").GetComponent<Text>().text = "准备";
             try
             {
                 btnObj.onClick.RemoveListener(CancelReady);
@@ -323,7 +330,6 @@ public class TeamController : MonoBehaviourPunCallbacks
     {
         if (PhotonNetwork.IsMasterClient)
         {
-
             foreach (Player p in PhotonNetwork.PlayerList)
             {
                 if (p != PhotonNetwork.MasterClient && (Status)p.CustomProperties["status"] == Status.Wait)
@@ -342,13 +348,18 @@ public class TeamController : MonoBehaviourPunCallbacks
         }
         else
         {
+            changeTeambtn.enabled = false;
+            skillSettingbtn.enabled = false;
+            changeTeambtn.transform.GetComponent<Image>().color = new Color(0.8f, 0.8f, 0.8f);
+            skillSettingbtn.transform.GetComponent<Image>().color = new Color(0.8f, 0.8f, 0.8f);
+
             ExitGames.Client.Photon.Hashtable props = PhotonNetwork.LocalPlayer.CustomProperties;
             props["status"] = Status.Ready;
 
             PhotonNetwork.LocalPlayer.SetCustomProperties(props);       
 
             Button btnObj = GameObject.FindGameObjectWithTag("Start").GetComponent<Button>();
-            btnObj.transform.Find("Text").GetComponent<Text>().text = "Cancel"; 
+            btnObj.transform.Find("Text").GetComponent<Text>().text = "取消准备"; 
 
             try
             {

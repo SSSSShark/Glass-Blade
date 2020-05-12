@@ -5,12 +5,17 @@ using UnityEngine;
 public class SettingStore : MonoBehaviour
 {
     #region Master Settings
-    public bool frienlyFire;
-    public string setTime;
+
+    public bool friendlyFire;
+    public int setTime;
+
     #endregion
 
     #region Self Settings
+
     public SkillBox.Skill myskill;
+    public Sprite skillsprite;
+
     #endregion
 
     // Start is called before the first frame update

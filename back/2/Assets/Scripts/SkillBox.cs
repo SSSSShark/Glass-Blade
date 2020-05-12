@@ -33,7 +33,8 @@ public class SkillBox : MonoBehaviour
     private Dictionary<string, Skill> skillNameMap = new Dictionary<string, Skill>{
         { "突进", Skill.SkillA},{ "加速", Skill.SkillB},{ "隐身", Skill.SkillC},{ "无敌", Skill.SkillD}
     };
-    //private static List<Button> items = new List<Button>();
+    private Sprite tmpsprite;
+    //private static List<Button> items = new List<Button>(); 
 
     #endregion
     // Use this for initialization
@@ -53,6 +54,7 @@ public class SkillBox : MonoBehaviour
 
         tmpskill = skill;
         settingstore.GetComponent<SettingStore>().myskill = skill;
+        settingstore.GetComponent<SettingStore>().skillsprite = tmpsprite;
         panel.SetActive(false);
 
     }
@@ -81,15 +83,24 @@ public class SkillBox : MonoBehaviour
     public void OnClickOk()
     {
         skill = tmpskill;
-        settingstore.GetComponent<SettingStore>().myskill = skill;
-        skillImg.color = tmpcolor;
+        settingstore.GetComponent<SettingStore>().myskill = tmpskill;
+        //skillImg.color = tmpcolor;
 
         /* 更改图片方法 */
         //string path = "Images/Item/img";    //image路径
         //Sprite sprite = Resources.Load(path, typeof(Sprite)) as Sprite;    //参数为资源路径和资源类型
-        //skillImg.sprite = sprite; 
-
+        skillImg.sprite = tmpsprite;
+        settingstore.GetComponent<SettingStore>().skillsprite = tmpsprite;
         panel.SetActive(false);
+    } 
+
+    public void OnSelectedSkill(GameObject objbtn)
+    {
+        for (int i = 0; i < skillbtns.Length; i++)
+        {
+            skillbtns[i].GetComponentsInChildren<Image>()[1].color = new Color(1f, 1f, 1f, 0f);
+        }
+        objbtn.GetComponent<Image>().color = new Color(1f, 1f, 1f, 1f);
     }
 
     //public void OnClickCancel()
@@ -102,12 +113,14 @@ public class SkillBox : MonoBehaviour
     {
         for (int i = 0; i < skillbtns.Length; i++)
         {
+            skillbtns[i].GetComponentsInChildren<Image>()[1].color = new Color(1f, 1f, 1f, 0f);
             string str = skillbtns[i].GetComponentInChildren<Text>().text;
-            Color color = skillbtns[i].GetComponentInChildren<Image>().color;
+            Sprite sprite =  skillbtns[i].GetComponent<Image>().sprite;
+
             skillbtns[i].GetComponent<Button>().onClick.AddListener(delegate
             {
-                tmpskill = skillNameMap[str];
-                tmpcolor = color;
+                tmpskill = skillNameMap[str];               
+                tmpsprite = sprite;
                 Debug.Log(tmpskill);
             });
         }

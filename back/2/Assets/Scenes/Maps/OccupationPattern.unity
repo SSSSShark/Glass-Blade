@@ -6034,7 +6034,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 377.6, y: 161.2}
+  m_AnchoredPosition: {x: 757, y: 383}
   m_SizeDelta: {x: 207.3, y: 155.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &773102635
@@ -6068,7 +6068,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: "New Text\U0001F480\U0001F480"
 --- !u!222 &773102636
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7007,22 +7007,22 @@ PrefabInstance:
     - target: {fileID: 4864205290911855796, guid: dc8cbf50989850145a4b1d7e3af776f6,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 990
+      value: 1464
       objectReference: {fileID: 0}
     - target: {fileID: 4864205290911855796, guid: dc8cbf50989850145a4b1d7e3af776f6,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 510
+      value: 371
       objectReference: {fileID: 0}
     - target: {fileID: 4864205290911855796, guid: dc8cbf50989850145a4b1d7e3af776f6,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 500
+      value: 145
       objectReference: {fileID: 0}
     - target: {fileID: 4864205290911855796, guid: dc8cbf50989850145a4b1d7e3af776f6,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 500
+      value: 145
       objectReference: {fileID: 0}
     - target: {fileID: 4864205290911855796, guid: dc8cbf50989850145a4b1d7e3af776f6,
         type: 3}
@@ -7059,11 +7059,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: SkillButton
       objectReference: {fileID: 0}
-    - target: {fileID: 4864205290911855799, guid: dc8cbf50989850145a4b1d7e3af776f6,
-        type: 3}
-      propertyPath: skillBtn
-      value: 
-      objectReference: {fileID: 976713561}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc8cbf50989850145a4b1d7e3af776f6, type: 3}
 --- !u!224 &976713559 stripped
@@ -7078,18 +7073,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 976713558}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &976713561 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4864205290911855798, guid: dc8cbf50989850145a4b1d7e3af776f6,
-    type: 3}
-  m_PrefabInstance: {fileID: 976713558}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 976713560}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &987231847
 PrefabInstance:
   m_ObjectHideFlags: 0

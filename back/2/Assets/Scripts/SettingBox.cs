@@ -12,16 +12,19 @@ public class SettingBox : MonoBehaviour
         Normal = 0,
         Occupation = 1
     }
-    #region public Fields
+    #region Public Fields
 
     public GameObject settingstore;
     public GameObject panel;
     public GameObject messageBox;
+    public GameObject timeUpbtn;
+    public GameObject timeDownbtn;
     public Button ok;
     public Button cancel;
     public Dropdown modedpn;
     public Toggle friendlyFireTog;
-    public InputField timeText;
+    public Text timeText;
+
     #endregion
 
     #region Setting Results
@@ -30,8 +33,9 @@ public class SettingBox : MonoBehaviour
     private GameMode tmpmode;
     public bool friendlyFire = false;
     private bool tmpfriendlyFire;
-    public string setTime = "8:00";
-    private string tmpsetTime;
+    public int setTime;
+    private int tmpsetTime;
+
     #endregion
     // Use this for initialization
     void Start()
@@ -40,7 +44,6 @@ public class SettingBox : MonoBehaviour
         messageBox = gameObject;
         ok = messageBox.transform.Find("Ok").GetComponent<Button>();
         cancel = messageBox.transform.Find("Cancel").GetComponent<Button>();
-        //timeText = messageBox.transform.Find("TimeInputField").GetComponent<InputField>();
 
         ok.onClick.AddListener(OnClickOk);
         cancel.onClick.AddListener(OnClickCancel);
@@ -51,7 +54,7 @@ public class SettingBox : MonoBehaviour
         tmpsetTime = setTime;
 
         settingstore.GetComponent<SettingStore>().setTime = setTime;
-        settingstore.GetComponent<SettingStore>().frienlyFire = friendlyFire;
+        settingstore.GetComponent<SettingStore>().friendlyFire = friendlyFire;
         panel.SetActive(false);
 
     }
@@ -61,6 +64,9 @@ public class SettingBox : MonoBehaviour
     {
 
     }
+
+    #region Public Methods
+
     /// <summary>
     /// 显示dialog
     /// </summary>
@@ -81,18 +87,10 @@ public class SettingBox : MonoBehaviour
     {
         mode = tmpmode;
         friendlyFire = tmpfriendlyFire;
-        tmpsetTime = timeText.text;
-        settingstore.GetComponent<SettingStore>().frienlyFire = friendlyFire;       
-        if (Regex.IsMatch(tmpsetTime, @"\d:[0-5]?\d$"))
-        {
-            setTime = tmpsetTime;
-            settingstore.GetComponent<SettingStore>().setTime = setTime;
-            Debug.Log("Set time success");
-        }
-        else
-        {
-            Debug.LogWarning("Set time failed: not in correct format");
-        }
+        setTime = tmpsetTime;
+        settingstore.GetComponent<SettingStore>().friendlyFire = friendlyFire;
+        settingstore.GetComponent<SettingStore>().setTime = setTime;
+
         panel.SetActive(false);
     }
     public void OnClickCancel()
@@ -101,7 +99,7 @@ public class SettingBox : MonoBehaviour
         //modedpn.AddOptions(list);
         modedpn.value = (int)mode;  //恢复当前的状态
         friendlyFireTog.isOn = friendlyFire;
-        timeText.text = setTime;
+        timeText.text = setTime.ToString();
 
         panel.SetActive(false);
     }
@@ -123,6 +121,38 @@ public class SettingBox : MonoBehaviour
     public void OnToggleValueChange()
     {
         tmpfriendlyFire = friendlyFireTog.isOn;
-        Debug.Log("friendlyfire: " + friendlyFireTog.isOn);
     }
+
+    public void OnClickTimeUp()
+    {
+        tmpsetTime = int.Parse(timeText.text);
+        tmpsetTime += 1;
+        if (tmpsetTime > 1 && !timeDownbtn.activeInHierarchy)
+        {
+            timeDownbtn.SetActive(true);
+        }
+        if (tmpsetTime >= 20)
+        {
+            timeUpbtn.SetActive(false);
+        }
+        timeText.text = tmpsetTime.ToString();
+    }
+
+    public void OnClickTimeDown()
+    {
+        tmpsetTime = int.Parse(timeText.text);
+        tmpsetTime -= 1;
+        if (tmpsetTime < 20 && !timeUpbtn.activeInHierarchy)
+        {
+            timeUpbtn.SetActive(true);
+        }
+        if (tmpsetTime <= 1)
+        {
+            timeDownbtn.SetActive(false);
+        }
+        timeText.text = tmpsetTime.ToString();
+    }
+
+    #endregion
 }
+
