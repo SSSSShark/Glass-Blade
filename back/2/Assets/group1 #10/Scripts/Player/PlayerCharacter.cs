@@ -163,17 +163,27 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
         this.gameObject.GetComponent<movegetgromjoystick>().enabled = false;
 
         attacking = true;
-        if (GetComponent<PhotonView>().IsMine)
+        if (photonView.IsMine)
         {
             if (isHoldWeapon)
             {
                 weaponInstance = PhotonNetwork.Instantiate(fireWeapenprefab[holdWeaponIndex-1], this.transform.position+ new Vector3(0, 1, 0) + this.transform.forward, transform.rotation*Quaternion.Euler(0.0f, 0.0f, 90.0f) * Quaternion.Euler(90.0f, 0.0f, 0.0f));
                 Debug.Log("attack");
+
+                // play sound
+                switch (holdWeaponIndex)
+                {
+                    case 1: PlayAudio(5, true); break;
+                    case 2: PlayAudio(6, true); break;
+                    case 3: PlayAudio(3, true); break;
+                    case 4: PlayAudio(4, true); break;
+                }
                 holdWeapon(holdWeaponIndex, false);
             }
             else  //使用默认weapon
             {
                 // 武器出现位置
+                PlayAudio(7, true);
                 weaponInstance = PhotonNetwork.Instantiate(DefalutWeapenprefab, this.transform.position + new Vector3(0, 1, 0) + this.transform.forward, transform.rotation*Quaternion.Euler(0.0f, 0.0f, 90.0f)*Quaternion.Euler(90.0f, 0.0f,0.0f));
                 // 武器旋转表示攻击动作
             }
@@ -200,6 +210,28 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
         this.gameObject.GetComponent<movegetgromjoystick>().enabled = true;
     }
 
+    /// <summary>
+    /// This function plays audio on the owner part and sends RPC to other client if needed
+    /// </summary>
+    /// <param name="index">The audio source index</param>
+    /// <param name="RPCRequired">If we need RPC or not, if true, we will send RPC</param>
+    public void PlayAudio(int index, bool RpcRequired)
+    {
+        if (!photonView.IsMine)
+        {
+            return;
+        }
+        Debug.Log("[PlayAudio] We are the owner, play audio, index = " + index);
+        AudioSource music = transform.GetComponentsInChildren<AudioSource>()[index];
+        music.Play();
+
+        if (RpcRequired)
+        {
+            Debug.Log("[PlayAudio] RpcRequired flag set, send RPC to other client.");
+            photonView.RPC("PlayerAudioOnPlayer", RpcTarget.Others, index);
+        }
+    }
+
     [PunRPC]
     /// <summary>
     /// Some other clients notified us that they killed this client, so we are
@@ -218,6 +250,20 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
                 this.photonView.RPC("CallDeathEvent", RpcTarget.MasterClient);
             }
             Death();
+        }
+    }
+
+    [PunRPC]
+    /// <summary>
+    /// This RPC is called to play audio on the player
+    /// </summary>
+    public void PlayAudioOnPlayer(int index, PhotonMessageInfo info)
+    {
+        if (photonView.Owner == info.Sender)
+        {
+            // play music
+            AudioSource music = transform.GetComponentsInChildren<AudioSource>()[index];
+            music.Play();
         }
     }
 
@@ -251,6 +297,7 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
     public void Death()
     {
 
+        PlayAudio(9, false);
         isProtected = true; //tt
 
         //  isAlive = false;
@@ -340,6 +387,7 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
         if (photonView.IsMine)
         {
             // Debug.Log("relive time = " + Time.time);
+            PlayAudio(10, false);
             this.gameObject.GetComponent<movegetgromjoystick>().enabled = true;
             baw.setLive();
             isProtected = false;  // tt
@@ -394,6 +442,7 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
     {
         Debug.Log("TakeWeapon: called");
         holdWeapon(weaponstatus, true);
+        PlayAudio(8, false);
     }
     /**************************** 林海力 end **********************/
 

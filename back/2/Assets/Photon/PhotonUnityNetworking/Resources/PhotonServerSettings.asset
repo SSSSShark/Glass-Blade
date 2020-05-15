@@ -45,6 +45,8 @@ MonoBehaviour:
   - UpdateKillTime
   - UpdateScore
   - UpdateWeaponStatus
+  - callPlayAudio
+  - PlayAudioOnPlayer
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0
