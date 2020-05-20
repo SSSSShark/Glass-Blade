@@ -5,7 +5,12 @@ using UnityEngine;
 public class Sword : Weapon
 {
     private bool isfire = false;
-    public float daggerAttackDistance = 2.0f;
+    public float AttackDistance = 1.5f;
+    public override void  Start()
+    {
+        base.Start();
+        destroyTime = 0.5f;
+    }
     public override void Fire()
     {
         isfire = true;
@@ -15,7 +20,7 @@ public class Sword : Weapon
     {
         if (isfire)
         {
-            transform.position += daggerAttackDistance / destroyTime * Time.deltaTime *  initForward ;
+            transform.position += AttackDistance / destroyTime * Time.deltaTime *  initForward ;
         }
     }
 }

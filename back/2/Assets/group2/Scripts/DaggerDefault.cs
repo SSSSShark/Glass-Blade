@@ -5,10 +5,18 @@ using UnityEngine;
 public class DaggerDefault : Weapon
 {
     private bool isfire = false;
-    private int speed = -25;
+    private int rotateangle=110;
+    public override void Start()
+    {
+        base.Start();
+        destroyTime = 0.5f;
+        transform.RotateAround(gameObject.transform.position, initForward, 90);
+        transform.RotateAround(gameObject.transform.position, Vector3.Cross(Vector3.up, initForward), -90);
+        transform.position += 0.5f * Vector3.up;
+        Debug.Log("here");
+    }
     public override void Fire()
     {
-        
         isfire = true;
         DestroyWithDelay();
     }
@@ -16,16 +24,7 @@ public class DaggerDefault : Weapon
     {
         if (isfire)
         {
-            transform.RotateAround(initPos, Vector3.up, speed / destroyTime * Time.deltaTime);
-            speed = speed + 40;
-            if (speed > 300)
-            {
-                speed = 300;
-            }
-            else if (speed > -150 && speed < 0)
-            {
-                speed = 400;
-            }
+            transform.RotateAround(gameObject.transform.position, Vector3.Cross(Vector3.up,initForward), rotateangle/ destroyTime * Time.deltaTime);
         }
     }
 }

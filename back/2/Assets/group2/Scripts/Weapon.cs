@@ -7,7 +7,7 @@ using Photon.Realtime;
 public abstract class Weapon : MonoBehaviour
 {
     // Start is called before the first frame update
-    void Start()
+    public virtual  void Start()
     {
         photonviewOwner = this.GetComponent<PhotonView>();
         friendlyFire = GameObject.Find("SettingStore").GetComponent<SettingStore>().friendlyFire;

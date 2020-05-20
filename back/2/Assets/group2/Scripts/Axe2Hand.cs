@@ -5,7 +5,7 @@ using UnityEngine;
 public class Axe2Hand : Weapon
 {
     private bool isfire = false;
-    private int speed = -25;
+    private float rotaeangle=-360.0f*3.0f;
     public override void Fire()
     {
         isfire = true;
@@ -15,16 +15,7 @@ public class Axe2Hand : Weapon
     {
         if (isfire)
         {
-            transform.RotateAround(initPos, Vector3.up, speed / destroyTime * Time.deltaTime);
-            speed = speed + 1;
-            if (speed > 300)
-            {
-                speed = 300;
-            }
-            else if (speed > -150 && speed < 0)
-            {
-                speed = 400;
-            }
+            transform.RotateAround(initPos, Vector3.up, rotaeangle/ destroyTime * Time.deltaTime);
         }
     }
 }

@@ -183,7 +183,11 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
             else  //使用默认weapon
             {
                 // 武器出现位置
-                PlayAudio(7, true);
+
+                 //PlayAudio(7, true);    //bug here
+                
+                
+                
                 weaponInstance = PhotonNetwork.Instantiate(DefalutWeapenprefab, this.transform.position + new Vector3(0, 1, 0) + this.transform.forward, transform.rotation*Quaternion.Euler(0.0f, 0.0f, 90.0f)*Quaternion.Euler(90.0f, 0.0f,0.0f));
                 // 武器旋转表示攻击动作
             }
