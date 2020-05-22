@@ -15,9 +15,11 @@ namespace Com.Glassblade.Group1
         private playersData[] pB;
         private GameObject[] teamA;
         private GameObject[] teamB;
+        private AudioSystem audioSystem;
 
         void Start()
         {
+            audioSystem = (AudioSystem)FindObjectOfType(typeof(AudioSystem));
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             if (player)
             {
@@ -103,14 +105,11 @@ namespace Com.Glassblade.Group1
                 {
                     case true: 
                         GameObject.Find("Title").GetComponentInChildren<Text>().text = "失败";
-                        AudioSource music;
-                        music = transform.GetComponentsInChildren<AudioSource>()[1];
-                        music.Play();
+                        audioSystem.PlayEndMusic(0);
                         break;
                     case false: 
                         GameObject.Find("Title").GetComponentInChildren<Text>().text = (allKill0 == allKill1) ? "平局" : "胜利";
-                        music = transform.GetComponentsInChildren<AudioSource>()[0];
-                        music.Play();
+                        audioSystem.PlayEndMusic(1);
                         break;
                 }
             }
@@ -123,17 +122,14 @@ namespace Com.Glassblade.Group1
                 {
                     case true:
                         GameObject.Find("Title").GetComponentInChildren<Text>().text = "失败";
-                        AudioSource music;
-                        music = transform.GetComponentsInChildren<AudioSource>()[1];
-                        music.Play();
+                        audioSystem.PlayEndMusic(0);
                         break;
 
                     case false:
                         GameObject.Find("Title").GetComponentInChildren<Text>().text =
                     (GameObject.Find("OData").GetComponentInChildren<ODataStore>().scoreA == GameObject.Find("OData").GetComponentInChildren<ODataStore>().scoreB) ?
                     "平局" : "胜利";
-                        music = transform.GetComponentsInChildren<AudioSource>()[0];
-                        music.Play(); 
+                        audioSystem.PlayEndMusic(1);
                         break;
                 }
             }

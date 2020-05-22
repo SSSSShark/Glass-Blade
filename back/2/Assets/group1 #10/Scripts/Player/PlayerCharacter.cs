@@ -184,7 +184,7 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
             {
                 // 武器出现位置
 
-                 //PlayAudio(7, true);    //bug here
+                 PlayAudio(7, true);    //bug here
                 
                 
                 
@@ -227,12 +227,15 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
         }
         Debug.Log("[PlayAudio] We are the owner, play audio, index = " + index);
         AudioSource music = transform.GetComponentsInChildren<AudioSource>()[index];
-        music.Play();
-
-        if (RpcRequired)
+        if (music.isActiveAndEnabled)
         {
-            Debug.Log("[PlayAudio] RpcRequired flag set, send RPC to other client.");
-            photonView.RPC("PlayerAudioOnPlayer", RpcTarget.Others, index);
+            music.Play();
+
+            if (RpcRequired)
+            {
+                Debug.Log("[PlayAudio] RpcRequired flag set, send RPC to other client.");
+                photonView.RPC("PlayerAudioOnPlayer", RpcTarget.Others, index);
+            }
         }
     }
 
