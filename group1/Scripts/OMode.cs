@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 namespace Com.Glassblade.Group1
 {
-    public class OccupyMode : MonoBehaviour
+    public class OMode : MonoBehaviour
     {
         // 占据队伍结果 null, 0, 1
         public int? team;
@@ -15,11 +15,11 @@ namespace Com.Glassblade.Group1
         // 玩家列表
         ArrayList Players;
         // 计数玩家数量，先入为主
-        public int hostPlayer;
+        private int hostPlayer;
         // 计数玩家数量，后入为客
-        public int guidePlayer;
+        private int guidePlayer;
         // 圈内玩家总人数
-        public int playerCnt;
+        private int playerCnt;
 
         // 占领倒计时,留为可调时间
         public int occupyCountDown;
@@ -27,7 +27,6 @@ namespace Com.Glassblade.Group1
         private bool stoped;
         // 倒计时中间时间
         public float currentTime;
-
         //add by wmj
         //占领加分幅度
         public int scoreInc;
@@ -80,16 +79,19 @@ namespace Com.Glassblade.Group1
                 }
                 else
                 {
+                    if(currentTime<0)
+                    {
+                        //add by wmj,modify by Via Cytus
+                        //这时点里玩家应全加分
+                        foreach (OCharacterBehavior p in Players)
+                        {
+                            p.score += scoreInc;
+                        }
+                        //wmj ends
+                    }
                     currentTime = 0;
                     // 倒计时结束，占领
                     team = tempTeam;
-                    //add by wmj
-                    //这时点里玩家应全加分
-                    foreach(OCharacterBehavior p in Players)
-                    {
-                        p.score += scoreInc;
-                    }
-                    //wmj ends
                 }
             }
         }
