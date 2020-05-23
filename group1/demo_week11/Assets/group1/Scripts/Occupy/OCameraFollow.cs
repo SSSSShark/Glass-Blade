@@ -12,9 +12,9 @@ namespace Com.Glassblade.Group1
         //玩家
         private Transform PlayerTrans;
         //相机高度
-        public float Camera_Height = 25;
+        public float Camera_Height = 20;
         //相机距离
-        public float Camera_Distance = 25;
+        public float Camera_Distance = 10;
         //队伍
         public int team;
 
