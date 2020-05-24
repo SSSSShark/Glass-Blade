@@ -154,10 +154,10 @@ MonoBehaviour:
   photonviewOwner: {fileID: 0}
   friendlyFire: 0
   Pc: {fileID: 0}
-  destroyTime: 0.5
+  destroyTime: 0.2
   initPos: {x: 0, y: 0, z: 0}
   initForward: {x: 0, y: 0, z: 0}
-  AttackDistance: 4
+  AttackDistance: 6
 --- !u!54 &255749503043526850
 Rigidbody:
   m_ObjectHideFlags: 0

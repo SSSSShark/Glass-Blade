@@ -157,7 +157,7 @@ MonoBehaviour:
   destroyTime: 0.5
   initPos: {x: 0, y: 0, z: 0}
   initForward: {x: 0, y: 0, z: 0}
-  daggerAttackDistance: 6
+  daggerAttackDistance: 8
 --- !u!54 &-5429743788706363306
 Rigidbody:
   m_ObjectHideFlags: 0
