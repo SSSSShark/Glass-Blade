@@ -5748,11 +5748,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackdelaytime:
-  - 0.5
-  - 0.5
-  - 0.5
-  - 0.5
-  - 0.5
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
   muzzle: {fileID: 4140772465482480, guid: 8108926c706399345ba00612988acd5f, type: 3}
   attackTime: 1
   isAlive: 1
