@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PhotonServerSettings
   m_EditorClassIdentifier: 
   AppSettings:
-    AppIdRealtime: 4d198c9a-1435-44fc-8d3b-4daaf7677f3b
+    AppIdRealtime: 010e129e-c01f-49ee-ab82-656775d3075a
     AppIdChat: 
     AppIdVoice: 
     AppVersion: 
@@ -25,8 +25,8 @@ MonoBehaviour:
     AuthMode: 0
     EnableLobbyStatistics: 0
     NetworkLogging: 1
-  DevRegion: cn
-  PunLogging: 0
+  DevRegion: 
+  PunLogging: 2
   EnableSupportLogger: 0
   RunInBackground: 1
   StartInOfflineMode: 0
@@ -47,5 +47,5 @@ MonoBehaviour:
   - UpdateScore
   - UpdateWeaponStatus
   DisableAutoOpenWizard: 1
-  ShowSettings: 1
-  DevRegionSetOnce: 1
+  ShowSettings: 0
+  DevRegionSetOnce: 0

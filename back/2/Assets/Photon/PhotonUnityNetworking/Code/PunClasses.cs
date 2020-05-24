@@ -199,11 +199,6 @@ namespace Photon.Pun
                 return this.pvCache;
             }
         }
-
-        public void OnJoinedLobby()
-        {
-            throw new NotImplementedException();
-        }
     }
 
 
