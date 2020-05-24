@@ -5,10 +5,12 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
+using Photon.Realtime;
+using Com.MyCompany.MyGame;
 
 namespace Com.Glassblade.Group1
 {
-    public class ShowTheResult : MonoBehaviourPun
+    public class ShowTheResult : MonoBehaviourPunCallbacks
     {
         private playersData[] p;
         private playersData[] pA;
@@ -16,6 +18,7 @@ namespace Com.Glassblade.Group1
         private GameObject[] teamA;
         private GameObject[] teamB;
         private AudioSystem audioSystem;
+        private bool isConnecting;
 
         void Start()
         {
@@ -103,11 +106,11 @@ namespace Com.Glassblade.Group1
                 }
                 switch (allKill0 < allKill1)
                 {
-                    case true: 
+                    case true:
                         GameObject.Find("Title").GetComponentInChildren<Text>().text = "失败";
                         audioSystem.PlayEndMusic(0);
                         break;
-                    case false: 
+                    case false:
                         GameObject.Find("Title").GetComponentInChildren<Text>().text = (allKill0 == allKill1) ? "平局" : "胜利";
                         audioSystem.PlayEndMusic(1);
                         break;
@@ -141,5 +144,45 @@ namespace Com.Glassblade.Group1
         {
 
         }
+
+        #region Public Methods
+
+        public void ExitGames()
+        {
+            PhotonNetwork.Disconnect();
+            PhotonNetwork.ConnectUsingSettings();
+
+            //if (!PhotonNetwork.IsConnected)
+            //{
+            //    PhotonNetwork.LoadLevel(0);
+            //    //PhotonNetwork.ConnectUsingSettings();
+
+            //}
+            //else
+            //{
+            //    PhotonNetwork.JoinLobby();
+            //}
+            isConnecting = true;
+        }
+
+        public override void OnJoinedLobby()
+        {
+            PhotonNetwork.LoadLevel("Lobby");
+            Debug.Log("lobby loaded");
+        }
+
+        public override void OnConnectedToMaster()
+        {
+            if (isConnecting)
+            {
+                PhotonNetwork.JoinLobby();
+                isConnecting = false;
+            }
+            Debug.Log("PUN Basics Tutorial/Launcher: OnConnectedToMaster() was called by PUN");
+        }
+
+        #endregion
     }
+
+
 }

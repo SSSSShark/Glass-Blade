@@ -29,16 +29,10 @@ namespace Com.Glassblade.Group1
         {
             //分数+1
             score++;
-            if (score >= 10)
-            {
-                //设置分数文本
-                scoreText.text = score.ToString();
-            }
-            else
-            {
-                //设置分数文本
-                scoreText.text = "0" + score.ToString();
-            }
+
+            //设置分数文本
+            scoreText.text = score.ToString();
+
         }
     }
 }

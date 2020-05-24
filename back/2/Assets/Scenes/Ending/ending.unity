@@ -643,50 +643,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1432975654}
     m_Modifications:
-    - target: {fileID: 11639523075795909, guid: 75e258dfd5254334ebcb792addd5e91d,
-        type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
+    - target: {fileID: 1864101798, guid: 75e258dfd5254334ebcb792addd5e91d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1432975655}
     - target: {fileID: 213400850618543455, guid: 75e258dfd5254334ebcb792addd5e91d,
         type: 3}
       propertyPath: m_Name
       value: Panel 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 811764980038504817, guid: 75e258dfd5254334ebcb792addd5e91d,
-        type: 3}
-      propertyPath: m_TagString
-      value: Team1
-      objectReference: {fileID: 0}
-    - target: {fileID: 964870996194503055, guid: 75e258dfd5254334ebcb792addd5e91d,
-        type: 3}
-      propertyPath: m_TagString
-      value: Team0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1357378334260690230, guid: 75e258dfd5254334ebcb792addd5e91d,
-        type: 3}
-      propertyPath: m_TagString
-      value: Team1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2554438473091902668, guid: 75e258dfd5254334ebcb792addd5e91d,
-        type: 3}
-      propertyPath: m_TagString
-      value: Team0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5246701270755765722, guid: 75e258dfd5254334ebcb792addd5e91d,
-        type: 3}
-      propertyPath: m_TagString
-      value: Team0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5832987326292812555, guid: 75e258dfd5254334ebcb792addd5e91d,
-        type: 3}
-      propertyPath: m_TagString
-      value: Team1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5885888577129091438, guid: 75e258dfd5254334ebcb792addd5e91d,
-        type: 3}
-      propertyPath: m_TagString
-      value: Team1
       objectReference: {fileID: 0}
     - target: {fileID: 6875061434610551767, guid: 75e258dfd5254334ebcb792addd5e91d,
         type: 3}
@@ -792,21 +756,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7402326516290861208, guid: 75e258dfd5254334ebcb792addd5e91d,
-        type: 3}
-      propertyPath: m_TagString
-      value: Team1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7427731300806013521, guid: 75e258dfd5254334ebcb792addd5e91d,
-        type: 3}
-      propertyPath: m_TagString
-      value: Team0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8550362250449041832, guid: 75e258dfd5254334ebcb792addd5e91d,
-        type: 3}
-      propertyPath: m_TagString
-      value: Team0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75e258dfd5254334ebcb792addd5e91d, type: 3}

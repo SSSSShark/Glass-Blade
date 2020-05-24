@@ -5907,6 +5907,7 @@ MonoBehaviour:
   modedpn: {fileID: 1602228867}
   friendlyFireTog: {fileID: 1579615776}
   timeText: {fileID: 2123386394}
+  timeTextImg: {fileID: 210490573}
   mode: 0
   friendlyFire: 0
   setTime: 8

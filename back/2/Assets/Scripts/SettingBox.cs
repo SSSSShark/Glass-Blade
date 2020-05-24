@@ -24,6 +24,7 @@ public class SettingBox : MonoBehaviour
     public Dropdown modedpn;
     public Toggle friendlyFireTog;
     public Text timeText;
+    public Image timeTextImg;
 
     #endregion
 
@@ -110,10 +111,20 @@ public class SettingBox : MonoBehaviour
         {
             case GameMode.Normal:
                 tmpmode = GameMode.Normal;
+                timeDownbtn.GetComponent<Button>().enabled = true;
+                timeUpbtn.GetComponent<Button>().enabled = true;
+                timeDownbtn.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f);
+                timeUpbtn.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f);
+                timeTextImg.color = new Color(1.0f, 1.0f, 1.0f);
                 Debug.Log("select: Normal");
                 break;
             case GameMode.Occupation:
                 tmpmode = GameMode.Occupation;
+                timeDownbtn.GetComponent<Button>().enabled = false;
+                timeUpbtn.GetComponent<Button>().enabled = false;
+                timeDownbtn.GetComponent<Image>().color = new Color(181.0f / 255.0f, 181.0f / 255f, 181.0f / 255.0f);
+                timeUpbtn.GetComponent<Image>().color = new Color(181.0f / 255.0f, 181.0f / 255f, 181.0f / 255.0f);
+                timeTextImg.color = new Color(181.0f / 255.0f, 181.0f / 255f, 181.0f / 255.0f);
                 Debug.Log("select: Occupation");
                 break;
         }
