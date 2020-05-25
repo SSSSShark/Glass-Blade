@@ -1,0 +1,120 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Sword_Alt1
+  m_Shader: {fileID: 4800000, guid: bf3a649ce4d9ef5439e7711e8c169da2, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 0
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _Base_Color_Texture:
+        m_Texture: {fileID: 2800000, guid: 6ec0c02483ed19d408f8f5ae43968551, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Base_Grey_Texture:
+        m_Texture: {fileID: 2800000, guid: aa80cea99838c3144b885d1505ec166e, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _Base_Gloss: 0.872
+    - _Base_Metalness: 0.859
+    - _BumpScale: 1
+    - _Col13B_Metalness: 0
+    - _Col1R_Gloss: 1
+    - _Col1R_Metalness: 1
+    - _Col2G_Gloss: 0.084
+    - _Col2G_Metalness: 0.098
+    - _Col3B_Gloss: 0.454
+    - _Col3B_Metalness: 0.899
+    - _Col4C_Gloss: 0.751
+    - _Col4C_Metalness: 0.758
+    - _Col5M_Gloss: 0.731
+    - _Col5M_Metalness: 0.731
+    - _Col6Y_Gloss: 0.785
+    - _Col6Y_Metalness: 0.737
+    - _ColorReplacingWeight: 0.37
+    - _Cutoff: 0.5
+    - _DebugVertColor: 0
+    - _DetailNormalMapScale: 1
+    - _DstBlend: 0
+    - _EmissiveAmount: 0.287
+    - _GlossMapScale: 1
+    - _Glossiness: 0.5
+    - _GlossyReflections: 1
+    - _GreyReplacingWeight: 0.39
+    - _Metallic: 0
+    - _Mode: 0
+    - _OcclusionStrength: 1
+    - _Parallax: 0.02
+    - _Range: 0.317
+    - _Range1: 0.2
+    - _SmoothnessTextureChannel: 0
+    - _Soften: 0.222
+    - _Soften1: 0.5
+    - _SpecularHighlights: 1
+    - _SrcBlend: 1
+    - _UVSec: 0
+    - _ZWrite: 1
+    - __dirty: 0
+    m_Colors:
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 0}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color1R: {r: 0.60294116, g: 0.57799184, b: 0.49653977, a: 0}
+    - _Color2G: {r: 0.08088237, g: 0.059997328, b: 0.04103591, a: 0}
+    - _Color3B: {r: 0.7941176, g: 0.4113948, b: 0.16349483, a: 0}
+    - _Color4C: {r: 0, g: 0.7103448, b: 1, a: 0}
+    - _Color5M: {r: 0.36202422, g: 0.66153806, b: 0.9117647, a: 0}
+    - _Color5Y: {r: 0.9191176, g: 0.8467814, b: 0.2635705, a: 0}
+    - _Color6Y: {r: 0.9191176, g: 0.8467814, b: 0.2635705, a: 0}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
