@@ -41,6 +41,12 @@ namespace Com.MyCompany.MyGame
             // #Critical
             // this makes sure we can use PhotonNetwork.LoadLevel() on the master client and all clients in the same room sync their level automatically
             PhotonNetwork.AutomaticallySyncScene = true;
+
+            // set no stack trace for Debug.Log
+            Application.SetStackTraceLogType(LogType.Log, StackTraceLogType.None);
+
+            // set to only trace script for Debug.Error
+            Application.SetStackTraceLogType(LogType.Error, StackTraceLogType.ScriptOnly);
         }
 
 
