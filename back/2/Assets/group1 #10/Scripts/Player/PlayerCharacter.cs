@@ -234,7 +234,7 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
             if (RpcRequired)
             {
                 Debug.Log("[PlayAudio] RpcRequired flag set, send RPC to other client.");
-                photonView.RPC("PlayerAudioOnPlayer", RpcTarget.Others, index);
+                photonView.RPC("PlayAudioOnPlayer", RpcTarget.Others, index);
             }
         }
     }
