@@ -60,7 +60,7 @@ namespace Com.MyCompany.MyGame
             string value = GetComponent<InputField>().text;
             if (string.IsNullOrEmpty(value))
             {
-                Debug.LogError("Player Name is null or empty");
+                Debug.LogError("[PlayerNameInputField:SetPlayerName()] Player Name is null or empty");
                 return;
             }
             PhotonNetwork.LocalPlayer.NickName = value;

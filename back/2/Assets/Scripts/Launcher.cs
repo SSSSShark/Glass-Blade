@@ -109,7 +109,7 @@ namespace Com.MyCompany.MyGame
                 //PhotonNetwork.JoinRandomRoom();
                 isConnecting = false;
             }
-            Debug.Log("PUN Basics Tutorial/Launcher: OnConnectedToMaster() was called by PUN");
+            Debug.Log("[Launcher:OnConnectedToMaster()] Called by PUN");
         }
 
 
@@ -117,14 +117,14 @@ namespace Com.MyCompany.MyGame
         {
             base.OnJoinedLobby();
             PhotonNetwork.LoadLevel("Lobby");
-            Debug.Log("lobby loaded");
+            Debug.Log("[Launcher:OnJoinedLobby()] Lobby loaded");
         }
 
         public override void OnDisconnected(DisconnectCause cause)
         {
             progressLabel.SetActive(false);
             controlPanel.SetActive(true);
-            Debug.LogWarningFormat("PUN Basics Tutorial/Launcher: OnDisconnected() was called by PUN with reason {0}", cause);
+            Debug.LogWarningFormat("[Launcher:OnDisconnected()] Called by PUN with reason {0}", cause);
         }
 
 

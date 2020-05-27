@@ -57,8 +57,6 @@ public class LobbyController : MonoBehaviourPunCallbacks
     {
         base.OnRoomListUpdate(roomList);
 
-        Debug.Log("OnRoomListUpdate");
-
         GameObject[] a = GameObject.FindGameObjectsWithTag("OneRoom");
         foreach (var r in a)
         {
@@ -104,7 +102,7 @@ public class LobbyController : MonoBehaviourPunCallbacks
 
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
-        Debug.Log("PUN Basics Tutorial/Launcher:OnJoinRandomFailed() was called by PUN. No random room available, so we create one.\nCalling: PhotonNetwork.CreateRoom");
+        Debug.Log("[LobbyController:OnJoinRandomFailed()] No random room available, so we create one.\nCalling: PhotonNetwork.CreateRoom");
 
         // #Critical: we failed to join a random room, maybe none exists or they are all full. No worries, we create a new room.
         PhotonNetwork.CreateRoom(null, new RoomOptions { MaxPlayers = maxPlayersPerRoom });
@@ -113,13 +111,13 @@ public class LobbyController : MonoBehaviourPunCallbacks
     public override void OnJoinRoomFailed(short returnCode, string message)
     {
         base.OnJoinRoomFailed(returnCode, message);
-        Debug.Log("Failed to join room");
+        Debug.Log("[LobbyController:OnJoinRoomFailed()] Failed to join room");
         PhotonNetwork.JoinLobby();
     }
 
     public override void OnJoinedRoom()
     {
-        Debug.Log(PhotonNetwork.CurrentRoom.ToStringFull());
+        Debug.Log("[LobbyController:OnJoinRoom()] Joined " + PhotonNetwork.CurrentRoom.ToStringFull());
 
         if (PhotonNetwork.InLobby)
         {
@@ -129,19 +127,19 @@ public class LobbyController : MonoBehaviourPunCallbacks
         // #Critical: We only load if we are the first player, else we rely on `PhotonNetwork.AutomaticallySyncScene` to sync our instance scene.
         if (PhotonNetwork.CurrentRoom.PlayerCount == 1)
         {
-            Debug.Log("We load the 'Grouping Room' ");
+            Debug.Log("[LobbyController:OnJoinedRoom()] We load the 'Grouping Room' ");
 
             // #Critical
             // Load the Room Level.
             PhotonNetwork.LoadLevel("Grouping Room");
         }
-        Debug.Log("PUN Basics Tutorial/Launcher: OnJoinedRoom() called by PUN. Now this client is in a room.");
+        Debug.Log("[LobbyController:OnJoinedRoom()] Now this client is in a room.");
     }
 
     public override void OnLeftLobby()
     {
         base.OnLeftLobby();
-        Debug.Log("Left the lobby");
+        Debug.Log("[LobbyController:OnLeftLobby()] Left the lobby");
         PhotonNetwork.LoadLevel(0);
     }
 
@@ -151,7 +149,7 @@ public class LobbyController : MonoBehaviourPunCallbacks
 
     public void CreateRoom()
     {
-        Debug.Log("Create Room");
+        Debug.Log("[LobbyController:CreateRoom()] Create Room");
         if (PhotonNetwork.IsConnected)
         {
             waitingPanel.SetActive(true);
@@ -162,7 +160,7 @@ public class LobbyController : MonoBehaviourPunCallbacks
         }
         else
         {
-            Debug.LogError("No connection");
+            Debug.LogError("[LobbyController:CreateRoom()] ERROR: No connection");
         }
     }
 

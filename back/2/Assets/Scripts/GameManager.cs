@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
     {
         if (playerPrefeb == null)
         {
-            Debug.LogError("Missing playerPrefeb reference");
+            Debug.LogError("[GameManager:Start()] BUG: Missing playerPrefeb reference");
         }
         else
         {
@@ -71,7 +71,7 @@ public class GameManager : MonoBehaviour
 
                 // Assign the player to the weapon refresh places
                 int nChild = weaponSystem.transform.childCount;
-                Debug.Log("GameManager: there are " + nChild + " fresh places");
+                Debug.Log("[GameManager:Start()] there are " + nChild + " fresh places");
                 //thePlayer.GetComponent<CharacterBehavior>().touch = joystick;
                 GameObject[] children = new GameObject[nChild];
                 WeaponRefresh wr;
@@ -81,7 +81,7 @@ public class GameManager : MonoBehaviour
                     children[i] = weaponSystem.transform.GetChild(i).gameObject;
                     if (wr = children[i].GetComponent<WeaponRefresh>())
                     {
-                        Debug.Log("GameManager: player assigned");
+                        // Debug.Log("[GameManager:Start()] player assigned");
                         wr.player = thePlayer.gameObject;
                     }
                 }

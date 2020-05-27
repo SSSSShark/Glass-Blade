@@ -116,7 +116,7 @@ public class SettingBox : MonoBehaviour
                 timeDownbtn.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f);
                 timeUpbtn.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f);
                 timeTextImg.color = new Color(1.0f, 1.0f, 1.0f);
-                Debug.Log("select: Normal");
+                Debug.Log("[SettingBox:DropDownSelect()] Normal Mode selected.");
                 break;
             case GameMode.Occupation:
                 tmpmode = GameMode.Occupation;
@@ -125,7 +125,7 @@ public class SettingBox : MonoBehaviour
                 timeDownbtn.GetComponent<Image>().color = new Color(181.0f / 255.0f, 181.0f / 255f, 181.0f / 255.0f);
                 timeUpbtn.GetComponent<Image>().color = new Color(181.0f / 255.0f, 181.0f / 255f, 181.0f / 255.0f);
                 timeTextImg.color = new Color(181.0f / 255.0f, 181.0f / 255f, 181.0f / 255.0f);
-                Debug.Log("select: Occupation");
+                Debug.Log("[SettingBox:DropDownSelect()] Occupation Mode selected");
                 break;
         }
     }

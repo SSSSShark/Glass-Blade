@@ -43,14 +43,14 @@ public class AudioSystem : MonoBehaviour
     {
         if (scene.name == "NormalMode")
         {
-            Debug.Log("[AudioSystem] Normal mode loaded, play musicCompeting.");
+            Debug.Log("[AudioSystem:OnSceneLoaded()] Normal mode loaded, play musicCompeting.");
             musicNotCompeting.Stop();
             musicCompeting.Play();
             SceneNumber = 0;
         }
         else if (scene.name == "OccupationPattern")
         {
-            Debug.Log("[AudioSystem] Occupation mode loaded, play musicCompeting");
+            Debug.Log("[AudioSystem:OnSceneLoaded()] Occupation mode loaded, play musicCompeting");
             musicNotCompeting.Stop();
             musicCompeting.Play();
             SceneNumber = 1;
@@ -58,12 +58,12 @@ public class AudioSystem : MonoBehaviour
         else if (scene.name == "ending")
         {
             // in the ending, we need to play the ending music first, then the non-competing music
-            Debug.Log("[AudioSystem] Ending mode loaded, another method should handle this.");
+            Debug.Log("[AudioSystem:OnSceneLoaded()] Ending mode loaded, another method should handle this.");
             SceneNumber = 2;
         }
         else
         {
-            Debug.Log("[AudioSystem] Other scene loaded, try to play musicNonCompeting (if not already playing)");
+            Debug.Log("[AudioSystem:OnSceneLoaded()] Other scene loaded, try to play musicNonCompeting (if not already playing)");
 
             // stop competing music and all other musics
             musicCompeting.Stop();
@@ -111,7 +111,7 @@ public class AudioSystem : MonoBehaviour
         }
         else
         {
-            Debug.LogError("[AudioSystem] BUG: PlayEndMusic Called with wrong status!");
+            Debug.LogError("[AudioSystem:PlayEndMusic()] BUG: PlayEndMusic Called with wrong status!");
         }
     }
 
@@ -123,7 +123,7 @@ public class AudioSystem : MonoBehaviour
     {
         if (SceneNumber == 2 && !musicFailed.isPlaying && !musicSucceeded.isPlaying)
         {
-            Debug.Log("[AudioSystem] Start playing BGM after win/lose music.");
+            Debug.Log("[AudioSystem:Update()] Start playing BGM after win/lose music.");
             musicNotCompeting.Play();
         }
     }
