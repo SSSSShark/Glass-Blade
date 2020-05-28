@@ -71,7 +71,7 @@ public class WeaponRefresh : MonoBehaviourPunCallbacks
     {
       Debug.Log("[WeaponRefresh:NewWeapon()] Master client: new weapon");
       int t = Random.Range(1, 5);
-      Debug.Log("[WeaponRefresh:NewWeapon()] RPC start");
+      // Debug.Log("[WeaponRefresh:NewWeapon()] RPC start");
       photonView.RPC("UpdateWeaponStatus", RpcTarget.All, t, true);
       weaponstatus = t;
     }

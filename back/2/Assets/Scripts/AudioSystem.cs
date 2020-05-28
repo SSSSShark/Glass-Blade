@@ -41,6 +41,7 @@ public class AudioSystem : MonoBehaviour
     /// <param name="mode">Scene load mode</param>
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        Debug.Log("[AudioSystem:OnSceneLoaded()] New scene loaded.");
         if (scene.name == "NormalMode")
         {
             Debug.Log("[AudioSystem:OnSceneLoaded()] Normal mode loaded, play musicCompeting.");

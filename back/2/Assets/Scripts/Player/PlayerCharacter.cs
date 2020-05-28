@@ -246,7 +246,7 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
     /// </summary>
     public void TakeDamage(int srcviewID)
     {
-        if (!isProtected && !isJustAlive && isAlive)
+        if (!isProtected && !isJustAlive && !gamePlayer.GetComponent<CharacterBehavior>().invincible && isAlive)
         {
             isAlive = false;
             deathTime += 1;

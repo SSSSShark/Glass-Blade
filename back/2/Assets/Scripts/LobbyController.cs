@@ -22,6 +22,7 @@ public class LobbyController : MonoBehaviourPunCallbacks
     public GameObject waitingPanel;
     public GameObject roomItem;
 
+
     #endregion
 
     #region MonoBehaviour CallBacks
@@ -33,7 +34,6 @@ public class LobbyController : MonoBehaviourPunCallbacks
             PhotonNetwork.JoinLobby();
         }
         waitingPanel.SetActive(false);
-
     }
 
     // Update is called once per frame

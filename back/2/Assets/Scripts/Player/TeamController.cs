@@ -135,7 +135,7 @@ public class TeamController : MonoBehaviourPunCallbacks
     #region PUN Callback
     public override void OnLeftRoom()
     {
-        Debug.Log("[TeamController:OnLeftRoom()] " + photonView.Owner.NickName + " Left the room");
+        Debug.Log("[TeamController:OnLeftRoom()] " + PhotonNetwork.NickName + " Left the room");
         if (PhotonNetwork.IsConnected)
         {
             PhotonNetwork.JoinLobby();

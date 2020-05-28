@@ -114,10 +114,12 @@ public class CharacterBehavior : MonoBehaviourPun, IPunObservable
         // 隐身技能生效
         else if (photonView.Owner.CustomProperties["team"] == PhotonNetwork.LocalPlayer.CustomProperties["team"])
         {//是队友
+            Debug.Log("[CharacterBehavior:RefreshTransparent()] Set team mate " + photonView.Owner.NickName + " invisible.");
             SetTransparent(0.5f);
         }
         else
         {//不是队友
+            Debug.Log("[CharacterBehavior:RefreshTransparent()] Enermy " + photonView.Owner.NickName + " invisible.");
             SetTransparent(0f);
         }
     }
