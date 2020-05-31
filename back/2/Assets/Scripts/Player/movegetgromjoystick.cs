@@ -9,6 +9,7 @@ public class movegetgromjoystick : MonoBehaviourPunCallbacks
     #region Public Fields
 
     public Joystick touch;
+    public bool moveEnable = true;
     public float speed = 25;
     public Animator ani;
 
@@ -65,10 +66,14 @@ public class movegetgromjoystick : MonoBehaviourPunCallbacks
         {
             return;
         }
+        //if (!moveEnable)
+        //{
+        //    return;
+        //}
 
         Vector3 direction = new Vector3(touch.Movement.x, 0, touch.Movement.y);
         CharacterController controller = GetComponent<CharacterController>();
-        if (direction != Vector3.zero)
+        if (direction != Vector3.zero && moveEnable)
         {
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(direction), Time.deltaTime * 10);
             transform.Translate(Vector3.forward * Time.deltaTime * speed);

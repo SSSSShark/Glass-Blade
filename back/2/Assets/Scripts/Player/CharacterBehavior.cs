@@ -130,6 +130,12 @@ public class CharacterBehavior : MonoBehaviourPun, IPunObservable
     /// </summary>
     void Update()
     {
+        // 技能更新失败？
+        if (skillNumber != (int)GameObject.Find("SettingStore").GetComponent<SettingStore>().myskill)
+        {
+            skillNumber = (int)GameObject.Find("SettingStore").GetComponent<SettingStore>().myskill;
+        }
+
         //移动
 
         //获取角色控制插件

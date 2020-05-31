@@ -8,7 +8,7 @@ using Com.Glassblade.Group1;
 
 public class PlayerCharacter : MonoBehaviourPun, IPunObservable
 {
-    public List<float>attackdelaytime;
+    public List<float> attackdelaytime;
     private int viewID;
     /*************** 李晨昊 begin **************************/
     public Transform muzzle;  //辅助武器旋转变量
@@ -65,6 +65,8 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
     public GameManager GM;
 
     public GameObject gamePlayer;
+
+    public Button skillBtn;
 
     #endregion
 
@@ -160,14 +162,14 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
             return;
         }
 
-        this.gameObject.GetComponent<movegetgromjoystick>().enabled = false;
+        this.gameObject.GetComponent<movegetgromjoystick>().moveEnable = false;
 
         attacking = true;
         if (photonView.IsMine)
         {
             if (isHoldWeapon)
             {
-                weaponInstance = PhotonNetwork.Instantiate(fireWeapenprefab[holdWeaponIndex-1], this.transform.position+ new Vector3(0, 1, 0) + this.transform.forward, transform.rotation*Quaternion.Euler(0.0f, 0.0f, 90.0f) * Quaternion.Euler(90.0f, 0.0f, 0.0f));
+                weaponInstance = PhotonNetwork.Instantiate(fireWeapenprefab[holdWeaponIndex - 1], this.transform.position + new Vector3(0, 1, 0) + this.transform.forward, transform.rotation * Quaternion.Euler(0.0f, 0.0f, 90.0f) * Quaternion.Euler(90.0f, 0.0f, 0.0f));
                 Debug.Log("[PlayCharacter:Attack()] Player " + photonView.Owner.NickName + " Attack");
 
                 // play sound
@@ -184,11 +186,11 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
             {
                 // 武器出现位置
 
-                 PlayAudio(7, true);    //bug here
-                
-                
-                
-                weaponInstance = PhotonNetwork.Instantiate(DefalutWeapenprefab, this.transform.position + new Vector3(0, 1, 0) + this.transform.forward, transform.rotation*Quaternion.Euler(0.0f, 0.0f, 90.0f)*Quaternion.Euler(90.0f, 0.0f,0.0f));
+                PlayAudio(7, true);    //bug here
+
+
+
+                weaponInstance = PhotonNetwork.Instantiate(DefalutWeapenprefab, this.transform.position + new Vector3(0, 1, 0) + this.transform.forward, transform.rotation * Quaternion.Euler(0.0f, 0.0f, 90.0f) * Quaternion.Euler(90.0f, 0.0f, 0.0f));
                 // 武器旋转表示攻击动作
             }
             //Debug.Log(this.photonView.ViewID);
@@ -211,7 +213,7 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
     void RefreshAttack()
     {
         attacking = false;
-        this.gameObject.GetComponent<movegetgromjoystick>().enabled = true;
+        this.gameObject.GetComponent<movegetgromjoystick>().moveEnable = true;
     }
 
     /// <summary>
@@ -252,10 +254,10 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
             deathTime += 1;
             PhotonView photonView = PhotonView.Find(srcviewID);
             //photonView.RPC("UpdateKillTime", RpcTarget.All, 1);
-            if (OM)
-            {
-                this.photonView.RPC("CallDeathEvent", RpcTarget.MasterClient);
-            }
+            //if (OM)
+            //{
+            //    this.photonView.RPC("CallDeathEvent", RpcTarget.MasterClient);
+            //}
             Death();
         }
     }
@@ -313,9 +315,12 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
         InvokeRepeating("DeathRotate", 1f, (float)(2.0 / DeathRotateTimes));
         //deathevent.Invoke(this); // 占点模式引发
 
+
         if (photonView.IsMine)
         {
-            this.gameObject.GetComponent<movegetgromjoystick>().enabled = false;
+            this.gameObject.GetComponent<movegetgromjoystick>().moveEnable = false;
+            skillBtn.enabled = false;
+            skillBtn.transform.GetComponentInChildren<Image>().color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
             if ((TeamController.Team)PhotonNetwork.LocalPlayer.CustomProperties["team"] == TeamController.Team.TeamA)
             {
                 GameObject.FindGameObjectWithTag("ScoreB").GetComponent<Scores>().SendScoreInfo();
@@ -341,6 +346,9 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
         if (rotatedtimes >= DeathRotateTimes)
         {
             CancelInvoke("DeathRotate");
+            Vector3 CurPosition = transform.position;
+            CurPosition.y = -100;
+            transform.position = CurPosition;
         }
     }
 
@@ -395,7 +403,9 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
         {
             // Debug.Log("relive time = " + Time.time);
             PlayAudio(10, false);
-            this.gameObject.GetComponent<movegetgromjoystick>().enabled = true;
+            this.gameObject.GetComponent<movegetgromjoystick>().moveEnable = true;
+            skillBtn.enabled = true;
+            skillBtn.transform.GetComponentInChildren<Image>().color = new Color(1.0f, 1.0f, 1.0f);
             baw.setLive();
             isProtected = false;  // tt
             isAlive = true;

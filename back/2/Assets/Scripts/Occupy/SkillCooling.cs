@@ -60,6 +60,8 @@ public class SkillCooling : MonoBehaviour
         timeLast.text = "R";
         // 恢复倒计时时间为设定时间
         coolingTime = time;
+
+        skillBtn.transform.GetComponentInChildren<Image>().color = new Color(1.0f, 1.0f, 1.0f);
     }
 
     public void Click()

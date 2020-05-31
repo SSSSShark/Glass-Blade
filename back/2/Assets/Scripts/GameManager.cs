@@ -106,6 +106,8 @@ public class GameManager : MonoBehaviour
 
                 // assign the payer to the player charactor
                 thePlayer.GetComponent<PlayerCharacter>().gamePlayer = thePlayer;
+
+                thePlayer.GetComponent<PlayerCharacter>().skillBtn = gameSkillButton.GetComponent<Button>();
             }
             else
             {

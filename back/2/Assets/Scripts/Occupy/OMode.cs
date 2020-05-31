@@ -93,7 +93,7 @@ namespace Com.Glassblade.Group1
                             //这时点里玩家应全加分
                             foreach (PlayerCharacter p in Players)
                             {
-                                if((TeamController.Team)p.photonView.Controller.CustomProperties["team"] == team)
+                                if(p.photonView && (TeamController.Team)p.photonView.Controller.CustomProperties["team"] == team)
                                 {
                                     p.CallUpdateScore(p.photonView.Owner, scoreInc);
                                     //p.score += scoreInc;
@@ -135,7 +135,7 @@ namespace Com.Glassblade.Group1
 
                         //wmj ends
 
-                        // 玩家进入了未被占领或者被地方占领的点
+                        // 玩家进入了未被占领或者被敌方占领的点
                         if (team != playerTeam)
                         {
                             // 占领点内没有玩家
@@ -147,6 +147,8 @@ namespace Com.Glassblade.Group1
                                 tempTeam = playerTeam;
                                 // 开始计时
                                 stoped = false;
+                                //重新计时
+                                currentTime = (float)occupyCountDown;
                             }
                             else
                             {
