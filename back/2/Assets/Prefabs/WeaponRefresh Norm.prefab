@@ -32,7 +32,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4325482485012417045}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6646246176612002606
 MeshFilter:
@@ -228,7 +228,7 @@ GameObject:
   - component: {fileID: 4325482484812609144}
   - component: {fileID: 8425640104875984130}
   m_Layer: 0
-  m_Name: WeaponRefresh
+  m_Name: WeaponRefresh Norm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -345,9 +345,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3001681671908617438}
-  - {fileID: 7911387102920724042}
-  - {fileID: 9174944987093824722}
   - {fileID: 2524315123242692409}
+  - {fileID: 9174944987093824722}
+  - {fileID: 7911387102920724042}
   m_Father: {fileID: 4325482484812609143}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -383,7 +383,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4325482485012417045}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3470148809348059883
 MeshFilter:
