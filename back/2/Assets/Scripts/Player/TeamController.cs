@@ -385,6 +385,10 @@ public class TeamController : MonoBehaviourPunCallbacks
     ///       which is not yet implemented!
     public void LeaveRoom()
     {
+        if (GameObject.Find("AudioSystem"))
+        {
+            Destroy(GameObject.Find("AudioSystem"));
+        }
         PhotonNetwork.LeaveRoom();
     }
     #endregion

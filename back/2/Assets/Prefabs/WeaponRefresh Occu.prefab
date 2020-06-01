@@ -121,7 +121,7 @@ GameObject:
   - component: {fileID: 2502278162794694209}
   - component: {fileID: 2502278162794694208}
   m_Layer: 0
-  m_Name: WeaponRefresh 1
+  m_Name: WeaponRefresh Occu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -440,10 +440,10 @@ MeshCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2502278163407368558}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 0
   serializedVersion: 3
-  m_Convex: 1
+  m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 86b748f05f8ac924a9c74178cd3117eb, type: 3}
 --- !u!114 &2502278163407368556
