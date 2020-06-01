@@ -253,7 +253,11 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
             isAlive = false;
             deathTime += 1;
             PhotonView photonView = PhotonView.Find(srcviewID);
-            //photonView.RPC("UpdateKillTime", RpcTarget.All, 1);
+            //CallUpdateKillTime(photonView.Owner,1);
+            //if (!OM)
+            //{
+               // CallUpdateScore(photonView.Owner, 100);
+            //}
             //if (OM)
             //{
             //    this.photonView.RPC("CallDeathEvent", RpcTarget.MasterClient);
@@ -285,6 +289,7 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
     public void CallTakeDamage(Player targetPlayer, PhotonView srcview)
     {
         this.photonView.RPC("TakeDamage", targetPlayer, srcview.ViewID);
+        
     }
 
     // public void CallTakeDamage(Player targetplayer, PhotonView srcview)
@@ -468,25 +473,27 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
     // Start is called before the first frame update
     void Start()
     {
-        if (GameObject.Find("KDText"))
+        if (photonView.IsMine)
         {
-            KDtext = GameObject.Find("KDText").GetComponent<Text>();
+            if (GameObject.Find("KDText"))
+            {
+                KDtext = GameObject.Find("KDText").GetComponent<Text>();
+            }
+
+            cc = GetComponent<CharacterController>();
+            baw = GameObject.FindObjectOfType<BlackAndWhite>();
+            weapons = weaponObject.GetComponentsInChildren<Transform>();
+
+            Debug.Log("[PlayerCharacter:Start()] Resetting All weapons");
+            //foreach (Transform child in weapons) child.gameObject.SetActive(false);
+            for (int i = 1; i <= weaponKinds; i++)
+            {
+                weapons[i].gameObject.SetActive(false);
+            }
+
+            // set team
+            team = (TeamController.Team)PhotonNetwork.LocalPlayer.CustomProperties["team"];
         }
-
-        cc = GetComponent<CharacterController>();
-        baw = GameObject.FindObjectOfType<BlackAndWhite>();
-        weapons = weaponObject.GetComponentsInChildren<Transform>();
-
-        Debug.Log("[PlayerCharacter:Start()] Resetting All weapons");
-        //foreach (Transform child in weapons) child.gameObject.SetActive(false);
-        for (int i = 1; i <= weaponKinds; i++)
-        {
-            weapons[i].gameObject.SetActive(false);
-        }
-
-        // set team
-        team = (TeamController.Team)PhotonNetwork.LocalPlayer.CustomProperties["team"];
-
     }
 
     // Update is called once per frame
@@ -518,6 +525,7 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
             stream.SendNext(killTime);
             stream.SendNext(deathTime);
             stream.SendNext(score);
+            stream.SendNext((int)team);
         }
         else
         {
@@ -528,6 +536,7 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
             this.killTime = (int)stream.ReceiveNext();
             this.deathTime = (int)stream.ReceiveNext();
             this.score = (int)stream.ReceiveNext();
+            this.team = (TeamController.Team)stream.ReceiveNext();
         }
     }
     #endregion

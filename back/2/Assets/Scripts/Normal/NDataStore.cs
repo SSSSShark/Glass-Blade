@@ -29,15 +29,16 @@ namespace Com.Glassblade.Group1
         void Awake()
         {
             DontDestroyOnLoad(gameObject);
-            instance = this;
         }
 
         public void Refresh()
         {
+            instance = this;
             //玩家组件列表
             GameObject[] Players = null;
             //实例化玩家组件列表
             Players = GameObject.FindGameObjectsWithTag("Player");
+            Debug.Log(Players.Length);
             p = new playersData[Players.Length];
             // 将玩家的姓名、击杀次数、死亡次数、得分、队伍编号储存
             for (int i = 0; i < Players.Length; i++)

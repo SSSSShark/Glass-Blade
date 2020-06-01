@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{D6D2FDCA-EAE5-E795-5554-EEA4D389EA2D}</ProjectGuid>
+    <ProjectGuid>{DBBF88EF-28BE-1601-FDB9-524BB5193FA9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>PhotonWebSocket</AssemblyName>
@@ -67,10 +67,10 @@
     <Compile Include="Assets\Photon\PhotonLibs\WebSocket\WebSocket.cs" />
     <None Include="Assets\Photon\PhotonLibs\WebSocket\PhotonWebSocket.asmdef" />
     <Reference Include="UnityEditor.UI">
-      <HintPath>D:/Projects/Back/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>D:/3spring/software_egineer/git/Glass-Blade/back/2/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>D:/Projects/Back/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>D:/3spring/software_egineer/git/Glass-Blade/back/2/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>D:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -265,10 +265,10 @@
       <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/16.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
     <Reference Include="Photon3Unity3D">
-      <HintPath>D:/Projects/Back/Assets/Photon/PhotonLibs/Photon3Unity3D.dll</HintPath>
+      <HintPath>D:/3spring/software_egineer/git/Glass-Blade/back/2/Assets/Photon/PhotonLibs/Photon3Unity3D.dll</HintPath>
     </Reference>
     <Reference Include="websocket-sharp">
-      <HintPath>D:/Projects/Back/Assets/Photon/PhotonLibs/WebSocket/websocket-sharp.dll</HintPath>
+      <HintPath>D:/3spring/software_egineer/git/Glass-Blade/back/2/Assets/Photon/PhotonLibs/WebSocket/websocket-sharp.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>D:/Program Files/Unity/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>

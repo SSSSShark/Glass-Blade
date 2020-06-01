@@ -54,6 +54,7 @@ public abstract class Weapon : MonoBehaviour
                 }
                 Debug.Log("[Weapon:OnTriggerEnter()] Player " + target.photonView.Controller.NickName + " Takes damage.");
                 Pc.killTime++;
+                Pc.UpdateScore(100);
                 target.CallTakeDamage(target.photonView.Owner, photonviewOwner);
             }
         }

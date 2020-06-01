@@ -49,10 +49,11 @@ public class SettingBox : MonoBehaviour
         ok.onClick.AddListener(OnClickOk);
         cancel.onClick.AddListener(OnClickCancel);
         modedpn.onValueChanged.AddListener(DropDownSelect);
+        tmpsetTime = int.Parse(timeText.text);
 
         tmpmode = mode;
         tmpfriendlyFire = friendlyFire;
-        tmpsetTime = setTime;
+        setTime=tmpsetTime;
 
         settingstore.GetComponent<SettingStore>().setTime = setTime;
         settingstore.GetComponent<SettingStore>().friendlyFire = friendlyFire;
@@ -136,7 +137,7 @@ public class SettingBox : MonoBehaviour
 
     public void OnClickTimeUp()
     {
-        tmpsetTime = int.Parse(timeText.text);
+       
         tmpsetTime += 1;
         if (tmpsetTime > 1 && !timeDownbtn.activeInHierarchy)
         {

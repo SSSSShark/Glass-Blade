@@ -13,8 +13,8 @@ using Com.Glassblade.Group1;
 
 public class CountDown : MonoBehaviour
 {
+    private int minute;              //最大时间
     [SerializeField]
-    public int minute = 8;              //最大时间
     private int getTime;            //游戏剩余时间
     private float timer = 0;        //计帧
     public Text countTimeText;      //时间文本
@@ -23,7 +23,7 @@ public class CountDown : MonoBehaviour
     void Start()
     {
         minute = GameObject.Find("SettingStore").GetComponent<SettingStore>().setTime;
-        getTime = 60 * minute;      //获取游戏剩余时间
+        getTime =60 * minute;      //获取游戏剩余时间
         countTimeText = GetComponentInChildren<Text>();         //获取时间文本组件
     }
 

@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{4354E83A-A431-5A50-8E02-4CD7F78EF8AB}</ProjectGuid>
+    <ProjectGuid>{83C6603D-4418-24D4-4CF1-D007E700B380}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp-Editor</AssemblyName>
@@ -65,37 +65,37 @@
   <ItemGroup>
     <Compile Include="Assets\BrokenVector\LowPolyBrickHouses\Editor\ModelCustomizerInspector.cs" />
     <Reference Include="UnityEditor.TestRunner">
-      <HintPath>D:/Projects/Back/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
+      <HintPath>D:/3spring/software_egineer/git/Glass-Blade/back/2/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.TestRunner">
-      <HintPath>D:/Projects/Back/Library/ScriptAssemblies/UnityEngine.TestRunner.dll</HintPath>
+      <HintPath>D:/3spring/software_egineer/git/Glass-Blade/back/2/Library/ScriptAssemblies/UnityEngine.TestRunner.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline.Editor">
-      <HintPath>D:/Projects/Back/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+      <HintPath>D:/3spring/software_egineer/git/Glass-Blade/back/2/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
-      <HintPath>D:/Projects/Back/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+      <HintPath>D:/3spring/software_egineer/git/Glass-Blade/back/2/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>D:/Projects/Back/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>D:/3spring/software_egineer/git/Glass-Blade/back/2/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>D:/Projects/Back/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>D:/3spring/software_egineer/git/Glass-Blade/back/2/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-      <HintPath>D:/Projects/Back/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+      <HintPath>D:/3spring/software_egineer/git/Glass-Blade/back/2/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>D:/Projects/Back/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>D:/3spring/software_egineer/git/Glass-Blade/back/2/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
-      <HintPath>D:/Projects/Back/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+      <HintPath>D:/3spring/software_egineer/git/Glass-Blade/back/2/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>D:/Projects/Back/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>D:/3spring/software_egineer/git/Glass-Blade/back/2/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-      <HintPath>D:/Projects/Back/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>D:/3spring/software_egineer/git/Glass-Blade/back/2/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>D:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -290,13 +290,13 @@
       <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/16.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
     <Reference Include="Photon3Unity3D">
-      <HintPath>D:/Projects/Back/Assets/Photon/PhotonLibs/Photon3Unity3D.dll</HintPath>
+      <HintPath>D:/3spring/software_egineer/git/Glass-Blade/back/2/Assets/Photon/PhotonLibs/Photon3Unity3D.dll</HintPath>
     </Reference>
     <Reference Include="websocket-sharp">
-      <HintPath>D:/Projects/Back/Assets/Photon/PhotonLibs/WebSocket/websocket-sharp.dll</HintPath>
+      <HintPath>D:/3spring/software_egineer/git/Glass-Blade/back/2/Assets/Photon/PhotonLibs/WebSocket/websocket-sharp.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
-      <HintPath>D:/Projects/Back/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>
+      <HintPath>D:/3spring/software_egineer/git/Glass-Blade/back/2/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>D:/Program Files/Unity/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>
@@ -655,51 +655,51 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp.csproj">
-      <Project>{FA613E9D-E001-77D7-D841-12EF9C6356AD}</Project>
+      <Project>{A9DE3B74-8E7C-A465-19D4-C979F303D20D}</Project>
       <Name>Assembly-CSharp</Name>
     </ProjectReference>
     <ProjectReference Include="PhotonUnityNetworking.Utilities.PhotonPlayer.Editor.csproj">
-      <Project>{7467367A-BC62-CFC4-CFE6-69D64E955B7B}</Project>
+      <Project>{85E9F48E-2506-0C42-467C-86A31003AB10}</Project>
       <Name>PhotonUnityNetworking.Utilities.PhotonPlayer.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="PunDemos.DemoHubEditor.csproj">
-      <Project>{58CD84F8-04B7-A938-E6A2-F6E00CA18D00}</Project>
+      <Project>{54C36C3F-2631-C135-5F94-66EA63A601E5}</Project>
       <Name>PunDemos.DemoHubEditor</Name>
     </ProjectReference>
     <ProjectReference Include="PunDemos.DemoSlotcarEditor.csproj">
-      <Project>{4DA83F35-3405-24CA-C3A1-7D7968B68F63}</Project>
+      <Project>{AF6F79F1-647A-EF56-9324-A8043B222234}</Project>
       <Name>PunDemos.DemoSlotcarEditor</Name>
     </ProjectReference>
     <ProjectReference Include="PhotonUnityNetworking.Demos.csproj">
-      <Project>{F56FAAAA-73AB-3F22-6B24-52990552D34D}</Project>
+      <Project>{C5890C20-EF39-0CB3-A2A0-22445F2CDD13}</Project>
       <Name>PhotonUnityNetworking.Demos</Name>
     </ProjectReference>
     <ProjectReference Include="PhotonUnityNetworking.Utilities.csproj">
-      <Project>{B49B9A4C-7DBB-3641-7794-F3F53E1BB0CE}</Project>
+      <Project>{6235D303-C62B-CCAB-3851-B21C345A7AE6}</Project>
       <Name>PhotonUnityNetworking.Utilities</Name>
     </ProjectReference>
     <ProjectReference Include="PhotonWebSocket.csproj">
-      <Project>{D6D2FDCA-EAE5-E795-5554-EEA4D389EA2D}</Project>
+      <Project>{DBBF88EF-28BE-1601-FDB9-524BB5193FA9}</Project>
       <Name>PhotonWebSocket</Name>
     </ProjectReference>
     <ProjectReference Include="PhotonRealtime.csproj">
-      <Project>{EA36914F-9D7A-3181-FCC9-3C159787405B}</Project>
+      <Project>{BA64562E-8175-D24A-2E72-ED616EA7CB25}</Project>
       <Name>PhotonRealtime</Name>
     </ProjectReference>
     <ProjectReference Include="PhotonUnityNetworking.csproj">
-      <Project>{9E3F30A2-AE9A-1274-A6A0-43E3E755A697}</Project>
+      <Project>{58A68F8F-72DE-12E3-02C7-528DC1F26D07}</Project>
       <Name>PhotonUnityNetworking</Name>
     </ProjectReference>
     <ProjectReference Include="PhotonChat.csproj">
-      <Project>{83796041-9F40-2AFB-5766-CA43FF232906}</Project>
+      <Project>{AD6032F5-E893-A744-DD01-4C51FD42DFA3}</Project>
       <Name>PhotonChat</Name>
     </ProjectReference>
     <ProjectReference Include="PhotonUnityNetworking.Utilities.Culling.Editor.csproj">
-      <Project>{4B89FDA2-28E2-D9A0-B244-30DFA7F95C5F}</Project>
+      <Project>{5E4C74C9-545D-39FD-F7A6-1FF0CE4FA83D}</Project>
       <Name>PhotonUnityNetworking.Utilities.Culling.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="PhotonUnityNetworking.Editor.csproj">
-      <Project>{90381EC2-B6D5-7DCD-F1DF-747717E34A4E}</Project>
+      <Project>{50A05A27-9E95-D4DA-4F20-D198C34B9A42}</Project>
       <Name>PhotonUnityNetworking.Editor</Name>
     </ProjectReference>
   </ItemGroup>

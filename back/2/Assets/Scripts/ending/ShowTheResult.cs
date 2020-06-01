@@ -13,8 +13,8 @@ namespace Com.Glassblade.Group1
     public class ShowTheResult : MonoBehaviourPunCallbacks
     {
         private playersData[] p;
-        private playersData[] pA;
-        private playersData[] pB;
+        private List<playersData> pA=new List<playersData>();
+        private List<playersData> pB= new List<playersData>();
         private GameObject[] teamA;
         private GameObject[] teamB;
         private AudioSystem audioSystem;
@@ -26,46 +26,43 @@ namespace Com.Glassblade.Group1
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             if (player)
             {
+                if (player.GetPhotonView().IsMine)
                 PhotonNetwork.Destroy(player);
             }
             // 普通模式
             if (GameObject.Find("NData") != null)
             {
-                p = GameObject.FindWithTag("Finish").GetComponentInChildren<NDataStore>().p;
+                p = NDataStore.instance.p;
             }
             // 占领模式
             else if (GameObject.Find("OData") != null)
             {
-                p = GameObject.FindWithTag("Finish").GetComponentInChildren<ODataStore>().p;
+                p = NDataStore.instance.p;
             }
             // 两个队伍的初始化
             teamA = GameObject.FindGameObjectsWithTag("Team0").OrderBy(g => g.transform.GetSiblingIndex()).ToArray();
             teamB = GameObject.FindGameObjectsWithTag("Team1").OrderBy(g => g.transform.GetSiblingIndex()).ToArray();
-            int i = 0;
-            int j = 0;
             // 两个队伍的玩家数组
-            pA = new playersData[p.Length / 2 + 1];
-            pB = new playersData[p.Length / 2 + 1];
+           // Debug.Log(p[0].name);
             for (int k = 0; k < p.Length; k++)
             {
+              //  Debug.Log(k);
                 if (p[k].team == TeamController.Team.TeamA)
                 {
-                    pA[i] = p[k];
-                    i++;
+                    pA.Add(p[k]);
                 }
                 else if (p[k].team == TeamController.Team.TeamB)
                 {
-                    pB[j] = p[k];
-                    j++;
+                    pB.Add(p[k]);
                 }
             }
             // 根据得分排序
             pA.OrderBy(g => g.score);
             pB.OrderBy(g => g.score);
             // 将两队玩家的游戏结果传递出来
-            for (i = 0; i < teamA.Length; i++)
+            for (int i = 0; i < teamA.Length; i++)
             {
-                if (i < pA.Length)
+                if (i < pA.Count)
                 {
                     teamA[i].transform.GetChild(0).GetComponentInChildren<Text>().text = pA[i].name;
                     teamA[i].transform.GetChild(1).GetComponentInChildren<Text>().text = pA[i].killTime.ToString();
@@ -77,9 +74,10 @@ namespace Com.Glassblade.Group1
                     teamA[i].SetActive(false);
                 }
             }
-            for (i = 0; i < teamB.Length; i++)
+
+            for (int i = 0; i < teamB.Length; i++)
             {
-                if (i < pB.Length)
+                if (i < pB.Count)
                 {
                     teamB[i].transform.GetChild(0).GetComponentInChildren<Text>().text = pB[i].name;
                     teamB[i].transform.GetChild(1).GetComponentInChildren<Text>().text = pB[i].killTime.ToString();
@@ -104,16 +102,21 @@ namespace Com.Glassblade.Group1
                 {
                     allKill1 += g.killTime;
                 }
-                switch (allKill0 < allKill1)
+                if (allKill0 == allKill1)
                 {
-                    case true:
-                        GameObject.Find("Title").GetComponentInChildren<Text>().text = "失败";
-                        audioSystem.PlayEndMusic(0);
-                        break;
-                    case false:
-                        GameObject.Find("Title").GetComponentInChildren<Text>().text = (allKill0 == allKill1) ? "平局" : "胜利";
-                        audioSystem.PlayEndMusic(1);
-                        break;
+                    GameObject.Find("Title").GetComponentInChildren<Text>().text = "平局";
+                    audioSystem.PlayEndMusic(1);
+                }
+                else if (allKill0 > allKill1 && (TeamController.Team)PhotonNetwork.LocalPlayer.CustomProperties["team"]==TeamController.Team.TeamA
+                    || allKill0 < allKill1 && (TeamController.Team)PhotonNetwork.LocalPlayer.CustomProperties["team"] == TeamController.Team.TeamB)
+                {
+                    GameObject.Find("Title").GetComponentInChildren<Text>().text ="胜利";
+                    audioSystem.PlayEndMusic(1);
+                }
+                else
+                {
+                    GameObject.Find("Title").GetComponentInChildren<Text>().text = "失败";
+                    audioSystem.PlayEndMusic(0);
                 }
             }
             // 占点模式的结果结算
@@ -149,6 +152,15 @@ namespace Com.Glassblade.Group1
 
         public void ExitGames()
         {
+            if (GameObject.Find("NData"))
+            {
+                Destroy(GameObject.Find("NData"));
+            }
+            if (GameObject.Find("SettingStore"))
+            {
+                Destroy(GameObject.Find("SettingStore"));
+            }
+        
             PhotonNetwork.Disconnect();
             PhotonNetwork.ConnectUsingSettings();
 

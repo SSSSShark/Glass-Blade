@@ -180,6 +180,10 @@ public class LobbyController : MonoBehaviourPunCallbacks
 
     public void LeaveLobby()
     {
+          if (GameObject.Find("AudioSystem"))
+        {
+        Destroy(GameObject.Find("AudioSystem"));
+        }
         PhotonNetwork.LeaveLobby();
     }
 

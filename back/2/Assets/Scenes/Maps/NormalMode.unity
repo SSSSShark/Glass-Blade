@@ -8684,6 +8684,11 @@ PrefabInstance:
       propertyPath: viewIdField
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2499003052666850165, guid: a3403e8265b16ff4c8a5354f029da496,
+        type: 3}
+      propertyPath: minute
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 4416775589621311988, guid: a3403e8265b16ff4c8a5354f029da496,
         type: 3}
       propertyPath: m_LocalPosition.x
