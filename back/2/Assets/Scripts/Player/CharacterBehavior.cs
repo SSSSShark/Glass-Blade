@@ -24,7 +24,7 @@ public class CharacterBehavior : MonoBehaviourPun, IPunObservable
     //隐身技能生效时间
     public float invisibleDuration = 8;
     //隐身技能剩余时间
-    private float invisibleTime = 0;
+    public float invisibleTime = 0;
     //突进技能时间
     private double marchForwardTime = 0;
     //突进距离
