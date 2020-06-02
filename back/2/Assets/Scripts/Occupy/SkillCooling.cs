@@ -33,7 +33,10 @@ public class SkillCooling : MonoBehaviour
     // 点击事件的函数，点击后开启协程调用DownTimer()
     void OnClickBtn()
     {
-        StartCoroutine(DownTimer());
+        if (player.GetComponent<PlayerCharacter>().isAlive)
+        {
+            StartCoroutine(DownTimer());
+        }
     }
 
     // 倒计时协程
@@ -66,7 +69,10 @@ public class SkillCooling : MonoBehaviour
 
     public void Click()
     {
-        Debug.Log("[SkillColling:Click()] Skill button clicked, using selected skill");
-        player.GetComponent<CharacterBehavior>().SkillTrigger();
+        if (player.GetComponent<PlayerCharacter>().isAlive)
+        {
+            Debug.Log("[SkillColling:Click()] Skill button clicked, using selected skill");
+            player.GetComponent<CharacterBehavior>().SkillTrigger();
+        }
     }
 }

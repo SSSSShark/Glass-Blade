@@ -124,7 +124,7 @@ public class AudioSystem : MonoBehaviour
     {
         if (SceneNumber == 2 && !musicFailed.isPlaying && !musicSucceeded.isPlaying)
         {
-            Debug.Log("[AudioSystem:Update()] Start playing BGM after win/lose music.");
+            //Debug.Log("[AudioSystem:Update()] Start playing BGM after win/lose music.");
             musicNotCompeting.Play();
         }
     }

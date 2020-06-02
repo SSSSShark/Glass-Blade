@@ -7,9 +7,9 @@ using Photon.Realtime;
 public abstract class Weapon : MonoBehaviour
 {
     // Start is called before the first frame update
-    public virtual  void Start()
+    public virtual void Start()
     {
-        photonviewOwner = this.GetComponent<PhotonView>();
+        //photonviewOwner = this.GetComponent<PhotonView>();
         friendlyFire = GameObject.Find("SettingStore").GetComponent<SettingStore>().friendlyFire;
     }
 
@@ -26,7 +26,7 @@ public abstract class Weapon : MonoBehaviour
     public bool friendlyFire = false;  //允许友军伤害
     public PlayerCharacter Pc;
     public float destroyTime = 2.0f;
-    public Vector3 initPos,initForward;
+    public Vector3 initPos, initForward;
 
     /// <summary>
     /// If the weapon hit a player, the player should take damage.
@@ -53,22 +53,23 @@ public abstract class Weapon : MonoBehaviour
                     return;
                 }
                 Debug.Log("[Weapon:OnTriggerEnter()] Player " + target.photonView.Controller.NickName + " Takes damage.");
-                Pc.killTime++;
-                Pc.UpdateScore(100);
-                target.CallTakeDamage(target.photonView.Owner, photonviewOwner);
+                //Pc.killTime++;
+                //Pc.UpdateScore(100);
+                //target.CallTakeDamage(target.photonView.Owner, photonviewOwner);
+                target.photonView.RPC("TakeDamage", target.photonView.Owner, photonviewOwner.ViewID);
             }
         }
     }
-    public  abstract void Fire();
+    public abstract void Fire();
     protected void DestroyWithDelay()
     {
-        Invoke("PhotonDestroy",destroyTime);
+        Invoke("PhotonDestroy", destroyTime);
     }
     private void PhotonDestroy()
     {
         PhotonNetwork.Destroy(gameObject);
     }
 
-  
+
 }
 

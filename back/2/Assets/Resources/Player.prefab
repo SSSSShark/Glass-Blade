@@ -5731,6 +5731,7 @@ MonoBehaviour:
   speed: 10
   skillNumber: 2
   invisibleDuration: 8
+  invisibleTime: 0
   distance: 5
   accelerateDuration: 5
   speedUp: 0.8

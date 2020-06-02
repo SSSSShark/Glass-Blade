@@ -16,6 +16,8 @@ namespace Com.Glassblade.Group1
         public int increment;
         //win point
         public int win;
+
+        public PhotonView photonView;
         //all points in game
         private OMode[] points;
         //team score
@@ -61,9 +63,6 @@ namespace Com.Glassblade.Group1
                             }
                             if (score[(int)p.team] >= win)
                             {
-                                // GameObject.FindWithTag("Finish").GetComponentInChildren<ODataStore>().Refresh();
-                                // SceneManager.LoadSceneAsync("ending");
-                                PhotonView photonView = PhotonView.Get(this);
                                 photonView.RPC("LoadEnding", RpcTarget.All);
                             }
                         }
@@ -71,7 +70,7 @@ namespace Com.Glassblade.Group1
                 }
             }
         }
-        
+
         [PunRPC]
         public void LoadEnding()
         {

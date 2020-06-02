@@ -108,6 +108,7 @@ public class GameManager : MonoBehaviour
                 thePlayer.GetComponent<PlayerCharacter>().gamePlayer = thePlayer;
 
                 thePlayer.GetComponent<PlayerCharacter>().skillBtn = gameSkillButton.GetComponent<Button>();
+
             }
             else
             {

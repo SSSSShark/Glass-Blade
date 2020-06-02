@@ -2029,7 +2029,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "New Text\U0001F480\U0001F480"
+  m_Text: KDText
 --- !u!222 &773102636
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4474,18 +4474,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 333130520}
     m_Modifications:
-    - target: {fileID: 1017431725, guid: 96b5934b109455647b6aba35507603f1, type: 3}
-      propertyPath: win
-      value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 1017431725, guid: 96b5934b109455647b6aba35507603f1, type: 3}
-      propertyPath: increment
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1017431725, guid: 96b5934b109455647b6aba35507603f1, type: 3}
-      propertyPath: period
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 2298445453014978632, guid: 96b5934b109455647b6aba35507603f1,
         type: 3}
       propertyPath: m_Name

@@ -18,15 +18,17 @@ namespace Com.Glassblade.Group1
         void Awake()
         {
             DontDestroyOnLoad(gameObject);
-            instance = this;
         }
 
         public void Refresh()
         {
             //玩家组件列表
+            instance = this;
+            //玩家组件列表
             GameObject[] Players = null;
             //实例化玩家组件列表
             Players = GameObject.FindGameObjectsWithTag("Player");
+            Debug.Log(Players.Length);
             p = new playersData[Players.Length];
             for (int i = 0; i < Players.Length; i++)
             {
@@ -34,8 +36,7 @@ namespace Com.Glassblade.Group1
                 p[i].killTime = Players[i].GetComponentInChildren<PlayerCharacter>().killTime;
                 p[i].deathTime = Players[i].GetComponentInChildren<PlayerCharacter>().deathTime;
                 p[i].score = Players[i].GetComponentInChildren<PlayerCharacter>().score;
-                p[i].team = (TeamController.Team)Players[i].GetComponentInChildren<PlayerCharacter>().
-                            photonView.Controller.CustomProperties["team"];
+                p[i].team = (TeamController.Team)Players[i].GetComponentInChildren<PlayerCharacter>().team;
             }
             scoreA = GameObject.FindGameObjectWithTag("ScoreA").GetComponentInChildren<Scores>().score;
             scoreB = GameObject.FindGameObjectWithTag("ScoreB").GetComponentInChildren<Scores>().score;

@@ -106,10 +106,6 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
         Debug.Log("[PlayerCharacter:UpdateKillTime()] " + this.photonView.Owner.NickName + ": " + this.killTime);
     }
 
-    public void CallUpdateKillTime(Player player, int increase)
-    {
-        this.photonView.RPC("UpdateScore", player, increase);
-    }
     #endregion
 
     /*************************** 李晨昊 begin *************************/
@@ -202,7 +198,7 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
             }
             //Debug.Log(this.photonView.ViewID);
             weaponInstance.GetComponent<Weapon>().weaponOwner = PhotonNetwork.LocalPlayer;
-            weaponInstance.GetComponent<Weapon>().photonviewOwner = this.photonView;
+            weaponInstance.GetComponent<Weapon>().photonviewOwner = PhotonView.Get(this);
             weaponInstance.GetComponent<Weapon>().initPos = transform.position;
             weaponInstance.GetComponent<Weapon>().Pc = GetComponent<PlayerCharacter>();
             //Debug.Log(weaponInstance.GetComponent<Weapon>().initPos);
@@ -248,11 +244,12 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
         }
     }
 
-    [PunRPC]
+
     /// <summary>
     /// Some other clients notified us that they killed this client, so we are
     /// dead.
     /// </summary>
+    [PunRPC]
     public void TakeDamage(int srcviewID)
     {
         if (!isProtected && !isJustAlive && !gamePlayer.GetComponent<CharacterBehavior>().invincible && isAlive)
@@ -260,10 +257,13 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
             isAlive = false;
             deathTime += 1;
             PhotonView photonView = PhotonView.Find(srcviewID);
+            //为什么RPCtartget怎么改都不影响结果？？？
+            photonView.RPC("UpdateKillTime", RpcTarget.All, 1);
+            photonView.RPC("UpdateScore", RpcTarget.All, 100);
             //CallUpdateKillTime(photonView.Owner,1);
             //if (!OM)
             //{
-               // CallUpdateScore(photonView.Owner, 100);
+            // CallUpdateScore(photonView.Owner, 100);
             //}
             //if (OM)
             //{
@@ -296,7 +296,7 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
     public void CallTakeDamage(Player targetPlayer, PhotonView srcview)
     {
         this.photonView.RPC("TakeDamage", targetPlayer, srcview.ViewID);
-        
+
     }
 
     // public void CallTakeDamage(Player targetplayer, PhotonView srcview)
@@ -327,26 +327,25 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
         InvokeRepeating("DeathRotate", 1f, (float)(2.0 / DeathRotateTimes));
         //deathevent.Invoke(this); // 占点模式引发
 
+        Debug.Log("----------------------------Death--------------------------");
+        //if (photonView.IsMine)
+        //
+        this.gameObject.GetComponent<movegetgromjoystick>().moveEnable = false;
 
-        if (photonView.IsMine)
+        if ((TeamController.Team)PhotonNetwork.LocalPlayer.CustomProperties["team"] == TeamController.Team.TeamA)
         {
-            this.gameObject.GetComponent<movegetgromjoystick>().moveEnable = false;
-            skillBtn.enabled = false;
-            skillBtn.transform.GetComponentInChildren<Image>().color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
-            if ((TeamController.Team)PhotonNetwork.LocalPlayer.CustomProperties["team"] == TeamController.Team.TeamA)
-            {
-                GameObject.FindGameObjectWithTag("ScoreB").GetComponent<Scores>().SendScoreInfo();
-            }
-            else
-            {
-                GameObject.FindGameObjectWithTag("ScoreA").GetComponent<Scores>().SendScoreInfo();
-            }
-            //**灰屏    
-            baw.setDeath();
-            //**倒计时
-            counttime = DeathTime;
-            InvokeRepeating("CountDown", 0f, 1.0f);
+            GameObject.FindGameObjectWithTag("ScoreB").GetComponent<Scores>().SendScoreInfo();
         }
+        else
+        {
+            GameObject.FindGameObjectWithTag("ScoreA").GetComponent<Scores>().SendScoreInfo();
+        }
+        //**灰屏    
+        baw.setDeath();
+        //**倒计时
+        counttime = DeathTime;
+        InvokeRepeating("CountDown", 0f, 1.0f);
+        //}
     }
 
     //**大风车吱呀吱悠悠的转~
@@ -416,8 +415,7 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
             // Debug.Log("relive time = " + Time.time);
             PlayAudio(10, false);
             this.gameObject.GetComponent<movegetgromjoystick>().moveEnable = true;
-            skillBtn.enabled = true;
-            skillBtn.transform.GetComponentInChildren<Image>().color = new Color(1.0f, 1.0f, 1.0f);
+
             baw.setLive();
             isProtected = false;  // tt
             isAlive = true;
@@ -490,7 +488,6 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
             cc = GetComponent<CharacterController>();
             baw = GameObject.FindObjectOfType<BlackAndWhite>();
             weapons = weaponObject.GetComponentsInChildren<Transform>();
-
             Debug.Log("[PlayerCharacter:Start()] Resetting All weapons");
             //foreach (Transform child in weapons) child.gameObject.SetActive(false);
             for (int i = 1; i <= weaponKinds; i++)

@@ -37,7 +37,7 @@ namespace Com.Glassblade.Group1
             // 占领模式
             else if (GameObject.Find("OData") != null)
             {
-                p = NDataStore.instance.p;
+                p = ODataStore.instance.p;
             }
             // 两个队伍的初始化
             teamA = GameObject.FindGameObjectsWithTag("Team0").OrderBy(g => g.transform.GetSiblingIndex()).ToArray();

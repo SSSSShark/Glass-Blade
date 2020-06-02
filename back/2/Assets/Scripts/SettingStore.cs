@@ -18,15 +18,20 @@ public class SettingStore : MonoBehaviour
 
     #endregion
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        GameObject.DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(gameObject);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        /*do nothing*/
-    }
+    // Start is called before the first frame update
+    //void Start()
+    //{
+    //    GameObject.DontDestroyOnLoad(gameObject);
+    //}
+
+    //// Update is called once per frame
+    //void Update()
+    //{
+    //    /*do nothing*/
+    //}
 }

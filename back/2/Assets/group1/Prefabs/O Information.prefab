@@ -124,9 +124,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03d489b3527935541882da7de289f370, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  period: 1
-  increment: 10
-  win: 30
+  period: 2
+  increment: 2
+  win: 50
+  photonView: {fileID: 7822662442561753482}
 --- !u!1 &2298445453692269486
 GameObject:
   m_ObjectHideFlags: 0
