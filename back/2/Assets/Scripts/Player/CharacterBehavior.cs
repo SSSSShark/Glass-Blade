@@ -50,6 +50,13 @@ public class CharacterBehavior : MonoBehaviourPun, IPunObservable
 
     public GameObject gamePlayer;
 
+    public enum Team
+    {
+        TeamA,
+        TeamB,
+        unknown
+    };
+
     void Start()
     {
         skillNumber = (int)GameObject.Find("SettingStore").GetComponent<SettingStore>().myskill;
@@ -90,6 +97,15 @@ public class CharacterBehavior : MonoBehaviourPun, IPunObservable
             render.enabled = a != 0;
         }
     }
+
+    /// <summary>
+    /// Manually refresh transparency
+    /// </summary>
+    public void CallRefreshTransparent()
+    {
+        RefreshTransparent();
+    }
+
     private int bushStatus;
     /// <summary>
     /// 根据当前状态（目前为草丛、隐身技能）刷新透明度
@@ -98,6 +114,7 @@ public class CharacterBehavior : MonoBehaviourPun, IPunObservable
     {
         if (invisibleTime <= 0)
         {//隐身技能未生效
+            Debug.Log("[CharacterBehavior:RefreshTransparent()] Invisibility not viable.");
             switch (bushStatus)
             {
                 case 0:
@@ -112,9 +129,10 @@ public class CharacterBehavior : MonoBehaviourPun, IPunObservable
             }
         }
         // 隐身技能生效
-        else if (photonView.Owner.CustomProperties["team"] == PhotonNetwork.LocalPlayer.CustomProperties["team"])
+        else if ((Team)photonView.Owner.CustomProperties["team"] == (Team)PhotonNetwork.LocalPlayer.CustomProperties["team"])
         {//是队友
             Debug.Log("[CharacterBehavior:RefreshTransparent()] Set team mate " + photonView.Owner.NickName + " invisible.");
+            Debug.Log("[CharacterBehavior:RefreshTransparent()] Local Player is " + PhotonNetwork.LocalPlayer.NickName);
             SetTransparent(0.5f);
         }
         else
@@ -146,7 +164,7 @@ public class CharacterBehavior : MonoBehaviourPun, IPunObservable
 
         if (this.invisibleTime > 0)
         {
-            Debug.Log("[CharacterBahavior : Update()] This player is in invisible state");
+            Debug.Log("[CharacterBahavior : Update()] Player " + this.photonView.Owner.NickName + " is in invisible state");
             //更新隐身时长
 
             this.invisibleTime -= Time.deltaTime;

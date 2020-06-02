@@ -169,6 +169,7 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
                 if (CB.invisibleTime > 0)
                 {
                     CB.invisibleTime = 0;
+                    CB.CallRefreshTransparent();
                     Debug.Log("[PlayCharacter:Attack()] Player " + photonView.Owner.NickName + " is no longer invisible");
                 }
 
@@ -183,7 +184,8 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
                     case 3: PlayAudio(3, true); break;
                     case 4: PlayAudio(4, true); break;
                 }
-                holdWeapon(holdWeaponIndex, false);
+                photonView.RPC("holdWeapon", RpcTarget.All, holdWeaponIndex, false);
+                // holdWeapon(holdWeaponIndex, false);
             }
             else  //使用默认weapon
             {
@@ -384,6 +386,7 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
         }
     }
 
+    [PunRPC]
     //在人物模型上显示或消失某一个武器
     //index为武器索引,ishold表示显示或不显示武器
     //武器没有碰撞器,因为攻击不使用碰撞实现
@@ -468,7 +471,8 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
     public void TakeWeapon(int weaponstatus)
     {
         Debug.Log("[PlayerCharacter:TakeWeapon()] called");
-        holdWeapon(weaponstatus, true);
+        photonView.RPC("holdWeapon", RpcTarget.All, weaponstatus, true);
+        // holdWeapon(weaponstatus, true);
         PlayAudio(8, false);
     }
     /**************************** 林海力 end **********************/
@@ -490,13 +494,15 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
             weapons = weaponObject.GetComponentsInChildren<Transform>();
             Debug.Log("[PlayerCharacter:Start()] Resetting All weapons");
             //foreach (Transform child in weapons) child.gameObject.SetActive(false);
-            for (int i = 1; i <= weaponKinds; i++)
-            {
-                weapons[i].gameObject.SetActive(false);
-            }
 
             // set team
             team = (TeamController.Team)PhotonNetwork.LocalPlayer.CustomProperties["team"];
+        }
+
+        // this should be set for all player instances
+        for (int i = 1; i <= weaponKinds; i++)
+        {
+            weapons[i].gameObject.SetActive(false);
         }
     }
 
