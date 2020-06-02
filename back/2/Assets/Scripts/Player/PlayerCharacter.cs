@@ -169,6 +169,13 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
         {
             if (isHoldWeapon)
             {
+                CharacterBehavior CB = gamePlayer.GetComponent<CharacterBehavior>();
+                if (CB.invisibleTime > 0)
+                {
+                    CB.invisibleTime = 0;
+                    Debug.Log("[PlayCharacter:Attack()] Player " + photonView.Owner.NickName + " is no longer invisible");
+                }
+
                 weaponInstance = PhotonNetwork.Instantiate(fireWeapenprefab[holdWeaponIndex - 1], this.transform.position + new Vector3(0, 1, 0) + this.transform.forward, transform.rotation * Quaternion.Euler(0.0f, 0.0f, 90.0f) * Quaternion.Euler(90.0f, 0.0f, 0.0f));
                 Debug.Log("[PlayCharacter:Attack()] Player " + photonView.Owner.NickName + " Attack");
 
