@@ -54,7 +54,7 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
     CharacterController cc;
     //黑白渲染组件
     BlackAndWhite baw;
-    Transform[] weapons;
+    private Transform[] weapons;
 
     [Tooltip("The local player instance. Use this to know if the local player is represented in the scene")]
     public static GameObject LocalPlayerInstance;
@@ -500,6 +500,8 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
         }
 
         // this should be set for all player instances
+        Debug.Log("Player " + photonView.Owner.NickName + " Resetting weapons");
+        weapons =  this.transform.GetChild(0).transform.GetChild(1).GetComponentsInChildren<Transform>();
         for (int i = 1; i <= weaponKinds; i++)
         {
             weapons[i].gameObject.SetActive(false);
