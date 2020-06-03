@@ -697,7 +697,7 @@ PlayerSettings:
       daydreamIconForeground: {fileID: 0}
       daydreamIconBackground: {fileID: 0}
   cloudServicesEnabled:
-    Build: 1
+    Build: 0
     UNet: 1
   luminIcon:
     m_Name: 
@@ -711,10 +711,10 @@ PlayerSettings:
     m_VersionCode: 1
     m_VersionName: 
   apiCompatibilityLevel: 6
-  cloudProjectId: e339f92b-3300-422b-b25c-deddebf80860
+  cloudProjectId: 34e0b39d-b9f6-4667-9be8-bdd08c7e5337
   framebufferDepthMemorylessMode: 0
   projectName: Blade
-  organizationId: clfbbn
+  organizationId: goayan_ustc
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0

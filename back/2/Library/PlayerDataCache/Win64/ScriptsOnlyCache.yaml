@@ -532,9 +532,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 13490}
     - Class: 114
-      Script: {instanceID: 22088}
+      Script: {instanceID: 21130}
     - Class: 114
-      Script: {instanceID: 22090}
+      Script: {instanceID: 21140}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 124
@@ -1757,7 +1757,7 @@ ScriptsOnlyBuild:
     className: CameraWork
   - hash:
       serializedVersion: 2
-      Hash: ded7140057126429b4499945b6c8ab7e
+      Hash: 0cda9709994eb81bb5bf4d6d77c16776
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: TeamController
@@ -2249,4 +2249,4 @@ ScriptsOnlyBuild:
   - Assets/Scenes/Maps/NormalMode.unity
   - Assets/Scenes/Maps/OccupationPattern.unity
   - Assets/Scenes/Ending/ending.unity
-  playerPath: D:/Projects/Back/Blade.exe
+  playerPath: D:/3spring/software_egineer/build/Blade.exe

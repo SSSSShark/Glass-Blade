@@ -7,7 +7,7 @@ using Photon.Pun;
 using Photon.Realtime;
 using System;
 
-public class TeamController : MonoBehaviourPunCallbacks
+public class TeamController : MonoBehaviourPunCallbacks, IPunObservable
 {
 
     #region Public Fields
@@ -19,6 +19,7 @@ public class TeamController : MonoBehaviourPunCallbacks
     public Button settingbtn;
     public Button changeTeambtn;
     public Button skillSettingbtn;
+    public Button changebtn;
     public GameObject messagebox;
     
 
@@ -43,6 +44,8 @@ public class TeamController : MonoBehaviourPunCallbacks
 
     int NumTeamA;
     int NumTeamB;
+    bool fullTeamA=false;
+    bool fullTeamB=false;
     #endregion
 
     // Start is called before the first frame update
@@ -116,6 +119,25 @@ public class TeamController : MonoBehaviourPunCallbacks
     // Update is called once per frame
     void Update()
     {
+        if (PhotonNetwork.LocalPlayer.IsMasterClient) 
+        {
+            Synchronize();
+        }
+        if (PhotonNetwork.LocalPlayer.CustomProperties.ContainsKey("team"))
+        {
+            if ((Team)PhotonNetwork.LocalPlayer.CustomProperties["team"]==Team.TeamA && fullTeamB)
+            {
+                changebtn.interactable = false;
+            }
+            else if ((Team)PhotonNetwork.LocalPlayer.CustomProperties["team"] == Team.TeamB && fullTeamA)
+            {
+                changebtn.interactable = false;
+            }
+            else
+            {
+                changebtn.interactable = true;
+            }
+        }
         // do nothing
     }
 
@@ -232,6 +254,13 @@ public class TeamController : MonoBehaviourPunCallbacks
             // we use the master to allocate team
             foreach (Player p in PhotonNetwork.PlayerList)
             {
+                if (!(p.CustomProperties.ContainsKey("team")&& p.CustomProperties.ContainsKey("status"))){
+                    Debug.Log("Synchronize before data ready!");
+                    return;
+                }
+            }
+                foreach (Player p in PhotonNetwork.PlayerList)
+            {
                 if ((Team)p.CustomProperties["team"] == Team.TeamA)
                 {
                     TeamAList[TeamAIndex].GetComponent<Text>().text = p.NickName + (p == PhotonNetwork.MasterClient ? "-host" : "");
@@ -263,6 +292,9 @@ public class TeamController : MonoBehaviourPunCallbacks
                 Debug.Log("[TeamController:Synchronize()] Infomation updated, with team A: " + NumTeamA + " teamB: " + NumTeamB);
             }
 
+            fullTeamA = TeamAIndex >=5;
+            fullTeamB = TeamBIndex >=5;
+
             while (TeamAIndex < 5)
             {
                 TeamAList[TeamAIndex].GetComponent<Text>().text = "空";
@@ -286,11 +318,18 @@ public class TeamController : MonoBehaviourPunCallbacks
         ExitGames.Client.Photon.Hashtable props = PhotonNetwork.LocalPlayer.CustomProperties;
         if ((Team)props["team"] == Team.TeamA)
         {
-            props["team"] = Team.TeamB;
+            if (!fullTeamB)
+                props["team"] = Team.TeamB;
+            else
+                Debug.Log("[TeamController:changeTeam()] TeamB full,reject change team");
         }
         else
         {
-            props["team"] = Team.TeamA;
+            if (!fullTeamA)
+                props["team"] = Team.TeamA;
+            else
+                Debug.Log("[TeamController:changeTeam()] TeamA full,reject change team");
+
         }
         PhotonNetwork.LocalPlayer.SetCustomProperties(props);
         //the Numteam will be updated during sync
@@ -419,6 +458,20 @@ public class TeamController : MonoBehaviourPunCallbacks
         if (startDialog.activeInHierarchy)
         {
             startDialog.SetActive(false);
+        }
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            stream.SendNext(fullTeamA);
+            stream.SendNext(fullTeamB);
+        }
+        else
+        {
+            fullTeamA = (bool)stream.ReceiveNext();
+            fullTeamB = (bool)stream.ReceiveNext();
         }
     }
 
