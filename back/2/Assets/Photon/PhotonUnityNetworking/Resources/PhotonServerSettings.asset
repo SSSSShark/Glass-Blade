@@ -18,14 +18,14 @@ MonoBehaviour:
     AppIdVoice: 
     AppVersion: 
     UseNameServer: 1
-    FixedRegion: 
+    FixedRegion: cn
     Server: 
     Port: 0
     Protocol: 0
     AuthMode: 0
     EnableLobbyStatistics: 0
     NetworkLogging: 1
-  DevRegion: asia
+  DevRegion: 
   PunLogging: 0
   EnableSupportLogger: 0
   RunInBackground: 1
@@ -38,6 +38,7 @@ MonoBehaviour:
   - Fire
   - GetScoreInfo
   - GetWeapon
+  - holdWeapon
   - LoadEnding
   - PickWeaponCallBack
   - PlayAudioOnPlayer
@@ -46,7 +47,6 @@ MonoBehaviour:
   - UpdateKillTime
   - UpdateScore
   - UpdateWeaponStatus
-  - holdWeapon
   DisableAutoOpenWizard: 1
-  ShowSettings: 0
+  ShowSettings: 1
   DevRegionSetOnce: 1
