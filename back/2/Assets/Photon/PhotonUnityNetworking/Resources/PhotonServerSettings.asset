@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PhotonServerSettings
   m_EditorClassIdentifier: 
   AppSettings:
-    AppIdRealtime: 4d198c9a-1435-44fc-8d3b-4daaf7677f3b
+    AppIdRealtime: 
     AppIdChat: 
     AppIdVoice: 
     AppVersion: 
@@ -25,7 +25,7 @@ MonoBehaviour:
     AuthMode: 0
     EnableLobbyStatistics: 0
     NetworkLogging: 1
-  DevRegion: asia
+  DevRegion: 
   PunLogging: 0
   EnableSupportLogger: 0
   RunInBackground: 1
@@ -38,6 +38,7 @@ MonoBehaviour:
   - Fire
   - GetScoreInfo
   - GetWeapon
+  - holdWeapon
   - LoadEnding
   - PickWeaponCallBack
   - PlayAudioOnPlayer
@@ -46,7 +47,6 @@ MonoBehaviour:
   - UpdateKillTime
   - UpdateScore
   - UpdateWeaponStatus
-  - holdWeapon
   DisableAutoOpenWizard: 1
   ShowSettings: 0
-  DevRegionSetOnce: 1
+  DevRegionSetOnce: 0
