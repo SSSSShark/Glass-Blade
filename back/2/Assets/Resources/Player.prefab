@@ -5778,6 +5778,7 @@ MonoBehaviour:
   GM: {fileID: 0}
   gamePlayer: {fileID: 0}
   skillBtn: {fileID: 0}
+  KDboard: {fileID: 0}
   KDtext: {fileID: 0}
   OM: {fileID: 0}
   killTime: 0

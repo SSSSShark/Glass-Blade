@@ -68,6 +68,8 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
 
     public Button skillBtn;
 
+    public GameObject KDboard;
+
     #endregion
 
     #region occupy mode
@@ -218,7 +220,10 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
     void RefreshAttack()
     {
         attacking = false;
-        this.gameObject.GetComponent<movegetgromjoystick>().moveEnable = true;
+        if (isAlive)
+        {
+            this.gameObject.GetComponent<movegetgromjoystick>().moveEnable = true;
+        }
     }
 
     /// <summary>
@@ -256,12 +261,14 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
     {
         if (!isProtected && !isJustAlive && !gamePlayer.GetComponent<CharacterBehavior>().invincible && isAlive)
         {
+            this.gameObject.GetComponent<movegetgromjoystick>().moveEnable = false;
             isAlive = false;
             deathTime += 1;
             PhotonView photonView = PhotonView.Find(srcviewID);
             //为什么RPCtartget怎么改都不影响结果？？？
             photonView.RPC("UpdateKillTime", RpcTarget.All, 1);
             photonView.RPC("UpdateScore", RpcTarget.All, 100);
+
             //CallUpdateKillTime(photonView.Owner,1);
             //if (!OM)
             //{
@@ -271,6 +278,10 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
             //{
             //    this.photonView.RPC("CallDeathEvent", RpcTarget.MasterClient);
             //}
+            if (KDboard)
+            {
+                KDboard.GetComponent<KDBoardView>().CallUpdateBoard(photonView.Owner.NickName, this.photonView.Owner.NickName);
+            }
             Death();
         }
     }
@@ -323,6 +334,9 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
         PlayAudio(9, false);
         isProtected = true; //tt
 
+        this.transform.GetComponent<CharacterController>().center = new Vector3(180.0f, 1.34f, -10.0f);
+        this.transform.GetComponent<CapsuleCollider>().center = new Vector3(180.0f, 0.0f, -10.0f);
+
         //  isAlive = false;
         //**倒下,先停1s,用2s分段倒下
         rotatedtimes = 0;
@@ -332,7 +346,6 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
         Debug.Log("----------------------------Death--------------------------");
         //if (photonView.IsMine)
         //
-        this.gameObject.GetComponent<movegetgromjoystick>().moveEnable = false;
 
         if ((TeamController.Team)PhotonNetwork.LocalPlayer.CustomProperties["team"] == TeamController.Team.TeamA)
         {
@@ -359,9 +372,12 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
         if (rotatedtimes >= DeathRotateTimes)
         {
             CancelInvoke("DeathRotate");
-            Vector3 CurPosition = transform.position;
-            CurPosition.y = -100;
-            transform.position = CurPosition;
+            //Vector3 CurPosition = transform.position;
+            //CurPosition.y = -100;
+            //transform.position = CurPosition;
+            transform.position = new Vector3(180.0f, 0.0f ,-10.0f);
+            this.transform.GetComponent<CharacterController>().center = new Vector3(0.0f, 1.34f, 0.0f);
+            this.transform.GetComponent<CapsuleCollider>().center = new Vector3(0.0f, 0.0f, 0.0f);
         }
     }
 
@@ -487,6 +503,11 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
             if (GameObject.Find("KDText"))
             {
                 KDtext = GameObject.Find("KDText").GetComponent<Text>();
+            }
+
+            if (GameObject.Find("KDBoard"))
+            {
+                KDboard = GameObject.Find("KDBoard");
             }
 
             cc = GetComponent<CharacterController>();

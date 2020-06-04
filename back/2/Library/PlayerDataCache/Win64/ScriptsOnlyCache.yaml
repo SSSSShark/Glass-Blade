@@ -20,6 +20,7 @@ ScriptsOnlyBuild:
     - DaggerDefault
     - GameManager
     - Joystick
+    - KDBoardView
     - LobbyController
     - NPhotonInformationView
     - OPhotonInformationView
@@ -532,9 +533,11 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 13490}
     - Class: 114
-      Script: {instanceID: 21130}
+      Script: {instanceID: 16814}
     - Class: 114
-      Script: {instanceID: 21140}
+      Script: {instanceID: 16828}
+    - Class: 114
+      Script: {instanceID: 35440}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 124
@@ -664,6 +667,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 13462}
     - Class: 114
       Script: {instanceID: 13490}
+    - Class: 114
+      Script: {instanceID: 35440}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 124
@@ -1775,7 +1780,7 @@ ScriptsOnlyBuild:
     className: Asteroid
   - hash:
       serializedVersion: 2
-      Hash: 46ea1b935b3e9ccf9f7c093b5ffa9ea2
+      Hash: 7c4eec785fa15d42e7c2af4f3e5f3f76
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerCharacter
@@ -2241,6 +2246,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 31d002896d24ca2eaf17fcf5b1d53a64
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: KDBoardView
   platform: 19
   scenePathNames:
   - Assets/Scenes/Guide/Launcher.unity
@@ -2249,4 +2260,4 @@ ScriptsOnlyBuild:
   - Assets/Scenes/Maps/NormalMode.unity
   - Assets/Scenes/Maps/OccupationPattern.unity
   - Assets/Scenes/Ending/ending.unity
-  playerPath: D:/3spring/software_egineer/build/Blade.exe
+  playerPath: D:/Projects/2/Blade.exe
