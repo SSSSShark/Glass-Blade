@@ -13,8 +13,8 @@ namespace Com.Glassblade.Group1
     public class ShowTheResult : MonoBehaviourPunCallbacks
     {
         private playersData[] p;
-        private List<playersData> pA=new List<playersData>();
-        private List<playersData> pB= new List<playersData>();
+        private List<playersData> pA = new List<playersData>();
+        private List<playersData> pB = new List<playersData>();
         private GameObject[] teamA;
         private GameObject[] teamB;
         private AudioSystem audioSystem;
@@ -27,7 +27,7 @@ namespace Com.Glassblade.Group1
             if (player)
             {
                 if (player.GetPhotonView().IsMine)
-                PhotonNetwork.Destroy(player);
+                    PhotonNetwork.Destroy(player);
             }
             // 普通模式
             if (GameObject.Find("NData") != null)
@@ -43,10 +43,10 @@ namespace Com.Glassblade.Group1
             teamA = GameObject.FindGameObjectsWithTag("Team0").OrderBy(g => g.transform.GetSiblingIndex()).ToArray();
             teamB = GameObject.FindGameObjectsWithTag("Team1").OrderBy(g => g.transform.GetSiblingIndex()).ToArray();
             // 两个队伍的玩家数组
-           // Debug.Log(p[0].name);
+            // Debug.Log(p[0].name);
             for (int k = 0; k < p.Length; k++)
             {
-              //  Debug.Log(k);
+                //  Debug.Log(k);
                 if (p[k].team == TeamController.Team.TeamA)
                 {
                     pA.Add(p[k]);
@@ -107,10 +107,10 @@ namespace Com.Glassblade.Group1
                     GameObject.Find("Title").GetComponentInChildren<Text>().text = "平局";
                     audioSystem.PlayEndMusic(1);
                 }
-                else if (allKill0 > allKill1 && (TeamController.Team)PhotonNetwork.LocalPlayer.CustomProperties["team"]==TeamController.Team.TeamA
+                else if (allKill0 > allKill1 && (TeamController.Team)PhotonNetwork.LocalPlayer.CustomProperties["team"] == TeamController.Team.TeamA
                     || allKill0 < allKill1 && (TeamController.Team)PhotonNetwork.LocalPlayer.CustomProperties["team"] == TeamController.Team.TeamB)
                 {
-                    GameObject.Find("Title").GetComponentInChildren<Text>().text ="胜利";
+                    GameObject.Find("Title").GetComponentInChildren<Text>().text = "胜利";
                     audioSystem.PlayEndMusic(1);
                 }
                 else
@@ -160,7 +160,7 @@ namespace Com.Glassblade.Group1
             {
                 Destroy(GameObject.Find("SettingStore"));
             }
-        
+
             PhotonNetwork.Disconnect();
             PhotonNetwork.ConnectUsingSettings();
 

@@ -21,7 +21,8 @@ public class TeamController : MonoBehaviourPunCallbacks, IPunObservable
     public Button skillSettingbtn;
     public Button changebtn;
     public GameObject messagebox;
-    
+    public GameObject chatRoom;
+
 
     #endregion
 
@@ -44,8 +45,9 @@ public class TeamController : MonoBehaviourPunCallbacks, IPunObservable
 
     int NumTeamA;
     int NumTeamB;
-    bool fullTeamA=false;
-    bool fullTeamB=false;
+    bool fullTeamA = false;
+    bool fullTeamB = false;
+    private bool isConnecting;
     #endregion
 
     // Start is called before the first frame update
@@ -57,7 +59,7 @@ public class TeamController : MonoBehaviourPunCallbacks, IPunObservable
         //this is only for MasterClient
         if (PhotonNetwork.IsMasterClient)
         {
-            settingbtn.gameObject.SetActive(true); 
+            settingbtn.gameObject.SetActive(true);
             Button btnObj = GameObject.FindGameObjectWithTag("Start").GetComponent<Button>();
             btnObj.transform.Find("Text").GetComponent<Text>().text = "开始游戏";
 
@@ -92,7 +94,7 @@ public class TeamController : MonoBehaviourPunCallbacks, IPunObservable
                 if (NumTeamB >= NumTeamA)
                 {
                     NumTeamA++;
-                    props.Add("team", Team.TeamA);   
+                    props.Add("team", Team.TeamA);
                 }
                 else
                 {
@@ -119,13 +121,13 @@ public class TeamController : MonoBehaviourPunCallbacks, IPunObservable
     // Update is called once per frame
     void Update()
     {
-        if (PhotonNetwork.LocalPlayer.IsMasterClient) 
+        if (PhotonNetwork.LocalPlayer.IsMasterClient)
         {
             Synchronize();
         }
         if (PhotonNetwork.LocalPlayer.CustomProperties.ContainsKey("team"))
         {
-            if ((Team)PhotonNetwork.LocalPlayer.CustomProperties["team"]==Team.TeamA && fullTeamB)
+            if ((Team)PhotonNetwork.LocalPlayer.CustomProperties["team"] == Team.TeamA && fullTeamB)
             {
                 changebtn.interactable = false;
             }
@@ -149,7 +151,7 @@ public class TeamController : MonoBehaviourPunCallbacks, IPunObservable
             Debug.Log("[TeamController:OnPlayerPropertiesUpdate()] Update after property update");
             Synchronize();
         }
-        
+
     }
 
     #endregion
@@ -158,11 +160,16 @@ public class TeamController : MonoBehaviourPunCallbacks, IPunObservable
     public override void OnLeftRoom()
     {
         Debug.Log("[TeamController:OnLeftRoom()] " + PhotonNetwork.NickName + " Left the room");
-        if (PhotonNetwork.IsConnected)
+        if (PhotonNetwork.IsConnected && PhotonNetwork.Server == ServerConnection.MasterServer)
         {
-            PhotonNetwork.JoinLobby();
+            PhotonNetwork.LoadLevel("Lobby");
+            Debug.Log("[TeamController:OnLeftRoom()] back to lobby");
         }
-        PhotonNetwork.LoadLevel(0);
+        else
+        {
+            PhotonNetwork.LoadLevel(0);
+        }
+
     }
 
     /// <summary>
@@ -176,6 +183,10 @@ public class TeamController : MonoBehaviourPunCallbacks, IPunObservable
         if (PhotonNetwork.IsMasterClient)
         {
             Debug.Log("[TeamController:OnPlayerEnteredRoom()] Player " + newPlayer.NickName + " joined");
+            if (chatRoom)
+            {
+                chatRoom.GetComponent<ControlChatRoom>().photonView.RPC("SystemInfo", RpcTarget.All, newPlayer.NickName + " joined");
+            }
 
             ExitGames.Client.Photon.Hashtable props = new ExitGames.Client.Photon.Hashtable();
             if (NumTeamA <= NumTeamB)
@@ -206,8 +217,12 @@ public class TeamController : MonoBehaviourPunCallbacks, IPunObservable
         //if the host leaves, then the player with the minimum ID will be the next host automatically
         if (PhotonNetwork.IsMasterClient)
         {
-
             Debug.Log("[TeamController:OnPlayerLeftRoom()] Player " + otherPlayer.NickName + " leaved");
+            if (chatRoom)
+            {
+                chatRoom.GetComponent<ControlChatRoom>().photonView.RPC("SystemInfo", RpcTarget.All, otherPlayer.NickName + " leaved");
+            }
+
             if ((Status)otherPlayer.CustomProperties["status"] == Status.Host)
             {
                 Start();
@@ -226,7 +241,7 @@ public class TeamController : MonoBehaviourPunCallbacks, IPunObservable
                 // Update list
                 Synchronize();
             }
-            
+
         }
     }
 
@@ -254,12 +269,13 @@ public class TeamController : MonoBehaviourPunCallbacks, IPunObservable
             // we use the master to allocate team
             foreach (Player p in PhotonNetwork.PlayerList)
             {
-                if (!(p.CustomProperties.ContainsKey("team")&& p.CustomProperties.ContainsKey("status"))){
+                if (!(p.CustomProperties.ContainsKey("team") && p.CustomProperties.ContainsKey("status")))
+                {
                     Debug.Log("Synchronize before data ready!");
                     return;
                 }
             }
-                foreach (Player p in PhotonNetwork.PlayerList)
+            foreach (Player p in PhotonNetwork.PlayerList)
             {
                 if ((Team)p.CustomProperties["team"] == Team.TeamA)
                 {
@@ -292,8 +308,8 @@ public class TeamController : MonoBehaviourPunCallbacks, IPunObservable
                 Debug.Log("[TeamController:Synchronize()] Infomation updated, with team A: " + NumTeamA + " teamB: " + NumTeamB);
             }
 
-            fullTeamA = TeamAIndex >=5;
-            fullTeamB = TeamBIndex >=5;
+            fullTeamA = TeamAIndex >= 5;
+            fullTeamB = TeamBIndex >= 5;
 
             while (TeamAIndex < 5)
             {
@@ -344,7 +360,7 @@ public class TeamController : MonoBehaviourPunCallbacks, IPunObservable
             changeTeambtn.enabled = true;
             skillSettingbtn.enabled = true;
             changeTeambtn.transform.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f);
-            skillSettingbtn.transform.GetComponent<Image>().color = new Color(172.0f/255.0f, 217.0f/255f, 219.0f/255.0f);
+            skillSettingbtn.transform.GetComponent<Image>().color = new Color(172.0f / 255.0f, 217.0f / 255f, 219.0f / 255.0f);
             ExitGames.Client.Photon.Hashtable props = PhotonNetwork.LocalPlayer.CustomProperties;
             props["status"] = Status.Wait;
             PhotonNetwork.LocalPlayer.SetCustomProperties(props);
@@ -395,10 +411,10 @@ public class TeamController : MonoBehaviourPunCallbacks, IPunObservable
             ExitGames.Client.Photon.Hashtable props = PhotonNetwork.LocalPlayer.CustomProperties;
             props["status"] = Status.Ready;
 
-            PhotonNetwork.LocalPlayer.SetCustomProperties(props);       
+            PhotonNetwork.LocalPlayer.SetCustomProperties(props);
 
             Button btnObj = GameObject.FindGameObjectWithTag("Start").GetComponent<Button>();
-            btnObj.transform.Find("Text").GetComponent<Text>().text = "取消准备"; 
+            btnObj.transform.Find("Text").GetComponent<Text>().text = "取消准备";
 
             try
             {
@@ -412,7 +428,7 @@ public class TeamController : MonoBehaviourPunCallbacks, IPunObservable
             {
                 btnObj.onClick.AddListener(CancelReady);
             }
-            
+
             Debug.Log("[TeamController:ReadytoGame()] modify status to ready");
         }
     }
@@ -427,6 +443,10 @@ public class TeamController : MonoBehaviourPunCallbacks, IPunObservable
         if (GameObject.Find("AudioSystem"))
         {
             Destroy(GameObject.Find("AudioSystem"));
+        }
+        if (GameObject.Find("SettingStore"))
+        {
+            Destroy(GameObject.Find("SettingStore"));
         }
         PhotonNetwork.LeaveRoom();
     }
@@ -444,7 +464,8 @@ public class TeamController : MonoBehaviourPunCallbacks, IPunObservable
         }
         Debug.LogFormat("[TeamController:LoadArena()] PhotonNetwork : Loading Level : {0}", PhotonNetwork.CurrentRoom.PlayerCount);
         PhotonNetwork.CurrentRoom.IsOpen = false;  //can't be joined
-        switch (messagebox.GetComponent<SettingBox>().mode) {
+        switch (messagebox.GetComponent<SettingBox>().mode)
+        {
             case SettingBox.GameMode.Normal: PhotonNetwork.LoadLevel("NormalMode"); break;
             case SettingBox.GameMode.Occupation: PhotonNetwork.LoadLevel("OccupationPattern"); break;
         }
