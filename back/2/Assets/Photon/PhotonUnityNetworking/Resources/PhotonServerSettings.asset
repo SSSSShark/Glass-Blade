@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: PhotonServerSettings
   m_EditorClassIdentifier: 
   AppSettings:
-    AppIdRealtime: ' 4d198c9a-1435-44fc-8d3b-4daaf7677f3b'
+    AppIdRealtime: 
     AppIdChat: 
     AppIdVoice: 
     AppVersion: 
     UseNameServer: 1
-    FixedRegion: CN
+    FixedRegion: 
     Server: 
     Port: 0
     Protocol: 0
@@ -44,10 +44,10 @@ MonoBehaviour:
   - PlayAudioOnPlayer
   - RespawnSpaceship
   - TakeDamage
+  - UpdateBoard
   - UpdateKillTime
   - UpdateScore
   - UpdateWeaponStatus
-  - UpdateBoard
   DisableAutoOpenWizard: 1
-  ShowSettings: 1
+  ShowSettings: 0
   DevRegionSetOnce: 0
