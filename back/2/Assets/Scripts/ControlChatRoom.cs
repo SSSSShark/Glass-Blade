@@ -8,8 +8,8 @@ using TMPro;
 public class ControlChatRoom : MonoBehaviourPun
 {
 
-    public InputField chatInput;
-    public Text chatText;
+    public TMP_InputField chatInput;
+    public TextMeshProUGUI chatText;
     public ScrollRect scrollRect;
     public GameObject btnSend;
 
@@ -28,7 +28,7 @@ public class ControlChatRoom : MonoBehaviourPun
     {
         if (!chatInput)
         {
-            chatInput = GameObject.Find("ChatInputField").GetComponent<InputField>();
+            chatInput = GameObject.Find("ChatInputField").GetComponent<TMP_InputField>();
         }
         if (!btnSend)
         {
@@ -36,9 +36,9 @@ public class ControlChatRoom : MonoBehaviourPun
         }
         if (!chatText)
         {
-            chatText = GameObject.Find("ChatText").GetComponent<Text>();
+            chatText = GameObject.Find("ChatText").GetComponent<TextMeshProUGUI>();
         }
-        if (!btnSend)
+        if (btnSend)
         {
             btnSend.GetComponent<Button>().onClick.AddListener(
                 delegate { SendContent(); }
@@ -55,6 +55,7 @@ public class ControlChatRoom : MonoBehaviourPun
         }
         //获取聊天框内容
         inputLine = chatInput.text;
+        Debug.Log("Sending Content");
 
         if (!string.IsNullOrEmpty(this.inputLine))
         {
@@ -76,6 +77,7 @@ public class ControlChatRoom : MonoBehaviourPun
     [PunRPC]
     public void SystemInfo(string newLine)
     {
+        Debug.Log("Receving content");
         chatText.text = "";
 
         this.messages.Add("<color=#B8860B>" + newLine + "</color> ");

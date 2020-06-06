@@ -32,8 +32,12 @@ public class CountDown : MonoBehaviour
     {
         if (PhotonNetwork.IsMasterClient)
         {//转换场景
-            if (getTime == 0)
+            if (getTime <= 0)
             {
+                if (!photonView)
+                {
+                    photonView = GameObject.FindGameObjectWithTag("Show").GetComponent<PhotonView>();
+                }
                 photonView.RPC("LoadEnding", RpcTarget.All);
             }
             int M = getTime / 60;       //获取分钟

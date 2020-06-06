@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
 using Com.Glassblade.Group1;
+using TMPro;
 
 public class PlayerCharacter : MonoBehaviourPun, IPunObservable
 {
@@ -73,7 +74,7 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
     #endregion
 
     #region occupy mode
-    public Text KDtext;
+    public TextMeshProUGUI KDtext;
 
     public OMode OM = null;
 
@@ -137,11 +138,6 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
             Debug.Log("[PlayerCharacter:OnTriggerEnter()] client: it is weapon refresh site, weapon status : " + target.weaponstatus);
             target.tryPickWeapon(target.weaponstatus);
         }
-    }
-
-    private void OnTriggerStay(Collider col)
-    {
-        //Debug.Log("client: stayed in weapon refresh site");
     }
 
     public void Attack()
@@ -257,7 +253,7 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
     /// dead.
     /// </summary>
     [PunRPC]
-    public void TakeDamage(int srcviewID)
+    public void TakeDamage(int srcviewID, string weaponname, TeamController.Team srcteam)
     {
         if (!isProtected && !isJustAlive && !gamePlayer.GetComponent<CharacterBehavior>().invincible && isAlive)
         {
@@ -280,7 +276,7 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
             //}
             if (KDboard)
             {
-                KDboard.GetComponent<KDBoardView>().CallUpdateBoard(photonView.Owner.NickName, this.photonView.Owner.NickName);
+                KDboard.GetComponent<KDBoardView>().CallUpdateBoard(photonView.Owner.NickName, this.photonView.Owner.NickName, weaponname, (int)srcteam, (int)team);
             }
             Death();
         }
@@ -333,7 +329,7 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
 
         PlayAudio(9, false);
         isProtected = true; //tt
-
+        weapons[holdWeaponIndex].gameObject.SetActive(false);
         this.transform.GetComponent<CharacterController>().center = new Vector3(180.0f, 1.34f, -10.0f);
         this.transform.GetComponent<CapsuleCollider>().center = new Vector3(180.0f, 0.0f, -10.0f);
 
@@ -346,14 +342,18 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
         Debug.Log("----------------------------Death--------------------------");
         //if (photonView.IsMine)
         //
+        //非占点模式
+        if (!GameObject.Find("OData"))
+        {
 
-        if ((TeamController.Team)PhotonNetwork.LocalPlayer.CustomProperties["team"] == TeamController.Team.TeamA)
-        {
-            GameObject.FindGameObjectWithTag("ScoreB").GetComponent<Scores>().SendScoreInfo();
-        }
-        else
-        {
-            GameObject.FindGameObjectWithTag("ScoreA").GetComponent<Scores>().SendScoreInfo();
+            if ((TeamController.Team)PhotonNetwork.LocalPlayer.CustomProperties["team"] == TeamController.Team.TeamA)
+            {
+                GameObject.FindGameObjectWithTag("ScoreB").GetComponent<Scores>().SendScoreInfo();
+            }
+            else
+            {
+                GameObject.FindGameObjectWithTag("ScoreA").GetComponent<Scores>().SendScoreInfo();
+            }
         }
         //**灰屏    
         baw.setDeath();
@@ -375,7 +375,7 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
             //Vector3 CurPosition = transform.position;
             //CurPosition.y = -100;
             //transform.position = CurPosition;
-            transform.position = new Vector3(180.0f, 0.0f ,-10.0f);
+            transform.position = new Vector3(180.0f, 0.0f, -10.0f);
             this.transform.GetComponent<CharacterController>().center = new Vector3(0.0f, 1.34f, 0.0f);
             this.transform.GetComponent<CapsuleCollider>().center = new Vector3(0.0f, 0.0f, 0.0f);
         }
@@ -386,7 +386,8 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
     {
         if (!counter)
         {
-            counter = GameObject.FindGameObjectWithTag("ScreenText").GetComponent<Text>();
+            //counter = GameObject.FindGameObjectWithTag("ScreenText").GetComponent<Text>();
+            counter = GameObject.Find("DeathCounter").GetComponent<Text>();
             Debug.Log("[PlayerCharacter:CountDown()] attach counter");
         }
         if (counttime == 0)  //复活
@@ -398,7 +399,7 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
         else
         {
             counter.text = "剩余时间:" + counttime;
-            counttime = counttime - 1;
+            counttime -= 1;
         }
     }
 
@@ -433,30 +434,31 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
         {
             // Debug.Log("relive time = " + Time.time);
             PlayAudio(10, false);
-            this.gameObject.GetComponent<movegetgromjoystick>().moveEnable = true;
 
             baw.setLive();
             isProtected = false;  // tt
             isAlive = true;
-            var reliver = Random.Range(-180.0f, 180.0f);
-            transform.rotation = Quaternion.Euler(0, reliver, 0);
+            //var reliver = Random.Range(-180.0f, 180.0f);
+            //transform.rotation = Quaternion.Euler(0, reliver, 0);
 
-            float reliveX;
-            float reliveZ;
-            float reliveY = 1;
-            if ((TeamController.Team)PhotonNetwork.LocalPlayer.CustomProperties["team"] == TeamController.Team.TeamA)
-            {
-                Debug.Log("[PlayerCharacter:Relive()] Team A player relive, placed to team A position");
-                reliveX = -24;
-                reliveZ = -46;
-            }
-            else
-            {
-                Debug.Log("[PlayerCharacter:Relive()] Team B player relive, placed to team B position");
-                reliveX = 24;
-                reliveZ = 46;
-            }
-            transform.position = new Vector3(reliveX, reliveY, reliveZ);
+            //float reliveX;
+            //float reliveZ;
+            //float reliveY = 1;
+            //if ((TeamController.Team)PhotonNetwork.LocalPlayer.CustomProperties["team"] == TeamController.Team.TeamA)
+            //{
+            //    Debug.Log("[PlayerCharacter:Relive()] Team A player relive, placed to team A position");
+            //    reliveX = -24;
+            //    reliveZ = -46;
+            //}
+            //else
+            //{
+            //    Debug.Log("[PlayerCharacter:Relive()] Team B player relive, placed to team B position");
+            //    reliveX = 24;
+            //    reliveZ = 46;
+            //}
+            //transform.position = new Vector3(reliveX, reliveY, reliveZ);
+
+            this.gameObject.GetComponent<movegetgromjoystick>().moveEnable = true;
 
             // relive-protect
             protectTime = protectTimeMax;
@@ -502,7 +504,7 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
         {
             if (GameObject.Find("KDText"))
             {
-                KDtext = GameObject.Find("KDText").GetComponent<Text>();
+                KDtext = GameObject.Find("KDText").GetComponent<TextMeshProUGUI>();
             }
 
             if (GameObject.Find("KDBoard"))
@@ -522,7 +524,7 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
 
         // this should be set for all player instances
         Debug.Log("Player " + photonView.Owner.NickName + " Resetting weapons");
-        weapons =  this.transform.GetChild(0).transform.GetChild(1).GetComponentsInChildren<Transform>();
+        weapons = this.transform.GetChild(0).transform.GetChild(1).GetComponentsInChildren<Transform>();
         for (int i = 1; i <= weaponKinds; i++)
         {
             weapons[i].gameObject.SetActive(false);
@@ -541,7 +543,7 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
 
         if (KDtext)
         {
-            KDtext.text = "K: " + killTime + "  " + "D: " + deathTime + "  " + "S: " + score + "  ";
+            KDtext.text = "🔪: " + killTime + "  " + "💀: " + deathTime + "  " + "🏆: " + score + "  ";
         }
 
     }

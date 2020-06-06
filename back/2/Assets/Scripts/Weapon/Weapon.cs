@@ -59,7 +59,8 @@ public abstract class Weapon : MonoBehaviour
                 //Pc.killTime++;
                 //Pc.UpdateScore(100);
                 //target.CallTakeDamage(target.photonView.Owner, photonviewOwner);
-                target.photonView.RPC("TakeDamage", target.photonView.Owner, photonviewOwner.ViewID);
+                target.photonView.RPC("TakeDamage", target.photonView.Owner, photonviewOwner.ViewID, gameObject.name, Pc.team);
+                //Debug.Log(gameObject.name);
             }
         }
     }

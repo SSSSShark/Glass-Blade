@@ -263,7 +263,7 @@ public class TeamController : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (PhotonNetwork.IsMasterClient)
         {
-            Debug.Log("[TeamController:Synchronize()] Synchronizing, with team A: " + NumTeamA + " teamB: " + NumTeamB);
+            //Debug.Log("[TeamController:Synchronize()] Synchronizing, with team A: " + NumTeamA + " teamB: " + NumTeamB);
             int TeamAIndex = 0;
             int TeamBIndex = 0;
             // we use the master to allocate team
@@ -283,7 +283,7 @@ public class TeamController : MonoBehaviourPunCallbacks, IPunObservable
                     if ((Status)p.CustomProperties["status"] == Status.Ready)
                     {
                         TeamAList[TeamAIndex++].transform.Find("Ready").GetComponent<RawImage>().enabled = true;
-                        Debug.LogFormat("[TeamController:Synchronize()] Toggle for TeamA[{0}] is on", TeamAIndex);
+                        //Debug.LogFormat("[TeamController:Synchronize()] Toggle for TeamA[{0}] is on", TeamAIndex);
                     }
                     else
                     {
@@ -296,7 +296,7 @@ public class TeamController : MonoBehaviourPunCallbacks, IPunObservable
                     if ((Status)p.CustomProperties["status"] == Status.Ready)
                     {
                         TeamBList[TeamBIndex++].transform.Find("Ready").GetComponent<RawImage>().enabled = true;
-                        Debug.LogFormat("[TeamController:Synchronize()] Toggle for TeamB[{0}] is on", TeamBIndex);
+                        //Debug.LogFormat("[TeamController:Synchronize()] Toggle for TeamB[{0}] is on", TeamBIndex);
                     }
                     else
                     {
@@ -305,7 +305,7 @@ public class TeamController : MonoBehaviourPunCallbacks, IPunObservable
                 }
                 NumTeamA = TeamAIndex;
                 NumTeamB = TeamBIndex;
-                Debug.Log("[TeamController:Synchronize()] Infomation updated, with team A: " + NumTeamA + " teamB: " + NumTeamB);
+                //Debug.Log("[TeamController:Synchronize()] Infomation updated, with team A: " + NumTeamA + " teamB: " + NumTeamB);
             }
 
             fullTeamA = TeamAIndex >= 5;
