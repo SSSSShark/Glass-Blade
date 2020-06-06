@@ -822,7 +822,7 @@ GameObject:
   - component: {fileID: 730010913}
   - component: {fileID: 730010912}
   m_Layer: 5
-  m_Name: TMP SubMeshUI [simhei-SDFAA Material + LiberationSans SDF Atlas]
+  m_Name: TMP SubMeshUI [SH SDF Material + LiberationSans SDF Atlas]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1373,8 +1373,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: KDboard
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a982746b3a2bca240a3a96fe25bc8d10, type: 2}
-  m_sharedMaterial: {fileID: -5884321809341170458, guid: a982746b3a2bca240a3a96fe25bc8d10,
+  m_fontAsset: {fileID: 11400000, guid: 0c7ed778bd558514cb58bbd6cf9de21e, type: 2}
+  m_sharedMaterial: {fileID: 8335312928617837831, guid: 0c7ed778bd558514cb58bbd6cf9de21e,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -1635,8 +1635,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: KDText
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a982746b3a2bca240a3a96fe25bc8d10, type: 2}
-  m_sharedMaterial: {fileID: -5884321809341170458, guid: a982746b3a2bca240a3a96fe25bc8d10,
+  m_fontAsset: {fileID: 11400000, guid: 0c7ed778bd558514cb58bbd6cf9de21e, type: 2}
+  m_sharedMaterial: {fileID: 8335312928617837831, guid: 0c7ed778bd558514cb58bbd6cf9de21e,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -1913,7 +1913,7 @@ GameObject:
   - component: {fileID: 1990825910}
   - component: {fileID: 1990825909}
   m_Layer: 5
-  m_Name: TMP SubMeshUI [simhei-SDFAA Material + LiberationSans SDF Atlas]
+  m_Name: TMP SubMeshUI [SH SDF Material + LiberationSans SDF Atlas]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
