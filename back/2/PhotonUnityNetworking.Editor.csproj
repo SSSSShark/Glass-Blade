@@ -72,18 +72,6 @@
      <Compile Include="Assets\Photon\PhotonUnityNetworking\Code\Editor\Views\PhotonTransformViewEditor.cs" />
      <None Include="Assets\Photon\PhotonUnityNetworking\Code\Editor\PhotonUnityNetworking.Editor.asmdef" />
      <None Include="Assets\Photon\PhotonUnityNetworking\Code\Editor\ReordableList\LICENSE.txt" />
- <Reference Include="UnityEditor.UI">
- <HintPath>C:/Users/59497/Documents/Projects/GlassBlade/Glass-Blade/back/2/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.UI">
- <HintPath>C:/Users/59497/Documents/Projects/GlassBlade/Glass-Blade/back/2/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
- </Reference>
- <Reference Include="UnityEditor.TestRunner">
- <HintPath>C:/Users/59497/Documents/Projects/GlassBlade/Glass-Blade/back/2/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.TestRunner">
- <HintPath>C:/Users/59497/Documents/Projects/GlassBlade/Glass-Blade/back/2/Library/ScriptAssemblies/UnityEngine.TestRunner.dll</HintPath>
- </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
  </Reference>
@@ -642,6 +630,22 @@
     <ProjectReference Include="PhotonUnityNetworking.csproj">
       <Project>{58A68F8F-72DE-12E3-02C7-528DC1F26D07}</Project>
       <Name>PhotonUnityNetworking</Name>
+    </ProjectReference>
+    <ProjectReference Include="UnityEditor.UI.csproj">
+      <Project>{F86C9886-3301-41F2-AB13-A29F968F992F}</Project>
+      <Name>UnityEditor.UI</Name>
+    </ProjectReference>
+    <ProjectReference Include="UnityEngine.UI.csproj">
+      <Project>{7161C045-2A49-474B-E4A2-0D8152009532}</Project>
+      <Name>UnityEngine.UI</Name>
+    </ProjectReference>
+    <ProjectReference Include="UnityEditor.TestRunner.csproj">
+      <Project>{BF3DAE43-0897-254F-3E95-443F9989B29C}</Project>
+      <Name>UnityEditor.TestRunner</Name>
+    </ProjectReference>
+    <ProjectReference Include="UnityEngine.TestRunner.csproj">
+      <Project>{600CC3EE-6F4B-F4AA-C0E5-08F41D7645F7}</Project>
+      <Name>UnityEngine.TestRunner</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -160,12 +160,6 @@
      <None Include="Assets\Photon\PhotonUnityNetworking\Demos\PhotonUnityNetworking.Demos.asmdef" />
      <None Include="Assets\Photon\PhotonUnityNetworking\Demos\Shared Assets\Skin\3dText.shader" />
      <None Include="Assets\Photon\PhotonUnityNetworking\Demos\DemoSlotRacer\Kenney Assets\Copyrights.txt" />
- <Reference Include="UnityEditor.UI">
- <HintPath>C:/Users/59497/Documents/Projects/GlassBlade/Glass-Blade/back/2/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.UI">
- <HintPath>C:/Users/59497/Documents/Projects/GlassBlade/Glass-Blade/back/2/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
- </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
  </Reference>
@@ -710,6 +704,14 @@
     <ProjectReference Include="PhotonUnityNetworking.Utilities.csproj">
       <Project>{6235D303-C62B-CCAB-3851-B21C345A7AE6}</Project>
       <Name>PhotonUnityNetworking.Utilities</Name>
+    </ProjectReference>
+    <ProjectReference Include="UnityEditor.UI.csproj">
+      <Project>{F86C9886-3301-41F2-AB13-A29F968F992F}</Project>
+      <Name>UnityEditor.UI</Name>
+    </ProjectReference>
+    <ProjectReference Include="UnityEngine.UI.csproj">
+      <Project>{7161C045-2A49-474B-E4A2-0D8152009532}</Project>
+      <Name>UnityEngine.UI</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

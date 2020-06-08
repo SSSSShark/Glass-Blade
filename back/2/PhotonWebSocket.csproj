@@ -58,12 +58,6 @@
      <Compile Include="Assets\Photon\PhotonLibs\WebSocket\SocketWebTcp.cs" />
      <Compile Include="Assets\Photon\PhotonLibs\WebSocket\WebSocket.cs" />
      <None Include="Assets\Photon\PhotonLibs\WebSocket\PhotonWebSocket.asmdef" />
- <Reference Include="UnityEditor.UI">
- <HintPath>C:/Users/59497/Documents/Projects/GlassBlade/Glass-Blade/back/2/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.UI">
- <HintPath>C:/Users/59497/Documents/Projects/GlassBlade/Glass-Blade/back/2/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
- </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
  </Reference>
@@ -595,6 +589,16 @@
  <Reference Include="System.Xml.Serialization">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Xml.Serialization.dll</HintPath>
  </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="UnityEditor.UI.csproj">
+      <Project>{F86C9886-3301-41F2-AB13-A29F968F992F}</Project>
+      <Name>UnityEditor.UI</Name>
+    </ProjectReference>
+    <ProjectReference Include="UnityEngine.UI.csproj">
+      <Project>{7161C045-2A49-474B-E4A2-0D8152009532}</Project>
+      <Name>UnityEngine.UI</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -184,36 +184,6 @@
      <None Include="Assets\RRFreelance\CustomizableWeapons\Shaders\PB_VertexColor.shader" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />
      <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Bangers - OFL.txt" />
- <Reference Include="Unity.Timeline.Editor">
- <HintPath>C:/Users/59497/Documents/Projects/GlassBlade/Glass-Blade/back/2/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
- </Reference>
- <Reference Include="Unity.VSCode.Editor">
- <HintPath>C:/Users/59497/Documents/Projects/GlassBlade/Glass-Blade/back/2/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
- </Reference>
- <Reference Include="Unity.TextMeshPro.Editor">
- <HintPath>C:/Users/59497/Documents/Projects/GlassBlade/Glass-Blade/back/2/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.UI">
- <HintPath>C:/Users/59497/Documents/Projects/GlassBlade/Glass-Blade/back/2/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
- </Reference>
- <Reference Include="Unity.Timeline">
- <HintPath>C:/Users/59497/Documents/Projects/GlassBlade/Glass-Blade/back/2/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
- </Reference>
- <Reference Include="Unity.CollabProxy.Editor">
- <HintPath>C:/Users/59497/Documents/Projects/GlassBlade/Glass-Blade/back/2/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
- </Reference>
- <Reference Include="Unity.Rider.Editor">
- <HintPath>C:/Users/59497/Documents/Projects/GlassBlade/Glass-Blade/back/2/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
- </Reference>
- <Reference Include="Unity.2D.Sprite.Editor">
- <HintPath>C:/Users/59497/Documents/Projects/GlassBlade/Glass-Blade/back/2/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
- </Reference>
- <Reference Include="Unity.TextMeshPro">
- <HintPath>C:/Users/59497/Documents/Projects/GlassBlade/Glass-Blade/back/2/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
- </Reference>
- <Reference Include="UnityEditor.UI">
- <HintPath>C:/Users/59497/Documents/Projects/GlassBlade/Glass-Blade/back/2/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
- </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
  </Reference>
@@ -747,6 +717,10 @@
  </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="Unity.Timeline.Editor.csproj">
+      <Project>{6F386357-5A45-D013-269B-E1E3E006DD34}</Project>
+      <Name>Unity.Timeline.Editor</Name>
+    </ProjectReference>
     <ProjectReference Include="PhotonUnityNetworking.Utilities.PhotonPlayer.Editor.csproj">
       <Project>{85E9F48E-2506-0C42-467C-86A31003AB10}</Project>
       <Name>PhotonUnityNetworking.Utilities.PhotonPlayer.Editor</Name>
@@ -759,6 +733,10 @@
       <Project>{AF6F79F1-647A-EF56-9324-A8043B222234}</Project>
       <Name>PunDemos.DemoSlotcarEditor</Name>
     </ProjectReference>
+    <ProjectReference Include="Unity.VSCode.Editor.csproj">
+      <Project>{48C4BF71-B642-9500-1891-528442AB5437}</Project>
+      <Name>Unity.VSCode.Editor</Name>
+    </ProjectReference>
     <ProjectReference Include="PhotonUnityNetworking.Demos.csproj">
       <Project>{C5890C20-EF39-0CB3-A2A0-22445F2CDD13}</Project>
       <Name>PhotonUnityNetworking.Demos</Name>
@@ -767,21 +745,49 @@
       <Project>{6235D303-C62B-CCAB-3851-B21C345A7AE6}</Project>
       <Name>PhotonUnityNetworking.Utilities</Name>
     </ProjectReference>
+    <ProjectReference Include="Unity.TextMeshPro.Editor.csproj">
+      <Project>{F292B204-6AB1-34C4-33E2-8E719AAAF44A}</Project>
+      <Name>Unity.TextMeshPro.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="UnityEngine.UI.csproj">
+      <Project>{7161C045-2A49-474B-E4A2-0D8152009532}</Project>
+      <Name>UnityEngine.UI</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Timeline.csproj">
+      <Project>{3FB88514-C8E8-D93C-0349-BDCA7512E275}</Project>
+      <Name>Unity.Timeline</Name>
+    </ProjectReference>
     <ProjectReference Include="PhotonWebSocket.csproj">
       <Project>{DBBF88EF-28BE-1601-FDB9-524BB5193FA9}</Project>
       <Name>PhotonWebSocket</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.CollabProxy.Editor.csproj">
+      <Project>{637E526F-8245-0064-6334-663E386D37C3}</Project>
+      <Name>Unity.CollabProxy.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="PhotonRealtime.csproj">
       <Project>{BA64562E-8175-D24A-2E72-ED616EA7CB25}</Project>
       <Name>PhotonRealtime</Name>
     </ProjectReference>
+    <ProjectReference Include="Unity.Rider.Editor.csproj">
+      <Project>{BD8321B4-6EA1-DEDC-E3D1-B824A2510FB7}</Project>
+      <Name>Unity.Rider.Editor</Name>
+    </ProjectReference>
     <ProjectReference Include="PhotonUnityNetworking.csproj">
       <Project>{58A68F8F-72DE-12E3-02C7-528DC1F26D07}</Project>
       <Name>PhotonUnityNetworking</Name>
     </ProjectReference>
+    <ProjectReference Include="Unity.2D.Sprite.Editor.csproj">
+      <Project>{DA05A489-E7FD-A1AE-EB74-E4F3543236DE}</Project>
+      <Name>Unity.2D.Sprite.Editor</Name>
+    </ProjectReference>
     <ProjectReference Include="PhotonChat.csproj">
       <Project>{AD6032F5-E893-A744-DD01-4C51FD42DFA3}</Project>
       <Name>PhotonChat</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.TextMeshPro.csproj">
+      <Project>{C852CDC2-94AD-546D-4B4A-1A6978D12D94}</Project>
+      <Name>Unity.TextMeshPro</Name>
     </ProjectReference>
     <ProjectReference Include="PhotonUnityNetworking.Utilities.Culling.Editor.csproj">
       <Project>{5E4C74C9-545D-39FD-F7A6-1FF0CE4FA83D}</Project>
@@ -790,6 +796,10 @@
     <ProjectReference Include="PhotonUnityNetworking.Editor.csproj">
       <Project>{50A05A27-9E95-D4DA-4F20-D198C34B9A42}</Project>
       <Name>PhotonUnityNetworking.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="UnityEditor.UI.csproj">
+      <Project>{F86C9886-3301-41F2-AB13-A29F968F992F}</Project>
+      <Name>UnityEditor.UI</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
