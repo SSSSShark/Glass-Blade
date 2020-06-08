@@ -28,9 +28,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 437264845020577391}
-  - {fileID: 1191870376107195398}
   - {fileID: 7305506392975150453}
-  - {fileID: 7930716389569889071}
   m_Father: {fileID: 2798223184559789812}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -48,7 +46,7 @@ GameObject:
   - component: {fileID: 1458189450024259130}
   m_Layer: 0
   m_Name: Dagger_Set_A (2)
-  m_TagString: Untagged
+  m_TagString: weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -60,12 +58,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1555405567348736368}
-  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: -0.7071068}
-  m_LocalPosition: {x: -1.8, y: -0.15, z: -0.5}
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0.0203107, y: -0.72043097, z: 0.009797096}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1924145944}
-  m_RootOrder: 1
+  m_Father: {fileID: 2795243260390370348}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!33 &8051945060380014609
 MeshFilter:
@@ -142,7 +140,7 @@ GameObject:
   - component: {fileID: 7262029375429814784}
   m_Layer: 0
   m_Name: Sword_TwoHanded_Set_A
-  m_TagString: Untagged
+  m_TagString: weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -159,7 +157,7 @@ Transform:
   m_LocalScale: {x: 1.1251462, y: 1.1251464, z: 1.1251462}
   m_Children: []
   m_Father: {fileID: 1924145944}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 141.045, y: 89.99999, z: 0.99998474}
 --- !u!33 &3017955561712635397
 MeshFilter:
@@ -5410,6 +5408,8 @@ Transform:
   - {fileID: 2798421144281149904}
   - {fileID: 2795115785411916520}
   - {fileID: 2795128386577911382}
+  - {fileID: 7930716389569889071}
+  - {fileID: 1191870376107195398}
   m_Father: {fileID: 2798387275158082978}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5767,10 +5767,10 @@ MonoBehaviour:
   DeathTime: 10
   weaponObject: {fileID: 1924145943}
   fireWeapenprefab:
-  - Axe2Hand
-  - Dagger
-  - Sword2Hand
   - Sword
+  - Dagger
+  - Axe2Hand
+  - Sword2Hand
   DefalutWeapenprefab: DaggerDefault
   weaponKinds: 4
   speed: 25
@@ -5779,6 +5779,10 @@ MonoBehaviour:
   gamePlayer: {fileID: 0}
   skillBtn: {fileID: 0}
   KDboard: {fileID: 0}
+  weapon_sword: {fileID: 4341777557246857598}
+  weapon_dagger: {fileID: 1555405567348736368}
+  weapon_two_handed_axe: {fileID: 7131381173331996840}
+  weapon_two_handed_sword: {fileID: 2327896315942900579}
   KDtext: {fileID: 0}
   OM: {fileID: 0}
   killTime: 0
@@ -23684,7 +23688,7 @@ GameObject:
   - component: {fileID: 7187555499399774085}
   m_Layer: 0
   m_Name: Sword_Set_A
-  m_TagString: Untagged
+  m_TagString: weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23696,11 +23700,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4341777557246857598}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -1.8, y: -0.15, z: -0.5}
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: -0.7071068}
+  m_LocalPosition: {x: 0.0203107, y: -0.72043097, z: 0.009797096}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1924145944}
+  m_Father: {fileID: 2795243260390370348}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!33 &3741653299719528334
@@ -23778,7 +23782,7 @@ GameObject:
   - component: {fileID: 2502118800268362815}
   m_Layer: 0
   m_Name: Axe_TwoHanded_Set_A
-  m_TagString: Untagged
+  m_TagString: weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -17,6 +17,7 @@ TagManager:
   - Team0
   - TargetPoint
   - Skill
+  - weapon
   layers:
   - Default
   - TransparentFX
