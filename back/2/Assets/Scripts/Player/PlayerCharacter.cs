@@ -55,7 +55,6 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
     CharacterController cc;
     //黑白渲染组件
     BlackAndWhite baw;
-    private Transform[] weapons;
 
     [Tooltip("The local player instance. Use this to know if the local player is represented in the scene")]
     public static GameObject LocalPlayerInstance;
@@ -70,6 +69,14 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
     public Button skillBtn;
 
     public GameObject KDboard;
+
+    // Weapons
+    public GameObject weapon_sword;
+    public GameObject weapon_dagger;
+    public GameObject weapon_two_handed_axe;
+    public GameObject weapon_two_handed_sword;
+
+    private Transform[] weapons;
 
     #endregion
 
@@ -177,10 +184,17 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
                 // play sound
                 switch (holdWeaponIndex)
                 {
-                    case 1: PlayAudio(5, true); break;
+                    // attack using sword
+                    case 1: PlayAudio(4, true); break;
+                    
+                    // attack using dagger
                     case 2: PlayAudio(6, true); break;
-                    case 3: PlayAudio(3, true); break;
-                    case 4: PlayAudio(4, true); break;
+
+                    // attack using 2-handed axe
+                    case 3: PlayAudio(5, true); break;
+
+                    // attack using 2 handed sword
+                    case 4: PlayAudio(3, true); break;
                 }
                 photonView.RPC("holdWeapon", RpcTarget.All, holdWeaponIndex, false);
                 // holdWeapon(holdWeaponIndex, false);
@@ -188,8 +202,7 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
             else  //使用默认weapon
             {
                 // 武器出现位置
-
-                PlayAudio(7, true);    //bug here
+                PlayAudio(7, true);
 
 
 
@@ -513,9 +526,8 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
             }
 
             cc = GetComponent<CharacterController>();
-            baw = GameObject.FindObjectOfType<BlackAndWhite>();
-            weapons = weaponObject.GetComponentsInChildren<Transform>();
-            Debug.Log("[PlayerCharacter:Start()] Resetting All weapons");
+            baw = GameObject.FindObjectOfType<BlackAndWhite>();;
+
             //foreach (Transform child in weapons) child.gameObject.SetActive(false);
 
             // set team
@@ -524,7 +536,12 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
 
         // this should be set for all player instances
         Debug.Log("Player " + photonView.Owner.NickName + " Resetting weapons");
-        weapons = this.transform.GetChild(0).transform.GetChild(1).GetComponentsInChildren<Transform>();
+        weapons = new Transform[weaponKinds + 1];
+        weapons[1] = weapon_sword.GetComponent<Transform>();
+        weapons[2] = weapon_dagger.GetComponent<Transform>();
+        weapons[3] = weapon_two_handed_axe.GetComponent<Transform>();
+        weapons[4] = weapon_two_handed_sword.GetComponent<Transform>();
+
         for (int i = 1; i <= weaponKinds; i++)
         {
             weapons[i].gameObject.SetActive(false);
