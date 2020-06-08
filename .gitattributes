@@ -1,3 +1,2 @@
-resources.assets filter=lfs diff=lfs merge=lfs -text
 data.unity3d filter=lfs diff=lfs merge=lfs -text
 back/2/Assets/Resources/Font/simhei-SDFAA.asset filter=lfs diff=lfs merge=lfs -text
