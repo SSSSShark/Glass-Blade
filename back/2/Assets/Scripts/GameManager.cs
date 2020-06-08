@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     public GameObject weaponSystem;
     public GameObject localPlayerObj;
     public GameObject gameSkillButton;
+    public GameObject mapCamera;
 
     public Button AttackBtn;
 
@@ -108,6 +109,8 @@ public class GameManager : MonoBehaviour
                 thePlayer.GetComponent<PlayerCharacter>().gamePlayer = thePlayer;
 
                 thePlayer.GetComponent<PlayerCharacter>().skillBtn = gameSkillButton.GetComponent<Button>();
+
+                mapCamera.GetComponent<MapCameraControl>().player = thePlayer;
 
             }
             else
