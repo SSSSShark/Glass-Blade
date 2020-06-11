@@ -1,6 +1,7 @@
 ﻿using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class DeadHouseControl : MonoBehaviour
@@ -33,6 +34,7 @@ public class DeadHouseControl : MonoBehaviour
             var target = other.GetComponent<PlayerCharacter>();
             if (target)
             {
+                target.transform.GetComponent<movegetgromjoystick>().moveEnable = false;
                 if (target.isAlive)
                 {
                     var reliver = Random.Range(-180.0f, 180.0f);
@@ -54,6 +56,9 @@ public class DeadHouseControl : MonoBehaviour
                         reliveZ = 46;
                     }
                     target.transform.position = new Vector3(reliveX, reliveY, reliveZ);
+                    Thread.Sleep(200);
+                    target.transform.GetComponent<movegetgromjoystick>().moveEnable = true;
+
                 }
             }
         }

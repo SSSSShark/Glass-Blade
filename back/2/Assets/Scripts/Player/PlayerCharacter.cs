@@ -186,7 +186,7 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
                 {
                     // attack using sword
                     case 1: PlayAudio(4, true); break;
-                    
+
                     // attack using dagger
                     case 2: PlayAudio(6, true); break;
 
@@ -291,6 +291,19 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
             {
                 KDboard.GetComponent<KDBoardView>().CallUpdateBoard(photonView.Owner.NickName, this.photonView.Owner.NickName, weaponname, (int)srcteam, (int)team);
             }
+            //非占点模式
+            if (!GameObject.Find("OData"))
+            {
+
+                if ((TeamController.Team)PhotonNetwork.LocalPlayer.CustomProperties["team"] == TeamController.Team.TeamA)
+                {
+                    GameObject.FindGameObjectWithTag("ScoreB").GetComponent<Scores>().SendScoreInfo();
+                }
+                else
+                {
+                    GameObject.FindGameObjectWithTag("ScoreA").GetComponent<Scores>().SendScoreInfo();
+                }
+            }
             Death();
         }
     }
@@ -342,7 +355,11 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
 
         PlayAudio(9, false);
         isProtected = true; //tt
+
+        isHoldWeapon = false;
         weapons[holdWeaponIndex].gameObject.SetActive(false);
+
+        // 将两个碰撞体移出地图
         this.transform.GetComponent<CharacterController>().center = new Vector3(180.0f, 1.34f, -10.0f);
         this.transform.GetComponent<CapsuleCollider>().center = new Vector3(180.0f, 0.0f, -10.0f);
 
@@ -352,22 +369,6 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
         InvokeRepeating("DeathRotate", 1f, (float)(2.0 / DeathRotateTimes));
         //deathevent.Invoke(this); // 占点模式引发
 
-        Debug.Log("----------------------------Death--------------------------");
-        //if (photonView.IsMine)
-        //
-        //非占点模式
-        if (!GameObject.Find("OData"))
-        {
-
-            if ((TeamController.Team)PhotonNetwork.LocalPlayer.CustomProperties["team"] == TeamController.Team.TeamA)
-            {
-                GameObject.FindGameObjectWithTag("ScoreB").GetComponent<Scores>().SendScoreInfo();
-            }
-            else
-            {
-                GameObject.FindGameObjectWithTag("ScoreA").GetComponent<Scores>().SendScoreInfo();
-            }
-        }
         //**灰屏    
         baw.setDeath();
         //**倒计时
@@ -526,7 +527,7 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
             }
 
             cc = GetComponent<CharacterController>();
-            baw = GameObject.FindObjectOfType<BlackAndWhite>();;
+            baw = GameObject.FindObjectOfType<BlackAndWhite>(); ;
 
             //foreach (Transform child in weapons) child.gameObject.SetActive(false);
 
@@ -561,6 +562,22 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
         if (KDtext)
         {
             KDtext.text = "🔪: " + killTime + "  " + "💀: " + deathTime + "  " + "🏆: " + score + "  ";
+        }
+        if (gameObject.transform.position.y < -15.0f)
+        {
+            gameObject.GetComponent<movegetgromjoystick>().moveEnable = false;
+            isAlive = false;
+            transform.position = new Vector3(180.0f, 0.0f, -10.0f);
+            //if (!IsInvoking("Relive"))
+            //{
+            //    Invoke("Relive", 10.0f);
+            //}
+            if (!IsInvoking("CountDown"))
+            {
+                baw.setDeath();
+                counttime = DeathTime;
+                InvokeRepeating("CountDown", 0f, 1.0f);
+            }
         }
 
     }
