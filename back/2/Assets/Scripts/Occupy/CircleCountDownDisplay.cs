@@ -1,11 +1,11 @@
 ﻿// Author: David Wang
 // Function: 显示夺取倒计时，倒计时结束夺取成功，显示"✔"
 using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
-
 namespace Com.Glassblade.Group1
 {
     public class CircleCountDownDisplay : MonoBehaviour, IPunObservable
@@ -21,14 +21,18 @@ namespace Com.Glassblade.Group1
         // 占领结果
         public TeamController.Team teamResult;
         // 整个倒计时牌
-        //public Transform CircleCountDown;
+        public RectTransform CircleCountDown;
         // 提示文字，倒计时时间
         public Transform Indicator;
         // 外圈
         public Transform Circle;
 
         private float[] color = new float[4];
-
+        private Transform camPosition;
+        // 占点在相机中的位置
+        private Vector3 viewPos;
+        // 相机到点的向量
+        private Vector3 camToDot;
         // 初始化赋值
         void Start()
         {
@@ -36,12 +40,56 @@ namespace Com.Glassblade.Group1
             current = max;
             tempTeam = TeamController.Team.unknown;
             teamResult = TeamController.Team.unknown;
-            GetComponent<CanvasGroup>().alpha = 0;
+            //GetComponent<CanvasGroup>().alpha = 0;
         }
 
         // 
         void Update()
         {
+            current = OM.currentTime;
+            tempTeam = OM.tempTeam;
+            teamResult = OM.team;
+
+            // David Wang add 占点可视
+            // 获取相机位置
+            camPosition = Camera.main.transform;
+            int window_h = UnityEngine.Screen.height;
+            int window_w = UnityEngine.Screen.width;
+            Vector3 center = new Vector3(window_w / 2, window_h / 2, 1);
+            // 将占点的点三维坐标转化成屏幕坐标
+            viewPos = Camera.main.WorldToViewportPoint(OM.transform.position);
+            if (viewPos.z >= 0)
+                viewPos = new Vector3(viewPos.x * window_w, viewPos.y * window_h, 1);
+            else
+                viewPos = new Vector3(-viewPos.x * window_w, -viewPos.y * window_h, 1);
+           // Debug.Log(viewPos);
+            // 计算相机到点的向量值
+            // 点在屏幕内
+            // 如果点在屏幕内，且位置足以放下倒计时圆盘
+            
+            int circle_radius = (int)(CircleCountDown.rect.width/2)+1;
+            Vector3 tepvec3 = new Vector3();
+            if (viewPos.x >= circle_radius&& viewPos.x <= window_w - circle_radius&& viewPos.y >= circle_radius && viewPos.y<= window_h - circle_radius)
+            {
+                tepvec3 = viewPos;
+            }
+            else
+            {
+                Vector3 t = (viewPos - center) / Math.Abs((viewPos - center).x) * (window_w / 2 - circle_radius);
+                if (Math.Abs(t.y)<= window_h/2 - circle_radius)
+                {
+                    tepvec3 = t+center;
+                }
+                else
+                {
+                    t = (viewPos - center) / Math.Abs((viewPos - center).y) * (window_h / 2 - circle_radius);
+                    tepvec3 = t+center;
+                }
+            }
+            tepvec3.z = 0; 
+            
+            CircleCountDown.position = tepvec3;
+         
             if (PhotonNetwork.IsMasterClient)
             {
                 //if (Indicator.GetComponent<Text>().text == "✔")
@@ -89,7 +137,7 @@ namespace Com.Glassblade.Group1
                 }
                 if (tempTeam == TeamController.Team.unknown)
                 {
-                    GetComponent<CanvasGroup>().alpha = 0;
+                    //GetComponent<CanvasGroup>().alpha = 0;
                 }
             }
         }
