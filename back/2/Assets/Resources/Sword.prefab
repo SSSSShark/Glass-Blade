@@ -157,7 +157,6 @@ MonoBehaviour:
   destroyTime: 0.2
   initPos: {x: 0, y: 0, z: 0}
   initForward: {x: 0, y: 0, z: 0}
-  ForwardTime: 0.33
   AttackDistance: 6
 --- !u!54 &255749503043526850
 Rigidbody:

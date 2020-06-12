@@ -179,6 +179,7 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
                 }
 
                 weaponInstance = PhotonNetwork.Instantiate(fireWeapenprefab[holdWeaponIndex - 1], this.transform.position + new Vector3(0, 1, 0) + this.transform.forward, transform.rotation * Quaternion.Euler(0.0f, 0.0f, 90.0f) * Quaternion.Euler(90.0f, 0.0f, 0.0f));
+
                 Debug.Log("[PlayCharacter:Attack()] Player " + photonView.Owner.NickName + " Attack");
 
                 // play sound
@@ -216,6 +217,7 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
             weaponInstance.GetComponent<Weapon>().Pc = GetComponent<PlayerCharacter>();
             //Debug.Log(weaponInstance.GetComponent<Weapon>().initPos);
             weaponInstance.GetComponent<Weapon>().initForward = transform.forward;
+            weaponInstance.GetComponent<Weapon>().destroyTime = attackTime;
             Invoke("AttackAfterDelay", attackdelaytime[holdWeaponIndex]);
         }
     }

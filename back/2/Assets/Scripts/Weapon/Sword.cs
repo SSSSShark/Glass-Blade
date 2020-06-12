@@ -6,12 +6,12 @@ public class Sword : Weapon
 {
     private bool isfire = false;
     private bool attackBack = false;
-    public float ForwardTime = 0.33f;
+    private float ForwardTime;
     public float AttackDistance = 1.5f;
     public override void  Start()
     {
         base.Start();
-        destroyTime = 3 * ForwardTime;
+        ForwardTime = destroyTime / 3;
     }
     public override void Fire()
     {
