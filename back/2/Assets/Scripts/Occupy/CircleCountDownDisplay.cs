@@ -26,6 +26,12 @@ namespace Com.Glassblade.Group1
         public Transform Indicator;
         // 外圈
         public Transform Circle;
+        [HideInInspector]
+        public String TextHint;
+        [HideInInspector]
+        public Color ColorHint;
+        [HideInInspector]
+        public Color TextColorHint;
 
         private float[] color = new float[4];
         private Transform camPosition;
@@ -41,6 +47,9 @@ namespace Com.Glassblade.Group1
             tempTeam = TeamController.Team.unknown;
             teamResult = TeamController.Team.unknown;
             //GetComponent<CanvasGroup>().alpha = 0;
+            TextHint=Indicator.GetComponent<Text>().text;
+            ColorHint= Circle.GetComponent<Image>().color ;
+            TextColorHint= Indicator.GetComponent<Text>().color ;
         }
 
         // 
@@ -137,7 +146,11 @@ namespace Com.Glassblade.Group1
                 }
                 if (tempTeam == TeamController.Team.unknown)
                 {
-                    //GetComponent<CanvasGroup>().alpha = 0;
+                    GetComponent<CanvasGroup>().alpha = 1;
+                    Circle.GetComponent<Image>().fillAmount = 1;
+                    Circle.GetComponent<Image>().color =ColorHint;
+                    Indicator.GetComponent<Text>().text = TextHint;
+                    Indicator.GetComponent<Text>().color =TextColorHint;
                 }
             }
         }
