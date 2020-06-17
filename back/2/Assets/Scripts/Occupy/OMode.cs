@@ -91,11 +91,11 @@ namespace Com.Glassblade.Group1
                         { 
                             //add by wmj,modify by Via Cytus
                             //这时点里玩家应全加分
-                            foreach (PlayerCharacter p in Players)
+                            foreach (PhotonView p in Players)
                             {
-                                if(p.photonView && (TeamController.Team)p.photonView.Controller.CustomProperties["team"] == team)
+                                if(p && (TeamController.Team)p.Controller.CustomProperties["team"] == team)
                                 {
-                                    p.CallUpdateScore(p.photonView.Owner, scoreInc);
+                                    p.gameObject.GetComponent<PlayerCharacter>().CallUpdateScore(p.Owner, scoreInc);
                                     //p.score += scoreInc;
                                 }
                             }
@@ -183,9 +183,9 @@ namespace Com.Glassblade.Group1
                             }
                         }
                         // 加入玩家列表
-                        if (!Players.Contains(player.photonView.OwnerActorNr))
+                        if (!Players.Contains(player.photonView))
                         {
-                            Players.Add(player.photonView.OwnerActorNr);
+                            Players.Add(player.photonView);
                         }
                     }
                 }
@@ -223,7 +223,7 @@ namespace Com.Glassblade.Group1
                 CharacterBehavior player = other.GetComponent<CharacterBehavior>();
                 PlayerCharacter status = other.GetComponent<PlayerCharacter>();
 
-                if (player && Players.Contains(player.photonView.OwnerActorNr))
+                if (player && Players.Contains(player.photonView))
                 {
                     //remove by wmj
                     //死人要通过这个函数移出点
@@ -236,7 +236,7 @@ namespace Com.Glassblade.Group1
                         //status.deathevent.RemoveListener(playerDeadAction);
                         status.OM = null;
                         //wmj ends
-                        Players.Remove(player.photonView.OwnerActorNr);
+                        Players.Remove(player.photonView);
                         // 离开的是本方玩家
                         if (playerTeam == tempTeam)
                         {
