@@ -5,58 +5,65 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using Photon.Realtime;
 
 public class Bush : MonoBehaviour
 {
-  CameraFollow cam;       //相机跟随组件
-  ArrayList players;      //角色列表
-  int allies_cnt;         //队友数量
-  void Start()
-  {
-    cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraFollow>();       //获取相机跟随组价
-    players = new ArrayList();          //实例化角色列表
-    allies_cnt = 0;                     //队友数量清零
-  }
+    CameraFollow cam;       //相机跟随组件
+    ArrayList players;      //角色列表
+    int allies_cnt;         //队友数量
+    void Start()
+    {
+        cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraFollow>();       //获取相机跟随组价
+        players = new ArrayList();          //实例化角色列表
+        allies_cnt = 0;                     //队友数量清零
+    }
 
-  private void OnTriggerEnter(Collider other)
-  {
-    CharacterBehavior player = other.GetComponent<CharacterBehavior>();
-    if (player)
+    private void OnTriggerEnter(Collider other)
     {
-      if ((int)other.GetComponent<PhotonView>().Owner.CustomProperties["team"] == (int)PhotonNetwork.LocalPlayer.CustomProperties["team"])         //如果是友军
-      {
-        if (allies_cnt == 0)               //友军数量为0
+        CharacterBehavior player = other.GetComponent<CharacterBehavior>();
+        if (player)
         {
-          foreach (CharacterBehavior p in players)       //对角色列表中每个人
-          {
-            p.SetTransparent(0.5f);         //设置为半透明
-          }
+            player.inBush = true;
+            // if the player entering the bush is teammate
+            if ((int)other.GetComponent<PhotonView>().Owner.CustomProperties["team"] == (int)PhotonNetwork.LocalPlayer.CustomProperties["team"])         //如果是友军
+            {
+                // and there are no teammates in the bush already
+                if (allies_cnt == 0)               //友军数量为0
+                {
+                    // all players in the bush will be visiable
+                    foreach (CharacterBehavior p in players)       //对角色列表中每个人
+                    {
+                        p.SetTransparent(0.5f);         //设置为半透明
+                    }
+                }
+                allies_cnt++;       //友军数量+1
+            }
+            // if no team mate is in the bush (including the newcomer), the player is invisible
+            player.SetTransparent(allies_cnt == 0 ? 0f : 0.5f);      //新来的是否可见
+            players.Add(player);        //加入角色列表
         }
-        allies_cnt++;       //友军数量+1
-      }
-      player.SetTransparent(allies_cnt == 0 ? 0f : 0.5f);      //新来的是否可见
-      players.Add(player);        //加入角色列表
     }
-  }
-  //大致同上
-  private void OnTriggerExit(Collider other)
-  {
-    CharacterBehavior player = other.GetComponent<CharacterBehavior>();
-    if (player)
+    //大致同上
+    private void OnTriggerExit(Collider other)
     {
-      players.Remove(player);
-      player.SetTransparent(1f);
-      if ((int)other.GetComponent<PhotonView>().Owner.CustomProperties["team"] == (int)PhotonNetwork.LocalPlayer.CustomProperties["team"])
-      {
-        allies_cnt--;
-        if (allies_cnt == 0)
+        CharacterBehavior player = other.GetComponent<CharacterBehavior>();
+        player.inBush = false;
+        if (player)
         {
-          foreach (CharacterBehavior p in players)
-          {
-            p.SetTransparent(0f);
-          }
+            players.Remove(player);
+            player.SetTransparent(1f);
+            if ((int)other.GetComponent<PhotonView>().Owner.CustomProperties["team"] == (int)PhotonNetwork.LocalPlayer.CustomProperties["team"])
+            {
+                allies_cnt--;
+                if (allies_cnt == 0)
+                {
+                    foreach (CharacterBehavior p in players)
+                    {
+                        p.SetTransparent(0f);
+                    }
+                }
+            }
         }
-      }
     }
-  }
 }

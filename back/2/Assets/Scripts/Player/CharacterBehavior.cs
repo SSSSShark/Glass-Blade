@@ -48,6 +48,8 @@ public class CharacterBehavior : MonoBehaviourPun, IPunObservable
     //是否无敌
     public bool invincible = false;
 
+    public bool inBush = false;
+
     public GameObject gamePlayer;
 
     public enum Team
@@ -112,20 +114,13 @@ public class CharacterBehavior : MonoBehaviourPun, IPunObservable
     /// </summary>
     private void RefreshTransparent()
     {
+        Debug.Log("[CharacterBehavior:RefreshTransparent()] Invisible time: " + invisibleTime);
         if (invisibleTime <= 0)
-        {//隐身技能未生效
+        { // 隐身技能未生效
             Debug.Log("[CharacterBehavior:RefreshTransparent()] Invisibility not viable.");
-            switch (bushStatus)
+            if (!inBush)
             {
-                case 0:
-                    SetTransparent(1f);
-                    break;
-                case 1:
-                    SetTransparent(0.5f);
-                    break;
-                case 2:
-                    SetTransparent(0f);
-                    break;
+                SetTransparent(1.0f);
             }
         }
         // 隐身技能生效
@@ -148,6 +143,8 @@ public class CharacterBehavior : MonoBehaviourPun, IPunObservable
     /// </summary>
     void Update()
     {
+        RefreshTransparent();
+
         // 技能更新失败？
         if (skillNumber != (int)GameObject.Find("SettingStore").GetComponent<SettingStore>().myskill)
         {
@@ -168,12 +165,16 @@ public class CharacterBehavior : MonoBehaviourPun, IPunObservable
             //更新隐身时长
 
             this.invisibleTime -= Time.deltaTime;
+
+            if (this.invisibleTime < 0)
+            {
+                this.invisibleTime = 0;
+            }
         }
         else
         {
             // invisible time < 0
             this.invisibleTime = 0;
-            RefreshTransparent();
         }
 
         //Author Via Cytus
