@@ -183,9 +183,9 @@ namespace Com.Glassblade.Group1
                             }
                         }
                         // 加入玩家列表
-                        if (!Players.Contains(player))
+                        if (!Players.Contains(player.photonView.OwnerActorNr))
                         {
-                            Players.Add(player);
+                            Players.Add(player.photonView.OwnerActorNr);
                         }
                     }
                 }
@@ -194,10 +194,22 @@ namespace Com.Glassblade.Group1
 
         }
 
-        public void DeathEvent(PlayerCharacter player)
+        private void OnTriggerStay(Collider other)
         {
-            OnTriggerExit(player.GetComponent<Collider>());
+            if (PhotonNetwork.IsMasterClient)
+            {
+                PlayerCharacter player = other.GetComponent<PlayerCharacter>();
+                if (player && !player.isAlive)
+                {
+                    OnTriggerExit(other);
+                }
+            }
         }
+
+        //public void DeathEvent(PlayerCharacter player)
+        //{
+        //    OnTriggerExit(player.GetComponent<Collider>());
+        //}
 
         /// <summary>
         /// 玩家离开占点区域的触发器，离开的玩家是本方玩家，若本方玩家全部离开，
@@ -211,7 +223,7 @@ namespace Com.Glassblade.Group1
                 CharacterBehavior player = other.GetComponent<CharacterBehavior>();
                 PlayerCharacter status = other.GetComponent<PlayerCharacter>();
 
-                if (player)
+                if (player && Players.Contains(player.photonView.OwnerActorNr))
                 {
                     //remove by wmj
                     //死人要通过这个函数移出点
@@ -224,7 +236,7 @@ namespace Com.Glassblade.Group1
                         //status.deathevent.RemoveListener(playerDeadAction);
                         status.OM = null;
                         //wmj ends
-                        Players.Remove(player);
+                        Players.Remove(player.photonView.OwnerActorNr);
                         // 离开的是本方玩家
                         if (playerTeam == tempTeam)
                         {

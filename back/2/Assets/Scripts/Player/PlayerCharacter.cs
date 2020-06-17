@@ -343,14 +343,14 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
     /************************************ 李晨昊 end ********************/
 
     /***************************** 汪至磊 begin ************************/
-    [PunRPC]
-    public void CallDeathEvent(PhotonMessageInfo info)
-    {
-        if (info.photonView)
-        {
-            info.photonView.GetComponent<PlayerCharacter>().OM.DeathEvent(info.photonView.GetComponent<PlayerCharacter>());
-        }
-    }
+    //[PunRPC]
+    //public void CallDeathEvent(PhotonMessageInfo info)
+    //{
+    //    if (info.photonView)
+    //    {
+    //        info.photonView.GetComponent<PlayerCharacter>().OM.DeathEvent(info.photonView.GetComponent<PlayerCharacter>());
+    //    }
+    //}
 
     public void Death()
     {
@@ -362,8 +362,8 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
         weapons[holdWeaponIndex].gameObject.SetActive(false);
 
         // 将两个碰撞体移出地图
-        this.transform.GetComponent<CharacterController>().center = new Vector3(180.0f, 1.34f, -10.0f);
-        this.transform.GetComponent<CapsuleCollider>().center = new Vector3(180.0f, 0.0f, -10.0f);
+        //this.transform.GetComponent<CharacterController>().center = new Vector3(180.0f, 1.34f, -10.0f);
+        //this.transform.GetComponent<CapsuleCollider>().center = new Vector3(180.0f, 0.0f, -10.0f);
 
         //  isAlive = false;
         //**倒下,先停1s,用2s分段倒下
@@ -392,8 +392,8 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
             //CurPosition.y = -100;
             //transform.position = CurPosition;
             transform.position = new Vector3(180.0f, 0.0f, -10.0f);
-            this.transform.GetComponent<CharacterController>().center = new Vector3(0.0f, 1.34f, 0.0f);
-            this.transform.GetComponent<CapsuleCollider>().center = new Vector3(0.0f, 0.0f, 0.0f);
+            //this.transform.GetComponent<CharacterController>().center = new Vector3(0.0f, 1.34f, 0.0f);
+            //this.transform.GetComponent<CapsuleCollider>().center = new Vector3(0.0f, 0.0f, 0.0f);
         }
     }
 
