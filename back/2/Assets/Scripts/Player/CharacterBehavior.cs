@@ -168,16 +168,14 @@ public class CharacterBehavior : MonoBehaviourPun, IPunObservable
             //更新隐身时长
 
             this.invisibleTime -= Time.deltaTime;
-            //隐身技能结束
-
-            if (this.invisibleTime <= 0)
-            {
-
-                this.invisibleTime = 0;
-            }
-
+        }
+        else
+        {
+            // invisible time < 0
+            this.invisibleTime = 0;
             RefreshTransparent();
         }
+
         //Author Via Cytus
         //突进
         if (marchForwardTime > 0)
