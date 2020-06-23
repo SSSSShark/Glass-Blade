@@ -47,9 +47,9 @@ namespace Com.Glassblade.Group1
             tempTeam = TeamController.Team.unknown;
             teamResult = TeamController.Team.unknown;
             //GetComponent<CanvasGroup>().alpha = 0;
-            TextHint=Indicator.GetComponent<Text>().text;
-            ColorHint= Circle.GetComponent<Image>().color ;
-            TextColorHint= Indicator.GetComponent<Text>().color ;
+            TextHint = Indicator.GetComponent<Text>().text;
+            ColorHint = Circle.GetComponent<Image>().color;
+            TextColorHint = Indicator.GetComponent<Text>().color;
         }
 
         // 
@@ -71,34 +71,34 @@ namespace Com.Glassblade.Group1
                 viewPos = new Vector3(viewPos.x * window_w, viewPos.y * window_h, 1);
             else
                 viewPos = new Vector3(-viewPos.x * window_w, -viewPos.y * window_h, 1);
-           // Debug.Log(viewPos);
+            // Debug.Log(viewPos);
             // 计算相机到点的向量值
             // 点在屏幕内
             // 如果点在屏幕内，且位置足以放下倒计时圆盘
-            
-            int circle_radius = (int)(CircleCountDown.rect.width/2)+1;
+
+            int circle_radius = (int)(CircleCountDown.rect.width / 2) + 1;
             Vector3 tepvec3 = new Vector3();
-            if (viewPos.x >= circle_radius&& viewPos.x <= window_w - circle_radius&& viewPos.y >= circle_radius && viewPos.y<= window_h - circle_radius)
+            if (viewPos.x >= circle_radius && viewPos.x <= window_w - circle_radius && viewPos.y >= circle_radius && viewPos.y <= window_h - circle_radius)
             {
                 tepvec3 = viewPos;
             }
             else
             {
                 Vector3 t = (viewPos - center) / Math.Abs((viewPos - center).x) * (window_w / 2 - circle_radius);
-                if (Math.Abs(t.y)<= window_h/2 - circle_radius)
+                if (Math.Abs(t.y) <= window_h / 2 - circle_radius)
                 {
-                    tepvec3 = t+center;
+                    tepvec3 = t + center;
                 }
                 else
                 {
                     t = (viewPos - center) / Math.Abs((viewPos - center).y) * (window_h / 2 - circle_radius);
-                    tepvec3 = t+center;
+                    tepvec3 = t + center;
                 }
             }
-            tepvec3.z = 0; 
-            
+            tepvec3.z = 0;
+
             CircleCountDown.position = tepvec3;
-         
+
             if (PhotonNetwork.IsMasterClient)
             {
                 //if (Indicator.GetComponent<Text>().text == "✔")
@@ -146,11 +146,27 @@ namespace Com.Glassblade.Group1
                 }
                 if (tempTeam == TeamController.Team.unknown)
                 {
-                    GetComponent<CanvasGroup>().alpha = 1;
-                    Circle.GetComponent<Image>().fillAmount = 1;
-                    Circle.GetComponent<Image>().color =ColorHint;
-                    Indicator.GetComponent<Text>().text = TextHint;
-                    Indicator.GetComponent<Text>().color =TextColorHint;
+                    if (teamResult == TeamController.Team.TeamA)
+                    {
+                        Circle.GetComponent<Image>().fillAmount = 0;
+                        Circle.GetComponent<Image>().color = Color.red;
+                        Indicator.GetComponent<Text>().text = "✔";
+                        Indicator.GetComponent<Text>().color = Color.red;
+                    }
+                    else if (teamResult == TeamController.Team.TeamB)
+                    {
+                        Circle.GetComponent<Image>().fillAmount = 0;
+                        Circle.GetComponent<Image>().color = Color.blue;
+                        Indicator.GetComponent<Text>().text = "✔";
+                        Indicator.GetComponent<Text>().color = Color.blue;
+                    }
+                    else
+                    {
+                        Circle.GetComponent<Image>().fillAmount = 1;
+                        Circle.GetComponent<Image>().color = ColorHint;
+                        Indicator.GetComponent<Text>().text = TextHint;
+                        Indicator.GetComponent<Text>().color = TextColorHint;
+                    }
                 }
             }
         }
@@ -175,7 +191,7 @@ namespace Com.Glassblade.Group1
             {
                 this.GetComponent<CanvasGroup>().alpha = (float)stream.ReceiveNext();
                 this.Circle.GetComponent<Image>().fillAmount = (float)stream.ReceiveNext();
-   
+
                 this.Circle.GetComponent<Image>().color = GetColor((float[])stream.ReceiveNext());
 
                 this.Indicator.GetComponent<Text>().text = (string)stream.ReceiveNext();
