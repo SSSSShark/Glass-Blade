@@ -5624,7 +5624,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   touch: {fileID: 0}
-  moveEnable: 0
+  moveEnable: 1
   speed: 10
   ani: {fileID: 2852727012395168670}
   gravity: 9
