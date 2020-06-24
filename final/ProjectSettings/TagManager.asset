@@ -3,7 +3,21 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - TeamA
+  - TeamB
+  - Start
+  - OneRoom
+  - Show
+  - Counter
+  - ScreenText
+  - ScoreA
+  - ScoreB
+  - Team1
+  - Team0
+  - TargetPoint
+  - Skill
+  - weapon
   layers:
   - Default
   - TransparentFX
@@ -13,8 +27,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - player
+  - Background
   - 
   - 
   - 
