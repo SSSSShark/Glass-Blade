@@ -56,7 +56,7 @@ public class movegetgromjoystick : MonoBehaviourPunCallbacks
         {
             Debug.LogError("[movegetgromjoystick:Start()] BUG: CameraWork Component on playerPrefab.", this);
         }
-
+        moveEnable = true;
     }
 
     // Update is called once per frame

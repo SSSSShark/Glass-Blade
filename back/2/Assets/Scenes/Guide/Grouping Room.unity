@@ -10463,6 +10463,8 @@ MonoBehaviour:
   changebtn: {fileID: 1372274151}
   messagebox: {fileID: 1175452423}
   chatRoom: {fileID: 1389003342}
+  hostIcon: {fileID: 2800000, guid: 9f5d5126493fed048b72483976fd8e8b, type: 3}
+  readyIcon: {fileID: 2800000, guid: cf90ca1f34251ba4aadc4dc94cda3248, type: 3}
 --- !u!4 &1547833337
 Transform:
   m_ObjectHideFlags: 0

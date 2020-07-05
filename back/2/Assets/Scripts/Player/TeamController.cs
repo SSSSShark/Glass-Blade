@@ -22,7 +22,8 @@ public class TeamController : MonoBehaviourPunCallbacks, IPunObservable
     public Button changebtn;
     public GameObject messagebox;
     public GameObject chatRoom;
-
+    public Texture hostIcon;
+    public Texture readyIcon;
 
     #endregion
 
@@ -279,8 +280,16 @@ public class TeamController : MonoBehaviourPunCallbacks, IPunObservable
             {
                 if ((Team)p.CustomProperties["team"] == Team.TeamA)
                 {
-                    TeamAList[TeamAIndex].GetComponent<Text>().text = p.NickName + (p == PhotonNetwork.MasterClient ? "-host" : "");
-                    if ((Status)p.CustomProperties["status"] == Status.Ready)
+                    TeamAList[TeamAIndex].GetComponent<Text>().text = p.NickName;
+                    if (p == PhotonNetwork.MasterClient)
+                    {
+                        TeamAList[TeamAIndex].transform.Find("Ready").GetComponent<RawImage>().texture = hostIcon;
+                    }
+                    else
+                    {
+                        TeamAList[TeamAIndex].transform.Find("Ready").GetComponent<RawImage>().texture = readyIcon;
+                    }
+                    if ((Status)p.CustomProperties["status"] == Status.Ready || (Status)p.CustomProperties["status"] == Status.Host)
                     {
                         TeamAList[TeamAIndex++].transform.Find("Ready").GetComponent<RawImage>().enabled = true;
                         //Debug.LogFormat("[TeamController:Synchronize()] Toggle for TeamA[{0}] is on", TeamAIndex);
@@ -292,8 +301,16 @@ public class TeamController : MonoBehaviourPunCallbacks, IPunObservable
                 }
                 else
                 {
-                    TeamBList[TeamBIndex].GetComponent<Text>().text = p.NickName + (p == PhotonNetwork.MasterClient ? "-host" : "");
-                    if ((Status)p.CustomProperties["status"] == Status.Ready)
+                    TeamBList[TeamBIndex].GetComponent<Text>().text = p.NickName;
+                    if(p == PhotonNetwork.MasterClient)
+                    {
+                        TeamBList[TeamBIndex].transform.Find("Ready").GetComponent<RawImage>().texture = hostIcon;
+                    }
+                    else
+                    {
+                        TeamBList[TeamBIndex].transform.Find("Ready").GetComponent<RawImage>().texture = readyIcon;
+                    }
+                    if ((Status)p.CustomProperties["status"] == Status.Ready || (Status)p.CustomProperties["status"] == Status.Host)
                     {
                         TeamBList[TeamBIndex++].transform.Find("Ready").GetComponent<RawImage>().enabled = true;
                         //Debug.LogFormat("[TeamController:Synchronize()] Toggle for TeamB[{0}] is on", TeamBIndex);
