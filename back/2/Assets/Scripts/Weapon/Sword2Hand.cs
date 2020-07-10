@@ -5,11 +5,11 @@ using UnityEngine;
 public class Sword2Hand : Weapon
 {
     private bool isfire = false;
-    float rotateangle = 120.0f;
+    public float rotateangle = 120.0f;
     public override void Start()
     {
         base.Start();
-        destroyTime = 0.5f;
+        destroyTime = 0.3f;
         transform.RotateAround(initPos, Vector3.up, -rotateangle/2);
     }
     public override void Fire()
