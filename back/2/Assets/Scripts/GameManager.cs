@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
     /// Invoked when the game initialized.
     /// We instantiate players and needed elements here
     /// </summary>
-    void Start()
+    void Awake()
     {
         if (playerPrefeb == null)
         {

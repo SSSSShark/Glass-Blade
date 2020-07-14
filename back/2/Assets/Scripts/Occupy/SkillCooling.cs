@@ -10,9 +10,14 @@ public class SkillCooling : MonoBehaviour
     // 文本显示冷却剩余时间
     private Text timeLast;
     // 设定的技能冷却时间
-    public int time = 45;
+    public int coolingTimeDash = 15;
+    public int coolingTimeInvisibility = 25;
+    public int coolingTimeSpeedUp = 35;
+    public int coolingTimeInvincible = 45;
     // 剩余时间
     private int coolingTime;
+    // cached cool down time
+    private int time;
     //玩家对象
     public GameObject player;
 
@@ -24,10 +29,24 @@ public class SkillCooling : MonoBehaviour
         timeLast.text = "R";
         // 对于按钮onClick事件指定函数
         skillBtn.onClick.AddListener(OnClickBtn);
-        // 剩余时间等于设定时间
+
+        // Set time according to the skill
+        CharacterBehavior CB = player.GetComponent<CharacterBehavior>();
+        switch (CB.getSkillNumber())
+        {
+            case 0: time = coolingTimeDash; break;
+            case 1: time = coolingTimeSpeedUp; break;
+            case 2: time = coolingTimeInvisibility; break;
+            case 3: time = coolingTimeInvincible; break;
+            default:
+                {
+                    Debug.LogError("[SkillColling:Start()] Invalid skill number");
+                    time = 45;
+                    break;
+                }
+        }
+
         coolingTime = time;
-        //获取对应玩家
-        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // 点击事件的函数，点击后开启协程调用DownTimer()
@@ -50,12 +69,12 @@ public class SkillCooling : MonoBehaviour
             timeLast.text = coolingTime.ToString();
             // 按钮显示改变
             skillBtn.transform.GetComponentInChildren<Image>().color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
-            
+
             // 间隔1S 可设置间隔秒数
             yield return new WaitForSeconds(1);
             // 倒计时剩余时间-1
             coolingTime--;
-    
+
         }
         // 倒计时结束，按钮启用
         skillBtn.enabled = true;

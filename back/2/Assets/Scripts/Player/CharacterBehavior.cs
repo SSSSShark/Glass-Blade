@@ -297,6 +297,15 @@ public class CharacterBehavior : MonoBehaviourPun, IPunObservable
         }
     }
 
+    /// <summary>
+    /// Get the skill index of current player
+    /// </summary>
+    /// <returns>this player's skill number.</returns>
+    public int getSkillNumber()
+    {
+        return skillNumber;
+    }
+
     #region PUN Callbacks
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
