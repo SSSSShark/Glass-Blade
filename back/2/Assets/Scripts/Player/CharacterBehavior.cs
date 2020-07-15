@@ -59,7 +59,7 @@ public class CharacterBehavior : MonoBehaviourPun, IPunObservable
         unknown
     };
 
-    void Start()
+    void Awake()
     {
         skillNumber = (int)GameObject.Find("SettingStore").GetComponent<SettingStore>().myskill;
         // 获取动画

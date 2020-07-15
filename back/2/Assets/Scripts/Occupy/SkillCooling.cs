@@ -34,10 +34,10 @@ public class SkillCooling : MonoBehaviour
         CharacterBehavior CB = player.GetComponent<CharacterBehavior>();
         switch (CB.getSkillNumber())
         {
-            case 0: time = coolingTimeDash; break;
-            case 1: time = coolingTimeSpeedUp; break;
-            case 2: time = coolingTimeInvisibility; break;
-            case 3: time = coolingTimeInvincible; break;
+            case 1: time = coolingTimeDash; break;
+            case 2: time = coolingTimeSpeedUp; break;
+            case 3: time = coolingTimeInvisibility; break;
+            case 4: time = coolingTimeInvincible; break;
             default:
                 {
                     Debug.LogError("[SkillColling:Start()] Invalid skill number");
