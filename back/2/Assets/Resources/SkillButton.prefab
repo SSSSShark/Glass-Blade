@@ -143,7 +143,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillBtn: {fileID: 4864205290911855798}
-  time: 45
+  coolingTimeDash: 8
+  coolingTimeInvisibility: 15
+  coolingTimeSpeedUp: 30
+  coolingTimeInvincible: 15
   player: {fileID: 0}
 --- !u!1 &4864205291491249625
 GameObject:

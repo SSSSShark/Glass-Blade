@@ -5734,7 +5734,7 @@ MonoBehaviour:
   invisibleTime: 0
   distance: 5
   accelerateDuration: 5
-  speedUp: 0.8
+  speedUp: 0.5
   unbeatableDuration: 5
   invincible: 0
   inBush: 0
