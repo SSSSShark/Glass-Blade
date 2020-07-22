@@ -5730,14 +5730,14 @@ MonoBehaviour:
   touch: {fileID: 3272583857764425497, guid: e1915c2083b75d64ba53de09012ca47e, type: 3}
   speed: 10
   skillNumber: 2
-  invisibleDuration: 8
+  invisibleDuration: 10
   invisibleTime: 0
   distance: 5
   accelerateDuration: 5
   speedUp: 0.5
   unbeatableDuration: 5
   invincible: 0
-  inBush: 0
+  inBush: 1
   gamePlayer: {fileID: 0}
 --- !u!114 &1385015671906754314
 MonoBehaviour:
