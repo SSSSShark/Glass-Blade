@@ -5730,11 +5730,11 @@ MonoBehaviour:
   touch: {fileID: 3272583857764425497, guid: e1915c2083b75d64ba53de09012ca47e, type: 3}
   speed: 10
   skillNumber: 2
-  invisibleDuration: 10
+  invisibleDuration: 8
   invisibleTime: 0
-  distance: 5
+  distance: 6
   accelerateDuration: 5
-  speedUp: 0.5
+  speedUp: 0.8
   unbeatableDuration: 5
   invincible: 0
   inBush: 1
