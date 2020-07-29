@@ -277,17 +277,7 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
             PhotonView photonView = PhotonView.Find(srcviewID);
             //为什么RPCtartget怎么改都不影响结果？？？
             photonView.RPC("UpdateKillTime", RpcTarget.All, 1);
-            photonView.RPC("UpdateScore", RpcTarget.All, 100);
 
-            //CallUpdateKillTime(photonView.Owner,1);
-            //if (!OM)
-            //{
-            // CallUpdateScore(photonView.Owner, 100);
-            //}
-            //if (OM)
-            //{
-            //    this.photonView.RPC("CallDeathEvent", RpcTarget.MasterClient);
-            //}
             if (KDboard)
             {
                 KDboard.GetComponent<KDBoardView>().CallUpdateBoard(photonView.Owner.NickName, this.photonView.Owner.NickName, weaponname, (int)srcteam, (int)team);
@@ -295,7 +285,7 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
             //非占点模式
             if (!GameObject.Find("OData"))
             {
-
+                photonView.RPC("UpdateScore", RpcTarget.All, 100);
                 if ((TeamController.Team)PhotonNetwork.LocalPlayer.CustomProperties["team"] == TeamController.Team.TeamA)
                 {
                     GameObject.FindGameObjectWithTag("ScoreB").GetComponent<Scores>().SendScoreInfo();
