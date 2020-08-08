@@ -4,10 +4,11 @@
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: Dagger_Alt2
-  m_Shader: {fileID: 4800000, guid: bf3a649ce4d9ef5439e7711e8c169da2, type: 3}
+  m_Shader: {fileID: 4800000, guid: c2e90bd110ab6b24da06d38d8d2855b9, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
@@ -47,7 +48,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 85164feab6d90c24781874b71a18246a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -93,6 +94,7 @@ Material:
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _GreyReplacingWeight: 0.72
+    - _Invincible: 0
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
@@ -118,3 +120,4 @@ Material:
     - _Color5Y: {r: 0.9191176, g: 0.8467814, b: 0.2635705, a: 0}
     - _Color6Y: {r: 0.30147058, g: 0.29682314, b: 0.25935337, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _IColor: {r: 1, g: 1, b: 0, a: 1}

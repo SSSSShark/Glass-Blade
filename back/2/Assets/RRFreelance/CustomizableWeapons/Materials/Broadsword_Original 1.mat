@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Axe_Original
+  m_Name: Broadsword_Original 1
   m_Shader: {fileID: 4800000, guid: c2e90bd110ab6b24da06d38d8d2855b9, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 0
@@ -20,11 +20,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _Base_Color_Texture:
-        m_Texture: {fileID: 2800000, guid: 02faec388ee52ee45b927b5e66b802e5, type: 3}
+        m_Texture: {fileID: 2800000, guid: d949b6158b440114e8ef4aa5f5f8131d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Base_Grey_Texture:
-        m_Texture: {fileID: 2800000, guid: 9449f6869f5ec394fb0d0a3079035046, type: 3}
+        m_Texture: {fileID: 2800000, guid: 326135d23b9a0f449b17bef8ee68bb34, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -48,7 +48,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 02faec388ee52ee45b927b5e66b802e5, type: 3}
+        m_Texture: {fileID: 2800000, guid: d949b6158b440114e8ef4aa5f5f8131d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
