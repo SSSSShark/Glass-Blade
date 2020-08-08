@@ -24,8 +24,8 @@
         };
 
         void surf (Input IN, inout SurfaceOutput o) {
-            fixed4 c = tex2D(_MainTex, IN.uv_MainTex) * _Color;
-            if(_Invincible){
+            fixed4 c = tex2D(_MainTex, IN.uv_MainTex)*_Color.a;
+            if(_Invincible || _Color.b==0){
                 c=c+abs(cos(_Time.w))*_IColor;
             }
             o.Albedo = c.rgb;
