@@ -24,6 +24,9 @@ public class TeamController : MonoBehaviourPunCallbacks, IPunObservable
     public GameObject chatRoom;
     public Texture hostIcon;
     public Texture readyIcon;
+    public Sprite startImg;
+    public Sprite readyImg;
+    public Sprite cancelImg;
 
     #endregion
 
@@ -62,7 +65,8 @@ public class TeamController : MonoBehaviourPunCallbacks, IPunObservable
         {
             settingbtn.gameObject.SetActive(true);
             Button btnObj = GameObject.FindGameObjectWithTag("Start").GetComponent<Button>();
-            btnObj.transform.Find("Text").GetComponent<Text>().text = "开始游戏";
+            //btnObj.transform.Find("Text").GetComponent<Text>().text = "开始游戏";
+            btnObj.transform.GetComponent<Image>().sprite = startImg;
 
             Debug.Log("[TeamController:Start()] Master client: initialize obj table");
 
@@ -382,7 +386,8 @@ public class TeamController : MonoBehaviourPunCallbacks, IPunObservable
             props["status"] = Status.Wait;
             PhotonNetwork.LocalPlayer.SetCustomProperties(props);
             Button btnObj = GameObject.FindGameObjectWithTag("Start").GetComponent<Button>();
-            btnObj.transform.Find("Text").GetComponent<Text>().text = "准备";
+            //btnObj.transform.Find("Text").GetComponent<Text>().text = "准备";
+            btnObj.transform.GetComponent<Image>().sprite = readyImg;
             try
             {
                 btnObj.onClick.RemoveListener(CancelReady);
@@ -431,8 +436,8 @@ public class TeamController : MonoBehaviourPunCallbacks, IPunObservable
             PhotonNetwork.LocalPlayer.SetCustomProperties(props);
 
             Button btnObj = GameObject.FindGameObjectWithTag("Start").GetComponent<Button>();
-            btnObj.transform.Find("Text").GetComponent<Text>().text = "取消准备";
-
+            //btnObj.transform.Find("Text").GetComponent<Text>().text = "取消准备";
+            btnObj.transform.GetComponent<Image>().sprite = cancelImg;
             try
             {
                 btnObj.onClick.RemoveListener(ReadytoGame);

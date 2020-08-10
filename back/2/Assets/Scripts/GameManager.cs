@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using Photon.Realtime;
 using UnityEngine.SocialPlatforms;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviourPunCallbacks
 {
     public enum GameType
     {
@@ -119,6 +119,41 @@ public class GameManager : MonoBehaviour
             }
         }
 
+    }
+
+    public void LeaveRoom()
+    {
+        if (GameObject.Find("AudioSystem"))
+        {
+            Destroy(GameObject.Find("AudioSystem"));
+        }
+        if (GameObject.Find("SettingStore"))
+        {
+            Destroy(GameObject.Find("SettingStore"));
+        }
+        PhotonNetwork.LeaveRoom();
+    }
+
+    public override void OnLeftRoom()
+    {
+        Debug.Log("[TeamController:OnLeftRoom()] " + PhotonNetwork.NickName + " Left the room");
+        if (PhotonNetwork.IsConnected && PhotonNetwork.Server == ServerConnection.MasterServer)
+        {
+            PhotonNetwork.LoadLevel("Lobby");
+            Debug.Log("[GameManager:OnLeftRoom()] back to lobby");
+        }
+        else
+        {
+            PhotonNetwork.LoadLevel(0);
+        }
+
+    }
+
+    public override void OnDisconnected(DisconnectCause cause)
+    {
+        base.OnDisconnected(cause);
+        Debug.LogWarning("[GameManager:OnDisconnected()] lose connection");
+        PhotonNetwork.LoadLevel(0);
     }
 
     // Update is called once per frame

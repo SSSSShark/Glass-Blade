@@ -146,7 +146,7 @@ public class CharacterBehavior : MonoBehaviourPun, IPunObservable
         RefreshTransparent();
 
         // 技能更新失败？
-        if (skillNumber != (int)GameObject.Find("SettingStore").GetComponent<SettingStore>().myskill)
+        if (GameObject.Find("SettingStore") && skillNumber != (int)GameObject.Find("SettingStore").GetComponent<SettingStore>().myskill)
         {
             skillNumber = (int)GameObject.Find("SettingStore").GetComponent<SettingStore>().myskill;
         }
