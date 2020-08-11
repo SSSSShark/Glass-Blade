@@ -114,10 +114,10 @@ public class CharacterBehavior : MonoBehaviourPun, IPunObservable
     /// </summary>
     private void RefreshTransparent()
     {
-        Debug.Log("[CharacterBehavior:RefreshTransparent()] Invisible time: " + invisibleTime);
+        // Debug.Log("[CharacterBehavior:RefreshTransparent()] Invisible time: " + invisibleTime);
         if (invisibleTime <= 0)
         { // 隐身技能未生效
-            Debug.Log("[CharacterBehavior:RefreshTransparent()] Invisibility not viable.");
+            // Debug.Log("[CharacterBehavior:RefreshTransparent()] Invisibility not viable.");
             if (!inBush)
             {
                 SetTransparent(1.0f);
@@ -136,6 +136,30 @@ public class CharacterBehavior : MonoBehaviourPun, IPunObservable
             SetTransparent(0f);
         }
     }
+
+    /// <summary>
+    /// Refresh invinsible according to the state
+    /// </summary>
+    private void RefreshInvinsible()
+    {
+        if (unbeatableTime > 0)
+        {
+            Debug.Log("INVINCIBLE");
+            foreach (var render in character)
+            {
+                Debug.Log(render.material.GetFloat("Invincible enable"));
+                render.material.SetFloat("_Invincible", 1);
+            }
+        }
+        else
+        {
+            foreach (var render in character)
+            {
+                render.material.SetFloat("_Invincible", 0);
+            }
+        }
+    }
+    
     //Author: Via Cytus
 
     /// <summary>
@@ -144,6 +168,7 @@ public class CharacterBehavior : MonoBehaviourPun, IPunObservable
     void Update()
     {
         RefreshTransparent();
+        RefreshInvinsible();
 
         // 技能更新失败？
         if (GameObject.Find("SettingStore") && skillNumber != (int)GameObject.Find("SettingStore").GetComponent<SettingStore>().myskill)
