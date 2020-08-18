@@ -22,7 +22,7 @@ namespace Com.MyCompany.MyGame
         const string playerNamePrefKey = "PlayerName";
 
         #endregion
-
+        public int max_length;
         #region MonoBehaviour CallBacks
 
         /// <summary>
@@ -43,7 +43,13 @@ namespace Com.MyCompany.MyGame
 
             PhotonNetwork.LocalPlayer.NickName = defaultName;
         }
-
+        void Update()
+        {
+            if (GetComponent<InputField>().text.Length > max_length)
+            {
+                GetComponent<InputField>().text = GetComponent<InputField>().text.Substring(0, max_length);
+            }
+        }
 
         #endregion
 
@@ -58,6 +64,9 @@ namespace Com.MyCompany.MyGame
         {
             // #Important
             string value = GetComponent<InputField>().text;
+            if (value.Length > max_length){
+                value = value.Substring(0, max_length);
+            }
             if (string.IsNullOrEmpty(value))
             {
                 Debug.LogError("[PlayerNameInputField:SetPlayerName()] Player Name is null or empty");

@@ -164,6 +164,12 @@ public class LobbyController : MonoBehaviourPunCallbacks
         }
     }
 
+    public override void OnCreateRoomFailed(short returnCode,string message)
+    {
+        Debug.Log("[LobbyController:CreateRoom()] Room's name already exists");
+        PhotonNetwork.CreateRoom("", new RoomOptions { MaxPlayers = maxPlayersPerRoom });
+    }
+
     public void JoinRandomRoom()
     {
         waitingPanel.SetActive(true);
