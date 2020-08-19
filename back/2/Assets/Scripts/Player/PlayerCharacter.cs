@@ -18,6 +18,7 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
 
     public bool isAlive = true;
     bool attacking = false;
+    public bool friendlyFire = false;  //允许友军伤害
     /**************** 李晨昊 end **************************/
 
     /********************* 林海力 begin *******************/
@@ -114,6 +115,12 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
         this.killTime += increase;
         Debug.Log("[PlayerCharacter:UpdateKillTime()] Update " + this.photonView.Owner.NickName + "'s killTIme");
         Debug.Log("[PlayerCharacter:UpdateKillTime()] " + this.photonView.Owner.NickName + ": " + this.killTime);
+    }
+
+    [PunRPC]
+    public void SetFriendlyFire(bool fire)
+    {
+        friendlyFire = fire;
     }
 
     #endregion
@@ -347,9 +354,12 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
         PlayAudio(9, false);
         isProtected = true; //tt
 
-        isHoldWeapon = false;
-        weapons[holdWeaponIndex].gameObject.SetActive(false);
-
+        //isHoldWeapon = false;
+        //weapons[holdWeaponIndex].gameObject.SetActive(false);
+        if (isHoldWeapon)
+        {
+            photonView.RPC("holdWeapon", RpcTarget.All, holdWeaponIndex, false);
+        }
         // 将两个碰撞体移出地图
         //this.transform.GetComponent<CharacterController>().center = new Vector3(180.0f, 1.34f, -10.0f);
         //this.transform.GetComponent<CapsuleCollider>().center = new Vector3(180.0f, 0.0f, -10.0f);
@@ -524,6 +534,13 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
 
             // set team
             team = (TeamController.Team)PhotonNetwork.LocalPlayer.CustomProperties["team"];
+
+        }
+
+        if (PhotonNetwork.IsMasterClient)
+        {
+            friendlyFire = GameObject.Find("SettingStore").GetComponent<SettingStore>().friendlyFire;
+            photonView.RPC("SetFriendlyFire", RpcTarget.All, friendlyFire);
         }
 
         // this should be set for all player instances

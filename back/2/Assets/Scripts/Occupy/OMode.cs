@@ -88,12 +88,12 @@ namespace Com.Glassblade.Group1
                     {
                         team = tempTeam;
                         if (currentTime < 0)
-                        { 
+                        {
                             //add by wmj,modify by Via Cytus
                             //这时点里玩家应全加分
                             foreach (PhotonView p in Players)
                             {
-                                if(p && (TeamController.Team)p.Controller.CustomProperties["team"] == team)
+                                if (p && (TeamController.Team)p.Controller.CustomProperties["team"] == team)
                                 {
                                     p.gameObject.GetComponent<PlayerCharacter>().CallUpdateScore(p.Owner, scoreInc);
                                     //p.score += scoreInc;
@@ -103,7 +103,7 @@ namespace Com.Glassblade.Group1
                         }
                         currentTime = 0;
                         // 倒计时结束，占领
-                        
+
                     }
                 }
             }
@@ -266,8 +266,15 @@ namespace Com.Glassblade.Group1
                                     {
                                         tempTeam = TeamController.Team.TeamA;
                                     }
-                                    // 开始倒计时占领
-                                    stoped = false;
+                                    if (team == tempTeam)
+                                    {
+                                        // 如果已经被对方占领，清零
+                                        currentTime = 0;
+                                    }
+                                    else
+                                    {  
+                                        stoped = false; // 开始倒计时占领
+                                    }
                                 }
                                 guidePlayer = 0;
                             }

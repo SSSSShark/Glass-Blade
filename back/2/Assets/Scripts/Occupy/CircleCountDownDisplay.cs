@@ -123,7 +123,10 @@ namespace Com.Glassblade.Group1
                     if (current <= 0)
                     {
                         GetComponent<CanvasGroup>().alpha = 1;
+                        Circle.GetComponent<Image>().fillAmount = 0;
+                        Circle.GetComponent<Image>().color = Color.red;
                         Indicator.GetComponent<Text>().text = "✔";
+                        Indicator.GetComponent<Text>().color = Color.red;
                     }
                 }
                 // 1队用蓝色标注
@@ -141,7 +144,10 @@ namespace Com.Glassblade.Group1
                     if (current <= 0)
                     {
                         GetComponent<CanvasGroup>().alpha = 1;
+                        Circle.GetComponent<Image>().fillAmount = 0;
+                        Circle.GetComponent<Image>().color = Color.blue;
                         Indicator.GetComponent<Text>().text = "✔";
+                        Indicator.GetComponent<Text>().color = Color.blue;
                     }
                 }
                 if (tempTeam == TeamController.Team.unknown)

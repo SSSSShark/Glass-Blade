@@ -10,7 +10,7 @@ public abstract class Weapon : MonoBehaviour
     public LayerMask damageMask; //设置能够判定伤害的层面
     public Player weaponOwner;  //武器持有者
     public PhotonView photonviewOwner;
-    public bool friendlyFire = false;  //允许友军伤害
+    //public bool friendlyFire = false;  //允许友军伤害
     public PlayerCharacter Pc;
     public float destroyTime = 2.0f;
     public Vector3 initPos, initForward;
@@ -19,17 +19,17 @@ public abstract class Weapon : MonoBehaviour
     public virtual void Start()
     {
         //photonviewOwner = this.GetComponent<PhotonView>();
-        friendlyFire = GameObject.Find("SettingStore").GetComponent<SettingStore>().friendlyFire;
     }
 
+
     // Update is called once per frame
-    void Update()
-    {
-        if (!Pc.isAlive)
-        {
-            PhotonDestroy();
-        }
-    }
+    //void Update()
+    //{
+    //    if (!Pc.isAlive)
+    //    {
+    //        PhotonDestroy();
+    //    }
+    //}
 
     /// <summary>
     /// If the weapon hit a player, the player should take damage.
@@ -48,7 +48,7 @@ public abstract class Weapon : MonoBehaviour
                     Debug.Log("[Weapon:OnTriggerEnter()] " + target.photonView.Controller.NickName + "(yourself) triggered, ignored");
                     return;
                 }
-                if (!friendlyFire &&
+                if (!Pc.friendlyFire &&
                     (TeamController.Team)target.photonView.Controller.CustomProperties["team"] ==
                     (TeamController.Team)weaponOwner.CustomProperties["team"])
                 {
