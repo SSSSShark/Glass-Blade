@@ -21,12 +21,14 @@
 
         struct Input {
             float2 uv_MainTex;
+            float3 viewDir;
         };
 
         void surf (Input IN, inout SurfaceOutput o) {
             fixed4 c = tex2D(_MainTex, IN.uv_MainTex)*_Color.a;
+            half rim = 1.0 - saturate(dot(normalize(IN.viewDir), o.Normal));
             if(_Invincible || _Color.b==0){
-                c=c+abs(cos(_Time.w))*_IColor;
+                c=c+abs(cos(_Time.w))*_IColor*rim;
             }
             o.Albedo = c.rgb;
             o.Alpha = c.a;
