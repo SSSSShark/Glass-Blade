@@ -503,7 +503,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -717, y: 319}
+  m_AnchoredPosition: {x: -800, y: 320}
   m_SizeDelta: {x: 660.3, y: 492}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &315295159
@@ -1245,7 +1245,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: X
+  m_Text: 
 --- !u!222 &450039271
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2260,12 +2260,12 @@ PrefabInstance:
     - target: {fileID: 4864205290911855796, guid: dc8cbf50989850145a4b1d7e3af776f6,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 1464
+      value: 1640
       objectReference: {fileID: 0}
     - target: {fileID: 4864205290911855796, guid: dc8cbf50989850145a4b1d7e3af776f6,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 371
+      value: 370
       objectReference: {fileID: 0}
     - target: {fileID: 4864205290911855796, guid: dc8cbf50989850145a4b1d7e3af776f6,
         type: 3}
@@ -3129,8 +3129,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: baf43ca0fddf681438a5764df51689f9, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4

@@ -5760,6 +5760,7 @@ MonoBehaviour:
   muzzle: {fileID: 4140772465482480, guid: 8108926c706399345ba00612988acd5f, type: 3}
   attackTime: 0.5
   isAlive: 1
+  friendlyFire: 0
   isProtected: 0
   isJustAlive: 0
   protectTimeMax: 10

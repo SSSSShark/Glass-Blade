@@ -152,7 +152,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   photonviewOwner: {fileID: 0}
-  friendlyFire: 0
   Pc: {fileID: 0}
   destroyTime: 0.5
   initPos: {x: 0, y: 0, z: 0}
